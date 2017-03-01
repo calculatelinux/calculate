@@ -1,5 +1,5 @@
 # Calculate format=diff os_linux_system==desktop
-From b6a2103b6436410db1ae3899552812f1080c4867 Mon Sep 17 00:00:00 2001
+From b782bbfcb5e08e92c0448d0c6a870b44db198837 Mon Sep 17 00:00:00 2001
 From: Paolo Valente <paolo.valente@linaro.org>
 Date: Mon, 16 May 2016 11:16:17 +0200
 Subject: [PATCH 4/4] Turn BFQ-v7r11 for 4.10.0 into BFQ-v8r8 for 4.10.0
@@ -8,13 +8,12 @@ Signed-off-by: Paolo Valente <paolo.valente@linaro.org>
 ---
  Documentation/block/00-INDEX        |    2 +
  Documentation/block/bfq-iosched.txt |  530 ++++++
- Makefile                            |    2 +-
  block/Kconfig.iosched               |   18 +-
  block/bfq-cgroup.c                  |  510 +++---
  block/bfq-iosched.c                 | 3414 ++++++++++++++++++++++-------------
  block/bfq-sched.c                   | 1290 ++++++++++---
  block/bfq.h                         |  800 ++++----
- 8 files changed, 4391 insertions(+), 2175 deletions(-)
+ 7 files changed, 4390 insertions(+), 2174 deletions(-)
  create mode 100644 Documentation/block/bfq-iosched.txt
 
 diff --git a/Documentation/block/00-INDEX b/Documentation/block/00-INDEX
@@ -565,19 +564,6 @@ index 0000000..13b5248
 +    Slightly extended version:
 +    http://algogroup.unimore.it/people/paolo/disk_sched/bfq-v1-suite-
 +							results.pdf
-diff --git a/Makefile b/Makefile
-index f1e6a02..ae9286c 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1,7 +1,7 @@
- VERSION = 4
- PATCHLEVEL = 10
- SUBLEVEL = 0
--EXTRAVERSION =
-+EXTRAVERSION = -bfq
- NAME = Fearless Coyote
- 
- # *DOCUMENTATION*
 diff --git a/block/Kconfig.iosched b/block/Kconfig.iosched
 index f78cd1a..f2cd945 100644
 --- a/block/Kconfig.iosched
