@@ -26,4 +26,5 @@ src_prepare() {
 src_install(){
 	doins -r opt usr
 	fperms 755 /opt/viber/Viber
+	fperms 755 /opt/viber/QtWebEngineProcess
 }
