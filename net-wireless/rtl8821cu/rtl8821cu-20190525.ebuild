@@ -22,7 +22,7 @@ MODULE_NAMES="rtl8821cu(net/wireless)"
 BUILD_TARGETS="all"
 BUILD_TARGET_ARCH="${ARCH}"
 
-src_unpack() { 
+src_unpack() {
         unpack "${A}"
         cd "${S}"
 }
