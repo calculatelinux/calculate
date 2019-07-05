@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}"
 
 src_unpack() {
-	cp ${DISTDIR}/uBlock0_${MYPV}.firefox.signed.xpi ${S}/uBlock0.firefox.signed.xpi
+	cp ${DISTDIR}/uBlock0_${MYPV}.firefox.signed.xpi ${S}/uBlock0.firefox.xpi
 }
 
 src_install() {
