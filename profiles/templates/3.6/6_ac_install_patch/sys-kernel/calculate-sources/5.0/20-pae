@@ -1,2 +1,0 @@
-# Calculate format=kernel name=.config merge(sys-kernel/calculate-sources[pae,desktop])!=
-CONFIG_HIGHMEM64G=y

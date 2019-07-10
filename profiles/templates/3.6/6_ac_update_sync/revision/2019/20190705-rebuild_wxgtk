@@ -1,0 +1,4 @@
+# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-# rebuild=x11-libs/wxGTK
+
+[overlay-calculate]
+revision = #-cut(0,-,#-cl_pass_file-#)-#

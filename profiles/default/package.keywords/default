@@ -126,8 +126,8 @@ net-im/telegram-desktop-bin amd64 x86
 ~net-print/foomatic-db-engine-4.0.12 amd64 x86
 ~net-print/foomatic-db-ppds-4.0.20190226 amd64 x86
 ~net-print/gutenprint-5.3.1 amd64 x86
-~net-print/hplip-3.19.3 amd64 x86
-~net-print/hplip-plugin-3.19.3 amd64 x86
+~net-print/hplip-3.19.5 amd64 x86
+~net-print/hplip-plugin-3.19.5 amd64 x86
 ~net-wireless/blueman-2.1_beta1 amd64 x86
 ~net-wireless/broadcom-sta-6.30.223.271 amd64 x86
 ~sci-electronics/kicad-5.0.1 amd64 x86

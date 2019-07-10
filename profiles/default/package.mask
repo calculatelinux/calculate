@@ -2,7 +2,6 @@
 ~virtual/perl-File-Path-2.150.0
 
 # block with docker
-=app-emulation/containerd-1.2.6
 =app-emulation/runc-1.0.0_rc7
 
 # need inkscape

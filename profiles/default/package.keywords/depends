@@ -307,6 +307,7 @@
 ~app-emacs/yc-5.2.1 amd64 x86
 ~app-emulation/bochs-2.6.9 amd64 x86
 ~app-emulation/coldfire-0.3.1 amd64 x86
+~app-emulation/containerd-1.2.6 amd64
 ~app-emulation/dlx-1.0.0 amd64 x86
 ~app-emulation/docker-machine-0.13.0 amd64
 ~app-emulation/docker-registry-2.6.2 amd64
@@ -920,7 +921,7 @@
 ~sys-fs/autorun-3.17 amd64 x86
 ~sys-fs/bcache-tools-1.0.8_p20140220 amd64 x86
 ~sys-fs/bees-0.6.1 amd64 x86
-~sys-fs/bindfs-1.13.11 amd64 x86
+~sys-fs/bindfs-1.14.1 amd64 x86
 ~sys-fs/clamfs-1.0.1 amd64 x86
 ~sys-fs/compsize-1.1 amd64 x86
 ~sys-fs/copyfs-1.0.1 amd64 x86
@@ -1093,7 +1094,6 @@
 ~x11-wm/matwm2-0.1.2_pre3 amd64 x86
 ~x11-wm/notion-3_p2015061300 amd64 x86
 ~x11-wm/plwm-2.7_rc1 amd64 x86
-~x11-wm/qtile-0.12.0 amd64 x86
 ~x11-wm/sithwm-1.2.3 amd64 x86
 ~x11-wm/subtle-0.11.3244 amd64 x86
 ~x11-wm/windowmaker-0.95.8 amd64 x86
