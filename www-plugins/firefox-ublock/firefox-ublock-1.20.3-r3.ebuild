@@ -6,15 +6,15 @@ EAPI="5"
 
 inherit eutils
 
-MYPV="1.19.3b11"
+MYPV="1.20.3rc3"
 
 SRC_URI="https://github.com/gorhill/uBlock/releases/download/$MYPV/uBlock0_${MYPV}.firefox.signed.xpi"
 
-DESCRIPTION="An efficient blocker for Firefox"
+DESCRIPTION="An efficient blocker for Firefox, beta version"
 HOMEPAGE="https://github.com/gorhill/uBlock"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
 DEPEND="|| ( www-client/firefox
 	www-client/firefox-bin )"
