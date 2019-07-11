@@ -6,7 +6,7 @@ EAPI="5"
 
 inherit eutils
 
-MYPV="1.20.3rc3"
+MYPV="1.20.3rc4"
 
 SRC_URI="https://github.com/gorhill/uBlock/releases/download/$MYPV/uBlock0_${MYPV}.firefox.signed.xpi"
 
