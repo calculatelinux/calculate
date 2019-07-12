@@ -4,7 +4,7 @@
 EAPI=5
 inherit linux-mod linux-info
 
-COMMIT="ae558aa6778752683393d561a910a162153f3f1a"
+COMMIT="13b9c39980a14bebe5178c044cd24ea8aeb845da"
 
 DESCRIPTION="Realtek 8192EU module for Linux kernel"
 HOMEPAGE="https://github.com/Mange/rtl8192eu-linux-driver"
@@ -22,10 +22,9 @@ MODULE_NAMES="8192eu(net/wireless)"
 BUILD_TARGETS="all"
 BUILD_TARGET_ARCH="${ARCH}"
 
-pkg_pretend() {
-	CONFIG_CHECK="RTL8XXXU"
-	ERROR_RLT8XXXU="Module RTL8XXXU exists in the .config but shouldn't!"
-}
+CONFIG_CHECK="!RTL8XXXU"
+ERROR_RLT8XXXU="Module RTL8XXXU exists in the .config but shouldn't!"
+
 src_unpack() { 
 	unpack "${A}"
 	cd "${S}"
