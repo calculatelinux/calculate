@@ -23,7 +23,7 @@ BUILD_TARGETS="all"
 BUILD_TARGET_ARCH="${ARCH}"
 
 CONFIG_CHECK="!RTL8XXXU"
-ERROR_RLT8XXXU="Module RTL8XXXU exists in the .config but shouldn't!"
+ERROR_RLT8XXXU="Module RTL8XXXU exists in config, but shouldn't!"
 
 src_unpack() { 
 	unpack "${A}"
