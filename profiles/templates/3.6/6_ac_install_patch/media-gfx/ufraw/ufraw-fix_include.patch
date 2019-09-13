@@ -1,0 +1,13 @@
+# Calculate format=diff
+diff --git a/ufraw_exiv2.cc b/ufraw_exiv2.cc
+index f03011b..63744df 100644
+--- a/ufraw_exiv2.cc
++++ b/ufraw_exiv2.cc
+@@ -13,6 +13,7 @@
+  */
+ 
+ #include "ufraw.h"
++#include <iostream>
+ 
+ #ifdef HAVE_EXIV2
+ #include <exiv2/image.hpp>

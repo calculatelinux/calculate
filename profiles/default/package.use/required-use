@@ -61,3 +61,6 @@ net-libs/nodejs icu
 
 # spell? ( client )
 net-im/swift client
+
+# png? ( lcd_devices_glcd )
+app-misc/lcdproc lcd_devices_glcd

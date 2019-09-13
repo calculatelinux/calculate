@@ -52,6 +52,7 @@ user_pref("browser.search.geoip.url", "");
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.selfsupport.url", "");
 user_pref("browser.sessionhistory.max_total_viewers", 2);
+user_pref("reader.parse-on-load.enabled", false);
 user_pref("browser.sessionstore.max_tabs_undo", 3);
 user_pref("browser.sessionstore.max_windows_undo", 2);
 user_pref("browser.slowStartup.notificationDisabled", true);

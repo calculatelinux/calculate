@@ -302,7 +302,7 @@
 ~games-engines/gemrb-0.8.3 amd64 x86
 ~games-engines/love-11.1 amd64 x86
 ~games-engines/nazghul-0.7.1 amd64 x86
-~games-engines/odamex-0.7.0 amd64 x86
+~games-engines/odamex-0.8.1 amd64 x86
 ~games-engines/openxcom-1.0.0 amd64 x86
 ~games-engines/residualvm-0.2.1 amd64 x86
 ~games-engines/scummvm-2.0.0 amd64 x86
@@ -330,7 +330,7 @@
 ~games-fps/doom3-roe-1 amd64 x86
 ~games-fps/duke3d-20040817 amd64 x86
 ~games-fps/duke3d-demodata-1.3 amd64 x86
-~games-fps/eduke32-20190719.7814 amd64 x86
+~games-fps/eduke32-20190820.8043 amd64 x86
 ~games-fps/freedoom-0.11.3 amd64 x86
 ~games-fps/freedoom-data-0.11.3 amd64 x86
 ~games-fps/glxquake-bin-0 amd64 x86

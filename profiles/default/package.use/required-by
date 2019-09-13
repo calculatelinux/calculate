@@ -637,3 +637,9 @@ net-libs/libssh server
 
 # required by dev-php/pecl-imagick-3.4.4
 media-gfx/imagemagick -openmp
+
+# required by dev-vcs/gitg-3.32.1
+app-text/gtkspell vala
+
+# required by dev-vcs/gitg-3.32.1
+dev-libs/libdazzle vala
