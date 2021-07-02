@@ -297,6 +297,19 @@ python_install() {
 		PYTHON_INSTALL_PARAMS="$PYTHON_INSTALL_PARAMS --dbus"
 	fi
 	distutils-r1_python_install $PYTHON_INSTALL_PARAMS
+	rm -r ${D}/usr/share/calculate
+	rm -r ${D}/usr/share/man
+	rm -r ${D}/usr/share/dbus-1
+	rm ${D}/usr/libexec/calculate/cl-video-install
+	rm ${D}/usr/libexec/calculate/cl-core-wrapper
+	rm ${D}/usr/libexec/calculate/cl-pkg-cache
+	rm ${D}/usr/libexec/calculate/cl-check-admin
+	rm ${D}/usr/libexec/calculate/cl-variable
+	rm ${D}/usr/libexec/calculate/cl-dbus-core.py
+	rm ${D}/usr/libexec/calculate/cl-git-wrapper
+	rm ${D}/usr/sbin/cl-core
+	rm ${D}/bin/bashlogin
+	rm ${D}/usr/bin/xautologin
 }
 
 calculate-utils-r15_pkg_preinst() {
@@ -307,9 +320,9 @@ calculate-utils-r15_pkg_preinst() {
 	#dosym /usr/lib/python-exec/python2.7/cl-console /usr/bin/cl-console
 	if use qt5
 	then
-		dosym /usr/lib/python-exec/python2.7/cl-console-gui /usr/bin/cl-console-gui
-		dosym /usr/lib/python-exec/python2.7/cl-console-gui /usr/bin/cl-console-gui-install
-		dosym /usr/lib/python-exec/python2.7/cl-console-gui /usr/bin/cl-console-gui-update
-		dosym /usr/lib/python-exec/python2.7/cl-update-checker /usr/bin/cl-update-checker
+		dosym /usr/lib/python-exec/python3.9/cl-console-gui /usr/bin/cl-console-gui
+		dosym /usr/lib/python-exec/python3.9/cl-console-gui /usr/bin/cl-console-gui-install
+		dosym /usr/lib/python-exec/python3.9/cl-console-gui /usr/bin/cl-console-gui-update
+		dosym /usr/lib/python-exec/python3.9/cl-update-checker /usr/bin/cl-update-checker
 	fi
 }
