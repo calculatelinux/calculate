@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# @ECLASS: calculate-utils-r14.eclass
+# @ECLASS: calculate-utils-r15.eclass
 # @MAINTAINER:
 # support@calculate.ru
 # @AUTHOR:
@@ -11,10 +11,10 @@
 # @DESCRIPTION:
 # This eclass use for calculate-utils ebuild
 
-PYTHON_COMPAT=(python2_7)
-
 DISTUTILS_USE_SETUPTOOLS=manual
-inherit distutils2 eutils
+PYTHON_COMPAT=(python3_9)
+
+inherit distutils-r1 eutils
 
 EXPORTED_FUNCTIONS="src_compile src_install pkg_preinst"
 
@@ -53,26 +53,29 @@ declare -g -A CALCULATE_TARBALL_=()
 
 declare -g -A CALCULATE_MODULES_=(
 	["lib"]="$UTILS_PV"
-	["builder"]="$UTILS_PV"
 	["install"]="$UTILS_PV"
 	["core"]="$UTILS_PV"
-	["i18n"]="$UTILS_PV"
 	["update"]="$UTILS_PV"
-	["desktop"]="$UTILS_PV"
-	["client"]="$UTILS_PV"
-	["console"]="$UTILS_PV"
-	["server"]="$UTILS_PV"
-	["ldap"]="$UTILS_PV"
-	["unix"]="$UTILS_PV")
+	["console-gui"]="$UTILS_PV"
+)
+#	["builder"]="$UTILS_PV"
+#	["i18n"]="$UTILS_PV"
+#	["desktop"]="$UTILS_PV"
+#	["client"]="$UTILS_PV"
+#	["console"]="$UTILS_PV"
+#	["server"]="$UTILS_PV"
+#	["ldap"]="$UTILS_PV"
+#	["unix"]="$UTILS_PV"
 
 declare -g -A CALCULATE_MODULES_USE_=(
-	["desktop"]="desktop"
-	["client"]="client"
-	["console"]="console"
-	["server"]="server"
-	["ldap"]="server"
-	["unix"]="server"
+	["console-gui"]="qt5"
 )
+#	["desktop"]="desktop"
+#	["client"]="client"
+#	["console"]="console"
+#	["server"]="server"
+#	["ldap"]="server"
+#	["unix"]="server"
 
 EXPORT_FUNCTIONS ${EXPORTED_FUNCTIONS}
 
@@ -152,11 +155,12 @@ RDEPEND="
 	!minimal? (
 		>=sys-apps/util-linux-2.19.1
 		net-misc/rsync
-		dev-python/lxml-python2
-		>=dev-python/pyopenssl-python2-0.14
+		dev-python/lxml
+		dev-python/pyopenssl
+		dev-python/cryptography
 		dev-libs/openssl
-		dev-python/m2crypto-python2
-		dev-python/pytz-python2
+		dev-python/m2crypto
+		dev-python/pytz
 	)
 	gpg? (
 		app-crypt/gnupg
@@ -168,13 +172,6 @@ RDEPEND="
 	app-arch/xz-utils
 
 	app-eselect/eselect-repository
-	|| (
-		sys-apps/portage[python_targets_python3_6]
-		sys-apps/portage[python_targets_python3_7]
-		sys-apps/portage[python_targets_python3_8]
-		sys-apps/portage[python_targets_python3_9]
-		sys-apps/portage[python_targets_python3_10]
-	)
 	>=virtual/udev-197
 	!app-misc/livecd-tools
 	sys-apps/coreutils[xattr]
@@ -187,77 +184,59 @@ RDEPEND="
 
 	!<sys-apps/calculate-server-2.1.18-r1
 
-	desktop? (
-		media-gfx/feh
-		x11-apps/xmessage
-		sys-apps/keyutils
-		sys-auth/pam_keystore
-		dev-lang/swig
-		dev-qt/qdbus:5
-		sys-apps/edid-decode
-		|| (
-			( dev-python/pygobject[python_targets_python3_8]
-			dev-python/dbus-python[python_targets_python3_8]
-			)
-			( dev-python/pygobject[python_targets_python3_10]
-			dev-python/dbus-python[python_targets_python3_10]
-			)
-			( dev-python/pygobject[python_targets_python3_9]
-			dev-python/dbus-python[python_targets_python3_9]
-			)
-			( dev-python/pygobject[python_targets_python3_7]
-			dev-python/dbus-python[python_targets_python3_7]
-			)
-			( dev-python/pygobject[python_targets_python3_6]
-			dev-python/dbus-python[python_targets_python3_6]
-			)
-		)
-	)
-
-	server? (
-		sys-auth/pam_ldap
-		sys-auth/nss_ldap
-		dev-python/python2-ldap
-	)
-
-	client? (
-		dev-python/py-smbpasswd
-		>=dev-python/python2-ldap-2.0[ssl]
-		sys-auth/pam_client
-		>=sys-auth/pam_ldap-180[ssl]
-		>=sys-auth/nss_ldap-239
+	qt5? (
+		dev-python/dbus-python
+		media-gfx/imagemagick[jpeg]
+		dev-python/PyQt5
+		dev-python/pyinotify
 	)
 
 	dbus? (
-		dev-python/dbus-python2
+		dev-python/dbus-python
 	)
 
-	dev-python/pexpect-python2
-
-	!<sys-apps/calculate-lib-2.1.12
-	!sys-apps/calculate-lib:3
-	!sys-apps/calculate-i18n:3
-	!sys-apps/calculate-client:3
-	!sys-apps/calculate-desktop:3
-	!sys-apps/calculate-console:3
-	!sys-apps/calculate-console-gui:3
-	!sys-apps/calculate-update:3
-	!sys-apps/calculate-install:3
-	!sys-apps/calculate-core:3
-	server? ( !sys-apps/calculate-server )
-	backup? ( !sys-apps/calculate-server )
+	dev-python/pexpect
 "
 
+#	server? (
+#		sys-auth/pam_ldap
+#		sys-auth/nss_ldap
+#		dev-python/python-ldap
+#	)
+#
+#	desktop? (
+#		media-gfx/feh
+#		x11-apps/xmessage
+#		sys-apps/keyutils
+#		sys-auth/pam_keystore
+#		dev-lang/swig
+#		dev-qt/qdbus:5
+#		sys-apps/edid-decode
+#		dev-python/pygobject[python_targets_python3_9]
+#		dev-python/dbus-python[python_targets_python3_9]
+#	)
+#
+#	client? (
+#		dev-python/py-smbpasswd
+#		dev-python/python-ldap[ssl]
+#		sys-auth/pam_client
+#		>=sys-auth/pam_ldap-180[ssl]
+#		>=sys-auth/nss_ldap-239
+#	)
+#
+#	server? ( !sys-apps/calculate-server )
+#	backup? ( !sys-apps/calculate-server )
+
 DEPEND="
-	dev-python/setuptools-python2
+	dev-python/setuptools
 	sys-devel/gettext"
 
-REQUIRED_USE="client? ( desktop )"
+#REQUIRED_USE="client? ( desktop )"
 
-# @FUNCTION: calculate-utils-r14_src_compile
+# @FUNCTION: calculate-utils-r15_src_compile
 # @DESCRIPTION:
 # Compile all modules of calculate utils
-calculate-utils-r14_src_compile() {
+calculate-utils-r15_src_compile() {
 	if ! use backup
 	then
 		sed -ir "s/'cl-backup'/None/" calculate-core-*/pym/core/wsdl_core.py
@@ -270,30 +249,40 @@ calculate-utils-r14_src_compile() {
 		MODULE_DATA=( $MODULE )
 		MODULE_PN=${MODULE_DATA[0]}
 		MODULE_PV=${MODULE_DATA[1]}
-		S="${WORKDIR}/${MODULE_PN}-${MODULE_PV}"
+		if [[ $PV == "3.7.9999" ]]
+		then
+			S="${WORKDIR}/${MODULE_PN/calculate-/}-${MODULE_PV}"
+		else
+			S="${WORKDIR}/${MODULE_PN}-${MODULE_PV}"
+		fi
 		cd $S
 		if [[ $MODULE_PN == "calculate-lib" ]]
 		then
 			sed -ri "/class VariableClVer/{N;N;N;N;s/value = \".*?\"/value = \"${PV}\"/;}" \
 				pym/calculate/lib/variables/__init__.py
 		fi
-		distutils2_src_compile
+		distutils-r1_src_compile
 	done
 }
 
-# @FUNCTION: calculate-utils-r14_src_install
+# @FUNCTION: calculate-utils-r15_src_install
 # @DESCRIPTION:
 # Install all modules of calculate utils
-calculate-utils-r14_src_install() {
+calculate-utils-r15_src_install() {
 	prepare_module_info
 	for MODULE in "${MODULE_INFO[@]}"
 	do
 		MODULE_DATA=( $MODULE )
 		MODULE_PN=${MODULE_DATA[0]}
 		MODULE_PV=${MODULE_DATA[1]}
-		S="${WORKDIR}/${MODULE_PN}-${MODULE_PV}"
+		if [[ $PV == "3.7.9999" ]]
+		then
+			S="${WORKDIR}/${MODULE_PN/calculate-/}-${MODULE_PV}"
+		else
+			S="${WORKDIR}/${MODULE_PN}-${MODULE_PV}"
+		fi
 		cd $S
-		distutils2_src_install
+		distutils-r1_src_install
 	done
 }
 
@@ -307,13 +296,20 @@ python_install() {
 	then
 		PYTHON_INSTALL_PARAMS="$PYTHON_INSTALL_PARAMS --dbus"
 	fi
-	distutils2_python_install $PYTHON_INSTALL_PARAMS
+	distutils-r1_python_install $PYTHON_INSTALL_PARAMS
 }
 
-calculate-utils-r14_pkg_preinst() {
-	dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-core-setup
-	dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-core-patch
-	dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-update
-	dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-update-profile
-	dosym /usr/lib/python-exec/python2.7/cl-console /usr/bin/cl-console
+calculate-utils-r15_pkg_preinst() {
+	#dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-core-setup
+	#dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-core-patch
+	#dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-update
+	#dosym /usr/libexec/calculate/cl-core-wrapper /usr/bin/cl-update-profile
+	#dosym /usr/lib/python-exec/python2.7/cl-console /usr/bin/cl-console
+	if use qt5
+	then
+		dosym /usr/lib/python-exec/python2.7/cl-console-gui /usr/bin/cl-console-gui
+		dosym /usr/lib/python-exec/python2.7/cl-console-gui /usr/bin/cl-console-gui-install
+		dosym /usr/lib/python-exec/python2.7/cl-console-gui /usr/bin/cl-console-gui-update
+		dosym /usr/lib/python-exec/python2.7/cl-update-checker /usr/bin/cl-update-checker
+	fi
 }
