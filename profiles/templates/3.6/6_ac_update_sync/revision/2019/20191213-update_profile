@@ -1,4 +1,4 @@
-# Calculate run=/bin/bash pkg(sys-apps/calculate-utils)>=3.6.6 ini(overlay-calculate.revision)>=20191116.3
+# Calculate run=/bin/bash pkg(sys-apps/calculate-utils:3)>=3.6.6 ini(overlay-calculate.revision)>=20191116.3
 
 is_old_path() {
 	/usr/libexec/calculate/cl-variable --value main.cl_template_path | grep -q var/lib/layman

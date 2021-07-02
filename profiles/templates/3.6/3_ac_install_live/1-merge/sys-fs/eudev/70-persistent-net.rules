@@ -1,4 +1,4 @@
-# Calculate comment=# path=/etc/udev/rules.d pkg(sys-apps/calculate-utils)>=3.6.6.5
+# Calculate comment=# path=/etc/udev/rules.d pkg(sys-apps/calculate-utils:3)>=3.6.6.5
 
 #?list(os_install_net_interfaces,0)!=&&list(os_install_net_mac_type,0)==OUI#
 # #-list(os_install_net_name,0)-#

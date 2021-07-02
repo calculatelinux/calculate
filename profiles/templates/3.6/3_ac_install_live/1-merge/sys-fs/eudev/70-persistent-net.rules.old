@@ -1,4 +1,4 @@
-# Calculate comment=# path=/etc/udev/rules.d name=70-persistent-net.rules pkg(sys-apps/calculate-utils)<3.6.6.4
+# Calculate comment=# path=/etc/udev/rules.d name=70-persistent-net.rules pkg(sys-apps/calculate-utils:3)<3.6.6.4
 
 #?list(os_install_net_interfaces,0)!=#
 # #-list(os_install_net_name,0)-#
