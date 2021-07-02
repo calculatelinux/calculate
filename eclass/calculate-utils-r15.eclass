@@ -300,16 +300,16 @@ python_install() {
 	rm -r ${D}/usr/share/calculate
 	rm -r ${D}/usr/share/man
 	rm -r ${D}/usr/share/dbus-1
-	rm ${D}/usr/libexec/calculate/cl-video-install
-	rm ${D}/usr/libexec/calculate/cl-core-wrapper
-	rm ${D}/usr/libexec/calculate/cl-pkg-cache
-	rm ${D}/usr/libexec/calculate/cl-check-admin
-	rm ${D}/usr/libexec/calculate/cl-variable
-	rm ${D}/usr/libexec/calculate/cl-dbus-core.py
-	rm ${D}/usr/libexec/calculate/cl-git-wrapper
-	rm ${D}/usr/sbin/cl-core
-	rm ${D}/bin/bashlogin
-	rm ${D}/usr/bin/xautologin
+	rm -f ${D}/usr/libexec/calculate/cl-video-install
+	rm -f ${D}/usr/libexec/calculate/cl-core-wrapper
+	rm -f ${D}/usr/libexec/calculate/cl-pkg-cache
+	rm -f ${D}/usr/libexec/calculate/cl-check-admin
+	rm -f ${D}/usr/libexec/calculate/cl-variable
+	rm -f ${D}/usr/libexec/calculate/cl-dbus-core.py
+	rm -f ${D}/usr/libexec/calculate/cl-git-wrapper
+	rm -f ${D}/usr/sbin/cl-core
+	rm -f ${D}/bin/bashlogin
+	rm -f ${D}/usr/bin/xautologin
 }
 
 calculate-utils-r15_pkg_preinst() {
