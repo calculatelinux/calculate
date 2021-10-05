@@ -13,7 +13,7 @@ KEYWORDS="amd64 x86"
 IUSE=""
 
 SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/gfxboot/gfxboot-themes-calculate-${PVR}.tar.bz2
-	https://mirror.yandex.ru/calculate/themes/gfxboot/gfxboot-themes-calculate-${PVR}.tar.bz2"
+	http://mirror.yandex.ru/calculate/themes/gfxboot/gfxboot-themes-calculate-${PVR}.tar.bz2"
 
 DEPEND="media-gfx/gfxboot
 	!<sys-apps/calculate-utils-3.5.2.6"
