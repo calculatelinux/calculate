@@ -1,0 +1,4 @@
+# Calculate path=/etc/xdg/autostart os_audio==pipewire
+
+[Desktop Entry]
+X-KDE-autostart-after=pipewire

@@ -1,11 +1,7 @@
 # Calculate chmod=0755
 #!/bin/bash
 
-#?cl_ver>=3.6.0.12#
 SELECT_CARD="#-os_audio_card_name_default-#"
-#!cl_ver#
-SELECT_CARD="#-cut(0,,#-list(os_audio_name,#-cut(0,,#-os_audio_default-#)-#)-#)-#"
-#cl_ver#
 DBUS_KMIX="/usr/bin/qdbus org.kde.kmix"
 if ! [[ -f ~/.config/kmixctrlrc ]]
 then
