@@ -154,7 +154,7 @@ sys-apps/inxi amd64
 ~www-apps/gitea-1.14.6 amd64
 ~www-client/chromium-94.0.4606.71 amd64
 ~www-client/falkon-3.1.0 amd64
-~www-client/firefox-92.0.1 amd64
+~www-client/firefox-93.0 amd64
 ~www-client/luakit-2.2.1 amd64
 ~www-client/midori-9.0 amd64
 www-client/opera amd64

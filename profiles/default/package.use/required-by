@@ -669,3 +669,5 @@ dev-python/python-lsp-server all-plugins
 # required by dev-util/dput-ng-1.32
 dev-util/distro-info python
 
+# required by dev-embedded/ponyprog-3.1.2
+dev-embedded/libftdi:1 cxx
