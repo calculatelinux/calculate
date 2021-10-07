@@ -25,7 +25,6 @@
 ~app-editors/xemacs-21.5.34 amd64
 ~app-emulation/aqemu-0.9.2 amd64
 ~app-emulation/gallium-nine-standalone-0.7 amd64
-~app-emulation/open-vm-tools-11.2.0_p16938113 amd64
 <app-emulation/wine-staging-9999 amd64
 ~app-i18n/man-pages-ru-5.03.2390.2390.20191017 amd64
 ~app-i18n/nabi-1.0.0 amd64
@@ -48,7 +47,6 @@
 ~dev-qt/qt-creator-4.15.1 amd64
 ~dev-util/android-sdk-update-manager-24.4.1 amd64
 ~dev-util/android-studio-2020.3.1.24 amd64
-~dev-util/catfish-4.16.0 amd64
 dev-util/pycharm-community amd64
 dev-util/pycharm-professional amd64
 ~dev-vcs/gitolite-gentoo-3.6.6.1 amd64

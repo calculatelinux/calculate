@@ -33,7 +33,7 @@
 ~app-backup/vzdump-1.2 amd64
 ~app-benchmarks/bootchart2-0.14.8 amd64
 ~app-cdr/dumpet-2.1_p20140601 amd64
-~app-crypt/acme-sh-3.0.0 amd64
+~app-crypt/acme-sh-3.0.1 amd64
 ~app-crypt/acr38u-1.7.11 amd64
 ~app-crypt/aescrypt-3.14 amd64
 ~app-crypt/asedriveiiie-serial-3.5 amd64
@@ -252,7 +252,6 @@
 ~dev-db/pgtap-1.1.0 amd64
 ~dev-db/sqlitebrowser-3.12.2 amd64
 ~dev-embedded/gpsim-0.30.0 amd64
-~dev-embedded/ponyprog-3.0.0 amd64
 ~dev-erlang/meck-0.8.12 amd64
 ~dev-games/cegui-0.8.7 amd64
 ~dev-games/irrlicht-1.8.4 amd64
@@ -276,7 +275,6 @@
 ~dev-java/jchart2d-3.2.2 amd64
 ~dev-java/jide-oss-3.6.18 amd64
 ~dev-java/jna-4.2.2 amd64
-~dev-java/openjdk-bin-11.0.11_p9 amd64
 ~dev-java/resin-servlet-api-4.0.46 amd64
 ~dev-java/sun-jaf-1.1.1 amd64
 ~dev-java/swing-layout-1.0.4 amd64
@@ -286,7 +284,6 @@
 ~dev-java/upnplib-1.0.7 amd64
 ~dev-lang/execline-2.3.0.4 amd64
 ~dev-lang/gprolog-1.4.5 amd64
-~dev-lang/icon-9.5.1 amd64
 ~dev-lang/ispc-1.16.0 amd64
 ~dev-lang/jimtcl-0.78 amd64
 ~dev-libs/angelscript-2.34.0 amd64
@@ -316,13 +313,11 @@
 ~dev-libs/ocl-icd-2.3.0 amd64
 ~dev-libs/OpenNI2-2.2_beta2 amd64
 ~dev-libs/qoauth-2.0.1_pre20160315 amd64
-~dev-libs/rapidxml-1.13 amd64
 ~dev-libs/sink-0.8.0 amd64
 ~dev-libs/skalibs-2.6.3.0 amd64
 ~dev-libs/spsdeclib-5.1 amd64
 ~dev-libs/tinyxml-2.6.2 amd64
 ~dev-libs/trio-1.16 amd64 amd64
-~dev-libs/unibilium-2.0.0 amd64
 ~dev-lisp/alexandria-20171029 amd64
 ~dev-lisp/asdf-3.3.2 amd64
 ~dev-lisp/clx-0.7.5 amd64
@@ -383,7 +378,6 @@
 ~dev-util/cookiecutter-1.7.3 amd64
 ~dev-util/intel-ocl-sdk-4.4.0.117 amd64
 ~dev-util/lcov-1.15 amd64
-~dev-util/lttng-ust-2.12.0 amd64
 ~dev-util/maturin-0.11.1 amd64
 ~dev-util/patchbin-20160208 amd64
 ~dev-util/patchelf-0.10 amd64
@@ -502,7 +496,6 @@
 ~net-mail/qmail-autoresponder-2.0 amd64
 ~net-mail/rss2email-3.13 amd64
 ~net-misc/gofish-1.2 amd64
-~net-misc/ipv6calc-2.2.0 amd64
 ~net-misc/l7-filter-userspace-0.12_beta1 amd64
 ~net-misc/l7-protocols-2009.05.28 amd64
 ~net-misc/netsed-0.01b amd64
@@ -597,7 +590,6 @@ net-vpn/wireguard-tools amd64
 ~sys-apps/ucspi-proxy-1.1 amd64
 ~sys-auth/munge-0.5.13 amd64
 ~sys-auth/ykpers-1.20.0 amd64
-~sys-cluster/ceph-16.2.4 amd64
 ~sys-cluster/ganglia-3.7.1 amd64
 ~sys-cluster/torque-6.0.4 amd64
 ~sys-firmware/b43legacy-firmware-3.130.20.0 amd64
@@ -709,7 +701,6 @@ net-vpn/wireguard-tools amd64
 ~x11-misc/sprop-0.1 amd64
 ~x11-misc/tabbed-0.6 amd64
 ~x11-misc/tinynotify-send-1.2.1 amd64
-~x11-misc/unclutter-xfixes-1.5 amd64
 ~x11-misc/urxvtconfig-1.0 amd64
 ~x11-misc/vnc2swf-0.5.0 amd64
 ~x11-misc/vym-2.7.1 amd64
