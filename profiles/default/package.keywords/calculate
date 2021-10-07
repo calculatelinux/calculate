@@ -1,7 +1,5 @@
 ~app-crypt/shim-signed-0.2 amd64
-~dev-python/soaplib-1.0.0 amd64
-~games-util/steam-launcher-1.0.0.64 amd64
-~media-gfx/displaycal-3.8.9.3 amd64
+~games-util/steam-launcher-1.0.0.71 amd64
 ~net-im/viber-13.3.1.22 amd64
 ~net-misc/modem-manager-gui-0.0.18 amd64
 ~net-p2p/opentracker-20170428 amd64

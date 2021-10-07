@@ -1,21 +1,21 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
-# or come to #gentoo-gamerlay in freenode IRC
+# or come to #gentoo-games in Libera Chat IRC
 
-inherit linux-info prefix udev xdg-utils
+inherit desktop linux-info prefix xdg
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="https://steampowered.com"
-SRC_URI="https://repo-steampowered-com.steamos.cloud/steam/pool/steam/s/steam/steam_${PV}.tar.gz"
+SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
 
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="+steamruntime"
+KEYWORDS="~amd64"
+IUSE="+joystick +steamruntime +udev"
 RESTRICT="bindist mirror test"
 
 RDEPEND="
@@ -27,6 +27,9 @@ RDEPEND="
 			x11-terms/xterm
 			)
 
+		joystick? (
+			udev? ( games-util/game-device-udev-rules )
+		)
 		steamruntime? (
 			virtual/opengl[abi_x86_32]
 			x11-libs/libX11[abi_x86_32]
@@ -35,7 +38,7 @@ RDEPEND="
 			x11-libs/libXdmcp[abi_x86_32]
 			)
 		!steamruntime? (
-			>=games-util/steam-client-meta-0-r20190331[steamruntime?]
+			>=games-util/steam-client-meta-0-r20210608[steamruntime?]
 			)
 
 		amd64? (
@@ -83,11 +86,7 @@ native_path_entries() { path_entries false "${@}"; }
 multilib_path_entries() { path_entries true "${@}"; }
 
 src_prepare() {
-	xdg_environment_reset
 	default
-
-	sed -i 's:TAG+="uaccess":\0, TAG+="udev-acl":g' \
-		subprojects/steam-devices/*.rules || die
 
 	sed \
 		-e "s#@@PVR@@#${PVR}#g" \
@@ -101,23 +100,20 @@ src_prepare() {
 }
 
 src_install() {
-	emake install-{icons,bootstrap,desktop} \
+	emake install-{icons,bootstrap} \
 		  DESTDIR="${D}" PREFIX="${EPREFIX}/usr"
 
 	newbin steam-wrapper.sh steam
 	exeinto /usr/lib/steam
 	doexe bin_steam.sh
+	domenu steam.desktop
 
 	dodoc README debian/changelog
 	doman steam.6
-
-	udev_dorules subprojects/steam-devices/60-steam-{input,vr}.rules
 }
 
 pkg_postinst() {
-	xdg_icon_cache_update
-	xdg_desktop_database_update
-	udev_reload
+	xdg_pkg_postinst
 
 	elog "Execute ${EPREFIX}/usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
@@ -145,9 +141,4 @@ pkg_postinst() {
 
 	ewarn "The Steam client and the games are _not_ controlled by Portage."
 	ewarn "Updates are handled by the client itself."
-}
-
-pkg_postrm() {
-	xdg_icon_cache_update
-	xdg_desktop_database_update
 }
