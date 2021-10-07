@@ -387,6 +387,7 @@
 ~dev-util/shadowman-2 amd64
 ~games-engines/box2d-2.4.1 amd64
 ~games-simulation/singularity-1.00 amd64
+~games-util/game-device-udev-rules-20201228 amd64
 ~gnustep-base/mknfonts-0.5 amd64
 ~gnustep-libs/dbuskit-0.1.1 amd64
 ~lxde-base/lxappearance-0.6.3 amd64
