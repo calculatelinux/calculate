@@ -20,6 +20,8 @@ DEPEND="media-gfx/gfxboot
 
 RDEPEND="${DEPEND}"
 
+S="${WORKDIR}/gfxboot-themes-calculate-21-r3"
+
 src_compile() {
 	emake -j1
 }
