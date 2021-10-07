@@ -1,0 +1,9 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)=>20211007,#-cut(0,-,#-cl_pass_file-#)-#
+
+#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
+
+#?os_audio!=alsa#
+sed -i "s/os_audio = pulseaudio/os_audio = pipewire/" /var/lib/calculate/calculate.env
+#os_audio#
+
+exit 0

@@ -1,0 +1,4 @@
+# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=kde-apps/kmix,kde-plasma/plasma-pa,media-libs/libsdl,media-plugins/alsa-plugins,media-sound/alsa-utils,media-sound/pavucontrol,media-sound/pulseaudio,media-sound/qastools,media-sound/volumeicon,media-video/pipewire,net-wireless/bluez
+
+[overlay-calculate]
+remerge = #-cl_pass_file-#
