@@ -1,1 +1,1 @@
-# Calculate name=volumeicon.desktop path=/etc/xdg/autostart append=remove os_audio==pipewire&&pkg(media-sound/pavucontrol)==
+# Calculate name=volumeicon.desktop path=/etc/xdg/autostart append=remove os_audio!=alsa&&pkg(media-sound/pavucontrol)==

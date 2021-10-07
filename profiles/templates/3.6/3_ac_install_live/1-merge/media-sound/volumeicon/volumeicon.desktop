@@ -1,4 +1,4 @@
-# Calculate format=kde path=/etc/xdg/autostart os_audio!=pipewire||pkg(media-sound/pavucontrol)!=
+# Calculate format=kde path=/etc/xdg/autostart os_audio==alsa||pkg(media-sound/pavucontrol)!=
 
 [Desktop Entry]
 Name=VolumeIcon

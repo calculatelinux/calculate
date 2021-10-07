@@ -1,4 +1,4 @@
-# Calculate format=kde path=/etc/xdg/autostart os_audio==pipewire
+# Calculate format=kde path=/etc/xdg/autostart os_audio!=alsa
 
 [Desktop Entry]
 X-KDE-autostart-after=pipewire
