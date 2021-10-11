@@ -140,7 +140,7 @@ sys-apps/inxi amd64
 ~sys-cluster/cluster-glue-1.0.12 amd64
 ~sys-devel/prelink-20151030 amd64
 ~sys-firmware/b43-firmware-5.100.138 amd64
-~sys-fs/btrfs-progs-5.13.1 amd64
+~sys-fs/btrfs-progs-5.14.2 amd64
 ~sys-fs/compsize-1.5 amd64
 ~sys-fs/xfsprogs-5.12.0 amd64
 ~sys-kernel/linux-headers-5.10 amd64
