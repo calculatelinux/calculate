@@ -1,13 +1,2 @@
-net-vpn/networkmanager-wireguard
-
-# need for sys-apps/calculate-utils
-dev-python/py-smbpasswd
-dev-python/sudsds
-net-libs/dslib
-sys-boot/plymouth-openrc-plugin
-sys-fs/ecryptfs-utils
-dev-python/enum34
-dev-python/ipaddress
-
-# need for media-gfx/displaycal
-dev-python/numpy-python2
+# until switching to x11-misc/picom
+x11-misc/compton
