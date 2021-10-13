@@ -8,7 +8,7 @@ ETYPE="sources"
 inherit calculate-kernel-8 eutils
 
 DESCRIPTION="Calculate Linux kernel image"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 HOMEPAGE="http://www.calculate-linux.org"
 
 SRC_URI="${KERNEL_URI} ${ARCH_URI}"
