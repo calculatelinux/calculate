@@ -1,0 +1,4 @@
+# Calculate path=/usr/share/applications format=kde
+
+[Desktop Entry]
+NoDisplay=true
