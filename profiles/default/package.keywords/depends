@@ -1,6 +1,5 @@
 ~app-accessibility/caribou-0.4.21 amd64
 ~app-accessibility/speech-tools-2.5.0 amd64
-~app-admin/clustershell-1.8.3 amd64
 ~app-admin/mongo-tools-100.3.0 amd64
 ~app-admin/reportmagic-2.21 amd64
 ~app-admin/salt-3003 amd64
@@ -212,7 +211,6 @@
 ~app-portage/repo-commit-0.4.1 amd64
 ~app-shells/ksh-2020.0.0 amd64
 ~app-text/cherrytree-0.99.0_p20200523 amd64
-~app-text/htmlc-2.60.0 amd64
 ~app-text/languagetool-4.5 amd64
 ~app-text/rpl-1.6.7 amd64
 ~app-text/rpl-1.9.1 amd64
@@ -286,7 +284,7 @@
 ~dev-lang/gprolog-1.4.5 amd64
 ~dev-lang/ispc-1.16.0 amd64
 ~dev-lang/jimtcl-0.78 amd64
-~dev-libs/angelscript-2.34.0 amd64
+~dev-libs/angelscript-2.35.1 amd64
 ~dev-libs/bglibs-2.04 amd64
 ~dev-libs/cppcodec-0.2 amd64
 ~dev-libs/crossguid-0_pre20150817 amd64
