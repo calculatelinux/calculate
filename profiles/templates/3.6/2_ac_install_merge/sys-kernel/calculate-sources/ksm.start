@@ -1,8 +1,0 @@
-# Calculate comment=# chmod=755 mergepkg()<4.9.65
-#!/bin/bash
-
-F=/sys/kernel/mm/ksm/run
-if [ -f $F ]
-then
-	echo 1 > $F
-fi
