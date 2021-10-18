@@ -1,0 +1,6 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-#
+
+#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
+
+rm -f /etc/local.d/nvidia_i2c.conf
+exit 0
