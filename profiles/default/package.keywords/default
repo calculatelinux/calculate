@@ -43,7 +43,7 @@
 ~dev-java/eclipse-ecj-4.5.1 amd64
 ~dev-lang/fpc-3.0.4 amd64
 ~dev-lang/lazarus-2.0.6 amd64
-~dev-python/falcon-2.0.0 amd64
+~dev-python/falcon-3.0.1 amd64
 ~dev-qt/qt-creator-4.15.1 amd64
 ~dev-util/android-sdk-update-manager-24.4.1 amd64
 ~dev-util/android-studio-2020.3.1.24 amd64

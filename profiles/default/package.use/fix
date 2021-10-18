@@ -25,7 +25,7 @@ dev-libs/nettle -cpu_flags_x86_sha
 app-arch/brotli python
 app-doc/gnucash-docs -l10n_ru
 app-misc/lcd4linux -lcd_devices_curses
-app-misc/lcdproc -lcd_devices_glcd -png -lcd_devices_g15
+app-misc/lcdproc -lcd_devices_g15
 dev-java/sbt binary
 media-gfx/krita -color-management
 media-video/transcode -imagemagick

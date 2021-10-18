@@ -351,7 +351,7 @@
 ~dev-python/oct2py-5.2.0 amd64 
 ~dev-python/octave_kernel-0.32.0 amd64 
 ~dev-python/PyQt5-sip-12.9.0 amd64
-~dev-python/PySDL2-0.9.7 amd64
+~dev-python/PySDL2-0.9.9 amd64
 ~dev-python/pyside2-5.15.2 amd64
 ~dev-python/pyside2-tools-5.15.2 amd64
 ~dev-python/raet-0.6.8 amd64
