@@ -1,4 +1,4 @@
-# Calculate format=diff
+# Calculate format=diff mergepkg()==5.0.5
 diff --git a/files/usr/share/cinnamon/cinnamon-settings/modules/cs_sound.py b/files/usr/share/cinnamon/cinnamon-settings/modules/cs_sound.py
 index fe0e2f0..e1d1b11 100755
 --- a/files/usr/share/cinnamon/cinnamon-settings/modules/cs_sound.py
