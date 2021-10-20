@@ -2,7 +2,6 @@
 
 #-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
 
-sed -i 's/,discard//' /etc/fstab &>/dev/null
-sed -i 's/discard,//' /etc/fstab &>/dev/null
+sed -i 's/ssdspace_cache/ssd,space_cache/' /etc/fstab &>/dev/null
 
 exit 0
