@@ -122,8 +122,8 @@
 ~app-emulation/wine-mono-6.2.0 amd64
 ~app-emulation/wine-mono-6.3.0 amd64
 ~app-emulation/wine-mono-6.4.0 amd64
-~app-emulation/xen-4.15.0 amd64
-~app-emulation/xen-tools-4.15.0 amd64
+~app-emulation/xen-4.15.1 amd64
+~app-emulation/xen-tools-4.15.1 amd64
 ~app-eselect/eselect-opencascade-1 amd64
 ~app-forensics/libewf-20171104 amd64
 ~app-i18n/ibus-cangjie-2.4 amd64
