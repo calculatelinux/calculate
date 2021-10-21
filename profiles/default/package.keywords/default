@@ -118,8 +118,8 @@ net-im/zoom amd64
 ~net-print/foomatic-db-4.0.20190226 amd64
 ~net-print/foomatic-db-engine-4.0.12 amd64
 ~net-print/foomatic-db-ppds-4.0.20190226 amd64
-~net-print/hplip-3.21.6 amd64
-~net-print/hplip-plugin-3.21.6 amd64
+~net-print/hplip-3.21.8 amd64
+~net-print/hplip-plugin-3.21.8 amd64
 ~net-proxy/shadowsocks-libev-3.3.5 amd64
 ~net-vpn/networkmanager-l2tp-1.8.6 amd64
 ~net-wireless/broadcom-sta-6.30.223.271 amd64
