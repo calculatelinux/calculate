@@ -1,4 +1,0 @@
-# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<20181210&&os_arch_machine==i686 rebuild=sys-kernel/calculate-sources
-
-[overlay-calculate]
-revision = 20181210

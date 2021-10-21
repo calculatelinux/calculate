@@ -1,6 +1,0 @@
-# Calculate format=samba path=/var/lib/calculate name=calculate.env cl_chroot_status==on||cl_update_sync_only_set==off&&cl_update_autocheck_schedule_set==off ini(overlay-calculate.revision)=>20191111.4,#-cut(0,-,#-cl_pass_file-#)-#
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-
-[update]
-!cl_update_force_fix_set=

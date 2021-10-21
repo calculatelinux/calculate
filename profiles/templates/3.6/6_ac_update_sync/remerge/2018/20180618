@@ -1,4 +1,0 @@
-# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=media-libs/openimageio
-
-[overlay-calculate]
-remerge = #-cl_pass_file-#

@@ -1,7 +1,0 @@
-# Calculate run=/bin/bash ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-#
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-
-rm -f /etc/runlevels/boot/swapfiles /etc/runlevels/boot/tmpfiles.setup /etc/runlevels/sysinit/tmpfiles.dev
-
-true

@@ -1,9 +1,0 @@
-# Calculate format=contents pkg(sys-apps/portage)!= ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-# merge=www-client/firefox,www-client/chromium,www-client/qupzilla,www-client/opera,www-client/epiphany,www-client/qutebrowser
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-!www-client/firefox /usr/share/applications/calculate-browser.desktop
-!www-client/chromium /usr/share/applications/calculate-browser.desktop
-!www-client/qupzilla /usr/share/applications/calculate-browser.desktop
-!www-client/opera /usr/share/applications/calculate-browser.desktop
-!www-client/epiphany /usr/share/applications/calculate-browser.desktop
-!www-client/qutebrowser /usr/share/applications/calculate-browser.desktop

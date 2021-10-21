@@ -1,4 +1,0 @@
-# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-#&&cl_chroot_status==on rebuild=dev-libs/klibc,net-dns/bind,net-im/ejabberd,net-mail/dovecot,mail-mta/postfix,x11-misc/shared-mime-info,net-fs/nfs-utils,media-libs/fontconfig,sys-fs/lvm2,net-nds/openldap,net-dialup/ppp
-
-[overlay-calculate]
-revision = #-cut(0,-,#-cl_pass_file-#)-#

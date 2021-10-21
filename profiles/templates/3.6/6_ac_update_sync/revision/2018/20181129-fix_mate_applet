@@ -1,9 +1,0 @@
-# Calculate run=/bin/bash ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-#
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-
-#?pkg(mate-base/mate-applets)!=#
-rm -f /var/db/pkg/mate-base/mate-applets-1.20*/autodeps
-#pkg#
-
-true

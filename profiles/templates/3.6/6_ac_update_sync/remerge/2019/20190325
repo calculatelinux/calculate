@@ -1,4 +1,0 @@
-# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=sys-boot/plymouth-calculate-plugin,dev-lang/python-exec
-
-[overlay-calculate]
-remerge = #-cl_pass_file-#

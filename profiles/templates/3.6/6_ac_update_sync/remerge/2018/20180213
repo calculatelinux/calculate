@@ -1,4 +1,0 @@
-# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=sys-fs/eudev,sys-fs/udev,sys-fs/udev-init-scripts,sys-apps/openrc,sys-apps/calculate-utils,x11-misc/lightdm,x11-base/xorg-server,sys-auth/consolekit
-
-[overlay-calculate]
-remerge = #-cl_pass_file-#

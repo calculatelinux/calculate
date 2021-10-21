@@ -1,4 +1,0 @@
-# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-# rebuild=lxqt-base/lxqt-session,x11-misc/qlipper,x11-misc/pcmanfm-qt
-
-[overlay-calculate]
-revision = #-cut(0,-,#-cl_pass_file-#)-#

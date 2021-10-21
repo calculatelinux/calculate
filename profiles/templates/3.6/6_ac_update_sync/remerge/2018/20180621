@@ -1,4 +1,0 @@
-# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=sys-kernel/dracut,sys-fs/eudev,x11-drivers/nvidia-drivers,sys-boot/grub
-
-[overlay-calculate]
-remerge = #-cl_pass_file-#

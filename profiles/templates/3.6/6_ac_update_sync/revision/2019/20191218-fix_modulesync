@@ -1,9 +1,0 @@
-# Calculate format=contents ini(overlay-calculate.revision)=>20191116.3,#-cut(0,-,#-cl_pass_file-#)-# merge=sys-apps/portage
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-!sys-apps/calculate-utils /usr/lib64/python2.7/site-packages/portage/*
-!sys-apps/calculate-utils /usr/lib64/python3.5/site-packages/portage/*
-!sys-apps/calculate-utils /usr/lib64/python3.6/site-packages/portage/*
-!sys-apps/calculate-utils /usr/lib/python2.7/site-packages/portage/*
-!sys-apps/calculate-utils /usr/lib/python3.5/site-packages/portage/*
-!sys-apps/calculate-utils /usr/lib/python3.6/site-packages/portage/*

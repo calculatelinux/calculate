@@ -1,3 +1,0 @@
-# Calculate append=remove path=/usr/local/sbin name=unsymlink-lib chmod=0755 os_arch_machine==x86_64&&ini(overlay-calculate.revision)=>20191111.4,#-cut(0,-,#-cl_pass_file-#)-# 
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#

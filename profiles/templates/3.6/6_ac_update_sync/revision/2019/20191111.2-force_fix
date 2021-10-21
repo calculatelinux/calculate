@@ -1,6 +1,0 @@
-# Calculate format=samba os_arch_machine==x86_64&&ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-# path=/var/lib/calculate name=calculate.env 
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-
-[update]
-cl_update_force_fix_set = on

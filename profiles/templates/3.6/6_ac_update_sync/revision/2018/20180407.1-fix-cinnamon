@@ -1,4 +1,0 @@
-# Calculate format=contents pkg(gnome-extra/cinnamon-settings-daemon)!= ini(overlay-calculate.revision)<#-cut(0,-,#-cl_pass_file-#)-#
-
-#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
-gnome-extra/cinnamon-settings-daemon,gnome-extra/cinnamon-translations /usr/share/locale/*/LC_MESSAGES/cinnamon-settings-daemon.mo

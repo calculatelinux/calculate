@@ -1,4 +1,0 @@
-# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=www-client/firefox,www-client/chromium,www-client/qupzilla,www-client/opera,www-client/epiphany,www-client/qutebrowser
-
-[overlay-calculate]
-remerge = #-cl_pass_file-#
