@@ -18,6 +18,8 @@ RDEPEND=">=sys-apps/calculate-utils-3.6
 	app-arch/zstd
 	app-arch/xz-utils"
 
+S=${WORKDIR}/${PF}
+
 src_unpack() {
 	unpack $A
 }
