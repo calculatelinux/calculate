@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/trojita.desktop name=calculate-mail.desktop mirror pkg(mail-client/trojita)>=0.7
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=

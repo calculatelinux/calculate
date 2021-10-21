@@ -1,5 +1,0 @@
-# Calculate format=dovecot
-
-plugins.httpupload.active = True
-plugins.image.active = True
-plugins.url_image_preview.active = True

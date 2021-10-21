@@ -4,10 +4,6 @@
 #-ini(runlevels.syslog-ng,)-#
 #ini#
 
-#?ini(runlevels.splashutils)==on&&pkg(media-gfx/splashutils)==#
-#-ini(runlevels.splashutils,)-#
-#ini#
-
 #?ini(runlevels.alsa-utils)==on&&pkg(media-sound/alsa-utils)==#
 #-ini(runlevels.alsa-utils,)-#
 #ini#
@@ -38,10 +34,6 @@
 
 #?ini(runlevels.udev)==on&&pkg(sys-fs/udev)==#
 #-ini(runlevels.udev,)-#
-#ini#
-
-#?ini(runlevels.vixie-cron)==on&&pkg(sys-process/vixie-cron)==#
-#-ini(runlevels.vixie-cron,)-#
 #ini#
 
 #?ini(runlevels.cronie)==on&&pkg(sys-process/cronie)==#

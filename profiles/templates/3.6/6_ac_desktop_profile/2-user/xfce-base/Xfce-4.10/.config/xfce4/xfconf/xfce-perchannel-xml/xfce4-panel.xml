@@ -28,9 +28,6 @@
         <value type="int" value="3"/>
         <value type="int" value="12"/>
         <value type="int" value="9"/>
-#?pkg(xfce-extra/xfce4-statusnotifier-plugin)!=#
-        <value type="int" value="11"/>
-#pkg#
         <value type="int" value="6"/>
         <value type="int" value="10"/>
         <value type="int" value="5"/>
@@ -108,9 +105,6 @@
     </property>
   </property>
   <property name="plugins" type="empty">
-#?pkg(xfce-extra/xfce4-statusnotifier-plugin)!=#
-    <property name="plugin-11" type="string" value="statusnotifier"/>
-#pkg#
     <property name="plugin-1" type="string" value="applicationsmenu">
       <property name="show-button-title" type="bool" value="false"/>
 #?pkg(x11-themes/calculate-icon-theme)<14-r6#

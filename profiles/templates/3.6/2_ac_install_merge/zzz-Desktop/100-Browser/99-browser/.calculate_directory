@@ -1,2 +1,2 @@
-# Calculate append=skip mergepkg(www-client/firefox)!=||mergepkg(www-client/chromium)!=||mergepkg(www-client/qupzilla)!=||mergepkg(www-client/opera)!=||mergepkg(www-client/epiphany)!=||mergepkg(www-client/qutebrowser)!=
+# Calculate append=skip mergepkg(www-client/firefox)!=||mergepkg(www-client/chromium)!=||mergepkg(www-client/opera)!=||mergepkg(www-client/epiphany)!=||mergepkg(www-client/qutebrowser)!=
 

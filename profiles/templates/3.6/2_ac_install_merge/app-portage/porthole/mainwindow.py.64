@@ -1,3 +1,0 @@
-# Calculate format=patch path=/usr/lib64/python2.7/site-packages/porthole name=mainwindow.py os_install_arch_machine==x86_64
-<reg>sync \+= " --nospinner.*</reg>
-<text>sync += ""</text>

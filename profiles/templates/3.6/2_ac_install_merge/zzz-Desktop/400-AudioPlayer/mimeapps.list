@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.audioplayer-removing)==on merge=media-sound/amarok,media-sound/rhythmbox,media-sound/audacious,media-sound/clementine
+# Calculate format=compiz protected ini(desktop.audioplayer-removing)==on merge=media-sound/rhythmbox,media-sound/audacious,media-sound/clementine
 
 #-ini(desktop.audioplayer-removing,)-#
 

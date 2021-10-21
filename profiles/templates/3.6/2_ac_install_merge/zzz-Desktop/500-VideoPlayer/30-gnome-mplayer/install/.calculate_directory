@@ -1,1 +1,0 @@
-# Calculate append=skip pkg(media-video/gnome-mplayer)!= ini(desktop.videoplayer)==||ini(desktop.videoplayer)==gnome-mplayer

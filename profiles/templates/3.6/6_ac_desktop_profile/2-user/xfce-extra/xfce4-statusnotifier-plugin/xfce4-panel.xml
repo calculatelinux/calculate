@@ -1,7 +1,0 @@
-# Calculate multiline format=patch path=~/.config/xfce4/xfconf/xfce-perchannel-xml grep(~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml,statusnotifier)==&&grep(~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml,plugin-6.*systray)!=
-<reg>^(\s+)(&lt;value type="int" value=)"6"(/&gt;)</reg>
-<text>\1\2"90"\3
-\1\2"6"\3</text>
-<reg>(&lt;property name="plugins" type="empty"&gt;)</reg>
-<text>\1
-    &lt;property name="plugin-90" type="string" value="statusnotifier"/&gt;</text>

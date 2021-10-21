@@ -1,3 +1,0 @@
-# Calculate format=patch path=/usr/lib/python2.7/site-packages/porthole/config name=preferences.py os_install_arch_machine!=x86_64
-<reg>emerge --sync</reg>
-<text>cl-update --sync-only --no-progress</text>

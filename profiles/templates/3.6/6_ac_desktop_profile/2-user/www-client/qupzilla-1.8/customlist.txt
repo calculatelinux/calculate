@@ -1,5 +1,0 @@
-# Calculate path=~/.config/qupzilla/profiles/default/adblock
-Title: 
-Url: 
-[Adblock Plus 1.1.1]
-@@||calculate-linux^$document

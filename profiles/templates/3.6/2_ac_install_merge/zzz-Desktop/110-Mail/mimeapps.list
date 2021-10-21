@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.mail-removing)==on merge=kde-apps/kmail,mail-client/evolution,mail-client/claws-mail,mail-client/trojita
+# Calculate format=compiz protected ini(desktop.mail-removing)==on merge=kde-apps/kmail,mail-client/evolution,mail-client/claws-mail
 
 #-ini(desktop.mail-removing,)-#
 

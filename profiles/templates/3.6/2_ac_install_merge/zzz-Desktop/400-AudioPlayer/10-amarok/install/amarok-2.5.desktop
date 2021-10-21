@@ -1,9 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/kde4/amarok.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/amarok)>=2.5
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=
-#-exists(/usr/share/icons/hicolor/64x64/apps/amarok.png)-#
-Icon=/usr/share/icons/hicolor/64x64/apps/amarok.png
-#exists#

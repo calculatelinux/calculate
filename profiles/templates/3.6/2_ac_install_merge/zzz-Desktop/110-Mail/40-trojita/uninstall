@@ -1,5 +1,0 @@
-# Calculate format=samba path=/var/lib/calculate name=ini.env ac_install_unmerge==on&&pkg(mail-client/trojita)==&&ini(desktop.mail)==trojita
-
-[desktop]
-!mail=
-mail-removing=on

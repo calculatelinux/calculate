@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/qupzilla.desktop name=calculate-browser.desktop mirror pkg(www-client/qupzilla)>=1.8
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=

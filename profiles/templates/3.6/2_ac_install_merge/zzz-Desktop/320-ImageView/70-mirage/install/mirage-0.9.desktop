@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/mirage.desktop name=calculate-imageview.desktop mirror pkg(media-gfx/mirage)>=0.9
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=

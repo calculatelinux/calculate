@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.im-removing)==on merge=kde-apps/kopete,kde-apps/ktp-contact-list,net-im/pidgine,net-im/qutim,net-im/gajim
+# Calculate format=compiz protected ini(desktop.im-removing)==on merge=kde-apps/kopete,kde-apps/ktp-contact-list,net-im/pidgine,net-im/gajim
 
 #-ini(desktop.im-removing,)-#
 

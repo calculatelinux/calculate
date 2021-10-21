@@ -1,8 +1,0 @@
-# Calculate format=kde path=~/.kde4/share/config
-[env]
-capturefolder[$e]=#-ini(resource.videos)-#
-defaultprojectfolder[$e]=#-ini(resource.videos)-#/kdenlive
-
-[version]
-version=0.7.8
-

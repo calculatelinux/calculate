@@ -1,4 +1,4 @@
-# Calculate pkg(xfce-base/exo)!=||pkg(www-client/qupzilla)!=||pkg(www-client/chromium)!=||pkg(www-client/firefox)!=
+# Calculate pkg(xfce-base/exo)!=||pkg(www-client/chromium)!=||pkg(www-client/firefox)!=
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 #?os_locale_language!=ru#
@@ -9,13 +9,10 @@
 #?pkg(xfce-base/exo)!=#
     <option name="command" value="exo-open %1 &amp;"/>
 #pkg#
-#?pkg(www-client/qupzilla)!=&&pkg(xfce-base/exo)==&&pkg(www-client/chromium)==&&pkg(www-client/firefox)==#
-    <option name="command" value="qupzilla %1 &amp;"/>
-#pkg#
-#?pkg(www-client/chromium)!=&&pkg(xfce-base/exo)==&&pkg(www-client/qupzilla)==&&pkg(www-client/firefox)==#
+#?pkg(www-client/chromium)!=&&pkg(xfce-base/exo)==&&pkg(www-client/firefox)==#
     <option name="command" value="chromium %1 &amp;"/>
 #pkg#
-#?pkg(www-client/firefox)!=&&pkg(xfce-base/exo)==&&pkg(www-client/qupzilla)==&&pkg(www-client/chromium)==#
+#?pkg(www-client/firefox)!=&&pkg(xfce-base/exo)==&&pkg(www-client/chromium)==#
     <option name="command" value="firefox %1 &amp;"/>
 #pkg#
   </group>

@@ -8,9 +8,6 @@ WebBrowser=firefox
 #?pkg(www-client/chromium)!=#
 WebBrowser=chromium-browser-chromium
 #pkg#
-#?pkg(www-client/qupzilla)!=#
-WebBrowser=qupzilla
-#pkg#
 
 FileManager=Thunar
 

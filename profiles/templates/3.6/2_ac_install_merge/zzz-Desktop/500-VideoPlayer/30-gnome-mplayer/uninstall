@@ -1,5 +1,0 @@
-# Calculate format=samba path=/var/lib/calculate name=ini.env ac_install_unmerge==on&&pkg(media-video/gnome-mplayer)==&&ini(desktop.videoplayer)==gnome-mplayer
-
-[desktop]
-!videoplayer=
-videoplayer-removing=on

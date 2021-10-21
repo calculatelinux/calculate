@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.videoplayer-removing)==on merge=media-video/totem,media-video/smplayer,media-video/gnome-mplayer
+# Calculate format=compiz protected ini(desktop.videoplayer-removing)==on merge=media-video/totem,media-video/smplayer
 
 #-ini(desktop.videoplayer-removing,)-#
 

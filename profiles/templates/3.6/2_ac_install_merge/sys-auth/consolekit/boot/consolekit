@@ -1,1 +1,0 @@
-# Calculate link=/etc/init.d/consolekit symbolic ini(runlevels.consolekit)!=on&&ini(runlevels.consolekit,on)==||grep(/var/lib/calculate/-runlevels-consolekit,/consolekit)!=

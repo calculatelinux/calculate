@@ -1,8 +1,0 @@
-# Calculate path=~/.gqview
-# черный фон окна
-black_window_background: true
-# автовращение по exit
-exif_auto_rotate: true
-# растянуть по размеру окна
-zoom_mode: fit
-thumbnail_quality: 2

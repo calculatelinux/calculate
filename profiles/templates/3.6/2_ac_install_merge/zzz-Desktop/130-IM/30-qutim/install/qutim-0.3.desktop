@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/qutim.desktop name=calculate-im.desktop mirror pkg(net-im/qutim)>=0.3
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=

@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.imageview-removing)==on merge=kde-apps/gwenview,media-gfx/eom,media-gfx/eog,media-gfx/nomacs,media-gfx/geeqie,media-gfx/lximage-qt,media-gfx/mirage
+# Calculate format=compiz protected ini(desktop.imageview-removing)==on merge=kde-apps/gwenview,media-gfx/eom,media-gfx/eog,media-gfx/nomacs,media-gfx/geeqie,media-gfx/lximage-qt
 
 #-ini(desktop.imageview-removing,)-#
 

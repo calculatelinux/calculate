@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/gnome-mplayer.desktop name=calculate-videoplayer.desktop mirror pkg(media-video/gnome-mplayer)>=1.0
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=

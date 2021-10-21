@@ -1,5 +1,0 @@
-# Calculate format=samba path=/var/lib/calculate name=ini.env ac_install_unmerge==on&&pkg(net-im/qutim)==&&ini(desktop.im)==qutim
-
-[desktop]
-!im=
-im-removing=on
