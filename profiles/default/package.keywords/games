@@ -434,7 +434,7 @@
 ~games-simulation/lincity-1.13.1 amd64
 ~games-simulation/lincity-ng-2.9_beta amd64
 ~games-simulation/micropolis-1.0_p20180313 amd64
-~games-simulation/openttd-1.11.2 amd64
+~games-simulation/openttd-12.0 amd64
 ~games-simulation/pmars-sdl-0.9.2e amd64
 ~games-simulation/searchandrescue-1.7.0 amd64
 ~games-simulation/senken-0.3.0 amd64
