@@ -465,7 +465,6 @@
 ~media-video/subtitleeditor-0.54.0 amd64
 ~media-video/vcdimager-2.0.1 amd64
 ~media-video/webcamoid-8.7.1 amd64
-~media-video/wireplumber-0.4.4 amd64
 ~net-analyzer/hunt-1.5_p6_p1 amd64
 ~net-analyzer/mbrowse-0.4.3 amd64
 ~net-analyzer/munin-plugins-zfs-0.20170127 amd64
