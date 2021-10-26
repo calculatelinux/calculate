@@ -5,7 +5,7 @@
 EAPI=7
 DESCRIPTION="Runs other programs with the user password, kept in the Linux kernel"
 HOMEPAGE="http://www.calculate-linux.org/main/en/keyexec"
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/source/${PN}/${P}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2
 		http://mirror.yandex.ru/calculate/source/${PN}/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"

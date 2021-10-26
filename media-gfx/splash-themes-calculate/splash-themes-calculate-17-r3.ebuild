@@ -15,13 +15,13 @@ IUSE="+verbose +silent +silent-shutdown"
 REQUIRED_USE="|| ( verbose silent silent-shutdown )"
 
 SRC_URI="silent? ( 
-		ftp://ftp.calculate-linux.org/calculate/themes/calculate/splash-silent-17.jpg -> ${PN}-silent-17.jpg
+		https://mirror.calculate-linux.org/themes/calculate/splash-silent-17.jpg -> ${PN}-silent-17.jpg
 		http://mirror.yandex.ru/calculate/themes/calculate/splash-silent-17.jpg -> ${PN}-silent-17.jpg )
 	verbose? (
-		ftp://ftp.calculate-linux.org/calculate/themes/calculate/splash-verbose-17-r1.jpg -> ${PN}-verbose-17-r1.jpg
+		https://mirror.calculate-linux.org/themes/calculate/splash-verbose-17-r1.jpg -> ${PN}-verbose-17-r1.jpg
 		http://mirror.yandex.ru/calculate/themes/calculate/splash-verbose-17-r1.jpg -> ${PN}-verbose-17-r1.jpg )
 	silent-shutdown? (
-		ftp://ftp.calculate-linux.org/calculate/themes/calculate/splash-shutdown-17.jpg -> ${PN}-shutdown-17.jpg
+		https://mirror.calculate-linux.org/themes/calculate/splash-shutdown-17.jpg -> ${PN}-shutdown-17.jpg
 		http://mirror.yandex.ru/calculate/themes/calculate/splash-shutdown-17.jpg -> ${PN}-shutdown-17.jpg )"
 
 DEPEND="media-gfx/splashutils

@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/lxqt/${PF}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/themes/lxqt/${PF}.tar.bz2
 	http://mirror.yandex.ru/calculate/themes/lxqt/${PF}.tar.bz2"
 
 src_install() {

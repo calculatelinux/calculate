@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/gfxboot/gfxboot-themes-calculate-${PV}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/themes/gfxboot/gfxboot-themes-calculate-${PV}.tar.bz2
 	http://mirror.yandex.ru/calculate/themes/gfxboot/gfxboot-themes-calculate-${PV}.tar.bz2"
 
 RDEPEND="media-gfx/gfxboot"

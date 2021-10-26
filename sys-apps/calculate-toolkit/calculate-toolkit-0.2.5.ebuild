@@ -6,7 +6,7 @@ EAPI="5"
 
 DESCRIPTION="Collection of administration scripts for Calculate"
 HOMEPAGE="http://www.calculate-linux.org"
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/source/${PN}/${P}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2
 	http://mirror.yandex.ru/calculate/source/${PN}/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"

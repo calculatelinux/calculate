@@ -14,20 +14,20 @@ VERSION_IUSE="CL11 CL12 CL13 CL14"
 IUSE="+CL11 +CL12 +CL13 +CL14"
 
 SRC_URI="
-	ftp://ftp.calculate-linux.org/calculate/themes/wallpapers/wallpapers-15.tar.bz2
+	https://mirror.calculate-linux.org/themes/wallpapers/wallpapers-15.tar.bz2
 	http://mirror.yandex.ru/calculate/themes/wallpapers/wallpapers-15.tar.bz2
-	ftp://ftp.calculate-linux.org/calculate/themes/wallpapers/wallpapers-14-r1.tar.bz2
+	https://mirror.calculate-linux.org/themes/wallpapers/wallpapers-14-r1.tar.bz2
 	http://mirror.yandex.ru/calculate/themes/wallpapers/wallpapers-14-r1.tar.bz2
 	CL11? (
-		ftp://ftp.calculate-linux.org/calculate/themes/wallpapers/wallpapers-11.tar.bz2
+		https://mirror.calculate-linux.org/themes/wallpapers/wallpapers-11.tar.bz2
 		http://mirror.yandex.ru/calculate/themes/wallpapers/wallpapers-11.tar.bz2
 	)
 	CL12? (
-		ftp://ftp.calculate-linux.org/calculate/themes/wallpapers/wallpapers-12.tar.bz2
+		https://mirror.calculate-linux.org/themes/wallpapers/wallpapers-12.tar.bz2
 		http://mirror.yandex.ru/calculate/themes/wallpapers/wallpapers-12.tar.bz2
 	)
 	CL13? (
-		ftp://ftp.calculate-linux.org/calculate/themes/wallpapers/wallpapers-13.tar.bz2
+		https://mirror.calculate-linux.org/themes/wallpapers/wallpapers-13.tar.bz2
 		http://mirror.yandex.ru/calculate/themes/wallpapers/wallpapers-13.tar.bz2
 	)
 	"

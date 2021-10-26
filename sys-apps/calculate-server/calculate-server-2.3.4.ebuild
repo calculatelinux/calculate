@@ -7,7 +7,7 @@ PYTHON_COMPAT=(python3_9)
 
 inherit distutils-r1
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/source/calculate2/${PN}/${P}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/source/calculate2/${PN}/${P}.tar.bz2
 	http://mirror.yandex.ru/calculate/source/calculate2/${PN}/${P}.tar.bz2"
 
 DESCRIPTION="Configuration utility for Linux services"

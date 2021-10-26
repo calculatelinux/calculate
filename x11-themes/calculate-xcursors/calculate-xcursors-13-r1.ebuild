@@ -4,7 +4,7 @@
 DESCRIPTION="Calculate X.Org mouse cursor"
 HOMEPAGE="http://www.calculate-linux.org/packages/x11-themes/calculate-xcursors"
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/source/${PN}/${P}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2
 	http://mirror.yandex.ru/calculate/source/${PN}/${P}.tar.bz2"
 
 KEYWORDS="amd64 x86"

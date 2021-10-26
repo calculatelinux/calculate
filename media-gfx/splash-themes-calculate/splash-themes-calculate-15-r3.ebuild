@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/splash/splash-themes-calculate-15-r2.tar.bz2"
+SRC_URI="https://mirror.calculate-linux.org/themes/splash/splash-themes-calculate-15-r2.tar.bz2"
 
 RDEPEND="media-gfx/splashutils
 media-fonts/droid

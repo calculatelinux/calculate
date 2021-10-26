@@ -8,7 +8,7 @@ MYP=linux-firmware-${PV}
 
 KEYWORDS="amd64 x86"
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/source/${PN}/${P}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2
 	http://mirror.yandex.ru/calculate/source/${PN}/${P}.tar.bz2"
 DESCRIPTION="Binary firmware for Lenovo Yoga 7 (LNVNB161216) S3 mode"
 HOMEPAGE="https://gist.github.com/zurohki/4b859668c901e6ba13e8187a0d5d734c"

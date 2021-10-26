@@ -15,10 +15,10 @@ IUSE="+silent +silent-shutdown"
 REQUIRED_USE="|| ( silent silent-shutdown )"
 
 SRC_URI="silent? ( 
-		ftp://ftp.calculate-linux.org/calculate/themes/calculate/splash-silent-${PV}.png -> ${PN}-silent-${PV}.png
+		https://mirror.calculate-linux.org/themes/calculate/splash-silent-${PV}.png -> ${PN}-silent-${PV}.png
 		http://mirror.yandex.ru/calculate/themes/calculate/splash-silent-${PV}.png -> ${PN}-silent-${PV}.png )
 	silent-shutdown? (
-		ftp://ftp.calculate-linux.org/calculate/themes/calculate/splash-shutdown-${PV}.jpg -> ${PN}-shutdown-${PV}.jpg
+		https://mirror.calculate-linux.org/themes/calculate/splash-shutdown-${PV}.jpg -> ${PN}-shutdown-${PV}.jpg
 		http://mirror.yandex.ru/calculate/themes/calculate/splash-shutdown-${PV}.jpg -> ${PN}-shutdown-${PV}.jpg )"
 
 DEPEND="sys-boot/plymouth-calculate-plugin

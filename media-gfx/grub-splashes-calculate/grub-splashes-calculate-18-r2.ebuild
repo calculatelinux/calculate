@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/calculate/grub-18-r1.jpg -> ${PF}.jpg
+SRC_URI="https://mirror.calculate-linux.org/themes/calculate/grub-18-r1.jpg -> ${PF}.jpg
 	http://mirror.yandex.ru/calculate/themes/calculate/grub-18-r1.jpg -> ${PF}.jpg"
 
 DEPEND="!<sys-apps/calculate-utils-3.5.2.6"

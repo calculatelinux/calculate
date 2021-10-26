@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/plasma/plasma-calculate-${PV}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/themes/plasma/plasma-calculate-${PV}.tar.bz2
 	http://mirror.yandex.ru/calculate/themes/plasma/plasma-calculate-${PV}.tar.bz2"
 
 

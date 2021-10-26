@@ -14,25 +14,25 @@ IUSE="themes_CLD themes_CLDX themes_CLS themes_CLDG themes_CSS themes_CDS themes
 
 SRC_URI="
 themes_CLD? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-cld-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-cld-13.tar.bz2
 )
 themes_CLDX? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-cldx-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-cldx-13.tar.bz2
 )
 themes_CLDG? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-cldg-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-cldg-13.tar.bz2
 )
 themes_CMC? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-cmc-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-cmc-13.tar.bz2
 )
 themes_CLS? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-cls-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-cls-13.tar.bz2
 )
 themes_CDS? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-cds-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-cds-13.tar.bz2
 )
 themes_CSS? (
-	ftp://ftp.calculate-linux.org/calculate/themes/grub/grub-css-13.tar.bz2
+	https://mirror.calculate-linux.org/themes/grub/grub-css-13.tar.bz2
 )"
 
 REQUIRED_USE="^^ ( themes_CLD themes_CLDX themes_CLS themes_CLDG themes_CSS

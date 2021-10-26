@@ -5,7 +5,7 @@
 EAPI="7"
 PYTHON_COMPAT=(python3_9)
 
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/source/${PN}/${P}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2
 	http://mirror.yandex.ru/calculate/source/${PN}/${P}.tar.bz2"
 DESCRIPTION="Collection of administration scripts for Calculate"
 HOMEPAGE="http://www.calculate-linux.org"

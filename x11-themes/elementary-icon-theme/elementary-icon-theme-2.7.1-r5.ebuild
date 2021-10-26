@@ -7,7 +7,7 @@ inherit gnome2-utils
 
 DESCRIPTION="Elementary icon theme is designed to be smooth, sexy, clear, and efficient"
 HOMEPAGE="https://launchpad.net/elementaryicons"
-SRC_URI="ftp://ftp.calculate-linux.org/calculate/themes/elementary/${PF}.tar.bz2
+SRC_URI="https://mirror.calculate-linux.org/themes/elementary/${PF}.tar.bz2
 		http://mirror.yandex.ru/calculate/themes/elementary/${PF}.tar.bz2"
 
 RESTRICT="binchecks strip"
