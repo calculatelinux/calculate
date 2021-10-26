@@ -65,17 +65,21 @@ src_install() {
 		if use $useflag
 		then
 			cd $WORKDIR/calculate-wallpapers-${useflag//CL}
-			if [[ $useflag == CL14 ]]
+			if [[ $useflag == CL21 ]]
 			then
-				mv usr/share/wallpapers/Calculate_Linux usr/share/wallpapers/Calculate_Linux_14
+				mv usr/share/wallpapers/Calculate_Linux usr/share/wallpapers/Calculate_Linux_21
+			fi
+			if [[ $useflag == CL17 ]]
+			then
+				mv usr/share/wallpapers/Calculate_Linux usr/share/wallpapers/Calculate_Linux_17
 			fi
 			if [[ $useflag == CL15 ]]
 			then
 				mv usr/share/wallpapers/Calculate_Linux usr/share/wallpapers/Calculate_Linux_15
 			fi
-			if [[ $useflag == CL17 ]]
+			if [[ $useflag == CL14 ]]
 			then
-				mv usr/share/wallpapers/Calculate_Linux usr/share/wallpapers/Calculate_Linux_17
+				mv usr/share/wallpapers/Calculate_Linux usr/share/wallpapers/Calculate_Linux_14
 			fi
 			doins -r usr
 		fi
