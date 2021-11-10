@@ -6,14 +6,14 @@ EAPI="7"
 PYTHON_COMPAT=(python3_9)
 
 declare -A CALCULATE_MODULES=(
-	["lib"]="3.7.1.22"
-	["install"]="3.7.1.8"
+	["lib"]="3.7.1.23"
+	["install"]="3.7.1.10"
 	["core"]="3.7.1.5"
 	["i18n"]="3.7.1.1"
-	["client"]="3.7.1.1"
+	["client"]="3.7.1.2"
 	["console"]="3.7.1.2"
 	["console-gui"]="3.7.1.2"
-	["update"]="3.7.1.4"
+	["update"]="3.7.1.9"
 	["builder"]="3.7.1.6"
 )
 
