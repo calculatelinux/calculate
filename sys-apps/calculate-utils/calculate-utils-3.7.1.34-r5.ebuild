@@ -13,7 +13,7 @@ declare -A CALCULATE_MODULES=(
 	["client"]="3.7.1.2"
 	["console"]="3.7.1.2"
 	["console-gui"]="3.7.1.2"
-	["update"]="3.7.1.9"
+	["update"]="3.7.1.10"
 	["builder"]="3.7.1.6"
 )
 
