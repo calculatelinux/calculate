@@ -23,3 +23,4 @@ src_install() {
 	insinto /usr/share
 	doins -r $PN
 }
+
