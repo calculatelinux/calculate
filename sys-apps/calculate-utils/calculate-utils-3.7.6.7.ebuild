@@ -4,7 +4,6 @@
 
 EAPI="8"
 PYTHON_COMPAT=(python3_12)
-SRC_URI="https://git.calculate-linux.org/calculate/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 
 declare -A CALCULATE_MODULES=(
@@ -18,7 +17,7 @@ declare -A CALCULATE_MODULES=(
 
 inherit calculate-utils-r18
 
-DESCRIPTION="A set of Calculate utilities for system installation, build and upgrade"
+DESCRIPTION="Arrty set of Calculate utilities for system installation, build and upgrade"
 HOMEPAGE="http://www.calculate-linux.org/main/en/calculate_utilities"
 
 LICENSE="Apache-2.0"
