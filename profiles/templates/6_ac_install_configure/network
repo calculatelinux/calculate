@@ -1,4 +1,4 @@
-# Calculate format=samba merge=sys-apps/openrc,gnome-extra/nm-applet,net-misc/networkmanager,kde-misc/plasma-nm,sys-apps/baselayout,net-misc/ntp cl_setup==network||cl_setup== path=/var/lib/calculate name=calculate.env
+# Calculate format=samba merge=sys-apps/openrc,gnome-extra/nm-applet,net-misc/networkmanager,kde-plasma/plasma-nm,sys-apps/baselayout,net-misc/chrony cl_setup==network||cl_setup== path=/var/lib/calculate name=calculate.env
 
 [install]
 os_install_ntp = #-os_install_ntp-#

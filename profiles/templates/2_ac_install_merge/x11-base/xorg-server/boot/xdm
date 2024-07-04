@@ -1,1 +1,1 @@
-# Calculate link=/etc/init.d/xdm symbolic pkg(x11-misc/sddm)!=||pkg(x11-misc/lightdm)!=||pkg(gnome-base/gdm)!=||pkg(x11-misc/slim)!=||pkg(media-tv/xbmc)!=||pkg(media-tv/kodi)!=||cl_autologin!=&&os_install_root_type!=livecd
+# Calculate link=/etc/init.d/xdm symbolic pkg(x11-misc/sddm)!=||pkg(x11-misc/lightdm)!=||pkg(gnome-base/gdm)!=||pkg(x11-misc/slim)!=||pkg(media-tv/kodi)!=||cl_autologin!=&&os_install_root_type!=livecd

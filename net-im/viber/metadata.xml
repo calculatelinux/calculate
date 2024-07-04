@@ -8,7 +8,7 @@
     </maintainer>
     <upstream>
         <remote-id type="cpe">cpe:/a:rakuten:viber</remote-id>
-        <bugs-to>https://help.viber.com/en</bugs-to>
+        <bugs-to>https://help.viber.com</bugs-to>
     </upstream>
     <longdescription lang="en">
         Viber is a calling and messaging app that connects people–no matter who they are, or where they’re from.

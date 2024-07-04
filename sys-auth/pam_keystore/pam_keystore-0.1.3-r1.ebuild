@@ -12,7 +12,6 @@ SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE=""
 DEPEND=">=sys-apps/keyutils-1.1"
 RDEPEND="${DEPEND}"
 

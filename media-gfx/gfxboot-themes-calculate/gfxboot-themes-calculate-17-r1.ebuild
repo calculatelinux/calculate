@@ -10,7 +10,6 @@ HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/gfxboot-themes-calc
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE=""
 
 SRC_URI="https://mirror.calculate-linux.org/themes/gfxboot/gfxboot-themes-calculate-${PV}.tar.bz2"
 

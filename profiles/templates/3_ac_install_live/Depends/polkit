@@ -1,0 +1,1 @@
+# Calculate append=skip merge(sys-auth/polkit)!= merge=sys-auth/pambase,x11-misc/sddm,sys-auth/elogind

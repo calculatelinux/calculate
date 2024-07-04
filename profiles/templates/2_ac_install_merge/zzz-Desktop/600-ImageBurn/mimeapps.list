@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.imageburn-removing)==on merge=app-cdr/k3b,app-cdr/brasero,app-cdr/xfburn
+# Calculate format=compiz protected ini(desktop.imageburn-removing)==on merge=kde-apps/k3b,app-cdr/brasero,app-cdr/xfburn
 
 #-ini(desktop.imageburn-removing,)-#
 

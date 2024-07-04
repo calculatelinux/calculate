@@ -6,8 +6,16 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Decrypt and encrypt messages compatible to the "Stanford Javascript Crypto Library (SJCL)".
+    </longdescription>
+    <longdescription lang="ru">
+        Расшифровывает и зашифровывает сообщения, совместимо с "Stanford Javascript Crypto Library (SJCL)".
+    </longdescription>
     <upstream>
         <remote-id type="github">berlincode/sjcl</remote-id>
         <remote-id type="pypi">sjcl</remote-id>
+        <bugs-to>https://github.com/berlincode/sjcl/issues</bugs-to>
+        <changelog>https://github.com/berlincode/sjcl/blob/master/CHANGES.txt</changelog>
     </upstream>
 </pkgmetadata>

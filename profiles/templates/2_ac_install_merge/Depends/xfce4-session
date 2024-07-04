@@ -1,1 +1,1 @@
-# Calculate append=skip merge(xfce-base/xfce4-session)!= merge=x11-apps/xinit,kde-base/kdm,xfce-extra/xfce4-power-manager
+# Calculate append=skip merge(xfce-base/xfce4-session)!= merge=x11-apps/xinit,kde-base/kdm,xfce-base/xfce4-power-manager

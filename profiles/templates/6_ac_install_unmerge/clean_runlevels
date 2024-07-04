@@ -28,16 +28,8 @@
 #-ini(runlevels.openrc/consolefont,)-#
 #ini#
 
-#?ini(runlevels.consolekit)==on&&pkg(sys-auth/consolekit)==#
-#-ini(runlevels.consolekit,)-#
-#ini#
-
-#?ini(runlevels.eudev)==on&&pkg(sys-fs/eudev)==#
-#-ini(runlevels.eudev,)-#
-#ini#
-
-#?ini(runlevels.udev)==on&&pkg(sys-fs/udev)==#
-#-ini(runlevels.udev,)-#
+#?ini(runlevels.udev-init-scripts)==on&&pkg(sys-fs/udev-init-scripts)==#
+#-ini(runlevels.udev-init-scripts,)-#
 #ini#
 
 #?ini(runlevels.cronie)==on&&pkg(sys-process/cronie)==#
@@ -70,6 +62,10 @@
 
 #?ini(runlevels.calculate-utils/laptopd)==on&&pkg(sys-apps/calculate-utils:3)==#
 #-ini(runlevels.calculate-utils/laptopd,)-#
+#ini#
+
+#?ini(runlevels.chrony)==on&&pkg(net-misc/chrony)==#
+#-ini(runlevels.chrony,)-#
 #ini#
 
 true

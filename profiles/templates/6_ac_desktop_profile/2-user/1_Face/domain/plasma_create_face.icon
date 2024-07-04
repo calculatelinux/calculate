@@ -1,1 +1,1 @@
-# Calculate link=/var/calculate/remote/share/faces/#-ur_login-#.face mirror name=.face exists(/var/calculate/remote/share/faces/#-ur_login-#.face)!=&&pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-frameworks/plasma)!=
+# Calculate link=/var/calculate/remote/share/faces/#-ur_login-#.face mirror name=.face exists(/var/calculate/remote/share/faces/#-ur_login-#.face)!=&&pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-plasma/libplasma)!=

@@ -1,0 +1,4 @@
+# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-)-#  rebuild=sys-apps/baselayout
+
+[overlay-calculate]
+revision = #-cut(0)-#

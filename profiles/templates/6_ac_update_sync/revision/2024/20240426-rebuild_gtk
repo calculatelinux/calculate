@@ -1,0 +1,4 @@
+# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-)-#  rebuild=gui-libs/gtk
+
+[overlay-calculate]
+revision = #-cut(0)-#

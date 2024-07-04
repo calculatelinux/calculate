@@ -12,7 +12,6 @@ KEYWORDS="amd64"
 
 DEPEND="net-print/cups"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 S="$WORKDIR/"${P}""
 src_unpack() {
 default && mv uld "${P}"

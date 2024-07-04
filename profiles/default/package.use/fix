@@ -42,3 +42,6 @@ kde-apps/kdeedu-meta -webengine
 # berkdb requires db-4.8
 net-p2p/bitcoin-qt sqlite -berkdb
 net-p2p/bitcoind sqlite -berkdb
+
+# not stable work on net-misc/freerdp-3.4.0-3.5.1
+net-misc/freerdp -fuse

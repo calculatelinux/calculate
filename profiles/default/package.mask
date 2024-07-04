@@ -4,8 +4,6 @@
 # prevent automagic depends
 sys-libs/db:6.0
 
-# some bugs
-=x11-misc/sddm-0.20.0-r1
-
 # not compiled
 =gnome-base/gnome-panel-3.50.0
+

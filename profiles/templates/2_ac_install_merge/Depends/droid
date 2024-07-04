@@ -1,1 +1,1 @@
-# Calculate append=skip merge(media-fonts/droid)!= merge=x11-libs/gtk+,kde-base/kdelibs,kde-base/kdm,media-video/mplayer,x11-apps/xmessage
+# Calculate append=skip merge(media-fonts/droid)!= merge=x11-libs/gtk+,kde-base/kdm,media-video/mplayer,x11-apps/xmessage

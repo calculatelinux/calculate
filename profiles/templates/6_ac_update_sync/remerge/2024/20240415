@@ -1,0 +1,4 @@
+# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=gui-libs/display-manager-init,kde-plasma/plasma-workspace
+
+[overlay-calculate]
+remerge = #-cl_pass_file-#

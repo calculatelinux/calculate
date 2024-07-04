@@ -21,6 +21,6 @@ XSESSION="Xfce4"
 #?pkg(mate-base/mate-session-manager)!=#
 XSESSION="Mate"
 #pkg#
-#?pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-frameworks/plasma)!=#
+#?pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-plasma/libplasma)!=#
 XSESSION="Plasma"
 #pkg#

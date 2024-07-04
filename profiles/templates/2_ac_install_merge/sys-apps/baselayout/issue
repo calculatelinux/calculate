@@ -1,7 +1,7 @@
 
 #?os_install_linux_subname!=#
-Welcome to \n.\O (#-os_install_linux_name-# #-os_install_linux_ver-# #-os_install_linux_subname-#)
+Welcome to \n.\O (#-os_install_linux_name-# #-os_install_linux_subname-#)
 #!os_install_linux_subname#
-Welcome to \n.\O (#-os_install_linux_name-# #-os_install_linux_ver-#)
+Welcome to \n.\O (#-os_install_linux_name-#)
 #os_install_linux_subname#
 

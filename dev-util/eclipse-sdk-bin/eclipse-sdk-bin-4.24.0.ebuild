@@ -1,6 +1,5 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=8
 
@@ -8,23 +7,20 @@ inherit desktop
 
 SR="R"
 RNAME="2022-06"
-
 SRC_BASE="https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/${RNAME}/${SR}/eclipse-java-${RNAME}-${SR}-linux-gtk"
 
 DESCRIPTION="Eclipse SDK"
-HOMEPAGE="http://www.eclipse.org"
-SRC_URI="amd64? ( ${SRC_BASE}-x86_64.tar.gz&r=1 -> eclipse-java-${RNAME}-${SR}-linux-gtk-x86_64-${PV}.tar.gz )"
+HOMEPAGE="https://www.eclipse.org"
+SRC_URI="${SRC_BASE}-x86_64.tar.gz&r=1 -> eclipse-java-${RNAME}-${SR}-linux-gtk-x86_64-${PV}.tar.gz"
+S="${WORKDIR}"/eclipse
 
 LICENSE="EPL-1.0"
 SLOT="$(ver_cut 1-2)"
-KEYWORDS="~x86 amd64"
-IUSE=""
+KEYWORDS="amd64"
 
 RDEPEND="
 	>=virtual/jdk-1.8
 	x11-libs/gtk+:2"
-
-S=${WORKDIR}/eclipse
 
 src_install() {
 	local dest=/opt/${PN}-${SLOT}

@@ -6,4 +6,10 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Free XO cyrillic fonts from MyOffice.
+    </longdescription>
+    <longdescription lang="ru">
+        Свободные XO кириллические шрифты из MyOffice.
+    </longdescription>
 </pkgmetadata>

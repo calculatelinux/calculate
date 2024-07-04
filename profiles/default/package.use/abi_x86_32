@@ -7,7 +7,6 @@ app-arch/zstd abi_x86_32
 app-crypt/libmd abi_x86_32
 app-crypt/p11-kit abi_x86_32
 app-emulation/vkd3d abi_x86_32
-app-emulation/wine-gecko abi_x86_32
 dev-cpp/glibmm abi_x86_32
 dev-cpp/libxmlpp abi_x86_32
 dev-db/mysql-connector-c abi_x86_32
@@ -34,7 +33,6 @@ dev-libs/libgudev abi_x86_32
 dev-libs/libltdl abi_x86_32
 dev-libs/libpcre2 abi_x86_32
 dev-libs/libpcre abi_x86_32
-dev-libs/libpthread-stubs abi_x86_32
 dev-libs/libsigc++ abi_x86_32
 dev-libs/libtasn1 abi_x86_32
 dev-libs/libunistring abi_x86_32

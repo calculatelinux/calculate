@@ -6,4 +6,13 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Collection of administration scripts for Calculate.
+    </longdescription>
+    <longdescription lang="ru">
+        Коллекция скриптов администрирования для Calculate.
+    </longdescription>
+    <upstream>
+        <bugs-to>mailto:support@calculate.ru</bugs-to>
+    </upstream>
 </pkgmetadata>

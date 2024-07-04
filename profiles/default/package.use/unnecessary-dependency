@@ -20,8 +20,10 @@ dev-qt/qt-creator -qmldesigner
 dev-qt/qtgui -vnc
 dev-vcs/git -gtk
 games-util/game-device-udev-rules -acl
+games-util/steam-launcher -video_cards_nvidia
 gnome-extra/zenity -webkit
 kde-apps/kget -bittorrent
+kde-plasma/plasma-meta -sddm
 lxqt-base/lxqt-meta -sddm
 mail-client/roundcube -spell
 mail-filter/opendkim -sasl
@@ -32,6 +34,7 @@ media-fonts/terminus-font -pcf
 media-gfx/imagemagick -raw
 media-gfx/inkscape -spell
 media-libs/libcanberra -sound
+media-libs/phonon minimal
 media-libs/simage -tiff
 media-libs/tg_owt -screencast
 media-sound/pulseaudio -daemon
@@ -44,7 +47,6 @@ net-analyzer/zabbix -postgres
 net-dialup/rp-pppoe -X
 net-dns/avahi -gtk
 net-im/telegram-desktop -screencast
-net-im/telepathy-connection-managers -gadu
 net-irc/weechat -spell
 net-libs/webkit-gtk -geoloc
 net-misc/asterisk -bluetooth
@@ -70,4 +72,3 @@ xfce-extra/xfce4-sensors-plugin -video_cards_nvidia
 
 media-gfx/nomacs -opencv -raw -tiff
 media-plugins/frei0r-plugins -facedetect
-media-libs/libopenshot -opencv

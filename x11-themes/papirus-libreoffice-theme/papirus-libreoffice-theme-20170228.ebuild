@@ -17,9 +17,7 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
 
-DEPEND=""
 RDEPEND="${DEPEND}
 	|| (
 		app-office/libreoffice

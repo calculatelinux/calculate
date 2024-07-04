@@ -1,0 +1,20 @@
+# Calculate path=/etc/conf.d format=procmail
+
+CHECKVT=7
+
+#?pkg(x11-misc/sddm)!=#
+DISPLAYMANAGER="sddm"
+START_STOP_ARGS=
+#pkg#
+#?pkg(gnome-base/gdm)!=#
+DISPLAYMANAGER="gdm"
+START_STOP_ARGS=
+#pkg#
+#?pkg(x11-misc/slim)!=#
+DISPLAYMANAGER="slim"
+START_STOP_ARGS=
+#pkg#
+#?pkg(x11-misc/lightdm)!=#
+DISPLAYMANAGER="lightdm"
+START_STOP_ARGS=
+#pkg#

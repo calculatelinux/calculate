@@ -1,0 +1,4 @@
+# Calculate path=/usr/share/wayland-sessions format=kde 
+
+[Desktop Entry]
+Exec=/usr/bin/dbus-run-session /usr/bin/startplasma-wayland

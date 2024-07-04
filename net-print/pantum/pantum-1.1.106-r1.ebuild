@@ -3,23 +3,21 @@
 
 EAPI=8
 
-DESCRIPTION="CUPS and SANE drivers for Pantum series printer and scanner."
-HOMEPAGE="https://www.pantum.ru/support/download/driver/"
-
 inherit udev
-
-IUSE="scanner"
 
 MY_PV=${PV//./_}
 
+DESCRIPTION="CUPS and SANE drivers for Pantum series printer and scanner."
+HOMEPAGE="https://www.pantum.ru/support/download/driver/"
 SRC_URI="https://drivers.pantum.ru/userfiles/files/download/drive/2013/0619/Pantum%20Ubuntu%20Driver%20V${MY_PV}(1).zip"
 
 LICENSE="AS-IS"
 SLOT="0"
 KEYWORDS="amd64"
+IUSE="scanner"
 RESTRICT="bindist mirror strip"
 
-COMMON_DEPEND="
+DEPEND="
 	media-libs/libjpeg8
 	net-print/cups
 	net-print/cups-filters
@@ -34,11 +32,8 @@ BDEPEND="
 	app-arch/unzip
 	virtual/pkgconfig
 "
-DEPEND="
-	${COMMON_DEPEND}
-"
 RDEPEND="
-	${COMMON_DEPEND}
+	${DEPEND}
 	app-text/ghostscript-gpl
 "
 
@@ -63,14 +58,6 @@ src_install() {
 	doexe usr/lib/cups/filter/*
 	insinto /usr/share/cups/model
 	doins -r usr/share/cups/model/Pantum
-
-#	if ! use scanner ; then
-#		rm -rf "${D}/usr/lib/x86_64-linux-gnu" || die
-#		rm -rf "${D}/usr/local" || die
-#	fi
-#	mv ${D}/usr/lib ${D}/usr/libexec || die
-#	mkdir -p "${D}/etc/ld.so.conf.d/" || die
-#	echo "/opt/pantum/lib" >> "${D}/etc/ld.so.conf.d/pantum.conf" || die
 }
 
 pkg_postrm() {
@@ -78,12 +65,5 @@ pkg_postrm() {
 }
 
 pkg_postinst() {
-#	mkdir -p /opt/pantum/lib || die
-#	ldconfig
 	udev_reload
 }
-
-#pkg_prerm() {
-#	rm -rf /etc/ld.so.conf.d/pantum.conf
-#	ldconfig
-#}

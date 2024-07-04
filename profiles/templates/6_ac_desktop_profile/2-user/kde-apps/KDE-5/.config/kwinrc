@@ -36,3 +36,5 @@ CloseOnDoubleClickOnMenu=true
 #?ini(profile.appearance-border)!=#
 library=#-ini(profile.appearance-border)-#
 #ini#
+library=org.kde.breeze
+theme=Breeze

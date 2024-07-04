@@ -1,4 +1,4 @@
-# Calculate format=samba path=/var/lib/calculate name=ini.env ac_install_unmerge==on&&pkg(app-cdr/k3b)==&&ini(desktop.imageburn)==k3b
+# Calculate format=samba path=/var/lib/calculate name=ini.env ac_install_unmerge==on&&pkg(kde-apps/k3b)==&&ini(desktop.imageburn)==k3b
 
 [desktop]
 !imageburn=

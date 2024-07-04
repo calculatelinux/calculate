@@ -18,7 +18,7 @@ Width #-os_x11_width-#=747
 #-sum(iconwidth,,52)-#
 #cl_ver#
 
-#-sum(menuwidth,,iconwidth*13+2)-#
+#-sum(menuwidth,,iconwidth*12+2)-#
 
 [KFileDialog Settings]
 Recent Files[$e]=start-here-blue.svg,/usr/share/pixmaps/calculate/start-here-blue.svg

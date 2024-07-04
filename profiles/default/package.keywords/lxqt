@@ -4,7 +4,6 @@
 ~dev-util/lxqt-build-tools-0.13.0 amd64
 ~gui-libs/xdg-desktop-portal-lxqt-0.5.0 amd64
 ~lxqt-base/libsysstat-0.4.6 amd64
-~x11-misc/obconf-qt-0.16.3 amd64
 
 <lxqt-base/liblxqt-1.5 amd64
 <lxqt-base/lxqt-about-1.5 amd64

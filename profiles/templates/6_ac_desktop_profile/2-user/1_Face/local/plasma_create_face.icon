@@ -1,1 +1,1 @@
-# Calculate link=#-cl_desktop_hash_face-# mirror name=.face exists(~/.face.icon)==&&pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-frameworks/plasma)!=&&cl_desktop_hash_face!=
+# Calculate link=#-cl_desktop_hash_face-# mirror name=.face exists(~/.face.icon)==&&pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-plasma/libplasma)!=&&cl_desktop_hash_face!=

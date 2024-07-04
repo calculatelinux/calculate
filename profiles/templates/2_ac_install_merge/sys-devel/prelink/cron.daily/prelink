@@ -1,3 +1,0 @@
-# Calculate comment=# format=patch
-<reg>\n(\[ -n "\$\(find `ldd /sbin/init .*/sbin/telinit u)</reg>
-<text>\n#\1</text>

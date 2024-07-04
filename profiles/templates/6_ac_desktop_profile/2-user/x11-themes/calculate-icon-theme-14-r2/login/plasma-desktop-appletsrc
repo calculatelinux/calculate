@@ -1,3 +1,3 @@
-# Calculate format=patch path=~/.kde4/share/config pkg(kde-base/plasma-workspace)!=
+# Calculate format=patch path=~/.kde4/share/config pkg(kde-plasma/plasma-workspace)!=
 <reg>start-here-kde</reg>
 <text>start-calculate</text>

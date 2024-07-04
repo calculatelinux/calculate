@@ -19,9 +19,6 @@ mail-client/roundcube postgres -sqlite
 # any-of ( perl python ruby php5-6 php7-1 php7-2 )
 www-servers/nginx-unit python
 
-# any-of ( client server )
-media-plugins/vdr-streamdev server
-
 # connection-sharing? ( any-of ( iptables nftables ) )
 net-misc/networkmanager iptables
 
@@ -32,6 +29,4 @@ app-containers/docker-credential-helpers keyring
 sci-mathematics/octave gui
 
 # any-of ( qt5 qt6 )
-dev-libs/qxlsx qt5
 dev-python/pyotherside qt5
-sci-astronomy/calcmysky qt5

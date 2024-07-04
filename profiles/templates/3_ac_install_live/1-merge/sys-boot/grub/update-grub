@@ -5,7 +5,7 @@ echo "Configuring the grub"
 
 #?ac_install_disk==on#
 mount -t proc none #-cl_chroot_path-#/proc
-mount -t sysfs none #-cl_chroot_path-#/sys
+mount --rbind /sys #-cl_chroot_path-#/sys
 mount -o bind /dev #-cl_chroot_path-#/dev
 
 #?os_arch_machine==i686&&os_install_arch_machine!=i686#
@@ -36,6 +36,7 @@ grep_modules() {
 before_mods=( $(grep_modules) )
 
 #?ac_install_disk==on#
+LANG=#-install.os_install_locale_locale-# /bin/chroot #-cl_chroot_path-# grub-install &>/dev/null
 LANG=#-install.os_install_locale_locale-# /bin/chroot #-cl_chroot_path-# grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
 #!ac_install_disk#
 /usr/sbin/grub-install &>/dev/null
@@ -62,7 +63,7 @@ for mdir in /bin /sbin /lib /usr/sbin /usr/bin /usr/lib /usr/libexec;do
 done
 #os_arch_machine#
 
-umount #-cl_chroot_path-#/proc #-cl_chroot_path-#/sys #-cl_chroot_path-#/dev
+umount -R #-cl_chroot_path-#/proc #-cl_chroot_path-#/sys #-cl_chroot_path-#/dev
 
 #?os_root_type==hdd#
 umount #-cl_chroot_path-#/mnt

@@ -13,7 +13,7 @@ password   sufficient   pam_unix.so nullok sha256 shadow use_authtok
 password   required     pam_deny.so
 
 session    required     pam_limits.so
-#?pkg(sys-auth/elogind)!=&&pkg(sys-auth/consolekit)==#
+#?pkg(sys-auth/elogind)!=#
 -session   optional     pam_loginuid.so
 -session   optional     pam_elogind.so
 #pkg#

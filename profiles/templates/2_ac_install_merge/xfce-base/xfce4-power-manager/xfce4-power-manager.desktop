@@ -1,0 +1,7 @@
+# Calculate format=kde
+[Desktop Entry]
+#?pkg(xfce-base/xfce4-session)<4.13#
+Exec=xfce4-power-manager --sm-client-disable
+#!pkg#
+Exec=xfce4-power-manager
+#pkg#

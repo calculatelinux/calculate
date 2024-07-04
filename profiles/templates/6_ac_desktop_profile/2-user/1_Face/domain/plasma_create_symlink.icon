@@ -1,1 +1,1 @@
-# Calculate link=#-ur_home_path-#/.face symbolic name=.face.icon pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-frameworks/plasma)!=
+# Calculate link=#-ur_home_path-#/.face symbolic name=.face.icon pkg(kde-plasma/plasma-workspace)!=&&pkg(kde-plasma/libplasma)!=

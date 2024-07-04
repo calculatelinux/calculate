@@ -1,0 +1,16 @@
+# Calculate format=diff merge(x11-misc/sddm)>=0.20.0
+diff --git src/common/VirtualTerminal.cpp src/common/VirtualTerminal.cpp
+index 2cac325..3a26d73 100644
+--- src/common/VirtualTerminal.cpp
++++ src/common/VirtualTerminal.cpp
+@@ -185,6 +185,10 @@ out:
+                 qCritical() << "Failed to open new VT:" << strerror(errno);
+                 return -1;
+             }
++            
++            if (vt <= 7) {
++                return 7;
++            }
+ 
+             // fallback to active VT
+             if (vt <= 0) {

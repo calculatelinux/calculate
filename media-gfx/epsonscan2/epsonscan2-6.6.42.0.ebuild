@@ -31,7 +31,6 @@ DEPEND="
 	virtual/libusb:1
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 src_prepare() {
 	cmake_src_prepare

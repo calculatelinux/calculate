@@ -1,1 +1,1 @@
-# Calculate append=skip ini(update.virtualbox)!=off&&ini(ver.virtualbox)==&&exists(~/.config/VirtualBox)== mergepkg(app-emulation/virtualbox-bin)>=4.3||mergepkg(app-emulation/virtualbox)>=4.3
+# Calculate append=skip ini(update.virtualbox)!=off&&ini(ver.virtualbox)==&&exists(~/.config/VirtualBox)== mergepkg(app-emulation/virtualbox)>=4.3

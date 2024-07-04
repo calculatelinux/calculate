@@ -1,4 +1,4 @@
-# Calculate format=kde link=/usr/share/applications/kde4/k3b.desktop name=calculate-imageburn.desktop mirror pkg(app-cdr/k3b)>=2.0
+# Calculate format=kde link=/usr/share/applications/kde4/k3b.desktop name=calculate-imageburn.desktop mirror pkg(kde-apps/k3b)>=2.0
 
 # Hide icon
 [Desktop Entry]

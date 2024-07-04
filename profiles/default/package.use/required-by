@@ -1,5 +1,7 @@
 >=dev-qt/qtcore-5.4.2 icu
 ~dev-perl/Alien-wxWidgets-0.690.0 gstreamer
+sys-cluster/openmpi romio fortran cxx
+
 
 # required by media-sound/picard-1.3.1
 media-libs/chromaprint tools
@@ -201,8 +203,8 @@ dev-python/numpy lapack
 # required by dev-python/pytables-3.1.1-r2
 dev-libs/c-blosc hdf5
 
-# required by kde-frameworks/kwayland-5.28.0
-dev-qt/qtwayland egl
+# required by net-im/telegram-desktop-5.0.1[-qt6,webkit], kde-frameworks/kwayland-5.28.0
+dev-qt/qtwayland compositor egl
 
 # required by www-client/firefox-50.0.2[pgo]
 x11-base/xorg-server xvfb
@@ -313,7 +315,7 @@ net-ftp/proftpd ident
 # [sockets] required by net-analyzer/cacti-0.8.8h
 # [sysvipc] required by net-analyzer/zabbix-5.2.4[frontend]
 # [xmlwriter, zip] required by www-apps/nextcloud-11.0.2
-# [xslt] required by "www-apps/phpsysinfo-3.3.4
+# [xslt] required by www-apps/phpsysinfo-3.3.4
 app-eselect/eselect-php fpm
 dev-lang/php calendar cgi curl fpm gd intl mysql pdo postgres sockets sysvipc xmlreader xmlwriter xslt zip
 
@@ -594,9 +596,6 @@ sys-fs/squashfs-tools lzma
 media-tv/v4l-utils -bpf dvb
 media-libs/libv4l dvb
 
-# required by x11-libs/pango-1.48.7
-media-libs/freetype harfbuzz
-
 # required by net-misc/rygel-0.40.1
 media-libs/libmediaart vala
 net-libs/gupnp-av vala
@@ -616,10 +615,10 @@ dev-python/python-lsp-server all-plugins
 # required by dev-embedded/ponyprog-3.1.2
 dev-embedded/libftdi:1 cxx
 
-# required by "app-emacs/libegit2-0.0.20200515-r1 app-emacs/osm-0.10
-app-editors/emacs dynamic-loading json
+# required by app-emacs/libegit2-0.0.20200515-r1 app-emacs/osm-0.10 app-emacs/scala-ts-mode-1.0.0_p20240316
+app-editors/emacs dynamic-loading json tree-sitter
 
-# required by "media-gfx/blender-3.0.0"
+# required by media-gfx/blender-3.0.0
 media-libs/opencolorio -opengl
 
 # required by kde-frameworks/qqc2-desktop-style-5.88.0
@@ -645,7 +644,7 @@ media-libs/qhull static-libs
 
 app-crypt/gpgme python
 
-# required by "dev-cpp/folly-2022.03.28.00-r1
+# required by dev-cpp/folly-2022.03.28.00-r1
 dev-cpp/glog gflags
 
 # required by net-im/cawbird-1.5-r2[gstreamer]
@@ -687,7 +686,7 @@ net-wireless/wpa_supplicant p2p
 # required by sys-fs/dmraid-1.0.0_rc16-r6
 sys-fs/lvm2 lvm
 
-# required by "media-gfx/blender-3.3.2
+# required by media-gfx/blender-3.3.2
 media-libs/freetype brotli
 
 # required by dev-util/ropper-1.13.8
@@ -696,7 +695,7 @@ dev-libs/keystone python
 # required by app-admin/mongosh-bin-1.3.1
 dev-libs/cyrus-sasl kerberos
 
-# required by "dev-libs/papi-6.0.0.1-r1
+# required by dev-libs/papi-6.0.0.1-r1
 dev-libs/libpfm static-libs
 
 # required by games-arcade/performous-1.2.0
@@ -783,4 +782,21 @@ dev-db/postgresql uuid
 
 # dependency required by dev-util/bcc-0.29.1-r1
 dev-libs/libbpf static-libs
+
+# required by dev-python/pyarrow-15.0.2
+dev-libs/apache-arrow compute dataset re2
+
+www-apps/ttyd mbedtls
+
+# required by www-client/chromium-123.0.6312.105[system-toolchain]
+virtual/rust profiler
+
+# required by dev-python/pikepdf-8.14.0-r1
+dev-python/pillow lcms
+
+# required by dev-python/pyside6-tools-6.7.0
+dev-python/pyside6 quick qml
+
+# required by app-editors/qxmledit-0.9.18-r1
+dev-qt/qtimageformats mng
 

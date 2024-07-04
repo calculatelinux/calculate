@@ -9,6 +9,9 @@
     <longdescription lang="en">
         A set of Calculate utilities for system installation, build and upgrade.
     </longdescription>
+    <longdescription lang="ru">
+        Набор утилит Calculate для установки системы, сборки и обновления.
+    </longdescription>
     <use>
         <flag name="backup">Includes backup module.</flag>
         <flag name="client">Includes module for setting and storing the user accounts in the domain.</flag>
@@ -21,5 +24,7 @@
         <flag name="qt5">Include Qt5 gui console</flag>
         <flag name="gpg">Enables the signature checking</flag>
     </use>
+    <upstream>
+        <bugs-to>mailto:support@calculate.ru</bugs-to>
+    </upstream>
 </pkgmetadata>
-

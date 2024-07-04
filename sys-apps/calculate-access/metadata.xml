@@ -6,8 +6,18 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
-    <use>
-        <flag name="client">Calculate-access client</flag>
-        <flag name="server">Calculate-access server</flag>
+    <longdescription lang="en">
+        Cryptodata management tools for Calculate.
+    </longdescription>
+    <upstream>
+        <bugs-to>mailto:support@calculate.ru</bugs-to>
+    </upstream>
+    <use lang="en">
+        <flag name="client">calculate-access client</flag>
+        <flag name="server">calculate-access server</flag>
+    </use>
+    <use lang="ru">
+        <flag name="client">Клиент calculate-access</flag>
+        <flag name="server">Клиент calculate-access</flag>
     </use>
 </pkgmetadata>

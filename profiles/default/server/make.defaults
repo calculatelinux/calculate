@@ -1,4 +1,3 @@
-USE=""
 
 # Audio
 USE="${USE} -alsa -openal -pulseaudio"

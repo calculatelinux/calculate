@@ -1,1 +1,1 @@
-# Calculate append=skip merge(kde-frameworks/plasma)!= merge=x11-apps/xinit
+# Calculate append=skip merge(kde-plasma/libplasma)!= merge=x11-apps/xinit

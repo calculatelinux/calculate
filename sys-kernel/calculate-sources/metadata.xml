@@ -7,10 +7,10 @@
         <description>Calculate Overlay</description>
     </maintainer>
     <longdescription lang="en">
-        Full sources including the Calculate patchset for the kernel.
+        Full Linux kernel sources including the Calculate patchset.
     </longdescription>
     <longdescription lang="ru">
-        Полные исходники ядра с патчами от Calculate.
+        Полные исходники ядра Linux, включая набор патчей Calculate.
     </longdescription>
     <use lang="en">
         <flag name="desktop">Desktop kernel configuration</flag>

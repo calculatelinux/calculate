@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<!-- maintainer-needed -->
-<longdescription lang="en">
-Configuration utility for Linux services. Part of Calculate Linux.
-</longdescription>
-<use>
-<flag name="calculate_nodhcp">without DHCP</flag>
-<flag name="calculate_noftp">without FTP</flag>
-<flag name="calculate_nojabber">without jabber server</flag>
-<flag name="calculate_nomail">without mail</flag>
-<flag name="calculate_nonamed">without DNS</flag>
-<flag name="calculate_noproxy">without proxy</flag>
-<flag name="calculate_nosamba">without Samba fileserver</flag>
-</use>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        Configuration utility for Calculate services.
+    </longdescription>
+    <longdescription lang="ru">
+        Конфигурационная утилита для сервисов Calculate.
+    </longdescription>
+    <use lang="en">
+        <flag name="calculate_nodhcp">Disable DHCP support</flag>
+        <flag name="calculate_noftp">Disable FTP support</flag>
+        <flag name="calculate_nojabber">Disable Jabber server support</flag>
+        <flag name="calculate_nomail">Disable e-mail support</flag>
+        <flag name="calculate_nonamed">Disable DNS support</flag>
+        <flag name="calculate_noproxy">Disable proxy support</flag>
+        <flag name="calculate_nosamba">Disable Samba fileserver support</flag>
+    </use>
+    <use lang="ru">
+        <flag name="calculate_nodhcp">Выключить поддержку DHCP</flag>
+        <flag name="calculate_noftp">Выключить поддержку FTP</flag>
+        <flag name="calculate_nojabber">Выключить поддержку сервера Jabber</flag>
+        <flag name="calculate_nomail">Выключить поддержку e-mail</flag>
+        <flag name="calculate_nonamed">Выключить поддержку DNS</flag>
+        <flag name="calculate_noproxy">Выключить поддержку прокси</flag>
+        <flag name="calculate_nosamba">Выключить поддержку файлового сервера Samba</flag>
+    </use>
+    <upstream>
+        <bugs-to>mailto:support@calculate.ru</bugs-to>
+    </upstream>
 </pkgmetadata>

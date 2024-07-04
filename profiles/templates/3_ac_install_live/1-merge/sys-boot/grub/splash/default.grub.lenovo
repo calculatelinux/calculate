@@ -1,3 +1,0 @@
-# Calculate format=patch path=/etc/default name=grub pkg(sys-firmware/lnvnb161216-firmware)!=
-<reg>quiet"</reg>
-<text>quiet mem_sleep_default=deep"</text>

@@ -19,14 +19,13 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE="cpu_flags_arm_neon"
 
-ASM_DEPEND="|| ( dev-lang/nasm dev-lang/yasm )"
-DEPEND=""
-RDEPEND=""
 BDEPEND="
-	amd64? ( ${ASM_DEPEND} )
+	amd64? (
+		|| ( dev-lang/nasm dev-lang/yasm )
+	)
 "
 
-S=${WORKDIR}/${MY_P}-${PV}
+S="${WORKDIR}"/${MY_P}-${PV}
 
 MULTILIB_WRAPPED_HEADERS=( /usr/include/jconfig.h )
 
@@ -70,5 +69,5 @@ src_configure() {
 
 src_install() {
 	dolib.so "${WORKDIR}/libjpeg-turbo-${PV}_build/libjpeg.so.8.3.2"
-	dosym libjpeg.so.8.3.2 /usr/$(get_libdir)/libjpeg.so.8
+	dosym libjpeg.so.8.3.2 "/usr/$(get_libdir)/libjpeg.so.8"
 }

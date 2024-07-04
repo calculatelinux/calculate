@@ -6,5 +6,15 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
-    <upstream><remote-id type="github">v1cont/yad</remote-id></upstream>
+    <longdescription lang="en">
+        Display GTK+ dialog boxes from command line or shell scripts.
+    </longdescription>
+    <longdescription lang="ru">
+        Отображает диалог GTK+ из коммандной строки или скрипта.
+    </longdescription>
+    <upstream>
+        <remote-id type="github">v1cont/yad</remote-id>
+        <bugs-to>https://github.com/v1cont/yad/issues</bugs-to>
+        <changelog>https://github.com/v1cont/yad/blob/master/NEWS</changelog>
+    </upstream>
 </pkgmetadata>

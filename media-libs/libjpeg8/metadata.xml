@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <maintainer type="project">
-    <email>codec@gentoo.org</email>
-    <name>Gentoo Codec Project</name>
-  </maintainer>
-  <slots>
-    <subslots>Reflect ABI of libturbojpeg.so.</subslots>
-  </slots>
-  <upstream>
-    <remote-id type="github">libjpeg-turbo/libjpeg-turbo</remote-id>
-    <remote-id type="sourceforge">libjpeg-turbo</remote-id>
-    <remote-id type="cpe">cpe:/a:libjpeg-turbo:libjpeg-turbo</remote-id>
-  </upstream>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription>
+        libjpeg-turbo is a JPEG image codec that uses SIMD instructions to accelerate baseline
+		JPEG compression and decompression.
+    </longdescription>
+    <slots>
+        <subslots>Reflect ABI of libturbojpeg.so.</subslots>
+    </slots>
+    <upstream>
+        <remote-id type="github">libjpeg-turbo/libjpeg-turbo</remote-id>
+        <remote-id type="sourceforge">libjpeg-turbo</remote-id>
+        <remote-id type="cpe">cpe:/a:libjpeg-turbo:libjpeg-turbo</remote-id>
+    </upstream>
 </pkgmetadata>

@@ -1,0 +1,1 @@
+# Calculate append=skip merge(sys-apps/calculate-utils)!=&&ini(update.patch)!=off&&ini(ver.patch)<64

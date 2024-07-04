@@ -20,8 +20,8 @@ sys-kernel/calculate-sources firmware minimal symlink
 # Calculate themes dependence
 sys-kernel/calculate-sources themes
 
-# add NTFS and Reiserfs support
-app-admin/testdisk ntfs reiserfs
+# add NTFS support
+app-admin/testdisk ntfs
 
 # support for zstd
 sys-fs/squashfs-tools zstd
@@ -394,3 +394,6 @@ app-emulation/virt-manager gui
 
 # enable terminal emulation support (needed for vimspector)
 app-editors/vim terminal
+
+# enable calculation and lookup of AcoustID fingerprints
+media-sound/picard fingerprints

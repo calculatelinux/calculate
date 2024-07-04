@@ -1,0 +1,3 @@
+# Calculate format=patch path=~/.config/xfce4/xfconf/xfce-perchannel-xml
+<reg>value="folder_home"</reg>
+<text>value="user-home"</text>

@@ -8,7 +8,6 @@
 ~dev-perl/Chart-2.4.10 amd64
 ~dev-perl/Class-Accessor-Lite-0.80.0 amd64
 ~dev-perl/CPAN-DistnameInfo-0.120.0 amd64
-~dev-perl/CPAN-Mini-Inject-0.350.0 amd64
 ~dev-perl/Crypt-DH-GMP-0.0.120 amd64
 ~dev-perl/CSS-Squish-0.100.0 amd64
 ~dev-perl/Data-Page-Pageset-1.20.0 amd64
@@ -22,7 +21,6 @@
 ~dev-perl/FCGI-ProcManager-0.280.0 amd64
 ~dev-perl/File-Slurp-Tiny-0.4.0 amd64
 ~dev-perl/File-Spec-Native-1.4.0 amd64
-~dev-perl/GD-Barcode-1.150.0 amd64
 ~dev-perl/GD-Graph3d-0.630.0 amd64
 ~dev-perl/GD-SVG-0.330.0 amd64
 ~dev-perl/GDTextUtil-0.860.0 amd64

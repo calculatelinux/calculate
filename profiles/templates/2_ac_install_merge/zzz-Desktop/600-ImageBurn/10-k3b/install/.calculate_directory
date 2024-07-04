@@ -1,1 +1,1 @@
-# Calculate append=skip pkg(app-cdr/k3b)!= ini(desktop.imageburn)==||ini(desktop.imageburn)==k3b
+# Calculate append=skip pkg(kde-apps/k3b)!= ini(desktop.imageburn)==||ini(desktop.imageburn)==k3b
