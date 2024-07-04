@@ -4,6 +4,8 @@
 
 EAPI="8"
 PYTHON_COMPAT=(python3_12)
+SRC_URI="https://git.calculate-linux.org/calculate/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+
 
 declare -A CALCULATE_MODULES=(
 	["lib"]="3.7.6.6"
