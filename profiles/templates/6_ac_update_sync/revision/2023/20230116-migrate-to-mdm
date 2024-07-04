@@ -1,0 +1,14 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+if [[
+        -e /var/lib/calculate/calculate.ldap && \
+        ! -e /var/lib/openldap-data/data.mdb && \
+        ! -e /var/calculate/tmp/migrate_data.ldif
+]]
+then
+       slapcat -l /var/calculate/tmp/migrate_data.ldif 2>/dev/null
+fi
+
+exit 0

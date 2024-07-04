@@ -12,7 +12,7 @@ DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam clien
 HOMEPAGE="https://steampowered.com"
 SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
 
-LICENSE="ValveSteamLicense MIT"
+LICENSE="Steam MIT"
 SLOT="0"
 KEYWORDS="amd64"
 IUSE="+joystick +steamruntime +udev"
@@ -22,6 +22,9 @@ RDEPEND="
 		app-arch/tar
 		app-shells/bash
 		net-misc/curl
+
+		sys-libs/libudev-compat
+
 		|| (
 			>=gnome-extra/zenity-3
 			x11-terms/xterm
@@ -36,9 +39,6 @@ RDEPEND="
 			x11-libs/libXau[abi_x86_32]
 			x11-libs/libxcb[abi_x86_32]
 			x11-libs/libXdmcp[abi_x86_32]
-			)
-		!steamruntime? (
-			>=games-util/steam-client-meta-0-r20210608[steamruntime?]
 			)
 
 		amd64? (
@@ -57,7 +57,7 @@ pkg_setup() {
 
 	if ! { linux_config_exists && linux_chkconfig_present INPUT_UINPUT; }; then
 		ewarn "If you want to use Steam Input's virtual controller"
-		eawen "implementation, please make sure CONFIG_INPUT_UINPUT"
+		ewarn "implementation, please make sure CONFIG_INPUT_UINPUT"
 		ewarn "is enabled in your kernel config."
 
 		# Device Drivers
@@ -72,7 +72,8 @@ path_entries() {
 	shift
 
 	while true; do
-		echo -n ${EPREFIX}/usr/$(get_libdir)/${1}$(${multilib} && use amd64 && echo :${EPREFIX}/usr/$(ABI=x86 get_libdir)/${1})
+		echo -n ${EPREFIX}/usr/$(get_libdir)/${1}$(${multilib} \
+			&& use amd64 && echo :${EPREFIX}/usr/$(ABI=x86 get_libdir)/${1})
 		shift
 
 		if [[ -n ${1} ]]; then

@@ -1,5 +1,0 @@
-# Calculate comment=# os_install_ntp!= chmod=0755
-#!/bin/sh
-
-/usr/sbin/ntpdate -u #-os_install_ntp-# &>/dev/null
-

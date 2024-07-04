@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <upstream>
+        <remote-id type="github">elementary/icons</remote-id>
+        <remote-id type="launchpad">elementaryicons</remote-id>
+        <bugs-to>https://github.com/elementary/icons/issues</bugs-to>
+        <changelog>https://github.com/elementary/icons/releases</changelog>
+    </upstream>
+    <longdescription lang="en">
+        An original set of vector icons designed specifically for elementary OS and its desktop environment: Pantheon.
+    </longdescription>
+    <longdescription lang="ru">
+        Оригинальный набор векторных иконок, разработанный специально для elementary OS и её окружения рабочего стола: Pantheon.
+    </longdescription>
+</pkgmetadata>

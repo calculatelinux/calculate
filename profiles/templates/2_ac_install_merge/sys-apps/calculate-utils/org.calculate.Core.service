@@ -1,9 +1,6 @@
 # Calculate format=kde path=/usr/share/dbus-1/system-services cl_ver>=3.6.8.8
 [D-BUS Service]
 Name=org.calculate.Core
-#?pkg(dev-lang/python:3.8)!=&&pkg(dev-python/pygobject[python_targets_python3_8])!=&&pkg(dev-python/dbus-python[python_targets_python3_8])!=#
-Exec=/usr/bin/python3.8 /usr/libexec/calculate/cl-dbus-core.py
-#pkg#
 #?pkg(dev-lang/python:3.9)!=&&pkg(dev-python/pygobject[python_targets_python3_9])!=&&pkg(dev-python/dbus-python[python_targets_python3_9])!=#
 Exec=/usr/bin/python3.9 /usr/libexec/calculate/cl-dbus-core.py
 #pkg#
@@ -12,5 +9,8 @@ Exec=/usr/bin/python3.10 /usr/libexec/calculate/cl-dbus-core.py
 #pkg#
 #?pkg(dev-lang/python:3.11)!=&&pkg(dev-python/pygobject[python_targets_python3_11])!=&&pkg(dev-python/dbus-python[python_targets_python3_11])!=#
 Exec=/usr/bin/python3.11 /usr/libexec/calculate/cl-dbus-core.py
+#pkg#
+#?pkg(dev-lang/python:3.11)!=&&pkg(dev-python/pygobject[python_targets_python3_12])!=&&pkg(dev-python/dbus-python[python_targets_python3_12])!=#
+Exec=/usr/bin/python3.12 /usr/libexec/calculate/cl-dbus-core.py
 #pkg#
 User=root

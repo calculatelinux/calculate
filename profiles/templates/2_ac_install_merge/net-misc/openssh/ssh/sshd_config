@@ -1,7 +1,0 @@
-# Calculate format=squid
-DenyUsers guest
-#?os_install_arch_machine==x86_64#
-Subsystem sftp /usr/lib64/misc/sftp-server
-#!os_install_arch_machine#
-Subsystem sftp /usr/lib/misc/sftp-server
-#os_install_arch_machine#

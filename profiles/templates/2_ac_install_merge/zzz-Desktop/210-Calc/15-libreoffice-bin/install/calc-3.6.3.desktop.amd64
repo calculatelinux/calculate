@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/lib64/libreoffice/share/xdg/calc.desktop name=calculate-calc.desktop mirror pkg(app-office/libreoffice-bin)>=3.6.3&&os_install_arch_machine==x86_64
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=

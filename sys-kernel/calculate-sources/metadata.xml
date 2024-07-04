@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>maintainer-wanted</herd>
-	<longdescription lang="en">
-		Full sources including the Calculate patchset for the kernel.
-	</longdescription>
-	<use>
-		<flag name='desktop'>Desktop kernel configuration</flag>
-	</use>
-	<use>
-		<flag name='firmware'>Install linux kernel firmware</flag>
-	</use>
-	<use>
-		<flag name='grub'>Adds sys-boot/grub dependence</flag>
-	</use>
-	<use>
-		<flag name='muqss'>Build kernel with MuQSS</flag>
-	</use>
-	<use>
-		<flag name='themes'>Adds Calculate themes dependence</flag>
-	</use>
-	<use>
-		<flag name='uksm'>Build kernel with UKSM</flag>
-	</use>
-	<use>
-		<flag name='fsync'>Build kernel with futex-wait-multiple patchset</flag>
-	</use>
-	<use>
-		<flag name='vmlinuz'>Build kernel, modules and initramfs</flag>
-	</use>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        Full sources including the Calculate patchset for the kernel.
+    </longdescription>
+    <longdescription lang="ru">
+        Полные исходники ядра с патчами от Calculate.
+    </longdescription>
+    <use lang="en">
+        <flag name="desktop">Desktop kernel configuration</flag>
+        <flag name="firmware">Install linux kernel firmware</flag>
+        <flag name="grub">Adds sys-boot/grub dependence</flag>
+        <flag name="muqss">Build kernel with MuQSS</flag>
+        <flag name="themes">Adds Calculate themes dependence</flag>
+        <flag name="uksm">Build kernel with UKSM</flag>
+        <flag name="fsync">Build kernel with futex-wait-multiple patchset</flag>
+        <flag name="vmlinuz">Build kernel, modules and initramfs</flag>
+    </use>
 </pkgmetadata>

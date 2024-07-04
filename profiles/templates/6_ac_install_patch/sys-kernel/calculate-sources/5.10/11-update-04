@@ -1,3 +1,0 @@
-# Calculate format=kernel name=.config
-!CONFIG_RESET_BRCMSTB_RESCAL=
-!CONFIG_XILINX_ZYNQMP_DPDMA=

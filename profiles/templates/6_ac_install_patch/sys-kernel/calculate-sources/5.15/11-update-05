@@ -1,2 +1,0 @@
-# Calculate format=kernel name=.config
-CONFIG_DRM_QXL=m

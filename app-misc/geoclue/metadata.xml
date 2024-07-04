@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        Geoclue is a D-Bus geoinformation service. The goal of the Geoclue project is to make creating location-aware
+        applications as simple as possible.
+    </longdescription>
+    <longdescription lang="ru">
+        Geoclue - это геоинформационный сервис для D-Bus. Цель проекта Geoclue - сделать создание геоинформационного
+        сервиса с учётом местоположения приложения максимально простым.
+    </longdescription>
+    <use lang="en">
+        <flag name="modemmanager">Enable geolocation through 3G or GPS enabled hardware through <pkg>net-misc/modemmanager</pkg></flag>
+        <flag name="zeroconf">Enable retrieval of GPS location from Android devices with GeoclueShare</flag>
+    </use>
+    <use lang="ru">
+        <flag name="modemmanager">Включить геолокацию через устройства с включенными 3G и GPS с использованием <pkg>net-misc/modemmanager</pkg></flag>
+        <flag name="zeroconf">Включить получение локации GPS из Android-устройства с использованием GeoclueShare</flag>
+    </use>
+    <upstream>
+        <remote-id type="freedesktop-gitlab">geoclue/geoclue</remote-id>
+        <bugs-to>https://gitlab.freedesktop.org/geoclue/geoclue/-/issues</bugs-to>
+        <changelog>https://gitlab.freedesktop.org/geoclue/geoclue/-/blob/master/NEWS</changelog>
+    </upstream>
+</pkgmetadata>

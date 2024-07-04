@@ -1,0 +1,10 @@
+# Calculate format=xml_xfce
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="displays" version="1.0">
+#?hr_laptop==#
+  <property name="Notify" type="int" value="0"/>
+#!hr_laptop#
+  <property name="Notify" type="int" value="1"/>
+#hr_laptop#
+</channel>

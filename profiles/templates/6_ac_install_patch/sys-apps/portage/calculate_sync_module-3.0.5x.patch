@@ -1,0 +1,27 @@
+# Calculate format=diff merge(sys-apps/portage)>=3.0.50
+diff --git a/lib/portage/sync/modules/meson.build b/lib/portage/sync/modules/meson.build
+index d38a45c..8badd28 100644
+--- a/lib/portage/sync/modules/meson.build
++++ b/lib/portage/sync/modules/meson.build
+@@ -6,6 +6,7 @@ py.install_sources(
+     pure : false
+ )
+ 
++subdir('calculate')
+ subdir('cvs')
+ subdir('git')
+ subdir('mercurial')
+diff --git a/lib/portage/sync/modules/calculate/meson.build b/lib/portage/sync/modules/calculate/meson.build
+new file mode 100644
+index 0000000..43b2e84
+--- /dev/null
++++ b/lib/portage/sync/modules/calculate/meson.build
+@@ -0,0 +1,8 @@
++py.install_sources(
++    [
++        'calculate.py',
++        '__init__.py',
++    ],
++    subdir : 'portage/sync/modules/calculate',
++    pure : false
++)

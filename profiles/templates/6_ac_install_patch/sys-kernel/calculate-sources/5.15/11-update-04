@@ -1,2 +1,0 @@
-# Calculate format=kernel name=.config
-CONFIG_ARCH_USE_MEMREMAP_PROT=y

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        OpenPGP keys used for Calculate binary packages.
+    </longdescription>
+    <longdescription lang="ru">
+        Ключи OpenPGP, используемые для бинарных пакетов Calculate.
+    </longdescription>
+    <upstream>
+        <bugs-to>mailto:support@calculate.ru</bugs-to>
+    </upstream>
+</pkgmetadata>

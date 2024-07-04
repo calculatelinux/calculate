@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>maintainer-wanted</herd>
+<!-- maintainer-needed -->
 <longdescription lang="en">
 Configuration utility for Linux services. Part of Calculate Linux.
 </longdescription>
+<use>
+<flag name="calculate_nodhcp">without DHCP</flag>
+<flag name="calculate_noftp">without FTP</flag>
+<flag name="calculate_nojabber">without jabber server</flag>
+<flag name="calculate_nomail">without mail</flag>
+<flag name="calculate_nonamed">without DNS</flag>
+<flag name="calculate_noproxy">without proxy</flag>
+<flag name="calculate_nosamba">without Samba fileserver</flag>
+</use>
 </pkgmetadata>

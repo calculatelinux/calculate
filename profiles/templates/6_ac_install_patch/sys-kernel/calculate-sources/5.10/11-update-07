@@ -1,2 +1,0 @@
-# Calculate format=kernel name=.config
-CONFIG_MTRR_SANITIZER_ENABLE_DEFAULT=1

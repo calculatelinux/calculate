@@ -6,6 +6,6 @@ x11-terms/gnome-terminal -gnome-shell
 sci-libs/hdf5 -threads
 
 # conflict with media-video/pipewire[pipewire-alsa]
-media-sound/pulseaudio -alsa-plugin
-media-plugins/alsa-plugins -pulseaudio
+#media-sound/pulseaudio -alsa-plugin
+#media-plugins/alsa-plugins -pulseaudio
 

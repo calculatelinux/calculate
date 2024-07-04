@@ -1,0 +1,1 @@
+# Calculate link=/etc/init.d/metalog symbolic ini(runlevels.metalog)!=on&&ini(runlevels.metalog,on)==||grep(/var/lib/calculate/-runlevels-metalog,/metalog)!=

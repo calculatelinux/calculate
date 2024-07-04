@@ -1,8 +1,8 @@
-# Calculate run=/bin/bash pkg(net-misc/openssh)>=8.4_p1&&ini(merge.openssh)==
+# Calculate run=/bin/bash pkg(net-misc/openssh)!=&&ini(merge.openssh)==
 
 #-ini(merge.openssh,8.4)-#
 
 #?ac_install_disk==off&&cl_chroot_status==off#
-( /etc/init.d/sshd status && /etc/init.d/sshd restart ) &>/dev/null
+rc-service -sq sshd restart
 #ac_install_disk#
 exit 0

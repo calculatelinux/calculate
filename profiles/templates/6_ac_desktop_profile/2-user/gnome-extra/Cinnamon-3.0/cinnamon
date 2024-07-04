@@ -18,7 +18,7 @@ font-name='Droid Sans #-ini(profile.font-size)-#'
 #ini(profile.appearance-icons)!=#
 icon-theme='#-ini(profile.appearance-icons)-#'
 #!ini#
-icon-theme='Calculate'
+icon-theme='Adwaita'
 #ini#
 #?cl_ver>=3.6.8.8&&install.cl_install_dpi!=#
 #-sum(dpi,,#-install.cl_install_dpi-#)-#

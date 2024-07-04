@@ -1,0 +1,13 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+if [[ -d /var/calculate/custom-overlay ]] && [[ ! -d /var/calculate/repos/custom ]] && \
+	grep -q /var/calculate/custom-overlay /etc/portage/repos.conf/zz-calculate.conf
+then
+	mkdir -p /var/calculate/repos
+	mv /var/calculate/custom-overlay /var/calculate/repos/custom
+	sed -i 's|/var/calculate/custom-overlay|/var/calculate/repos/custom|g' /etc/portage/repos.conf/zz-calculate.conf
+fi
+
+exit 0

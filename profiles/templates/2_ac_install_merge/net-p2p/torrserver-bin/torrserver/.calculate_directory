@@ -1,1 +1,0 @@
-# Calculate chown=torrserver:torrserver chmod=0700 path=/var/lib name=torrserver exists(/var/lib/torrserver/config.db)==

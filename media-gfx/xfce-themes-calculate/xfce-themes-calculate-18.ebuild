@@ -5,7 +5,7 @@
 EAPI=7
 
 DESCRIPTION="XFCE theme for Calculate Linux"
-HOMEPAGE="http://www.calculate-linux.org/packages/media-gfx/xfce-themes-calculate"
+HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/xfce-themes-calculate"
 
 LICENSE="Apache-2.0"
 SLOT="0"

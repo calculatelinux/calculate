@@ -1,4 +1,4 @@
-# Calculate comment=# format=openrc
+# Calculate format=openrc
 
 # Available values: suspend/hibernate/suspend-hybrid/shutdown
 LID_CLOSE_ACTION="suspend"

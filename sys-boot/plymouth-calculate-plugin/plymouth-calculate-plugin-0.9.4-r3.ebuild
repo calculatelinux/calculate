@@ -18,7 +18,7 @@ fi
 inherit autotools readme.gentoo-r1 systemd toolchain-funcs
 
 DESCRIPTION="Calculate plugin for plymouth"
-HOMEPAGE="https://www.calculate-linux.org"
+HOMEPAGE="https://www.calculate-linux.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -49,7 +49,6 @@ src_prepare() {
 	sed -i 's/throbgress/calculate/g' ${S}/src/plugins/splash/throbgress/Makefile.*
 	eautoreconf
 }
-
 
 src_configure() {
 	local myconf=(

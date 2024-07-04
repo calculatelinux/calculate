@@ -1,7 +1,10 @@
 USE=""
 
-# Python
-#USE="${USE} python_targets_python3_7 python_targets_python3_8 python_single_target_python3_8"
+# Audio
+USE="${USE} alsa amr -arts audiofile cdda cue id3tag flac lame mad mikmod mp3 mpeg ogg oggvorbis openal opencore-amr opus pipewire pulseaudio taglib wavpack vorbis vpx"
+
+# CD and DVD
+USE="${USE} cdparanoia css dvd dvdr dvdread vcd"
 
 PORTAGE_NICENESS="19"
 PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"

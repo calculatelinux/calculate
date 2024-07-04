@@ -1,4 +1,4 @@
-# Calculate format=procmail
+# Calculate path=/usr/lib format=procmail
 NAME="Calculate"
 ID="calculate"
 ID_LIKE="gentoo"

@@ -11,7 +11,7 @@
 # @DESCRIPTION:
 # This eclass use for calculate-utils and calculate-sources ebuilds
 
-inherit eutils linux-info
+inherit linux-info
 
 EXPORT_FUNCTIONS pkg_postinst
 
@@ -95,7 +95,7 @@ update_file() {
 # @DESCRIPTION:
 # Detect calculate linux shortname by /etc/make.profile
 detect_linux_shortname() {
-	local makeprofile=$(readlink ${ROOT}/etc/make.profile)
+	local makeprofile=$(readlink "${ROOT}/etc/make.profile")
 	local profile=
 	local system=
 	local shortname=
@@ -137,8 +137,8 @@ calculate_update_kernel() {
 
 	ebegin "Trying to optimize initramfs"
 	( which calculate &>/dev/null && calculate --initrd ) && eend 0 || eend 1
-	if [[ "$(md5sum ${ROOT}/boot/initrd | awk '{print $1}')" == \
-		"$(md5sum ${ROOT}/boot/initrd-install | awk '{print $1}')" ]]
+	if [[ "$(md5sum "${ROOT}/boot/initrd" | awk '{print $1}')" == \
+		"$(md5sum "${ROOT}/boot/initrd-install" | awk '{print $1}')" ]]
 	then
 		ewarn
 		ewarn "Perform command after reboot for optimization initramfs:"
@@ -146,6 +146,11 @@ calculate_update_kernel() {
 	fi
 }
 
+# @FUNCTION: is_broken_link
+# @INTERNAL
+# @USAGE: [filename]
+# @DESCRIPTION:
+# Check symlink broken
 is_broken_link() {
 	fname=$1
 	[[ -n $( file $fname | grep "broken symbolic link" ) ]] &&
@@ -172,7 +177,13 @@ calculate_restore_kernel() {
 		mv ${dir}/System.map.old ${dir}/System.map
 }
 
+# @VARIABLE: TMP_INITRAMFS
+# @DESCRIPTION:
+# Path to initramfs
 TMP_INITRAMFS=${T}/initramfs
+# @VARIABLE: SPLASH_DESCRIPTOR
+# @DESCRIPTION:
+# Path to splash image
 SPLASH_DESCRIPTOR=/etc/splash/tty1/1024x768.cfg
 
 # @FUNCTION: calculate_rm_modules_dir
@@ -205,6 +216,10 @@ calculate_rm_modules_dir() {
 	fi
 }
 
+# @FUNCTION: initramfs_unpack
+# @USAGE: [initramfs_unpack]
+# @DESCRIPTION:
+# Unpack initramfs
 initramfs_unpack() {
 	mkdir -p ${TMP_INITRAMFS}
 	cd ${TMP_INITRAMFS}
@@ -221,18 +236,18 @@ initramfs_change_spalsh() {
 	then
 		# get silentpic param
 		SILENTPIC=$( sed -nr '/^silentpic/ s/^[^=]+=(.*)$/\1/p' \
-			${ROOT}${SPLASH_DESCRIPTOR} )
+			"${ROOT}${SPLASH_DESCRIPTOR}" )
 		# get pic param
 		PIC=$( sed -nr '/^pic/ s/^[^=]+=(.*)$/\1/p' \
-			${ROOT}${SPLASH_DESCRIPTOR} )
+			"${ROOT}${SPLASH_DESCRIPTOR}" )
 		if [ -f ${ROOT}${SILENTPIC} ] && [ -f ${ROOT}${PIC} ]
 		then
-			cp ${ROOT}${SPLASH_DESCRIPTOR} \
-					${TMP_INITRAMFS}${SPLASH_DESCRIPTOR} &&
+			cp "${ROOT}${SPLASH_DESCRIPTOR}" \
+					"${TMP_INITRAMFS}${SPLASH_DESCRIPTOR}" &&
 				mkdir -p ${TMP_INITRAMFS}${SILENTPIC%$(basename $SILENTPIC)} &&
-				cp ${ROOT}${SILENTPIC} ${TMP_INITRAMFS}${SILENTPIC} &&
+				cp "${ROOT}${SILENTPIC}" "${TMP_INITRAMFS}${SILENTPIC}" &&
 				mkdir -p ${TMP_INITRAMFS}${PIC%$(basename $PIC)} &&
-				cp ${ROOT}$PIC ${TMP_INITRAMFS}${PIC}
+				cp "${ROOT}$PIC" "${TMP_INITRAMFS}${PIC}"
 			return $?
 		fi
 	else
@@ -240,6 +255,10 @@ initramfs_change_spalsh() {
 	fi
 }
 
+# @FUNCTION: initramfs_pack
+# @USAGE: [initramfs_pack]
+# @DESCRIPTION:
+# Pack initramfs
 initramfs_pack() {
 	# pack new initramfs
 	cd ${TMP_INITRAMFS}
@@ -387,7 +406,7 @@ ROOTDEV=
 # @DESCRIPTION:
 # Change version in /etc/issue
 change_issue() {
-	sed -ri "s/${LINUXVER}/${PV}/" ${ROOT}/etc/issue
+	sed -ri "s/${LINUXVER}/${PV}/" "${ROOT}/etc/issue"
 }
 
 # @FUNCTION: change_grub
@@ -499,29 +518,29 @@ calculate_pkg_postinst() {
 			local initrdfile=$(calculate_get_current_initrd )
 			local initrdinstallfile=$(calculate_get_current_initrd -install)
 			[[ -f ${ROOT}${initrdfile} ]] &&
-				calculate_update_splash ${ROOT}${initrdfile}
+				calculate_update_splash "${ROOT}${initrdfile}"
 			[[ -f ${ROOT}${initrdinstallfile} &&
 				"${ROOT}${initrdinstallfile}" != "${ROOT}${initrdfile}" ]] &&
-				calculate_update_splash ${ROOT}${initrdinstallfile}
+				calculate_update_splash "${ROOT}${initrdinstallfile}"
 			;;
 	esac
 }
 
-# @FUNCTION: calculate_update_ver (/boot vmlinuz
+# @FUNCTION: calculate_update_ver
 # @USAGE: boot_dir file_basename version source_file [suffix]
 # @DESCRIPTION:
 # Create backups of older versions before installing
 calculate_update_ver() {
-  local dir=$1
-  local fn=$2
-  local ver=$3
-  local src=$4
-  local suffix="$5"
-  if [ -f "$dir/$fn-$ver$suffix" ] ; then
-    mv "$dir/$fn-$ver$suffix" "$dir/$fn-$ver$suffix.old"
-  fi
+	local dir=$1
+	local fn=$2
+	local ver=$3
+	local src=$4
+	local suffix="$5"
+	if [ -f "$dir/$fn-$ver$suffix" ] ; then
+		mv "$dir/$fn-$ver$suffix" "$dir/$fn-$ver$suffix.old"
+	fi
 
-  cat "$src" > "$dir/$fn-$ver$suffix"
+	cat "$src" > "$dir/$fn-$ver$suffix"
 }
 
 # @FUNCTION: calculate_fix_lib_modules_contents
@@ -529,7 +548,7 @@ calculate_update_ver() {
 # @DESCRIPTION:
 # Unlink /lib/modules files from CONTENTS
 calculate_fix_lib_modules_contents() {
-    local vardb=/var/db/pkg
-    local content="${vardb}/${CATEGORY}/${PF}/CONTENTS"
-    sed -i '/ \/lib\/modules/d' $content
+	local vardb=/var/db/pkg
+	local content="${vardb}/${CATEGORY}/${PF}/CONTENTS"
+	sed -i '/ \/lib\/modules/d' $content
 }

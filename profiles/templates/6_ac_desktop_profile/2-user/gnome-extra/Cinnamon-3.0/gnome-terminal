@@ -13,4 +13,5 @@ background-color='rgb(44,44,44)'
 palette=['rgb(44,44,44)', 'rgb(112,80,80)', 'rgb(96,180,138)', 'rgb(223,175,143)', 'rgb(154,184,215)', 'rgb(220,140,195)', 'rgb(140,208,211)', 'rgb(220,220,204)', 'rgb(112,144,128)', 'rgb(220,163,163)', 'rgb(114,213,163)', 'rgb(240,223,175)', 'rgb(148,191,243)', 'rgb(236,147,211)', 'rgb(147,224,227)', 'rgb(255,255,255)']
 foreground-color='rgb(220,220,204)'
 use-theme-colors=false
+bold-is-bright=true
 scrollback-lines=5000

@@ -9,7 +9,7 @@ RightButton;NoModifier=org.kde.contextmenu
 [ActionPlugins][127]
 RightButton;NoModifier=org.kde.contextmenu
 
-[Containments][42]
+[Containments][1]
 activityId=
 formfactor=2
 immutability=1
@@ -18,24 +18,24 @@ location=3
 plugin=org.kde.panel
 wallpaperplugin=org.kde.image
 
-[Containments][42][Applets][44]
+[Containments][1][Applets][44]
 immutability=1
 plugin=org.kde.plasma.kicker
 
-[Containments][42][Applets][44][Configuration][ConfigDialog]
+[Containments][1][Applets][44][Configuration][ConfigDialog]
 DialogHeight=480
 DialogWidth=640
 
-[Containments][42][Applets][44][Configuration][General]
+[Containments][1][Applets][44][Configuration][General]
 appNameFormat=2
 favoriteApps=preferred://browser,systemsettings.desktop
 #showRecentApps=false
 #showRecentDocs=false
 
-[Containments][42][Applets][44][Shortcuts]
+[Containments][1][Applets][44][Shortcuts]
 global=Alt+F1
 
-[Containments][42][Applets][45]
+[Containments][1][Applets][45]
 activityId=
 formfactor=0
 immutability=1
@@ -44,7 +44,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=
 
-[Containments][42][Applets][45][Configuration]
+[Containments][1][Applets][45][Configuration]
 activityId=
 formfactor=0
 immutability=1
@@ -53,7 +53,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=
 
-[Containments][42][Applets][45][Configuration][General]
+[Containments][1][Applets][45][Configuration][General]
 icon=user-home
 iconSize=3
 popups=false
@@ -67,17 +67,17 @@ url=file:///home/#-ur_login-#
 useCustomIcon=true
 viewMode=1
 
-[Containments][42][Applets][46]
+[Containments][1][Applets][46]
 immutability=1
 plugin=org.kde.plasma.pager
 
-[Containments][42][Applets][46][Configuration][General]
+[Containments][1][Applets][46][Configuration][General]
 #currentDesktopSelected=ShowDesktop
 displayedText=Number
 showWindowIcons=true
 
 #?env(client.os_remote_auth)!=&&ur_domain_set==on#
-[Containments][42][Applets][47]
+[Containments][1][Applets][47]
 activityId=
 formfactor=0
 immutability=1
@@ -86,7 +86,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=
 
-[Containments][42][Applets][47][Configuration]
+[Containments][1][Applets][47][Configuration]
 activityId=
 formfactor=0
 immutability=1
@@ -95,7 +95,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=
 
-[Containments][42][Applets][47][Configuration][General]
+[Containments][1][Applets][47][Configuration][General]
 icon=folder-public
 iconSize=3
 popups=false
@@ -107,7 +107,7 @@ viewMode=1
 #env#
 
 #?env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=#
-[Containments][42][Applets][48]
+[Containments][1][Applets][48]
 activityId=
 formfactor=0
 immutability=1
@@ -116,7 +116,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=
 
-[Containments][42][Applets][48][Configuration]
+[Containments][1][Applets][48][Configuration]
 activityId=
 formfactor=0
 immutability=1
@@ -125,7 +125,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=
 
-[Containments][42][Applets][48][Configuration][General]
+[Containments][1][Applets][48][Configuration][General]
 icon=folder-remote
 iconSize=3
 popups=false
@@ -136,47 +136,47 @@ useCustomIcon=true
 viewMode=1
 #env#
 
-[Containments][42][Applets][54]
+[Containments][1][Applets][54]
 immutability=1
 plugin=org.kde.plasma.showdesktop
 
-[Containments][42][Applets][55]
+[Containments][1][Applets][55]
 immutability=1
 plugin=org.kde.plasma.systemtray
 
-[Containments][42][Applets][55][Configuration][Containments][56]
+[Containments][1][Applets][55][Configuration][Containments][56]
 formfactor=2
 location=3
 
-[Containments][42][Applets][55][Configuration][Containments][56][Applets][57]
+[Containments][1][Applets][55][Configuration][Containments][56][Applets][57]
 immutability=1
 plugin=org.kde.plasma.clipboard
 
-[Containments][42][Applets][55][Configuration][Containments][56][Applets][58]
+[Containments][1][Applets][55][Configuration][Containments][56][Applets][58]
 immutability=1
 plugin=org.kde.plasma.volume
 
-[Containments][42][Applets][55][Configuration][Containments][56][Applets][58][Configuration][ConfigDialog]
+[Containments][1][Applets][55][Configuration][Containments][56][Applets][58][Configuration][ConfigDialog]
 DialogHeight=480
 DialogWidth=640
 
-[Containments][42][Applets][55][Configuration][Containments][56][Applets][59]
+[Containments][1][Applets][55][Configuration][Containments][56][Applets][59]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
 
-[Containments][42][Applets][55][Configuration][Containments][56][Applets][61]
+[Containments][1][Applets][55][Configuration][Containments][56][Applets][61]
 immutability=1
 plugin=org.kde.plasma.battery
 
-[Containments][42][Applets][55][Configuration][Containments][56][Applets][62]
+[Containments][1][Applets][55][Configuration][Containments][56][Applets][62]
 immutability=1
 plugin=org.kde.plasma.bluetooth
 
-[Containments][42][Applets][63]
+[Containments][1][Applets][63]
 immutability=1
 plugin=org.kde.plasma.digitalclock
 
-[Containments][42][Applets][63][Configuration][Appearance]
+[Containments][1][Applets][63][Configuration][Appearance]
 #?exists(/usr/lib/qt5/plugins/plasmacalendarplugins/holidaysevents.so)!=#
 enabledCalendarPlugins=/usr/lib/qt5/plugins/plasmacalendarplugins/holidaysevents.so
 #exists#
@@ -184,35 +184,35 @@ fontFamily=Droid Sans
 showDate=false
 showWeekNumbers=true
 
-[Containments][42][Applets][63][Configuration][ConfigDialog]
+[Containments][1][Applets][63][Configuration][ConfigDialog]
 DialogHeight=480
 DialogWidth=640
 
-[Containments][42][Applets][64]
+[Containments][1][Applets][64]
 immutability=1
 plugin=org.kde.plasma.lock_logout
 
-[Containments][42][Applets][64][Configuration][General]
+[Containments][1][Applets][64][Configuration][General]
 show_lockScreen=true
 show_requestShutDown=false
 
-[Containments][42][Applets][65]
+[Containments][1][Applets][65]
 immutability=1
 plugin=org.kde.plasma.lock_logout
 
-[Containments][42][Applets][65][Configuration][General]
+[Containments][1][Applets][65][Configuration][General]
 show_lockScreen=false
 show_requestShutDown=true
 
-[Containments][42][Applets][67]
+[Containments][1][Applets][67]
 immutability=1
 plugin=org.kde.plasma.taskmanager
 
-[Containments][42][Applets][67][Configuration][ConfigDialog]
+[Containments][1][Applets][67][Configuration][ConfigDialog]
 DialogHeight=628
 DialogWidth=807
 
-[Containments][42][Applets][67][Configuration][General]
+[Containments][1][Applets][67][Configuration][General]
 launchers=
 groupingStrategy=0
 maxStripes=1
@@ -222,15 +222,15 @@ showToolTips=false
 sortingStrategy=1
 wheelEnabled=false
 
-[Containments][42][Applets][70]
+[Containments][1][Applets][70]
 immutability=1
 plugin=org.kde.plasma.trash
 
-[Containments][42][ConfigDialog]
+[Containments][1][ConfigDialog]
 DialogHeight=81
 DialogWidth=#-os_x11_width-#
 
-[Containments][42][General]
+[Containments][1][General]
 #?env(client.os_remote_auth)==||ur_domain_set!=on#
 AppletOrder=44;45;46;54;67;70;55;63;64;65
 #!env#
@@ -279,7 +279,7 @@ Image=file://#-wallpaper(#-os_x11_resolution-#,/usr/share/wallpapers/Calculate_L
 height=#-os_x11_height-#
 width=#-os_x11_width-#
 
-[Containments][69]
+[Containments][2]
 activityId=
 formfactor=2
 immutability=1
@@ -288,11 +288,11 @@ location=4
 plugin=org.kde.panel
 wallpaperplugin=org.kde.image
 
-[Containments][69][Applets][71]
+[Containments][2][Applets][71]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][71][Configuration][General]
+[Containments][2][Applets][71][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-browser.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-browser.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-browser.desktop,\nGenericName=(.*))-#
@@ -306,11 +306,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-browser.desktop,\nGener
 iconName=#-grep(/usr/share/applications/calculate-browser.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-browser.desktop
 
-[Containments][69][Applets][72]
+[Containments][2][Applets][72]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][72][Configuration][General]
+[Containments][2][Applets][72][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-mail.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-mail.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-mail.desktop,\nGenericName=(.*))-#
@@ -324,11 +324,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-mail.desktop,\nGenericN
 iconName=#-grep(/usr/share/applications/calculate-mail.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-mail.desktop
 
-[Containments][69][Applets][73]
+[Containments][2][Applets][73]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][73][Configuration][General]
+[Containments][2][Applets][73][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-chat.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-chat.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-chat.desktop,\nGenericName=(.*))-#
@@ -342,11 +342,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-chat.desktop,\nGenericN
 iconName=#-grep(/usr/share/applications/calculate-chat.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-chat.desktop
 
-[Containments][69][Applets][74]
+[Containments][2][Applets][74]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][74][Configuration][General]
+[Containments][2][Applets][74][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-im.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-im.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-im.desktop,\nGenericName=(.*))-#
@@ -360,11 +360,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-im.desktop,\nGenericNam
 iconName=#-grep(/usr/share/applications/calculate-im.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-im.desktop
 
-[Containments][69][Applets][75]
+[Containments][2][Applets][75]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][75][Configuration][General]
+[Containments][2][Applets][75][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-writer.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-writer.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-writer.desktop,\nGenericName=(.*))-#
@@ -378,11 +378,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-writer.desktop,\nGeneri
 iconName=#-grep(/usr/share/applications/calculate-writer.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-writer.desktop
 
-[Containments][69][Applets][76]
+[Containments][2][Applets][76]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][76][Configuration][General]
+[Containments][2][Applets][76][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-calc.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-calc.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-calc.desktop,\nGenericName=(.*))-#
@@ -396,11 +396,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-calc.desktop,\nGenericN
 iconName=#-grep(/usr/share/applications/calculate-calc.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-calc.desktop
 
-[Containments][69][Applets][77]
+[Containments][2][Applets][77]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][77][Configuration][General]
+[Containments][2][Applets][77][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-calculator.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-calculator.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-calculator.desktop,\nGenericName=(.*))-#
@@ -414,11 +414,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-calculator.desktop,\nGe
 iconName=#-grep(/usr/share/applications/calculate-calculator.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-calculator.desktop
 
-[Containments][69][Applets][78]
+[Containments][2][Applets][78]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][78][Configuration][General]
+[Containments][2][Applets][78][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-imageedit.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-imageedit.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-imageedit.desktop,\nGenericName=(.*))-#
@@ -432,11 +432,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-imageedit.desktop,\nGen
 iconName=#-grep(/usr/share/applications/calculate-imageedit.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-imageedit.desktop
 
-[Containments][69][Applets][79]
+[Containments][2][Applets][79]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][79][Configuration][General]
+[Containments][2][Applets][79][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-imageview.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-imageview.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-imageview.desktop,\nGenericName=(.*))-#
@@ -450,11 +450,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-imageview.desktop,\nGen
 iconName=#-grep(/usr/share/applications/calculate-imageview.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-imageview.desktop
 
-[Containments][69][Applets][80]
+[Containments][2][Applets][80]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][80][Configuration][General]
+[Containments][2][Applets][80][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-audioplayer.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-audioplayer.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-audioplayer.desktop,\nGenericName=(.*))-#
@@ -468,11 +468,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-audioplayer.desktop,\nG
 iconName=#-grep(/usr/share/applications/calculate-audioplayer.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-audioplayer.desktop
 
-[Containments][69][Applets][81]
+[Containments][2][Applets][81]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][81][Configuration][General]
+[Containments][2][Applets][81][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-videoplayer.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-videoplayer.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-videoplayer.desktop,\nGenericName=(.*))-#
@@ -487,11 +487,11 @@ iconName=#-grep(/usr/share/applications/calculate-videoplayer.desktop,\nIcon=(.*
 url=file:///usr/share/applications/calculate-videoplayer.desktop
 
 
-[Containments][69][Applets][82]
+[Containments][2][Applets][82]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][82][Configuration][General]
+[Containments][2][Applets][82][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-textedit.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-textedit.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-textedit.desktop,\nGenericName=(.*))-#
@@ -505,11 +505,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-textedit.desktop,\nGene
 iconName=#-grep(/usr/share/applications/calculate-textedit.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-textedit.desktop
 
-[Containments][69][Applets][83]
+[Containments][2][Applets][83]
 immutability=1
 plugin=org.kde.plasma.icon
 
-[Containments][69][Applets][83][Configuration][General]
+[Containments][2][Applets][83][Configuration][General]
 applicationName=#-grep(/usr/share/applications/calculate-terminal.desktop,\nName=(.*))-#
 #?grep(/usr/share/applications/calculate-terminal.desktop,\nGenericName=(.*))!=#
 genericName=#-grep(/usr/share/applications/calculate-terminal.desktop,\nGenericName=(.*))-#
@@ -523,11 +523,11 @@ genericName[fr]=#-grep(/usr/share/applications/calculate-terminal.desktop,\nGene
 iconName=#-grep(/usr/share/applications/calculate-terminal.desktop,\nIcon=(.*))-#
 url=file:///usr/share/applications/calculate-terminal.desktop
 
-[Containments][69][ConfigDialog]
+[Containments][2][ConfigDialog]
 DialogHeight=81
 DialogWidth=#-os_x11_width-#
 
-[Containments][69][General]
+[Containments][2][General]
 AppletOrder=71,72,73,74,75,76,77,78,80,81,82,83
 
 [General]

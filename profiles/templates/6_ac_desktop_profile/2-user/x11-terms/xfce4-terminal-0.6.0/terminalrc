@@ -1,4 +1,4 @@
-# Calculate path=~/.config/xfce4/terminal format=raw comment=#
+# Calculate path=~/.config/xfce4/terminal comment=#
 [Configuration]
 ColorBackground=#2c2c2c2c2c2c
 ColorBold=#dcdcdcdccccc

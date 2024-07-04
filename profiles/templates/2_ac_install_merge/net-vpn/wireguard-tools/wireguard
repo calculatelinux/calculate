@@ -1,4 +1,4 @@
-# Calculate chmod=0755
+# Calculate chmod=0755 exists(/etc/init.d/wireguard)!=
 #!/sbin/openrc-run
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2

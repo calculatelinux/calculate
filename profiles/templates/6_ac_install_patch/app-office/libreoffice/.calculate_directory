@@ -1,1 +1,1 @@
-# Calculate append=skip merge()>=5.4.0.0
+# Calculate append=skip merge()>=5.4.0.0&&merge()<7.6

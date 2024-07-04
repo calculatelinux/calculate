@@ -1,0 +1,21 @@
+diff --git a/cl-lxc b/cl-lxc
+index 9ca17dc..db88e37 100755
+--- a/cl-lxc
++++ b/cl-lxc
+@@ -358,6 +358,7 @@ create_base(){
+ 			mkdir $path_cache
+ 		fi
+ 	fi
++	>/var/log/calculate/cl-lxc-error.log
+ 	trap "rm -rf $path_def/scratch" SIGINT
+ 	lxc-create -n scratch -t download -- --server $mirror_ \
+ 			--arch x86_64 --dist scratch --release live \
+@@ -598,8 +599,6 @@ change_profile(){
+ 	einfo $"Launching package update"
+ 	lxc-attach $name_lxc -- cl-update -f
+ 	eend
+-
+-	launch_message
+ }
+ 
+ update_prepare(){

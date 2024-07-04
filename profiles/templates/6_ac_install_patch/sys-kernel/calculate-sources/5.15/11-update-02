@@ -1,2 +1,0 @@
-# Calculate format=kernel name=.config
-CONFIG_I2C_HID_ACPI=y

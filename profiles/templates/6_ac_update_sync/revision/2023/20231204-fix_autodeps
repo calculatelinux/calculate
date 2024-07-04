@@ -1,0 +1,7 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+rm -f /var/db/pkg/kde-apps/ktp-kded-module-*/autodeps
+
+exit 0

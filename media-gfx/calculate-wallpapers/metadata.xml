@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>maintainer-wanted</herd>
+	<!-- maintainer-wanted -->
 	<longdescription lang="en">
 Wallpapers for Calculate Linux
 </longdescription>
@@ -11,6 +11,9 @@ Wallpapers for Calculate Linux
 		<flag name="CL13">Include Calculate Linux 13 wallpapers.</flag>
 		<flag name="CL14">Include Calculate Linux 14 wallpapers.</flag>
 		<flag name="CL15">Include Calculate Linux 15 wallpapers.</flag>
+		<flag name="CL17">Include Calculate Linux 17 wallpapers.</flag>
+		<flag name="CL21">Include Calculate Linux 21 wallpapers.</flag>
+		<flag name="CL22">Include Calculate Linux 22 wallpapers.</flag>
 	</use>
 </pkgmetadata>
 

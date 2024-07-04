@@ -4,6 +4,7 @@ www-client/opera -linguas_af -linguas_am -linguas_ar -linguas_az -linguas_bn -li
 
 # removed unnecessary dependence
 app-accessibility/speech-dispatcher -espeak
+app-crypt/pinentry -emacs
 app-editors/nano -spell
 app-emulation/wine-staging -gstreamer
 app-emulation/wine-vanilla -gstreamer
@@ -21,15 +22,16 @@ dev-vcs/git -gtk
 games-util/game-device-udev-rules -acl
 gnome-extra/zenity -webkit
 kde-apps/kget -bittorrent
-kde-apps/print-manager -gtk
 lxqt-base/lxqt-meta -sddm
 mail-client/roundcube -spell
 mail-filter/opendkim -sasl
+mate-base/mate -themes
 mate-extra/mate-sensors-applet -video_cards_nvidia
 media-fonts/noto -extra
 media-fonts/terminus-font -pcf
 media-gfx/imagemagick -raw
 media-gfx/inkscape -spell
+media-libs/libcanberra -sound
 media-libs/simage -tiff
 media-libs/tg_owt -screencast
 media-sound/pulseaudio -daemon
@@ -43,14 +45,10 @@ net-dialup/rp-pppoe -X
 net-dns/avahi -gtk
 net-im/telegram-desktop -screencast
 net-im/telepathy-connection-managers -gadu
-net-irc/kvirc -audiofile -dcc_video -dcc_voice -theora -webkit -phonon -spell doc
 net-irc/weechat -spell
 net-libs/webkit-gtk -geoloc
 net-misc/asterisk -bluetooth
-net-misc/dahdi -flash
 net-misc/remmina -appindicator -webkit
-net-p2p/bitcoind -wallet
-net-p2p/bitcoin-qt -wallet
 net-p2p/ktorrent -infowidget
 net-print/cups -X
 sci-libs/vtk tbb -video_cards_nvidia
@@ -61,9 +59,15 @@ sys-apps/portage -rsync-verify
 sys-auth/polkit -gtk
 sys-fs/btrfs-progs -convert
 sys-fs/mtools -X
+sys-fs/ntfs3g -fuse -mount-ntfs
 www-client/links -X
 www-client/seamonkey -system-png
+www-client/w3m -imlib
 x11-drivers/nvidia-drivers -acpi
 x11-misc/xscreensaver -perl
 x11-terms/gnome-terminal -nautilus
 xfce-extra/xfce4-sensors-plugin -video_cards_nvidia
+
+media-gfx/nomacs -opencv -raw -tiff
+media-plugins/frei0r-plugins -facedetect
+media-libs/libopenshot -opencv

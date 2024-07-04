@@ -1,11 +1,5 @@
 USE=""
 
-# Audio
-USE="${USE} alsa amr -arts audiofile cdda cue id3tag flac gstreamer lame mad mikmod mp3 mpeg ogg oggvorbis openal opencore-amr opus pipewire pulseaudio taglib wavpack vorbis vpx"
-
-# CD and DVD
-USE="${USE} cdparanoia css dvd dvdr dvdread vcd"
-
 # Decoration
 USE="${USE} -branding -wallpapers"
 
@@ -19,7 +13,7 @@ USE="${USE} chm djvu ebook postscript"
 USE="${USE} crypt ssl cracklib"
 
 # Hardware
-USE="${USE} acpi cairo cpudetection dbus dri ieee1394 gpm opengl scanner smp upower usb vdpau -video_cards_dummy -video_cards_v4l video_cards_via vulkan xcomposite"
+USE="${USE} acpi cairo cpudetection dbus dri ieee1394 opengl scanner smp upower usb vdpau -video_cards_dummy -video_cards_v4l video_cards_via vulkan xcomposite"
 
 # Hardware CPU
 USE="${USE} 3dnow 3dnowext aes avx fma3 fma4 lm-sensors mmx mmxext padlock popcnt sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3 xop"
@@ -51,11 +45,8 @@ USE="${USE} gphoto2"
 # Printing
 USE="${USE} cups foomaticdb"
 
-# Python2.7
-USE="${USE} python_targets_python2_7"
-
 # System
-USE="${USE} caps cgroups elogind introspection logrotate lz4 lzo networkmanager nsplugin pgo policykit threads udisks zstd"
+USE="${USE} caps cgroups elogind introspection logrotate lz4 lzo networkmanager nsplugin pgo policykit -test-rust threads udisks zstd"
 
 # Video
 USE="${USE} a52 aac -aalib avi cddb dav1d dv encode faac ffmpeg flash matroska mplayer musepack real sdl speex srt screencast -svga tga quicktime theora vaapi v4l v4l2 vidix win32codecs xanim x264 x265 xinerama xv xvid xvmc"
@@ -79,14 +70,14 @@ CAMERAS="*"
 CPU_FLAGS_X86="3dnow 3dnowext mmx sse sse2 *"
 DISTDIR="/var/calculate/distfiles"
 EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --autounmask --binpkg-changed-deps=n --binpkg-respect-use=y --jobs=4 --quiet-build=n"
-FEATURES="getbinpkg parallel-install -news -userpriv"
+FEATURES="getbinpkg parallel-install -news -userpriv -pkgdir-index-trusted"
 GENTOO_MIRRORS="https://distfiles.gentoo.org https://mirror.calculate-linux.org/distfiles/level0"
 INPUT_DEVICES="${INPUT_DEVICES} evdev mutouch synaptics"
 INSTALL_MASK="/etc/systemd /lib*/systemd/*/*.service /usr/lib*/systemd/*/*.service /etc/shorewall*/* -/etc/shorewall*/shorewall*.conf"
 LCD_DEVICES="*"
 LDFLAGS="-Wl,--as-needed"
 LIRC_DEVICES="devinput"
-NPTL_KERN_VER="5.4.0"
+NPTL_KERN_VER="6.1.0"
 PORTAGE_TMPDIR="/var/calculate/tmp"
 USE_EXPAND="CALCULATE THEMES"
 VIDEO_CARDS="amdgpu fbdev i915 i965 intel iris nouveau nv nvidia r100 r200 r300 r600 radeon qxl radeonsi vesa virtualbox"

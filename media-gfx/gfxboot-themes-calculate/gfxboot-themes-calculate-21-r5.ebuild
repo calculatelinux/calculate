@@ -5,7 +5,7 @@
 EAPI=7
 
 DESCRIPTION="Gfxboot themes for Calculate Linux"
-HOMEPAGE="http://www.calculate-linux.org/packages/media-gfx/gfxboot-themes-calculate"
+HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/gfxboot-themes-calculate"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -20,7 +20,6 @@ DEPEND="media-gfx/gfxboot
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/gfxboot-themes-calculate-${PVR}"
-
 
 src_compile() {
 	emake -j1

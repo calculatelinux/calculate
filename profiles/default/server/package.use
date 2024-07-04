@@ -11,6 +11,7 @@ media-gfx/imagemagick -djvu -svg -wmf
 media-libs/imlib2 -shm
 media-video/mediainfo -wxwidgets
 media-video/vlc -svg
+net-libs/libsoup -samba
 sys-kernel/calculate-sources -themes
 sys-libs/glibc -gd
 x11-drivers/nvidia-drivers -compat -gtk3 -multilib -static-libs -tools -uvm -wayland -X
@@ -20,3 +21,8 @@ net-wireless/wpa_supplicant dbus
 
 # required by net-misc/networkmanager-1.8.4
 net-dns/dnsmasq dbus
+
+# required by app-emulation/virt-manager-4.1.0-r1
+app-emulation/libvirt-glib introspection
+sys-libs/libosinfo introspection
+net-libs/libsoup introspection

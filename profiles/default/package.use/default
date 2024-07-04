@@ -38,9 +38,6 @@ net-misc/rsync xattr
 sys-apps/coreutils xattr
 sys-fs/squashfs-tools xattr
 
-# support layman sync for portage repositories
-app-portage/layman sync-plugin-portage
-
 net-p2p/rtorrent daemon xmlrpc
 
 # add plugin aria2
@@ -53,7 +50,7 @@ kde-apps/kio-extras mtp
 sys-libs/ncurses tinfo
 
 # i386 support, TLS support for the VNC console server, VirtFS
-app-emulation/qemu gnutls spice sdl2 usbredir xfs qemu_softmmu_targets_i386 qemu_softmmu_targets_x86_64 virtfs
+app-emulation/qemu gnutls spice usbredir qemu_softmmu_targets_i386 qemu_softmmu_targets_x86_64 virtfs
 
 # use dev-libs/libnatspec to correctly decode non-ascii file names
 app-arch/zip natspec
@@ -73,9 +70,6 @@ sys-fs/cryptsetup python
 
 # build for use with thread-capable perl
 www-apache/mod_perl ithreads
-
-# use ipv4 instead of ipv6
-net-p2p/opentracker -ipv6
 
 # include backup, client, desktop, console and console-gui modules
 sys-apps/calculate-utils backup client desktop console qt5
@@ -127,8 +121,8 @@ media-fonts/terminus-font -X
 # SMplayer support, streaming media support
 media-video/mplayer bidi live -video_cards_tdfx
 
-# select dhcp client, support modemmanager
-net-misc/networkmanager connection-sharing dhclient
+# support modemmanager, select dhcp client
+net-misc/networkmanager connection-sharing dhcpcd
 
 # enable fax, support work over networks, IJS driver for cups, exclude scanner GUI (use XSane)
 net-print/hplip hpijs -X
@@ -180,8 +174,7 @@ media-gfx/inkscape cdr inkjar lcms visio wpg
 media-libs/sdl-mixer mod timidity midi
 
 # enables fuse mount points in $HOME/.gvfs for legacy application access
-# enable storage password
-gnome-base/gvfs archive fuse mtp gnome-keyring
+gnome-base/gvfs archive fuse mtp
 
 # add support git and cmake
 dev-qt/qt-creator cmake git
@@ -326,9 +319,6 @@ media-tv/kodi webserver
 # Support for .ape files
 media-sound/deadbeef mac
 
-# Add xface support used
-mail-client/sylpheed ldap xface
-
 # The following REQUIRED_USE flag constraints are unsatisfied:
 # egl gles
 dev-libs/efl gles egl -sdl -opengl
@@ -388,3 +378,19 @@ sys-auth/elogind -acl
 
 # add support for sqlite
 www-apps/gitea sqlite
+
+# l2tp+ipsec support
+net-vpn/strongswan strongswan_plugins_ipseckey
+
+# use parallel (de)compressor
+app-alternatives/bzip2 lbzip2 -reference
+app-alternatives/gzip pigz -reference
+
+# required by www-servers/nginx-1.23.2-r3
+app-misc/mime-types nginx
+
+# graphical user interface
+app-emulation/virt-manager gui
+
+# enable terminal emulation support (needed for vimspector)
+app-editors/vim terminal

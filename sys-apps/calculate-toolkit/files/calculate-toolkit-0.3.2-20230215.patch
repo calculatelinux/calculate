@@ -1,0 +1,675 @@
+diff --git a/cl-lxc b/cl-lxc
+index 3f6b3bc..9ca17dc 100644
+--- a/cl-lxc
++++ b/cl-lxc
+@@ -19,8 +19,7 @@ set -ueo pipefail
+ 
+ check_simultaneous_run(){ # Проверим на повторный запуск
+         lock=/tmp/cl-lxc.lock
+-        if ! mkdir $lock &>/dev/null
+-	then
++        if ! mkdir $lock &>/dev/null; then
+                 echo $"Script launched!" >&2
+                 exit 1
+         fi
+@@ -30,8 +29,7 @@ check_simultaneous_run(){ # Проверим на повторный запус
+ 
+ print_help(){
+ 	usage=$(printf $"SYNOPSIS: %s [PARAMETERS?] [name]" ${0##*/})
+-	if [[ "$1" == "all" ]]
+-	then
++	if [[ "$1" == "all" ]]; then
+ 		echo $"$usage
+ 
+ ${0##*/} installation, configuration and update of an LXC container with Calculate Linux on board
+@@ -55,8 +53,7 @@ Parameters:
+ 
+ get_args(){
+ 	check_val(){
+-		if [[ "$#" == "1" || "$2" =~ ^- ]]
+-		then
++		if [[ "$#" == "1" || "$2" =~ ^- ]]; then
+ 			echo $"Parameter '$1' contains no value!" >&2
+ 			exit 1
+ 		fi
+@@ -69,8 +66,7 @@ get_args(){
+ 	diff_=0
+ 	clear_=0
+ 	mirror_=mirror.calculate-linux.org
+-	while (( $# > 0 ))
+-	do
++	while (( $# > 0 )); do
+ 		case "$1" in
+ 		-P|--profile)
+ 			check_val $@
+@@ -111,8 +107,7 @@ get_args(){
+ 			break
+ 			;;
+ 		*)
+-			if ! [[ $1 =~ ^- ]]
+-			then
++			if ! [[ $1 =~ ^- ]]; then
+ 				break
+ 			fi
+ 			printf $"Invalid option '%s'.\n" $1 >&2
+@@ -121,20 +116,16 @@ get_args(){
+ 		esac
+ 		shift
+ 	done
+-	if [ "$profile_" == 'list' ]
+-	then
++	if [ "$profile_" == 'list' ]; then
+ 		print_profile
+ 		exit 0
+-	elif (( $# == 1 ))
+-	then
++	elif (( $# == 1 )); then
+ 		lxc_=$1
+-		if [[ $lxc_ =~ [^A-Za-z0-9_\._\-] ]]
+-		then
++		if [[ $lxc_ =~ [^A-Za-z0-9_\._\-] ]]; then
+ 			echo $"Container name contains wrong characters." >&2
+ 			exit 1
+ 		fi
+-		if [[ $lxc_ = 'scratch' ]]
+-		then
++		if [[ $lxc_ = 'scratch' ]]; then
+ 			echo $"The name '$lxc_' is reserved. Use a different container name." >&2
+ 			exit 1
+ 		fi
+@@ -148,13 +139,13 @@ get_args(){
+ 
+ print_profile(){
+ 	local profile_dir
+-	if [[ -e /var/db/repos/container/profiles/profiles.desc ]]
+-	then
++	if [[ -e /var/db/repos/container/profiles/profiles.desc ]]; then
+ 		profile_dir=/var/db/repos/container
++	elif [[ -e /var/calculate/repos/container/profiles/profiles.desc ]]; then
++		profile_dir=/var/calculate/repos/container
+ 	else
+ 		profile_dir=/var/calculate/tmp/update/container
+-		if [[ ! -d $profile_dir ]]
+-		then
++		if [[ ! -d $profile_dir ]]; then
+ 			git clone https://github.com/calculatelinux/container $profile_dir &>/dev/null
+ 		else
+ 			git -C $profile_dir pull &>/dev/null
+@@ -162,14 +153,12 @@ print_profile(){
+ 	fi
+ 
+ 	# Отобразим список доступных профилей или проверим наличие запрошенного
+-	if (( $# == 0 ))
+-	then
++	if (( $# == 0 )); then
+ 		echo $"Profile:"
+ 		grep "^amd64" ${profile_dir}/profiles/profiles.desc | awk '{print " * " $2, $3}' OFS=' (' ORS=')\n'
+ 		return
+ 	else
+-		if ! grep -q "^amd64\s*${1}/" ${profile_dir}/profiles/profiles.desc
+-		then
++		if ! grep -q "^amd64\s*${1}/" ${profile_dir}/profiles/profiles.desc; then
+ 			return 1
+ 		fi
+ 	fi
+@@ -185,8 +174,7 @@ set_vars(){
+ 		exit 1
+ 	)
+ 
+-	if ! [[ $prepare_ == 1 || $upgrade_ == 1 ]]
+-	then
++	if ! [[ $prepare_ == 1 || $upgrade_ == 1 ]]; then
+ 		name_lxc=$lxc_
+ 		name_upgrading=
+ 		name_rootfs=
+@@ -195,24 +183,20 @@ set_vars(){
+ 		name_lxc="${lxc_}_new"
+ 		name_upgrading=$lxc_
+ 		name_rootfs="rootfs-${lxc_}"
+-		if [[ $(lxc-info -s $lxc_ 2>&1 | grep RUNNING) ]]
+-		then
++		if [[ $(lxc-info -s $lxc_ 2>&1 | grep RUNNING) ]]; then
+ 			status_lxc='RUNNING'
+ 		else
+ 			status_lxc='STOPPED'
+ 		fi
+ 	fi
+ 
+-	if [ -L $path_def/$lxc_ ]
+-	then
++	if [ -L $path_def/$lxc_ ]; then
+ 		path_work=$(sed 's/\/[^/]*$//' <<< $(realpath $path_def/$lxc_))
+-		if [ -n "$path_" ] && [ $path_ != "$path_work" ]
+-		then
++		if [ -n "$path_" ] && [ $path_ != "$path_work" ]; then
+ 			printf $"Wrong --path parameter, container created in '%s'.\n" $path_work >&2
+ 			exit 1
+ 		fi
+-	elif [ -n "$path_" ] && [ "$path_" != "$path_def" ]
+-	then
++	elif [ -n "$path_" ] && [ "$path_" != "$path_def" ]; then
+ 		path_work=$path_
+ 	else
+ 		path_work=$path_def
+@@ -223,17 +207,14 @@ set_vars(){
+ 	path_lxc_prepare=$path_cache/rootfs-$lxc_
+ 
+ 
+-	if [ $path_def = "$path_work" ]
+-	then
++	if [ $path_def = "$path_work" ]; then
+ 		path_change=
+-		if [ ! -d $path_work ]
+-		then
++		if [ ! -d $path_work ]; then
+ 			mkdir -p $path_work
+ 		fi
+ 	else
+ 		path_change=$path_work
+-		if [ ! -d $path_work ]
+-		then
++		if [ ! -d $path_work ]; then
+ 			printf $"Directory '%s' is not found.\n" $path_work >&2
+ 			exit 1
+ 		fi
+@@ -241,8 +222,7 @@ set_vars(){
+ 
+ 	type_fs=$(df -Th $path_work | awk 'NR==2 {print $2}')
+ 
+-	if [[ $prepare_ == 1 || $upgrade_ == 1 ]] && [ -f $path_work/$lxc_/config ]
+-	then
++	if [[ $prepare_ == 1 || $upgrade_ == 1 ]] && [ -f $path_work/$lxc_/config ]; then
+ 		# Считаем номер текущего корня обновляемой системы и определим новый
+ 		num_cur=$(grep lxc.rootfs.path $path_work/$lxc_/config | sed 's/.*rootfs//')
+ 		num_next=$(ls -d $path_work/$lxc_/rootfs* | sed 's/.*rootfs//' | sort -n | tail -n 1)
+@@ -255,10 +235,8 @@ set_vars(){
+ 	# taiga/amd64/20 -> taiga
+ 	lxc_profile=${profile_%%/*}
+ 
+-	if [[ $lxc_profile == "" ]]
+-	then
+-		if [[ $prepare_ == 1 || $upgrade_ == 1 ]]
+-		then
++	if [[ $lxc_profile == "" ]]; then
++		if [[ $prepare_ == 1 || $upgrade_ == 1 ]]; then
+ 			lxc_profile=$(file $path_work/$lxc_/rootfs$num_cur/etc/portage/make.profile | \
+ 				awk -F '/profiles/' '{ print $2 }' | awk -F '/' '{ print $1 }')
+ 			# совместимость со старыми системами
+@@ -316,27 +294,22 @@ launch_message(){
+ 
+ check_vars(){
+ 	program_name=${0##*/}
+-	if [ "$path_" != '' ] && ! [ -d "$path_" ]
+-	then
++	if [ "$path_" != '' ] && ! [ -d "$path_" ]; then
+ 		printf $"Failed to find directory '%s'.\n" $path_ >&2
+ 		exit 1
+ 	fi
+-	if [ $create_ == 1 ] && [[ -e $path_lxc || -e $path_def/$name_lxc ]]
+-	then
++	if [ $create_ == 1 ] && [[ -e $path_lxc || -e $path_def/$name_lxc ]]; then
+ 		printf $"Wrong parameter %s, container '%s' exists already!\n" --create $name_lxc >&2
+ 		exit 1
+ 	fi
+-	if [ $create_ == 0 ] && [ -n "$path_" ]
+-	then
++	if [ $create_ == 0 ] && [ -n "$path_" ]; then
+ 		printf $"Parameter %s should be used to create a container.\n" --path >&2
+ 		exit 1
+ 	fi
+ 
+-	if [[ $prepare_ == 1  || $upgrade_ == 1 ]] && [ ! -e $path_work/$name_upgrading ]
+-	then
++	if [[ $prepare_ == 1  || $upgrade_ == 1 ]] && [ ! -e $path_work/$name_upgrading ]; then
+ 		local param_name='--upgrade'
+-		if [ $prepare_ == 1 ]
+-		then
++		if [ $prepare_ == 1 ]; then
+ 			param_name='--prepare'
+ 		fi
+ 		printf $"Wrong parameter %s, container '%s' does not exist!\n" $param_name $name_upgrading >&2
+@@ -349,20 +322,16 @@ check_vars(){
+ 			--prepare >&2
+ 		exit 1
+ 	fi
+-	if [ $create_ == 0 ] && [ $prepare_ == 0 ] && [ $upgrade_ == 0 ]
+-	then
+-		if [ ! -e $path_lxc ]
+-		then
++	if [ $create_ == 0 ] && [ $prepare_ == 0 ] && [ $upgrade_ == 0 ]; then
++		if [ ! -e $path_lxc ]; then
+ 			printf $"No operation specified. Call %s to create a container.\n" \
+ 				"'$program_name -c $name_lxc'" >&2
+ 			exit 1
+-		elif [ ! -d $path_lxc_prepare ]
+-		then
++		elif [ ! -d $path_lxc_prepare ]; then
+ 			printf $"No operation specified. Call %s to prepare an update image for the container.\n" \
+ 				"'$program_name -p $name_lxc'" >&2
+ 			exit 1
+-		elif [ -d $path_lxc_prepare ]
+-		then
++		elif [ -d $path_lxc_prepare ]; then
+ 			printf $"No operation specified. Call %s to update the container.\n" \
+ 				"'$program_name -u $name_lxc'" >&2
+ 			exit 1
+@@ -371,8 +340,7 @@ check_vars(){
+ 			exit 1
+ 		fi
+ 	fi
+-	if [ $path_def != '/var/calculate/lxc' ]
+-	then
++	if [ $path_def != '/var/calculate/lxc' ]; then
+ 		printf $"lxc.lxcpath must contain the path to  '/var/calculate/lxc'.\n" >&2
+ 		exit 1
+ 	fi
+@@ -383,33 +351,30 @@ create_base(){
+ 	ebegin $"Downloading Calculate Linux"
+ 
+ 	# Создадим подтом, чтобы контейнер не участвовал в бэкапе btrbk
+-	if [ ! -e $path_cache ]
+-	then
+-		if [ $type_fs = 'btrfs' ]
+-		then
++	if [ ! -e $path_cache ]; then
++		if [ $type_fs = 'btrfs' ]; then
+ 			btrfs subvolume create $path_cache &>/dev/null
+ 		else
+ 			mkdir $path_cache
+ 		fi
+ 	fi
+-
++	trap "rm -rf $path_def/scratch" SIGINT
+ 	lxc-create -n scratch -t download -- --server $mirror_ \
+ 			--arch x86_64 --dist scratch --release live \
+ 			2>>/var/log/calculate/cl-lxc-error.log >/dev/null || {
+ 		eend $? || true
+ 		eerror $"Failed to run lxc-create" >&2
+-		rm -rf $path_def/scratch
+ 		exit $?
+ 	}
+ 	eend
++	trap - SIGINT
+ 	mv $path_def/scratch $path_cache/scratch
+ 	true
+ }
+ 
+ create_lxc(){
+ 	echo $"Creating container $name_lxc"
+-	if [ $type_fs = 'btrfs' ]
+-	then
++	if [ $type_fs = 'btrfs' ]; then
+ 		btrfs subvolume create $path_lxc >/dev/null || {
+ 			eend $? || true
+ 			eerror $"Failed to create subvolume $path_lxc" >&2
+@@ -421,8 +386,7 @@ create_lxc(){
+ 	chmod 700 $path_lxc
+ 
+ 	local reflink='' && [ $type_fs = 'btrfs' ] && reflink='--reflink'
+-	if [ -d "$path_lxc_prepare" ]
+-	then
++	if [ -d "$path_lxc_prepare" ]; then
+ 		ebegin $"Restoring rootfs image from cache"
+ 		cp -a $reflink $path_lxc_prepare $path_lxc/rootfs
+ 		eend
+@@ -432,8 +396,7 @@ create_lxc(){
+ 		eend
+ 	fi
+ 
+-	if [ -n "$path_change" ]
+-	then
++	if [ -n "$path_change" ]; then
+ 		ln -s $path_lxc $path_def/$name_lxc
+ 	fi
+ 
+@@ -446,8 +409,7 @@ create_lxc(){
+ 			var/db/repos/gentoo
+ 	do
+ 		path_res=${path_lxc}/rootfs/${path_res}
+-		if [ -e $path_res ]
+-		then
++		if [ -e $path_res ]; then
+ 			rm -rf $path_res
+ 			mkdir $path_res
+ 		fi
+@@ -455,13 +417,12 @@ create_lxc(){
+ 	eend
+ 
+ 	local calculate_mount= calculate_dir=
+-	if [ $prepare_ == 0 ]
+-	then
++	if [ $prepare_ == 0 ]; then
+ 		ebegin $"Moving /var/calculate to a separate mount point"
+ 		# Очистка и создание пути для монтирования ресурсов из хостовой машины
+ 		mv $path_lxc/rootfs/var/calculate $path_lxc
+ 		mkdir $path_lxc/rootfs/var/calculate
+-		calculate_mount="lxc.mount.entry = ${path_lxc}/calculate var/calculate none rw,bind 0 0"$'\n'
++		calculate_mount="lxc.mount.entry = ${path_lxc}/calculate var/calculate none rw,bind 0 0"
+ 		calculate_dir="${path_lxc}/calculate"
+ 		eend
+ 	else
+@@ -469,48 +430,50 @@ create_lxc(){
+ 	fi
+ 
+ 	local portage_mount= gentoo_from= gentoo_to=
+-	if [ -d /var/db/repos/gentoo ]
+-	then
++	if [ -d /var/db/repos/gentoo ]; then
+ 		gentoo_from='/var/db/repos/gentoo'
+ 	else
+ 		gentoo_from='/usr/portage'
+ 	fi
+-	if [ -d $path_lxc/rootfs/var/db/repos/gentoo ]
+-	then
++	if [ -d $path_lxc/rootfs/var/db/repos/gentoo ]; then
+ 		gentoo_to='var/db/repos/gentoo'
+ 	else
+ 		gentoo_to='usr/portage'
+ 	fi
+ 	portage_mount="lxc.mount.entry = ${gentoo_from} ${gentoo_to} none ro,bind 0 0"
+ 
+-	if [ ! -e /var/db/repos/container ]
+-	then
+-		mv $path_lxc/rootfs/var/db/repos/container /var/db/repos
+-		mkdir $path_lxc/rootfs/var/db/repos/container
+-
+-		if grep -q github.com $path_lxc/rootfs/etc/portage/repos.conf/zz-calculate.conf
+-		then
+-			local repo_container='https://github.com/calculatelinux/container'
++	if [[ ! -e /var/db/repos/container ]]; then
++		container_mount="lxc.mount.entry = /var/calculate/repos/container var/db/repos/container none ro,bind 0 0"
++		if [[ -e /var/calculate/repos/container ]]; then
++			rm -rf ${path_lxc}/rootfs/var/db/repos/container
+ 		else
+-			local repo_container='https://git.calculate-linux.org/calculate/container-overlay'
++			mv $path_lxc/rootfs/var/db/repos/container /var/calculate/repos
++
++			if grep -q github.com $path_lxc/rootfs/etc/portage/repos.conf/zz-calculate.conf; then
++				local repo_container='https://github.com/calculatelinux/container'
++			else
++				local repo_container='https://git.calculate-linux.org/calculate/container-overlay'
++			fi
++			cat <<- EOF > /etc/portage/repos.conf/cl-lxc.conf
++			[container]
++			priority = 50
++			sync-uri = $repo_container
++			location = /var/calculate/repos/container
++			auto-sync = Yes
++			sync-type = git
++			EOF
+ 		fi
+-		cat <<- EOF > /etc/portage/repos.conf/cl-lxc.conf
+-		[container]
+-		priority = 50
+-		sync-uri = $repo_container
+-		location = /var/db/repos/container
+-		auto-sync = Yes
+-		sync-type = git
+-		EOF
+ 	else
++		# для совместимости с предыдушими установками
++		container_mount="lxc.mount.entry = /var/db/repos/container var/db/repos/container none ro,bind 0 0"
+ 		rm -rf ${path_lxc}/rootfs/var/db/repos/container
+-		mkdir ${path_lxc}/rootfs/var/db/repos/container
+ 	fi
++	mkdir $path_lxc/rootfs/var/db/repos/container
++
+ 
+ 	ebegin $"Running container setup"
+ 	local net_conf=
+-	if [ $prepare_ == 1 ] || [ ! -L /sys/class/net/br0 ]
+-	then
++	if [ $prepare_ == 1 ] || [ ! -L /sys/class/net/br0 ]; then
+ 		net_conf=none
+ 		network_conf="lxc.net.0.type = none"
+ 		cp /etc/resolv.conf $path_lxc/rootfs/etc
+@@ -520,8 +483,7 @@ create_lxc(){
+ 		local random_mac=$(printf '06:%02X:%02X:%02X:%02X:%02X\n' \
+ 			$((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
+ 		local veth_pair="lxc.net.0.veth.pair = lxc-${name_lxc::11}"
+-		if grep -q "$veth_pair" -r ${path_def}/*/config &>/dev/null
+-		then
++		if grep -q "$veth_pair" -r ${path_def}/*/config &>/dev/null; then
+ 			# исключим настройку сетевого имени, если такое уже используется
+ 			veth_pair="#${veth_pair}"
+ 		fi
+@@ -554,9 +516,10 @@ create_lxc(){
+ 	${network_conf}
+ 
+ 	# Mount points
+-	${calculate_mount}${portage_mount}
++	${calculate_mount}
++	${container_mount}
+ 	lxc.mount.entry = /var/db/repos/calculate var/db/repos/calculate none ro,bind 0 0
+-	lxc.mount.entry = /var/db/repos/container var/db/repos/container none ro,bind 0 0
++	${portage_mount}
+ 	lxc.mount.entry = /var/cache/edb/binhost var/cache/edb/binhost none ro,bind 0 0
+ 	lxc.mount.entry = /var/calculate/packages var/calculate/packages none rw,bind 0 0
+ 	lxc.mount.entry = /var/calculate/distfiles var/calculate/distfiles none rw,bind 0 0
+@@ -595,8 +558,7 @@ create_lxc(){
+ 	cat <<- EOF > ${calculate_dir}/templates/default/.calculate_directory
+ 	# Calculate env=install ac_install_live==on append=skip
+ 	EOF
+-	if [ $net_conf == veth ]
+-	then
++	if [ $net_conf == veth ]; then
+ 		cat <<- EOF > ${calculate_dir}/templates/default/runlevel.eth0
+ 		# Calculate mergepkg(sys-apps/openrc)!= path=/etc/runlevels/default name=net.eth0 protected link=/etc/init.d/net.lo symbolic
+ 		EOF
+@@ -607,8 +569,7 @@ create_lxc(){
+ 	EOF
+ 	eend
+ 
+-	if [[ -z "$name_upgrading" && $lxc_profile == 'scratch' ]]
+-	then
++	if [[ -z "$name_upgrading" && $lxc_profile == 'scratch' ]]; then
+ 		launch_message
+ 	fi
+ }
+@@ -617,8 +578,7 @@ start_container(){
+ 	ebegin $"Starting container"
+ 	lxc-start $name_lxc
+ 	# ожидание первоначальной настройки контейнера
+-	while ! lxc-attach $name_lxc -- ps ax | grep 'init \[3\]' > /dev/null
+-	do
++	while ! lxc-attach $name_lxc -- ps ax | grep 'init \[3\]' > /dev/null; do
+ 		sleep 0.1
+ 	done
+ 	eend
+@@ -657,10 +617,8 @@ update_prepare(){
+ 	eend
+ 
+ 	ebegin $"Creating mount points"
+-	for mount_point in $(grep '^lxc.mount.entry' $path_work/$name_upgrading/config | awk {'print $4'})
+-	do
+-		if [ ! -e "$path_lxc/rootfs/$mount_point" ]
+-		then
++	for mount_point in $(grep '^lxc.mount.entry' $path_work/$name_upgrading/config | awk {'print $4'}); do
++		if [ ! -e "$path_lxc/rootfs/$mount_point" ]; then
+ 			mkdir -p "$path_lxc/rootfs/$mount_point"
+ 		fi
+ 	done
+@@ -674,8 +632,7 @@ update_prepare(){
+ 	chmod 755 $path_lxc/rootfs/etc/local.d/firststart.start
+ 
+ 	# если обновляемый контейнер ни разу не запускался, возьем временный конфиг
+-	if [[ -e ${path_work}/${name_upgrading}/rootfs${num_cur}/etc/calculate/calculate.env ]]
+-	then
++	if [[ -e ${path_work}/${name_upgrading}/rootfs${num_cur}/etc/calculate/calculate.env ]]; then
+ 		cp ${path_work}/${name_upgrading}/rootfs${num_cur}/etc/calculate/calculate.env \
+ 			$path_lxc/rootfs/etc/calculate
+ 	else
+@@ -722,19 +679,16 @@ update_prepare(){
+ 	eend
+ 
+ 	ebegin $"Saving image for update"
+-	if [ -d $path_lxc_prepare ]
+-	then
++	if [ -d $path_lxc_prepare ]; then
+ 		rm -r $path_lxc_prepare
+ 	fi
+ 	mv $path_lxc/rootfs $path_lxc_prepare
+ 	eend
+ 
+ 	ebegin $"Removing temporary container directory $name_lxc"
+-	if [ $type_fs = 'btrfs' ]
+-	then
++	if [ $type_fs = 'btrfs' ]; then
+ 		btrfs subvolume delete $path_lxc &>/dev/null
+-		if [ -n "$path_change" ]
+-		then
++		if [ -n "$path_change" ]; then
+ 			rm $path_def/$name_lxc # удалим символическую ссылку
+ 		fi
+ 	else
+@@ -754,8 +708,7 @@ upgrade_lxc(){
+ 
+ 	ebegin $"Moving image to $name_upgrading/rootfs$num_next"
+ 	local reflink=
+-	if [ $type_fs = 'btrfs' ]
+-	then
++	if [ $type_fs = 'btrfs' ]; then
+ 		reflink='--reflink'
+ 	fi
+ 	cp -a $reflink $path_lxc_prepare $path_work/$name_upgrading/rootfs$num_next
+@@ -791,15 +744,13 @@ upgrade_lxc(){
+ 		$path_work/$name_upgrading/config
+ 	eend
+ 
+-	if [ ! -z $(lxc-ls --running --filter "^$name_upgrading$") ]
+-	then
++	if [ ! -z $(lxc-ls --running --filter "^$name_upgrading$") ]; then
+ 		einfo $"Stopping container $name_upgrading"
+ 		lxc-stop $name_upgrading
+ 		eend
+ 	fi
+ 
+-	if [ "$status_lxc" = 'RUNNING' ]
+-	then
++	if [ "$status_lxc" = 'RUNNING' ]; then
+ 		einfo $"Launching container $name_upgrading"
+ 		lxc-start $name_upgrading
+ 		eend
+@@ -807,14 +758,13 @@ upgrade_lxc(){
+ 
+ 	[ $diff_ == 1 ] && diff_pkg # Отобразим разницу в пакетах
+ 
+-	while ! (test -a $path_work/$name_upgrading/rootfs$num_next/etc/resolv.conf)
+-		do sleep 0.1
++	while ! (test -a $path_work/$name_upgrading/rootfs$num_next/etc/resolv.conf); do
++		sleep 0.1
+ 	done
+ 	einfo $(lxc-info -i $name_upgrading)
+ 
+ 	printf $"Container updated."
+-	if [ "$status_lxc" = 'STOPPED' ]
+-	then
++	if [ "$status_lxc" = 'STOPPED' ]; then
+ 		printf ' '
+ 		printf $"To start it, please run 'lxc-start %s'.\n" $name_upgrading
+ 	else
+@@ -833,16 +783,13 @@ diff_pkg(){
+ 	find $path_lxc_prepare/var/db/pkg/ -type d | sed 's/.*db\/pkg\///' | grep \/ | sort > $lock/new
+ 	cp $lock/new $lock/work
+ 
+-	while IFS= read -r pkg
+-	do
+-		if grep -q $pkg$ $lock/cur
+-		then
++	while IFS= read -r pkg; do
++		if grep -q $pkg$ $lock/cur; then
+ 			sed -i "/$pkg/d" $lock/new
+ 			sed -i "/$pkg/d" $lock/cur
+         	fi
+ 	done <<< $(awk -F / '{print $2}' $lock/work)
+-	if [ ! -s $lock/new ] && [ ! -s $lock/cur ]
+-	then
++	if [ ! -s $lock/new ] && [ ! -s $lock/cur ]; then
+ 		einfo $"No difference detected"
+ 	else
+ 		diff $lock/new $lock/cur || true
+@@ -855,31 +802,24 @@ clear_cache(){
+ 	ebegin $"Clearing cache"
+ 	rm -rf /var/cache/lxc/download/*
+ 
+-	if [[ -e /var/calculate/lxc/.cache ]]
+-	then
+-		if [[ $(df -Th /var/calculate/lxc | awk 'NR==2 {print $2}') == btrfs ]]
+-		then
++	if [[ -e /var/calculate/lxc/.cache ]]; then
++		if [[ $(df -Th /var/calculate/lxc | awk 'NR==2 {print $2}') == btrfs ]]; then
+ 			btrfs subvolume delete /var/calculate/lxc/.cache > /dev/null
+ 		else
+ 			rm -rf /var/calculate/lxc/.cache
+ 		fi
+ 	fi
+ 
+-	for i in /var/calculate/lxc/*
+-	do
+-		if [[ $i == /var/calulate/lxc/* ]]
+-		then
++	for i in /var/calculate/lxc/*; do
++		if [[ $i == /var/calulate/lxc/* ]]; then
+ 			break
+ 		fi
+ 		# разыменуем символические ссылки чтобы почистить кэши на других разделах
+-		if [[ -L $i ]]
+-		then
++		if [[ -L $i ]]; then
+ 			cache_dir=$(realpath $i)
+ 			cache_dir=${cache_dir%/*}
+-			if [[ -e $cache_dir/.cache ]]
+-			then
+-				if [[ $(df -Th $cache_dir | awk 'NR==2 {print $2}') == btrfs ]]
+-				then
++			if [[ -e $cache_dir/.cache ]]; then
++				if [[ $(df -Th $cache_dir | awk 'NR==2 {print $2}') == btrfs ]]; then
+ 					btrfs subvolume delete $cache_dir/.cache > /dev/null
+ 				else
+ 					rm -rf $cache_dir/.cache
+@@ -911,39 +851,33 @@ check_vars
+ 
+ # Чистка кэша
+ # пустой файл partial когда lxc-create был прерван
+-if [[ $clear_ == 1 ]]
+-then
++if [[ $clear_ == 1 ]]; then
+ 	clear_cache
+ fi
+ 
+ # Создание базового контейнера
+-if [[ $create_ == 1 || $prepare_ == 1 ]] && [ ! -d "$path_cache/scratch" ]
+-then
++if [[ $create_ == 1 || $prepare_ == 1 ]] && [ ! -d "$path_cache/scratch" ]; then
+ 	create_base
+ fi
+ 
+ # Создание контейнера 
+-if [[ $create_ == 1 || $prepare_ == 1 ]]
+-then
++if [[ $create_ == 1 || $prepare_ == 1 ]]; then
+ 	create_lxc
+ 
+ 	# если задан профиль при создании контейнера:
+ 	# запустим контейнер, обновим оверлеи (container),  выберем профиль и обновим пакеты
+-	if [[ $prepare_ == 0 && $lxc_profile != 'scratch' ]]
+-	then
++	if [[ $prepare_ == 0 && $lxc_profile != 'scratch' ]]; then
+ 		change_profile
+ 	fi
+ fi
+ 
+ # Обновление пакетов контейнера
+-if [ $prepare_ == 1 ]
+-then
++if [ $prepare_ == 1 ]; then
+ 	update_prepare
+ fi
+ 
+ # Обновление контейнера
+-if [ $upgrade_ == 1 ]
+-then
++if [ $upgrade_ == 1 ]; then
+ 	upgrade_lxc
+ fi
+ 

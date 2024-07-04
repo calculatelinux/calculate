@@ -13,3 +13,16 @@ net-print/cups zeroconf
 # Enable support for a graphical user interface
 app-editors/emacs gui
 app-emacs/emacs-common gui
+
+
+
+# removed unnecessary dependence
+net-irc/kvirc -audiofile -dcc_video -dcc_voice -theora -webkit -phonon -spell doc
+
+
+
+# exactly-one-of ( alsa oss portaudio pulseaudio )
+app-accessibility/julius -pulseaudio
+
+# player? ( exactly-one-of ( alsa oss openal ) )
+media-sound/wildmidi -openal

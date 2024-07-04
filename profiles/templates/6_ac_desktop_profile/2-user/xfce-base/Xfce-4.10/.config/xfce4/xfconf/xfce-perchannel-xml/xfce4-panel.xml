@@ -124,7 +124,10 @@
       <property name="middle-click" type="uint" value="1"/>
     </property>
     <property name="plugin-4" type="string" value="pager"/>
-    <property name="plugin-5" type="string" value="datetime"/>
+    <property name="plugin-5" type="string" value="clock">
+      <property name="digital-time-font" type="string" value="Sans 18"/>
+      <property name="digital-layout" type="uint" value="3"/>
+    </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="plugin-7" type="string" value="showdesktop"/>
       <property name="names-visible" type="array">
@@ -164,7 +167,7 @@
     </property>
     <property name="plugin-22" type="string" value="directorymenu">
       <property name="base-directory" type="string" value="/home/#-ur_login-#/Share"/>
-      <property name="icon-name" type="string" value="gnome-fs-share"/>
+      <property name="icon-name" type="string" value="folder-remote"/>
       <property name="hidden-files" type="bool" value="false"/>
       <property name="file-pattern" type="string" value="*"/>
     </property>

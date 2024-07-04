@@ -1,5 +1,0 @@
-# Calculate format=patch name=sshd_config
-<reg>\n.*[^"]PermitRootLogin.*</reg>
-<text></text>
-<reg>\nUsePAM</reg>
-<text>\nPermitRootLogin yes\nUsePAM</text>

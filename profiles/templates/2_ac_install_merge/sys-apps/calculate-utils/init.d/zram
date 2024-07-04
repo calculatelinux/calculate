@@ -34,7 +34,7 @@ start()
 			if [[ ${DISKSIZE:-200%} =~ ^([0-9]+)%$ ]]
 			then
 				local perc="${BASH_REMATCH[1]}"
-				local memorysize="$(free -b | awk '{if ($1 == "Mem:") {print $2}}')"
+				local memorysize="$(LANG=C free -b | awk '{if ($1 == "Mem:") {print $2}}')"
 				disksize="$(( $memorysize * $perc / 100 ))"
 			else
 				disksize="${DISKSIZE}"

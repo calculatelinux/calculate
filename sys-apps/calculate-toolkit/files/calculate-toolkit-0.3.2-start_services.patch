@@ -1,0 +1,13 @@
+diff --git a/cl-lxc b/cl-lxc
+index db88e37..d18b29d 100755
+--- a/cl-lxc
++++ b/cl-lxc
+@@ -598,7 +598,7 @@ change_profile(){
+ 	echo $"Install packages from profile $lxc_profile"
+ 	einfo $"Launching package update"
+ 	lxc-attach $name_lxc -- cl-update -f
+-	eend
++	lxc-attach $name_lxc -- openrc
+ }
+ 
+ update_prepare(){

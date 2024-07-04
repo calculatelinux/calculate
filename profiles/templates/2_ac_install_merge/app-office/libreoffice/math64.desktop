@@ -1,9 +1,0 @@
-# Calculate format=kde os_install_arch_machine==x86_64 path=/usr/lib64/libreoffice/share/xdg name=math.desktop
-
-[Desktop Entry]
-Categories=Office
-#?pkg(app-office/libreoffice)>=7#
-Icon=/usr/share/icons/hicolor/256x256/apps/libreoffice-math.png
-#!pkg#
-Icon=/usr/share/icons/gnome/256x256/apps/libreoffice-math.png
-#pkg#

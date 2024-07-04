@@ -5,7 +5,7 @@
 EAPI=7
 
 DESCRIPTION="Calculate Linux theme for gensplash"
-HOMEPAGE="http://www.calculate-linux.org/packages/media-gfx/calculate-splash-themes"
+HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/calculate-splash-themes"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -14,7 +14,7 @@ IUSE="+silent +silent-shutdown"
 
 REQUIRED_USE="|| ( silent silent-shutdown )"
 
-SRC_URI="silent? ( 
+SRC_URI="silent? (
 		https://mirror.calculate-linux.org/themes/calculate/splash-silent-${PV}.png -> ${PN}-silent-${PV}.png
 	)
 	silent-shutdown? (
@@ -44,4 +44,3 @@ src_install() {
 		newins "${DISTDIR}"/${PN}-shutdown-${PV}.jpg splash-shutdown.jpg
 	fi
 }
-

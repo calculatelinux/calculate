@@ -1,0 +1,4 @@
+# Calculate path=/etc/docker exists(/etc/docker/daemon.json)!=&&exists(/var/lib/docker)!=
+{
+  "data-root": "/var/calculate/docker"
+}

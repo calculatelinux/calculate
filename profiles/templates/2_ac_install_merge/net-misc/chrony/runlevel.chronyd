@@ -1,0 +1,1 @@
+# Calculate path=/etc/runlevels/default name=#-cut(1,.)-# link=/etc/init.d/#-cut(1,.)-# symbolic ini(runlevels.chrony)!=on&&ini(runlevels.chrony,on)==||grep(/var/lib/calculate/-runlevels-chrony,/chrony)!=

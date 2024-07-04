@@ -36,8 +36,9 @@ grep_modules() {
 before_mods=( $(grep_modules) )
 
 #?ac_install_disk==on#
-LANG=#-install.os_install_locale_locale /bin/chroot #-cl_chroot_path-# grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
+LANG=#-install.os_install_locale_locale-# /bin/chroot #-cl_chroot_path-# grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
 #!ac_install_disk#
+/usr/sbin/grub-install &>/dev/null
 /usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
 #ac_install_disk#
 res=$?

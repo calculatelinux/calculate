@@ -1,0 +1,3 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-# rebuild=sys-apps/openrc
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#

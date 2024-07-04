@@ -1,0 +1,2 @@
+# need old ffmpeg-4
+media-tv/kodi -system-ffmpeg

@@ -1,4 +1,0 @@
-# Calculate format=kernel name=.config
-CONFIG_ARCH_USE_MEMREMAP_PROT=y
-# CONFIG_BPF_UNPRIV_DEFAULT_OFF is not set
-# CONFIG_GCC_PLUGIN_CYC_COMPLEXITY is not set

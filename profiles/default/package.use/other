@@ -1,2 +1,0 @@
-# fixed to AMD CPU
-dev-libs/nettle -cpu_flags_x86_aes

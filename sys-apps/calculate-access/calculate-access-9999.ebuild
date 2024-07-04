@@ -7,7 +7,7 @@ EAPI="7"
 inherit git-r3
 
 DESCRIPTION="Cryptodata management tools"
-HOMEPAGE="http://www.calculate-linux.org/main/en/calculate_access"
+HOMEPAGE="https://www.calculate-linux.org/main/en/calculate_access"
 SRC_URI=""
 EGIT_REPO_URI="git://git.calculate-linux.org/calculate-access.git"
 

@@ -6,7 +6,7 @@ EAPI=7
 inherit pam
 
 DESCRIPTION="System authentification update checkup tool"
-HOMEPAGE="http://www.calculate-linux.org/main/en/calculate2"
+HOMEPAGE="https://www.calculate-linux.org/main/en/calculate2"
 SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"

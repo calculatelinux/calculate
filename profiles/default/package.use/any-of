@@ -13,9 +13,6 @@ www-servers/uwsgi python
 # any-of ( java lua mono perl php python ruby tcl )
 dev-libs/xapian-bindings python
 
-# at-most-one-of ( alsa pulseaudio )
-games-action/descent3-demo alsa -pulseaudio
-
 # any-of ( mysql postgres sqlite )
 mail-client/roundcube postgres -sqlite
 
@@ -28,6 +25,13 @@ media-plugins/vdr-streamdev server
 # connection-sharing? ( any-of ( iptables nftables ) )
 net-misc/networkmanager iptables
 
-# any-of ( gnome-keyring pass )
-app-containers/docker-credential-helpers gnome-keyring
+# any-of ( keyring pass )
+app-containers/docker-credential-helpers keyring
 
+# opengl? ( any-of ( fltk gui ) )
+sci-mathematics/octave gui
+
+# any-of ( qt5 qt6 )
+dev-libs/qxlsx qt5
+dev-python/pyotherside qt5
+sci-astronomy/calcmysky qt5

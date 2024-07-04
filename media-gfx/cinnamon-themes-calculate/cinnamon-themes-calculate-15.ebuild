@@ -5,7 +5,7 @@
 EAPI=7
 
 DESCRIPTION="Cinnamon theme for Calculate Linux"
-HOMEPAGE="http://www.calculate-linux.org/packages/media-gfx/cinnamon-themes-calculate"
+HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/cinnamon-themes-calculate"
 
 LICENSE="Apache-2.0"
 SLOT="0"

@@ -1,8 +1,3 @@
 ~app-crypt/shim-signed-0.2 amd64
 ~media-gfx/epsonscan2-6.6.42.0 amd64
-~net-im/viber-16.1.0.37 amd64
-~net-misc/modem-manager-gui-0.0.18 amd64
-~net-p2p/opentracker-20170428 amd64
-~net-wireless/rtl8814au-20211122 amd64
-~net-wireless/rtl8821ce-20211119 amd64
-~net-wireless/rtl8821cu-20211114 amd64
+~net-wireless/rtl8821cu-20230910 amd64

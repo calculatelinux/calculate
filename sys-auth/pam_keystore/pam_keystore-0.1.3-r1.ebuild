@@ -6,7 +6,7 @@ EAPI=7
 inherit pam
 
 DESCRIPTION="Keeps a login and the password the user in the kernel"
-HOMEPAGE="http://www.calculate-linux.org/main/en/pam_keystore"
+HOMEPAGE="https://www.calculate-linux.org/main/en/pam_keystore"
 SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"

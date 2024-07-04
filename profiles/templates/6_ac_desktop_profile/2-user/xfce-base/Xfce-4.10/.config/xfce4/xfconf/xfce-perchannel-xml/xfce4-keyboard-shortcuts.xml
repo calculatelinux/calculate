@@ -17,9 +17,6 @@
       <property name="XF86HomePage" type="string" value="wmctrl -s 0"/>
 #pkg#
       <property name="XF86Display" type="string" value=""/>
-#?pkg(net-im/gajim)!=#
-      <property name="&lt;Primary&gt;grave" type="string" value="gajim-remote show_next_pending_event"/>
-#pkg#
     </property>
   </property>
 </channel>

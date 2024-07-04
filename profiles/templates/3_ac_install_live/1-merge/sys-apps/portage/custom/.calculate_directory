@@ -1,0 +1,1 @@
+# Calculate chown=portage:portage path=/var/calculate/repos pkg(sys-apps/calculate-utils:3)>=3.6.6&&exists(/var/calculate/repos/custom/metadata/layout.conf)==

@@ -13,6 +13,28 @@
                 <artist>Calculate Ltd. http://www.calculate-linux.org</artist>
         </wallpaper>
 #exists#
+#?exists(/usr/share/backgrounds/calculate/Calculate Linux 22.jpg)!=#
+        <wallpaper deleted="false">
+                <name>Calculate Linux 22</name>
+                <filename>/usr/share/backgrounds/calculate/Calculate Linux 22.jpg</filename>
+                <options>zoom</options>
+                <shade_type>solid</shade_type>
+                <pcolor>#000000</pcolor>
+                <scolor>#000000</scolor>
+                <artist>Calculate Ltd. http://www.calculate-linux.org</artist>
+        </wallpaper>
+#exists#
+#?exists(/usr/share/backgrounds/calculate/Calculate Linux 21.jpg)!=#
+        <wallpaper deleted="false">
+                <name>Calculate Linux 21</name>
+                <filename>/usr/share/backgrounds/calculate/Calculate Linux 21.jpg</filename>
+                <options>zoom</options>
+                <shade_type>solid</shade_type>
+                <pcolor>#000000</pcolor>
+                <scolor>#000000</scolor>
+                <artist>Calculate Ltd. http://www.calculate-linux.org</artist>
+        </wallpaper>
+#exists#
 #?exists(/usr/share/backgrounds/calculate/Calculate Linux 17.jpg)!=#
         <wallpaper deleted="false">
                 <name>Calculate Linux 17</name>

@@ -5,7 +5,7 @@
 EAPI=7
 
 DESCRIPTION="Calculate Linux theme for gensplash"
-HOMEPAGE="http://www.calculate-linux.org/packages/media-gfx/calculate-splash-themes"
+HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/calculate-splash-themes"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -14,7 +14,7 @@ IUSE="+verbose +silent +silent-shutdown"
 
 REQUIRED_USE="|| ( verbose silent silent-shutdown )"
 
-SRC_URI="silent? ( 
+SRC_URI="silent? (
 		https://mirror.calculate-linux.org/themes/calculate/splash-silent-17.jpg -> ${PN}-silent-17.jpg
 	verbose? (
 		https://mirror.calculate-linux.org/themes/calculate/splash-verbose-17-r1.jpg -> ${PN}-verbose-17-r1.jpg
@@ -30,7 +30,6 @@ DEPEND="media-gfx/splashutils
 RDEPEND="${DEPEND}
 	|| ( media-gfx/imagemagick
 	media-gfx/graphicsmagick )"
-
 
 S="${WORKDIR}"
 
@@ -49,4 +48,3 @@ src_install() {
 		newins "${DISTDIR}"/${PN}-verbose-${PV}-r1.jpg splash-verbose.jpg
 	fi
 }
-

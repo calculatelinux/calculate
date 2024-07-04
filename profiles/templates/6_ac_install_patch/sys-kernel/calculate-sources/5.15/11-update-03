@@ -1,8 +1,0 @@
-# Calculate format=kernel name=.config
-CONFIG_I2C_HID_CORE=y
-# CONFIG_L2TP_DEBUGFS is not set
-CONFIG_L2TP_ETH=m
-CONFIG_L2TP_IP=m
-CONFIG_L2TP=m
-CONFIG_L2TP_V3=y
-CONFIG_PPPOL2TP=m

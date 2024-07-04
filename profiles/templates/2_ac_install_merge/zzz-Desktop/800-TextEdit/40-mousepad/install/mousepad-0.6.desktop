@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/org.xfce.mousepad.desktop name=calculate-textedit.desktop mirror pkg(app-editors/mousepad)>=0.6
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

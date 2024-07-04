@@ -1,0 +1,20 @@
+diff --git a/cl-lxc b/cl-lxc
+index f93ee15..2e5a224 100755
+--- a/cl-lxc
++++ b/cl-lxc
+@@ -544,6 +544,7 @@ create_lxc(){
+ 	EOF
+ 	chmod 755 $path_lxc/rootfs/etc/local.d/firststart.start
+ 
++	mkdir -p $path_lxc/rootfs/etc/calculate
+ 	cat <<- EOF > $path_lxc/rootfs/etc/calculate/calculate.env
+ 	# Parameters for firststart.start
+ 	[install]
+@@ -631,6 +632,7 @@ update_prepare(){
+ 	chmod 755 $path_lxc/rootfs/etc/local.d/firststart.start
+ 
+ 	# если обновляемый контейнер ни разу не запускался, возьем временный конфиг
++	mkdir -p $path_lxc/rootfs/etc/calculate
+ 	if [[ -e ${path_work}/${name_upgrading}/rootfs${num_cur}/etc/calculate/calculate.env ]]; then
+ 		cp ${path_work}/${name_upgrading}/rootfs${num_cur}/etc/calculate/calculate.env \
+ 			$path_lxc/rootfs/etc/calculate

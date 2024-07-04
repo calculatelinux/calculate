@@ -1,0 +1,6 @@
+# Calculate format=xml_xfce path=~/.config/xfce4/xfconf/xfce-perchannel-xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="displays" version="1.0">
+  <property name="Notify" type="int" value="0"/>
+</channel>

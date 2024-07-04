@@ -1,15 +1,11 @@
 # mask portage wgetpaste
->app-text/wgetpaste-2.25-r4
+>=app-text/wgetpaste-2.35
 
 # prevent automagic depends
 sys-libs/db:6.0
 
+# some bugs
+=x11-misc/sddm-0.20.0-r1
+
 # not compiled
-=net-vpn/libreswan-4.7
-=sci-libs/cifparse-obj-7.105
-
-# removed cool emoji
->media-fonts/noto-emoji-20200317-r1
-
-# downgrades version net-libs/libtorrent-rasterbar
-=net-p2p/qbittorrent-4.4.5-r2
+=gnome-base/gnome-panel-3.50.0

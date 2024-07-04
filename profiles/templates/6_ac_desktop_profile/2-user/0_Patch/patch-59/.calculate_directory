@@ -1,0 +1,1 @@
+# Calculate append=skip mergepkg(xfce-extra/xfce4-xkb-plugin)!=&&ini(update.patch)!=off&&ini(ver.patch)<59

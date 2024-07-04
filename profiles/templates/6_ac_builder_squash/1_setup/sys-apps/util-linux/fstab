@@ -1,6 +1,6 @@
 # Calculate protected
 
-/dev/loop0	/		squashfs ro,defaults		0 0
+/dev/loop0	/		squashfs rw,defaults		0 0
 
 proc		/proc		proc	defaults		0 0
 shm		/dev/shm	tmpfs	nodev,nosuid,noexec	0 0

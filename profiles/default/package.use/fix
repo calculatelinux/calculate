@@ -10,8 +10,10 @@ media-libs/openimageio -cpu_flags_x86_f16c -cpu_flags_x86_avx -cpu_flags_x86_avx
 # block <media-gfx/imagemagick-7:=
 app-misc/graphlcd-base -imagemagick
 
-# binary package causes problems with claws-mail, rdesktop, etc. on CPU without support for this feature
-dev-libs/nettle -cpu_flags_x86_sha
+# [-cpu_flags_x86_aes] fixed to AMD CPU
+# [-cpu_flags_x86_pclmul] fix crash xfce4-terminal, mate-terminal, geany on core2duo
+# [-cpu_flags_x86_sha] binary package causes problems with claws-mail, rdesktop, etc. on CPU without support for this feature
+dev-libs/nettle -cpu_flags_x86_aes -cpu_flags_x86_pclmul -cpu_flags_x86_sha
 
 # not compiled
 acct-user/vdr legacy-homedir
@@ -19,7 +21,8 @@ app-arch/brotli python
 app-misc/lcd4linux -lcd_devices_curses
 app-misc/lcdproc -lcd_devices_g15
 dev-java/sbt binary
-=kde-apps/cantor-21.12.3 -analitza -handbook -postscript
+dev-lang/python -pgo
+media-video/vlc -vdpau
 
 # not compile media-libs/osl
 media-gfx/blender -osl
@@ -35,3 +38,7 @@ www-client/firefox -system-av1
 
 # not compiled kde-apps/cantor-22.08.3
 kde-apps/kdeedu-meta -webengine
+
+# berkdb requires db-4.8
+net-p2p/bitcoin-qt sqlite -berkdb
+net-p2p/bitcoind sqlite -berkdb

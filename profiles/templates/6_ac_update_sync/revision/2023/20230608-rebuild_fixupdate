@@ -1,0 +1,4 @@
+# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-)-#  rebuild=dev-libs/libixion,dev-libs/liborcus,dev-cpp/libcmis,net-libs/libtorrent-rasterbar,dev-util/mdds
+
+[overlay-calculate]
+revision = #-cut(0)-#

@@ -6,7 +6,6 @@ mate-base/caja gtk3
 mate-base/libmatekbd gtk3
 mate-base/mate-applets gtk3
 mate-base/mate-applets-meta gtk3
-mate-base/mate-control-center gtk3
 mate-base/mate-desktop gtk3
 mate-base/mate gtk3
 mate-base/mate-panel gtk3

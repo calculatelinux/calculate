@@ -4,6 +4,10 @@
 #-ini(runlevels.syslog-ng,)-#
 #ini#
 
+#?ini(runlevels.metalog)==on&&pkg(app-admin/metalog)==#
+#-ini(runlevels.metalog,)-#
+#ini#
+
 #?ini(runlevels.alsa-utils)==on&&pkg(media-sound/alsa-utils)==#
 #-ini(runlevels.alsa-utils,)-#
 #ini#

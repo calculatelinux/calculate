@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>maintainer-wanted</herd>
-	<longdescription lang="en">
-Runs other programs with the user password, kept in the Linux kernel
-</longdescription>
-	<use>
-		<flag name="kde">Use KDE libs.</flag>
-		<flag name="rdesktop">Include net-misc/rdesktop package.</flag>
-		<flag name="freerdp">Include net-misc/freerdp package.</flag>
-	</use>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        Help to run programs like rdesktop, xfreerdp and KDE kstart with the user password,
+        kept in the Linux kernel
+    </longdescription>
+    <use>
+        <flag name="kde">Use KDE libs.</flag>
+        <flag name="rdesktop">Include net-misc/rdesktop package.</flag>
+        <flag name="freerdp">Include net-misc/freerdp package.</flag>
+    </use>
 </pkgmetadata>
 

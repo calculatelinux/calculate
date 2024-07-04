@@ -20,7 +20,7 @@ fi
 inherit autotools readme.gentoo-r1 systemd toolchain-funcs
 
 DESCRIPTION="Calculate plugin for plymouth"
-HOMEPAGE="https://www.calculate-linux.org"
+HOMEPAGE="https://www.calculate-linux.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -52,7 +52,6 @@ src_prepare() {
 	sed -i 's/two_step/calculate/g' ${S}/src/plugins/splash/two-step/Makefile.*
 	eautoreconf
 }
-
 
 src_configure() {
 	local myconf=(

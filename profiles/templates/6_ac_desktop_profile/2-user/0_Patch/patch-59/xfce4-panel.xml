@@ -1,0 +1,3 @@
+# Calculate multiline format=patch path=~/.config/xfce4/xfconf/xfce-perchannel-xml
+<reg>"gnome-fs-share"</reg>
+<text>"folder-remote"</text>

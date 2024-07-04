@@ -1,0 +1,4100 @@
+diff --git a/bin/named/Makefile.in b/bin/named/Makefile.in
+index dba64e0..6824402 100644
+--- a/bin/named/Makefile.in
++++ b/bin/named/Makefile.in
+@@ -30,10 +30,10 @@ VERSION=@BIND9_VERSION@
+ #
+ # Add database drivers here.
+ #
+-DBDRIVER_OBJS =
+-DBDRIVER_SRCS =
++DBDRIVER_OBJS =		ldapdb.@O@
++DBDRIVER_SRCS =		ldapdb.c
+ DBDRIVER_INCLUDES =
+-DBDRIVER_LIBS =
++DBDRIVER_LIBS =		-lldap -llber -ldb
+ 
+ DLZ_DRIVER_DIR =	${top_srcdir}/contrib/dlz/drivers
+ 
+diff --git a/bin/named/main.c b/bin/named/main.c
+index 728bb61..271182e 100644
+--- a/bin/named/main.c
++++ b/bin/named/main.c
+@@ -99,6 +99,7 @@
+  * Include header files for database drivers here.
+  */
+ /* #include "xxdb.h" */
++#include "ldapdb.h"
+ 
+ #ifdef CONTRIB_DLZ
+ /*
+@@ -994,6 +995,8 @@ dump_symboltable(void) {
+ 		return;
+ 	}
+ 
++	ldapdb_clear();
++
+ 	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
+ 		      NAMED_LOGMODULE_MAIN, ISC_LOG_DEBUG(99), "Symbol table:");
+ 
+@@ -1295,6 +1298,24 @@ setup(void) {
+ 	}
+ #endif /* if CONTRIB_DLZ */
+ 
++        result = ldapdb_init();
++        if (result != ISC_R_SUCCESS)
++        {
++            isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_MAIN,
++                          ISC_LOG_ERROR, 
++                          "SDB ldap module initialisation failed: %s.",
++                          isc_result_totext(result)
++                );
++            isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_MAIN,
++                          ISC_LOG_ERROR, 
++                          "SDB ldap zone database will be unavailable."
++                );
++        }else
++            isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_MAIN,
++                          ISC_LOG_NOTICE, "SDB ldap zone database module loaded."
++                         );
++
++
+ 	named_server_create(named_g_mctx, &named_g_server);
+ 	ENSURE(named_g_server != NULL);
+ 	sctx = named_g_server->sctx;
+@@ -1373,6 +1394,8 @@ cleanup(void) {
+ 	dlz_dlopen_clear();
+ #endif /* ifdef ISC_DLZ_DLOPEN */
+ 
++	ldapdb_clear();
++
+ 	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
+ 		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE, "exiting");
+ 	named_log_shutdown();
+diff --git a/bin/named/main.c.orig b/bin/named/main.c.orig
+new file mode 100644
+index 0000000..728bb61
+--- /dev/null
++++ b/bin/named/main.c.orig
+@@ -0,0 +1,1642 @@
++/*
++ * Copyright (C) Internet Systems Consortium, Inc. ("ISC")
++ *
++ * This Source Code Form is subject to the terms of the Mozilla Public
++ * License, v. 2.0. If a copy of the MPL was not distributed with this
++ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
++ *
++ * See the COPYRIGHT file distributed with this work for additional
++ * information regarding copyright ownership.
++ */
++
++/*! \file */
++
++#include <ctype.h>
++#include <inttypes.h>
++#include <stdbool.h>
++#include <stdlib.h>
++#include <string.h>
++#include <uv.h>
++
++#include <isc/app.h>
++#include <isc/backtrace.h>
++#include <isc/commandline.h>
++#include <isc/dir.h>
++#include <isc/file.h>
++#include <isc/hash.h>
++#include <isc/hp.h>
++#include <isc/httpd.h>
++#include <isc/netmgr.h>
++#include <isc/os.h>
++#include <isc/platform.h>
++#include <isc/print.h>
++#include <isc/resource.h>
++#include <isc/stdio.h>
++#include <isc/string.h>
++#include <isc/task.h>
++#include <isc/timer.h>
++#include <isc/util.h>
++
++#include <dns/dispatch.h>
++#include <dns/dyndb.h>
++#include <dns/name.h>
++#include <dns/resolver.h>
++#include <dns/result.h>
++#include <dns/view.h>
++
++#include <dst/result.h>
++
++#include <isccc/result.h>
++#if USE_PKCS11
++#include <pk11/result.h>
++#endif /* if USE_PKCS11 */
++
++#include <dlz/dlz_dlopen_driver.h>
++
++#ifdef HAVE_GPERFTOOLS_PROFILER
++#include <gperftools/profiler.h>
++#endif /* ifdef HAVE_GPERFTOOLS_PROFILER */
++
++#ifdef HAVE_JSON_C
++#include <json_c_version.h>
++#endif /* HAVE_JSON_C */
++
++#ifdef HAVE_GEOIP2
++#include <maxminddb.h>
++#endif /* ifdef HAVE_GEOIP2 */
++
++/*
++ * Defining NAMED_MAIN provides storage declarations (rather than extern)
++ * for variables in named/globals.h.
++ */
++#define NAMED_MAIN 1
++
++#include <ns/interfacemgr.h>
++
++#include <named/builtin.h>
++#include <named/config.h>
++#include <named/control.h>
++#include <named/fuzz.h>
++#include <named/globals.h> /* Explicit, though named/log.h includes it. */
++#include <named/log.h>
++#include <named/main.h>
++#include <named/os.h>
++#include <named/server.h>
++#ifdef HAVE_LIBSCF
++#include <named/smf_globals.h>
++#endif /* ifdef HAVE_LIBSCF */
++
++#include <openssl/crypto.h>
++#include <openssl/opensslv.h>
++#ifdef HAVE_LIBXML2
++#include <libxml/parser.h>
++#include <libxml/xmlversion.h>
++#endif /* ifdef HAVE_LIBXML2 */
++#ifdef HAVE_ZLIB
++#include <zlib.h>
++#endif /* ifdef HAVE_ZLIB */
++/*
++ * Include header files for database drivers here.
++ */
++/* #include "xxdb.h" */
++
++#ifdef CONTRIB_DLZ
++/*
++ * Include contributed DLZ drivers if appropriate.
++ */
++#include <dlz/dlz_drivers.h>
++#endif /* ifdef CONTRIB_DLZ */
++
++/*
++ * The maximum number of stack frames to dump on assertion failure.
++ */
++#ifndef BACKTRACE_MAXFRAME
++#define BACKTRACE_MAXFRAME 128
++#endif /* ifndef BACKTRACE_MAXFRAME */
++
++LIBISC_EXTERNAL_DATA extern int isc_dscp_check_value;
++LIBDNS_EXTERNAL_DATA extern unsigned int dns_zone_mkey_hour;
++LIBDNS_EXTERNAL_DATA extern unsigned int dns_zone_mkey_day;
++LIBDNS_EXTERNAL_DATA extern unsigned int dns_zone_mkey_month;
++
++static bool want_stats = false;
++static char program_name[NAME_MAX] = "named";
++static char absolute_conffile[PATH_MAX];
++static char saved_command_line[4096] = { 0 };
++static char ellipsis[5] = { 0 };
++static char version[512];
++static unsigned int maxsocks = 0;
++static int maxudp = 0;
++
++/*
++ * -T options:
++ */
++static bool dropedns = false;
++static bool ednsformerr = false;
++static bool ednsnotimp = false;
++static bool ednsrefused = false;
++static bool fixedlocal = false;
++static bool noaa = false;
++static bool noedns = false;
++static bool nonearest = false;
++static bool nosoa = false;
++static bool notcp = false;
++static bool sigvalinsecs = false;
++
++/*
++ * -4 and -6
++ */
++static bool disable6 = false;
++static bool disable4 = false;
++
++void
++named_main_earlywarning(const char *format, ...) {
++	va_list args;
++
++	va_start(args, format);
++	if (named_g_lctx != NULL) {
++		isc_log_vwrite(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			       NAMED_LOGMODULE_MAIN, ISC_LOG_WARNING, format,
++			       args);
++	} else {
++		fprintf(stderr, "%s: ", program_name);
++		vfprintf(stderr, format, args);
++		fprintf(stderr, "\n");
++		fflush(stderr);
++	}
++	va_end(args);
++}
++
++void
++named_main_earlyfatal(const char *format, ...) {
++	va_list args;
++
++	va_start(args, format);
++	if (named_g_lctx != NULL) {
++		isc_log_vwrite(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			       NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL, format,
++			       args);
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL,
++			      "exiting (due to early fatal error)");
++	} else {
++		fprintf(stderr, "%s: ", program_name);
++		vfprintf(stderr, format, args);
++		fprintf(stderr, "\n");
++		fflush(stderr);
++	}
++	va_end(args);
++
++	exit(1);
++}
++
++ISC_PLATFORM_NORETURN_PRE static void
++assertion_failed(const char *file, int line, isc_assertiontype_t type,
++		 const char *cond) ISC_PLATFORM_NORETURN_POST;
++
++static void
++assertion_failed(const char *file, int line, isc_assertiontype_t type,
++		 const char *cond) {
++	void *tracebuf[BACKTRACE_MAXFRAME];
++	int i, nframes;
++	isc_result_t result;
++	const char *logsuffix = "";
++	const char *fname;
++
++	/*
++	 * Handle assertion failures.
++	 */
++
++	if (named_g_lctx != NULL) {
++		/*
++		 * Reset the assertion callback in case it is the log
++		 * routines causing the assertion.
++		 */
++		isc_assertion_setcallback(NULL);
++
++		result = isc_backtrace_gettrace(tracebuf, BACKTRACE_MAXFRAME,
++						&nframes);
++		if (result == ISC_R_SUCCESS && nframes > 0) {
++			logsuffix = ", back trace";
++		}
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL,
++			      "%s:%d: %s(%s) failed%s", file, line,
++			      isc_assertion_typetotext(type), cond, logsuffix);
++		if (result == ISC_R_SUCCESS) {
++			for (i = 0; i < nframes; i++) {
++				unsigned long offset;
++
++				fname = NULL;
++				result = isc_backtrace_getsymbol(
++					tracebuf[i], &fname, &offset);
++				if (result == ISC_R_SUCCESS) {
++					isc_log_write(named_g_lctx,
++						      NAMED_LOGCATEGORY_GENERAL,
++						      NAMED_LOGMODULE_MAIN,
++						      ISC_LOG_CRITICAL,
++						      "#%d %p in %s()+0x%lx", i,
++						      tracebuf[i], fname,
++						      offset);
++				} else {
++					isc_log_write(named_g_lctx,
++						      NAMED_LOGCATEGORY_GENERAL,
++						      NAMED_LOGMODULE_MAIN,
++						      ISC_LOG_CRITICAL,
++						      "#%d %p in ??", i,
++						      tracebuf[i]);
++				}
++			}
++		}
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL,
++			      "exiting (due to assertion failure)");
++	} else {
++		fprintf(stderr, "%s:%d: %s(%s) failed\n", file, line,
++			isc_assertion_typetotext(type), cond);
++		fflush(stderr);
++	}
++
++	if (named_g_coreok) {
++		abort();
++	}
++	exit(1);
++}
++
++ISC_PLATFORM_NORETURN_PRE static void
++library_fatal_error(const char *file, int line, const char *format,
++		    va_list args)
++	ISC_FORMAT_PRINTF(3, 0) ISC_PLATFORM_NORETURN_POST;
++
++static void
++library_fatal_error(const char *file, int line, const char *format,
++		    va_list args) {
++	/*
++	 * Handle isc_error_fatal() calls from our libraries.
++	 */
++
++	if (named_g_lctx != NULL) {
++		/*
++		 * Reset the error callback in case it is the log
++		 * routines causing the assertion.
++		 */
++		isc_error_setfatal(NULL);
++
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL,
++			      "%s:%d: fatal error:", file, line);
++		isc_log_vwrite(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			       NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL, format,
++			       args);
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_CRITICAL,
++			      "exiting (due to fatal error in library)");
++	} else {
++		fprintf(stderr, "%s:%d: fatal error: ", file, line);
++		vfprintf(stderr, format, args);
++		fprintf(stderr, "\n");
++		fflush(stderr);
++	}
++
++	if (named_g_coreok) {
++		abort();
++	}
++	exit(1);
++}
++
++static void
++library_unexpected_error(const char *file, int line, const char *format,
++			 va_list args) ISC_FORMAT_PRINTF(3, 0);
++
++static void
++library_unexpected_error(const char *file, int line, const char *format,
++			 va_list args) {
++	/*
++	 * Handle isc_error_unexpected() calls from our libraries.
++	 */
++
++	if (named_g_lctx != NULL) {
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_ERROR,
++			      "%s:%d: unexpected error:", file, line);
++		isc_log_vwrite(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			       NAMED_LOGMODULE_MAIN, ISC_LOG_ERROR, format,
++			       args);
++	} else {
++		fprintf(stderr, "%s:%d: fatal error: ", file, line);
++		vfprintf(stderr, format, args);
++		fprintf(stderr, "\n");
++		fflush(stderr);
++	}
++}
++
++static void
++usage(void) {
++	fprintf(stderr, "usage: named [-4|-6] [-c conffile] [-d debuglevel] "
++			"[-E engine] [-f|-g]\n"
++			"             [-n number_of_cpus] [-p port] [-s] "
++			"[-S sockets] [-t chrootdir]\n"
++			"             [-u username] [-U listeners] "
++			"[-m {usage|trace|record|size|mctx}]\n"
++			"usage: named [-v|-V]\n");
++}
++
++static void
++save_command_line(int argc, char *argv[]) {
++	int i;
++	char *dst = saved_command_line;
++	char *eob = saved_command_line + sizeof(saved_command_line) - 1;
++	char *rollback = dst;
++
++	for (i = 1; i < argc && dst < eob; i++) {
++		char *src = argv[i];
++		bool quoted = false;
++
++		rollback = dst;
++		*dst++ = ' ';
++
++		while (*src != '\0' && dst < eob) {
++			if (isalnum(*(unsigned char *)src) || *src == ',' ||
++			    *src == '-' || *src == '_' || *src == '.' ||
++			    *src == '/')
++			{
++				*dst++ = *src++;
++			} else if (isprint(*(unsigned char *)src)) {
++				if (dst + 2 >= eob) {
++					goto add_ellipsis;
++				}
++				*dst++ = '\\';
++				*dst++ = *src++;
++			} else {
++				/*
++				 * Control character found in the input,
++				 * quote the whole arg and restart
++				 */
++				if (!quoted) {
++					dst = rollback;
++					src = argv[i];
++
++					if (dst + 3 >= eob) {
++						goto add_ellipsis;
++					}
++
++					*dst++ = ' ';
++					*dst++ = '$';
++					*dst++ = '\'';
++
++					quoted = true;
++					continue;
++				} else {
++					char tmp[5];
++					int c = snprintf(tmp, sizeof(tmp),
++							 "\\%03o", *src++);
++					if (dst + c >= eob) {
++						goto add_ellipsis;
++					}
++					memmove(dst, tmp, c);
++					dst += c;
++				}
++			}
++		}
++		if (quoted) {
++			if (dst == eob) {
++				goto add_ellipsis;
++			}
++			*dst++ = '\'';
++		}
++	}
++
++	if (dst < eob) {
++		return;
++	}
++add_ellipsis:
++	dst = rollback;
++	*dst = '\0';
++	strlcpy(ellipsis, " ...", sizeof(ellipsis));
++}
++
++static int
++parse_int(char *arg, const char *desc) {
++	char *endp;
++	int tmp;
++	long int ltmp;
++
++	ltmp = strtol(arg, &endp, 10);
++	tmp = (int)ltmp;
++	if (*endp != '\0') {
++		named_main_earlyfatal("%s '%s' must be numeric", desc, arg);
++	}
++	if (tmp < 0 || tmp != ltmp) {
++		named_main_earlyfatal("%s '%s' out of range", desc, arg);
++	}
++	return (tmp);
++}
++
++static struct flag_def {
++	const char *name;
++	unsigned int value;
++	bool negate;
++} mem_debug_flags[] = { { "none", 0, false },
++			{ "trace", ISC_MEM_DEBUGTRACE, false },
++			{ "record", ISC_MEM_DEBUGRECORD, false },
++			{ "usage", ISC_MEM_DEBUGUSAGE, false },
++			{ "size", ISC_MEM_DEBUGSIZE, false },
++			{ "mctx", ISC_MEM_DEBUGCTX, false },
++			{ NULL, 0, false } },
++  mem_context_flags[] = { { "external", ISC_MEMFLAG_INTERNAL, true },
++			  { "fill", ISC_MEMFLAG_FILL, false },
++			  { "nofill", ISC_MEMFLAG_FILL, true },
++			  { NULL, 0, false } };
++
++static void
++set_flags(const char *arg, struct flag_def *defs, unsigned int *ret) {
++	bool clear = false;
++
++	for (;;) {
++		const struct flag_def *def;
++		const char *end = strchr(arg, ',');
++		int arglen;
++		if (end == NULL) {
++			end = arg + strlen(arg);
++		}
++		arglen = (int)(end - arg);
++		for (def = defs; def->name != NULL; def++) {
++			if (arglen == (int)strlen(def->name) &&
++			    memcmp(arg, def->name, arglen) == 0) {
++				if (def->value == 0) {
++					clear = true;
++				}
++				if (def->negate) {
++					*ret &= ~(def->value);
++				} else {
++					*ret |= def->value;
++				}
++				goto found;
++			}
++		}
++		named_main_earlyfatal("unrecognized flag '%.*s'", arglen, arg);
++	found:
++		if (clear || (*end == '\0')) {
++			break;
++		}
++		arg = end + 1;
++	}
++
++	if (clear) {
++		*ret = 0;
++	}
++}
++
++static void
++printversion(bool verbose) {
++	char rndcconf[PATH_MAX], *dot = NULL;
++#if defined(HAVE_GEOIP2)
++	isc_mem_t *mctx = NULL;
++	cfg_parser_t *parser = NULL;
++	cfg_obj_t *config = NULL;
++	const cfg_obj_t *defaults = NULL, *obj = NULL;
++#endif /* if defined(HAVE_GEOIP2) */
++
++	printf("%s %s%s%s <id:%s>\n", named_g_product, named_g_version,
++	       (*named_g_description != '\0') ? " " : "", named_g_description,
++	       named_g_srcid);
++
++	if (!verbose) {
++		return;
++	}
++
++	printf("running on %s\n", named_os_uname());
++	printf("built by %s with %s\n", named_g_builder, named_g_configargs);
++#ifdef __clang__
++	printf("compiled by CLANG %s\n", __VERSION__);
++#else /* ifdef __clang__ */
++#if defined(__ICC) || defined(__INTEL_COMPILER)
++	printf("compiled by ICC %s\n", __VERSION__);
++#else /* if defined(__ICC) || defined(__INTEL_COMPILER) */
++#ifdef __GNUC__
++	printf("compiled by GCC %s\n", __VERSION__);
++#endif /* ifdef __GNUC__ */
++#endif /* if defined(__ICC) || defined(__INTEL_COMPILER) */
++#endif /* ifdef __clang__ */
++#ifdef _MSC_VER
++	printf("compiled by MSVC %d\n", _MSC_VER);
++#endif /* ifdef _MSC_VER */
++#ifdef __SUNPRO_C
++	printf("compiled by Solaris Studio %x\n", __SUNPRO_C);
++#endif /* ifdef __SUNPRO_C */
++	printf("compiled with OpenSSL version: %s\n", OPENSSL_VERSION_TEXT);
++#if !defined(LIBRESSL_VERSION_NUMBER) && \
++	OPENSSL_VERSION_NUMBER >= 0x10100000L /* 1.1.0 or higher */
++	printf("linked to OpenSSL version: %s\n",
++	       OpenSSL_version(OPENSSL_VERSION));
++
++#else  /* if !defined(LIBRESSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= \
++	* 0x10100000L */
++	printf("linked to OpenSSL version: %s\n",
++	       SSLeay_version(SSLEAY_VERSION));
++#endif /* OPENSSL_VERSION_NUMBER >= 0x10100000L */
++	printf("compiled with libuv version: %d.%d.%d\n", UV_VERSION_MAJOR,
++	       UV_VERSION_MINOR, UV_VERSION_PATCH);
++	printf("linked to libuv version: %s\n", uv_version_string());
++#ifdef HAVE_LIBXML2
++	printf("compiled with libxml2 version: %s\n", LIBXML_DOTTED_VERSION);
++	printf("linked to libxml2 version: %s\n", xmlParserVersion);
++#endif /* ifdef HAVE_LIBXML2 */
++#if defined(HAVE_JSON_C)
++	printf("compiled with json-c version: %s\n", JSON_C_VERSION);
++	printf("linked to json-c version: %s\n", json_c_version());
++#endif /* if defined(HAVE_JSON_C) */
++#if defined(HAVE_ZLIB) && defined(ZLIB_VERSION)
++	printf("compiled with zlib version: %s\n", ZLIB_VERSION);
++	printf("linked to zlib version: %s\n", zlibVersion());
++#endif /* if defined(HAVE_ZLIB) && defined(ZLIB_VERSION) */
++#if defined(HAVE_GEOIP2)
++	/* Unfortunately, no version define on link time */
++	printf("linked to maxminddb version: %s\n", MMDB_lib_version());
++#endif /* if defined(HAVE_GEOIP2) */
++#if defined(HAVE_DNSTAP)
++	printf("compiled with protobuf-c version: %s\n", PROTOBUF_C_VERSION);
++	printf("linked to protobuf-c version: %s\n", protobuf_c_version());
++#endif /* if defined(HAVE_DNSTAP) */
++	printf("threads support is enabled\n\n");
++
++	/*
++	 * The default rndc.conf and rndc.key paths are in the same
++	 * directory, but named only has rndc.key defined internally.
++	 * We construct the rndc.conf path from it. (We could use
++	 * NAMED_SYSCONFDIR here but the result would look wrong on
++	 * Windows.)
++	 */
++	strlcpy(rndcconf, named_g_keyfile, sizeof(rndcconf));
++	dot = strrchr(rndcconf, '.');
++	if (dot != NULL) {
++		size_t len = dot - rndcconf + 1;
++		snprintf(dot + 1, PATH_MAX - len, "conf");
++	}
++
++	/*
++	 * Print default configuration paths.
++	 */
++	printf("default paths:\n");
++	printf("  named configuration:  %s\n", named_g_conffile);
++	printf("  rndc configuration:   %s\n", rndcconf);
++	printf("  DNSSEC root key:      %s\n", named_g_defaultbindkeys);
++	printf("  nsupdate session key: %s\n", named_g_defaultsessionkeyfile);
++	printf("  named PID file:       %s\n", named_g_defaultpidfile);
++	printf("  named lock file:      %s\n", named_g_defaultlockfile);
++#if defined(HAVE_GEOIP2)
++#define RTC(x) RUNTIME_CHECK((x) == ISC_R_SUCCESS)
++	isc_mem_create(&mctx);
++	RTC(cfg_parser_create(mctx, named_g_lctx, &parser));
++	RTC(named_config_parsedefaults(parser, &config));
++	RTC(cfg_map_get(config, "options", &defaults));
++	RTC(cfg_map_get(defaults, "geoip-directory", &obj));
++	if (cfg_obj_isstring(obj)) {
++		printf("  geoip-directory:      %s\n", cfg_obj_asstring(obj));
++	}
++	cfg_obj_destroy(parser, &config);
++	cfg_parser_destroy(&parser);
++	isc_mem_detach(&mctx);
++#endif /* HAVE_GEOIP2 */
++}
++
++static void
++parse_fuzz_arg(void) {
++	if (!strncmp(isc_commandline_argument, "client:", 7)) {
++		named_g_fuzz_addr = isc_commandline_argument + 7;
++		named_g_fuzz_type = isc_fuzz_client;
++	} else if (!strncmp(isc_commandline_argument, "tcp:", 4)) {
++		named_g_fuzz_addr = isc_commandline_argument + 4;
++		named_g_fuzz_type = isc_fuzz_tcpclient;
++	} else if (!strncmp(isc_commandline_argument, "resolver:", 9)) {
++		named_g_fuzz_addr = isc_commandline_argument + 9;
++		named_g_fuzz_type = isc_fuzz_resolver;
++	} else if (!strncmp(isc_commandline_argument, "http:", 5)) {
++		named_g_fuzz_addr = isc_commandline_argument + 5;
++		named_g_fuzz_type = isc_fuzz_http;
++	} else if (!strncmp(isc_commandline_argument, "rndc:", 5)) {
++		named_g_fuzz_addr = isc_commandline_argument + 5;
++		named_g_fuzz_type = isc_fuzz_rndc;
++	} else {
++		named_main_earlyfatal("unknown fuzzing type '%s'",
++				      isc_commandline_argument);
++	}
++}
++
++static void
++parse_T_opt(char *option) {
++	const char *p;
++	char *last = NULL;
++	/*
++	 * force the server to behave (or misbehave) in
++	 * specified ways for testing purposes.
++	 * dscp=x:     check that dscp values are as
++	 * 	       expected and assert otherwise.
++	 */
++	if (!strcmp(option, "dropedns")) {
++		dropedns = true;
++	} else if (!strncmp(option, "dscp=", 5)) {
++		isc_dscp_check_value = atoi(option + 5);
++	} else if (!strcmp(option, "ednsformerr")) {
++		ednsformerr = true;
++	} else if (!strcmp(option, "ednsnotimp")) {
++		ednsnotimp = true;
++	} else if (!strcmp(option, "ednsrefused")) {
++		ednsrefused = true;
++	} else if (!strcmp(option, "fixedlocal")) {
++		fixedlocal = true;
++	} else if (!strcmp(option, "keepstderr")) {
++		named_g_keepstderr = true;
++	} else if (!strcmp(option, "noaa")) {
++		noaa = true;
++	} else if (!strcmp(option, "noedns")) {
++		noedns = true;
++	} else if (!strcmp(option, "nonearest")) {
++		nonearest = true;
++	} else if (!strcmp(option, "nosoa")) {
++		nosoa = true;
++	} else if (!strcmp(option, "nosyslog")) {
++		named_g_nosyslog = true;
++	} else if (!strcmp(option, "notcp")) {
++		notcp = true;
++	} else if (!strcmp(option, "maxudp512")) {
++		maxudp = 512;
++	} else if (!strcmp(option, "maxudp1460")) {
++		maxudp = 1460;
++	} else if (!strncmp(option, "maxudp=", 7)) {
++		maxudp = atoi(option + 7);
++		if (maxudp <= 0) {
++			named_main_earlyfatal("bad maxudp");
++		}
++	} else if (!strncmp(option, "mkeytimers=", 11)) {
++		p = strtok_r(option + 11, "/", &last);
++		if (p == NULL) {
++			named_main_earlyfatal("bad mkeytimer");
++		}
++
++		dns_zone_mkey_hour = atoi(p);
++		if (dns_zone_mkey_hour == 0) {
++			named_main_earlyfatal("bad mkeytimer");
++		}
++
++		p = strtok_r(NULL, "/", &last);
++		if (p == NULL) {
++			dns_zone_mkey_day = (24 * dns_zone_mkey_hour);
++			dns_zone_mkey_month = (30 * dns_zone_mkey_day);
++			return;
++		}
++
++		dns_zone_mkey_day = atoi(p);
++		if (dns_zone_mkey_day < dns_zone_mkey_hour) {
++			named_main_earlyfatal("bad mkeytimer");
++		}
++
++		p = strtok_r(NULL, "/", &last);
++		if (p == NULL) {
++			dns_zone_mkey_month = (30 * dns_zone_mkey_day);
++			return;
++		}
++
++		dns_zone_mkey_month = atoi(p);
++		if (dns_zone_mkey_month < dns_zone_mkey_day) {
++			named_main_earlyfatal("bad mkeytimer");
++		}
++	} else if (!strcmp(option, "sigvalinsecs")) {
++		sigvalinsecs = true;
++	} else if (!strncmp(option, "tat=", 4)) {
++		named_g_tat_interval = atoi(option + 4);
++	} else {
++		fprintf(stderr, "unknown -T flag '%s'\n", option);
++	}
++}
++
++static void
++parse_command_line(int argc, char *argv[]) {
++	int ch;
++	int port;
++	const char *p;
++
++	save_command_line(argc, argv);
++
++	/*
++	 * NAMED_MAIN_ARGS is defined in main.h, so that it can be used
++	 * both by named and by ntservice hooks.
++	 */
++	isc_commandline_errprint = false;
++	while ((ch = isc_commandline_parse(argc, argv, NAMED_MAIN_ARGS)) != -1)
++	{
++		switch (ch) {
++		case '4':
++			if (disable4) {
++				named_main_earlyfatal("cannot specify "
++						      "-4 and -6");
++			}
++			if (isc_net_probeipv4() != ISC_R_SUCCESS) {
++				named_main_earlyfatal("IPv4 not supported "
++						      "by OS");
++			}
++			isc_net_disableipv6();
++			disable6 = true;
++			break;
++		case '6':
++			if (disable6) {
++				named_main_earlyfatal("cannot specify "
++						      "-4 and -6");
++			}
++			if (isc_net_probeipv6() != ISC_R_SUCCESS) {
++				named_main_earlyfatal("IPv6 not supported "
++						      "by OS");
++			}
++			isc_net_disableipv4();
++			disable4 = true;
++			break;
++		case 'A':
++			parse_fuzz_arg();
++			break;
++		case 'c':
++			named_g_conffile = isc_commandline_argument;
++			named_g_conffileset = true;
++			break;
++		case 'd':
++			named_g_debuglevel = parse_int(isc_commandline_argument,
++						       "debug "
++						       "level");
++			break;
++		case 'D':
++			/* Descriptive comment for 'ps'. */
++			break;
++		case 'E':
++			named_g_engine = isc_commandline_argument;
++			break;
++		case 'f':
++			named_g_foreground = true;
++			break;
++		case 'g':
++			named_g_foreground = true;
++			named_g_logstderr = true;
++			break;
++		case 'L':
++			named_g_logfile = isc_commandline_argument;
++			break;
++		case 'M':
++			set_flags(isc_commandline_argument, mem_context_flags,
++				  &isc_mem_defaultflags);
++			break;
++		case 'm':
++			set_flags(isc_commandline_argument, mem_debug_flags,
++				  &isc_mem_debugging);
++			break;
++		case 'N': /* Deprecated. */
++		case 'n':
++			named_g_cpus = parse_int(isc_commandline_argument,
++						 "number of cpus");
++			if (named_g_cpus == 0) {
++				named_g_cpus = 1;
++			}
++			break;
++		case 'p':
++			port = parse_int(isc_commandline_argument, "port");
++			if (port < 1 || port > 65535) {
++				named_main_earlyfatal("port '%s' out of range",
++						      isc_commandline_argument);
++			}
++			named_g_port = port;
++			break;
++		case 's':
++			/* XXXRTH temporary syntax */
++			want_stats = true;
++			break;
++		case 'S':
++			maxsocks = parse_int(isc_commandline_argument,
++					     "max number of sockets");
++			break;
++		case 't':
++			/* XXXJAB should we make a copy? */
++			named_g_chrootdir = isc_commandline_argument;
++			break;
++		case 'T': /* NOT DOCUMENTED */
++			parse_T_opt(isc_commandline_argument);
++			break;
++		case 'U':
++			named_g_udpdisp = parse_int(isc_commandline_argument,
++						    "number of UDP listeners "
++						    "per interface");
++			break;
++		case 'u':
++			named_g_username = isc_commandline_argument;
++			break;
++		case 'v':
++			printversion(false);
++			exit(0);
++		case 'V':
++			printversion(true);
++			exit(0);
++		case 'x':
++			/* Obsolete. No longer in use. Ignore. */
++			break;
++		case 'X':
++			named_g_forcelock = true;
++			if (strcasecmp(isc_commandline_argument, "none") != 0) {
++				named_g_defaultlockfile =
++					isc_commandline_argument;
++			} else {
++				named_g_defaultlockfile = NULL;
++			}
++			break;
++		case 'F':
++		/* Reserved for FIPS mode */
++		/* FALLTHROUGH */
++		case '?':
++			usage();
++			if (isc_commandline_option == '?') {
++				exit(0);
++			}
++			p = strchr(NAMED_MAIN_ARGS, isc_commandline_option);
++			if (p == NULL || *++p != ':') {
++				named_main_earlyfatal("unknown option '-%c'",
++						      isc_commandline_option);
++			} else {
++				named_main_earlyfatal("option '-%c' requires "
++						      "an argument",
++						      isc_commandline_option);
++			}
++		/* FALLTHROUGH */
++		default:
++			named_main_earlyfatal("parsing options returned %d",
++					      ch);
++		}
++	}
++
++	argc -= isc_commandline_index;
++	argv += isc_commandline_index;
++	POST(argv);
++
++	if (argc > 0) {
++		usage();
++		named_main_earlyfatal("extra command line arguments");
++	}
++}
++
++static isc_result_t
++create_managers(void) {
++	isc_result_t result;
++	unsigned int socks;
++
++	INSIST(named_g_cpus_detected > 0);
++
++	if (named_g_cpus == 0) {
++		named_g_cpus = named_g_cpus_detected;
++	}
++	isc_log_write(
++		named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER,
++		ISC_LOG_INFO, "found %u CPU%s, using %u worker thread%s",
++		named_g_cpus_detected, named_g_cpus_detected == 1 ? "" : "s",
++		named_g_cpus, named_g_cpus == 1 ? "" : "s");
++#ifdef WIN32
++	named_g_udpdisp = 1;
++#else  /* ifdef WIN32 */
++	if (named_g_udpdisp == 0) {
++		named_g_udpdisp = named_g_cpus_detected;
++	}
++	if (named_g_udpdisp > named_g_cpus) {
++		named_g_udpdisp = named_g_cpus;
++	}
++#endif /* ifdef WIN32 */
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_SERVER, ISC_LOG_INFO,
++		      "using %u UDP listener%s per interface", named_g_udpdisp,
++		      named_g_udpdisp == 1 ? "" : "s");
++
++	/*
++	 * We have ncpus network threads, ncpus worker threads, ncpus
++	 * old network threads - make it 4x just to be safe. The memory
++	 * impact is negligible.
++	 */
++	isc_hp_init(4 * named_g_cpus);
++	named_g_nm = isc_nm_start(named_g_mctx, named_g_cpus);
++	if (named_g_nm == NULL) {
++		UNEXPECTED_ERROR(__FILE__, __LINE__, "isc_nm_start() failed");
++		return (ISC_R_UNEXPECTED);
++	}
++
++	result = isc_taskmgr_create(named_g_mctx, named_g_cpus, 0, named_g_nm,
++				    &named_g_taskmgr);
++	if (result != ISC_R_SUCCESS) {
++		UNEXPECTED_ERROR(__FILE__, __LINE__,
++				 "isc_taskmgr_create() failed: %s",
++				 isc_result_totext(result));
++		return (ISC_R_UNEXPECTED);
++	}
++
++	result = isc_timermgr_create(named_g_mctx, &named_g_timermgr);
++	if (result != ISC_R_SUCCESS) {
++		UNEXPECTED_ERROR(__FILE__, __LINE__,
++				 "isc_timermgr_create() failed: %s",
++				 isc_result_totext(result));
++		return (ISC_R_UNEXPECTED);
++	}
++
++	result = isc_socketmgr_create2(named_g_mctx, &named_g_socketmgr,
++				       maxsocks, named_g_cpus);
++	if (result != ISC_R_SUCCESS) {
++		UNEXPECTED_ERROR(__FILE__, __LINE__,
++				 "isc_socketmgr_create() failed: %s",
++				 isc_result_totext(result));
++		return (ISC_R_UNEXPECTED);
++	}
++	isc_socketmgr_maxudp(named_g_socketmgr, maxudp);
++	isc_nm_maxudp(named_g_nm, maxudp);
++	result = isc_socketmgr_getmaxsockets(named_g_socketmgr, &socks);
++	if (result == ISC_R_SUCCESS) {
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_SERVER, ISC_LOG_INFO,
++			      "using up to %u sockets", socks);
++	}
++
++	return (ISC_R_SUCCESS);
++}
++
++static void
++destroy_managers(void) {
++	/*
++	 * isc_nm_closedown() closes all active connections, freeing
++	 * attached clients and other resources and preventing new
++	 * connections from being established, but it not does not
++	 * stop all processing or destroy the netmgr yet.
++	 */
++	isc_nm_closedown(named_g_nm);
++
++	/*
++	 * isc_taskmgr_destroy() will block until all tasks have exited.
++	 */
++	isc_taskmgr_destroy(&named_g_taskmgr);
++	isc_timermgr_destroy(&named_g_timermgr);
++	isc_socketmgr_destroy(&named_g_socketmgr);
++
++	/*
++	 * At this point is safe to destroy the netmgr.
++	 */
++	isc_nm_destroy(&named_g_nm);
++}
++
++static void
++dump_symboltable(void) {
++	int i;
++	isc_result_t result;
++	const char *fname;
++	const void *addr;
++
++	if (isc__backtrace_nsymbols == 0) {
++		return;
++	}
++
++	if (!isc_log_wouldlog(named_g_lctx, ISC_LOG_DEBUG(99))) {
++		return;
++	}
++
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_DEBUG(99), "Symbol table:");
++
++	for (i = 0, result = ISC_R_SUCCESS; result == ISC_R_SUCCESS; i++) {
++		addr = NULL;
++		fname = NULL;
++		result = isc_backtrace_getsymbolfromindex(i, &addr, &fname);
++		if (result == ISC_R_SUCCESS) {
++			isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++				      NAMED_LOGMODULE_MAIN, ISC_LOG_DEBUG(99),
++				      "[%d] %p %s", i, addr, fname);
++		}
++	}
++}
++
++static void
++setup(void) {
++	isc_result_t result;
++	isc_resourcevalue_t old_openfiles;
++	ns_server_t *sctx;
++#ifdef HAVE_LIBSCF
++	char *instance = NULL;
++#endif /* ifdef HAVE_LIBSCF */
++
++	/*
++	 * Get the user and group information before changing the root
++	 * directory, so the administrator does not need to keep a copy
++	 * of the user and group databases in the chroot'ed environment.
++	 */
++	named_os_inituserinfo(named_g_username);
++
++	/*
++	 * Initialize time conversion information
++	 */
++	named_os_tzset();
++
++	named_os_opendevnull();
++
++#ifdef HAVE_LIBSCF
++	/* Check if named is under smf control, before chroot. */
++	result = named_smf_get_instance(&instance, 0, named_g_mctx);
++	/* We don't care about instance, just check if we got one. */
++	if (result == ISC_R_SUCCESS) {
++		named_smf_got_instance = 1;
++	} else {
++		named_smf_got_instance = 0;
++	}
++	if (instance != NULL) {
++		isc_mem_free(named_g_mctx, instance);
++	}
++#endif /* HAVE_LIBSCF */
++
++	/*
++	 * Check for the number of cpu's before named_os_chroot().
++	 */
++	named_g_cpus_detected = isc_os_ncpus();
++
++	named_os_chroot(named_g_chrootdir);
++
++	/*
++	 * For operating systems which have a capability mechanism, now
++	 * is the time to switch to minimal privs and change our user id.
++	 * On traditional UNIX systems, this call will be a no-op, and we
++	 * will change the user ID after reading the config file the first
++	 * time.  (We need to read the config file to know which possibly
++	 * privileged ports to bind() to.)
++	 */
++	named_os_minprivs();
++
++	result = named_log_init(named_g_username != NULL);
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("named_log_init() failed: %s",
++				      isc_result_totext(result));
++	}
++
++	/*
++	 * Now is the time to daemonize (if we're not running in the
++	 * foreground).  We waited until now because we wanted to get
++	 * a valid logging context setup.  We cannot daemonize any later,
++	 * because calling create_managers() will create threads, which
++	 * would be lost after fork().
++	 */
++	if (!named_g_foreground) {
++		named_os_daemonize();
++	}
++
++	/*
++	 * We call isc_app_start() here as some versions of FreeBSD's fork()
++	 * destroys all the signal handling it sets up.
++	 */
++	result = isc_app_start();
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("isc_app_start() failed: %s",
++				      isc_result_totext(result));
++	}
++
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "starting %s %s%s%s <id:%s>", named_g_product,
++		      named_g_version, *named_g_description ? " " : "",
++		      named_g_description, named_g_srcid);
++
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE, "running on %s",
++		      named_os_uname());
++
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE, "built with %s",
++		      named_g_configargs);
++
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "running as: %s%s%s", program_name, saved_command_line,
++		      ellipsis);
++#ifdef __clang__
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled by CLANG %s", __VERSION__);
++#else /* ifdef __clang__ */
++#if defined(__ICC) || defined(__INTEL_COMPILER)
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled by ICC %s", __VERSION__);
++#else /* if defined(__ICC) || defined(__INTEL_COMPILER) */
++#ifdef __GNUC__
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled by GCC %s", __VERSION__);
++#endif /* ifdef __GNUC__ */
++#endif /* if defined(__ICC) || defined(__INTEL_COMPILER) */
++#endif /* ifdef __clang__ */
++#ifdef _MSC_VER
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled by MSVC %d", _MSC_VER);
++#endif /* ifdef _MSC_VER */
++#ifdef __SUNPRO_C
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled by Solaris Studio %x", __SUNPRO_C);
++#endif /* ifdef __SUNPRO_C */
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled with OpenSSL version: %s",
++		      OPENSSL_VERSION_TEXT);
++#if !defined(LIBRESSL_VERSION_NUMBER) && \
++	OPENSSL_VERSION_NUMBER >= 0x10100000L /* 1.1.0 or higher */
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "linked to OpenSSL version: %s",
++		      OpenSSL_version(OPENSSL_VERSION));
++#else  /* if !defined(LIBRESSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= \
++	* 0x10100000L */
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "linked to OpenSSL version: %s",
++		      SSLeay_version(SSLEAY_VERSION));
++#endif /* OPENSSL_VERSION_NUMBER >= 0x10100000L */
++#ifdef HAVE_LIBXML2
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled with libxml2 version: %s",
++		      LIBXML_DOTTED_VERSION);
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "linked to libxml2 version: %s", xmlParserVersion);
++#endif /* ifdef HAVE_LIBXML2 */
++#if defined(HAVE_JSON_C)
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled with json-c version: %s", JSON_C_VERSION);
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "linked to json-c version: %s", json_c_version());
++#endif /* if defined(HAVE_JSON_C) */
++#if defined(HAVE_ZLIB) && defined(ZLIB_VERSION)
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "compiled with zlib version: %s", ZLIB_VERSION);
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "linked to zlib version: %s", zlibVersion());
++#endif /* if defined(HAVE_ZLIB) && defined(ZLIB_VERSION) */
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "----------------------------------------------------");
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "BIND 9 is maintained by Internet Systems Consortium,");
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "Inc. (ISC), a non-profit 501(c)(3) public-benefit ");
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "corporation.  Support and training for BIND 9 are ");
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "available at https://www.isc.org/support");
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++		      "----------------------------------------------------");
++
++	dump_symboltable();
++
++	/*
++	 * Get the initial resource limits.
++	 */
++#ifndef WIN32
++	RUNTIME_CHECK(isc_resource_getlimit(isc_resource_stacksize,
++					    &named_g_initstacksize) ==
++		      ISC_R_SUCCESS);
++	RUNTIME_CHECK(isc_resource_getlimit(isc_resource_datasize,
++					    &named_g_initdatasize) ==
++		      ISC_R_SUCCESS);
++	RUNTIME_CHECK(isc_resource_getlimit(isc_resource_coresize,
++					    &named_g_initcoresize) ==
++		      ISC_R_SUCCESS);
++#endif /* ifndef WIN32 */
++	RUNTIME_CHECK(isc_resource_getlimit(isc_resource_openfiles,
++					    &named_g_initopenfiles) ==
++		      ISC_R_SUCCESS);
++
++	/*
++	 * System resources cannot effectively be tuned on some systems.
++	 * Raise the limit in such cases for safety.
++	 */
++	old_openfiles = named_g_initopenfiles;
++	named_os_adjustnofile();
++	RUNTIME_CHECK(isc_resource_getlimit(isc_resource_openfiles,
++					    &named_g_initopenfiles) ==
++		      ISC_R_SUCCESS);
++	if (old_openfiles != named_g_initopenfiles) {
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++			      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE,
++			      "adjusted limit on open files from "
++			      "%" PRIu64 " to "
++			      "%" PRIu64,
++			      old_openfiles, named_g_initopenfiles);
++	}
++
++	/*
++	 * If the named configuration filename is relative, prepend the current
++	 * directory's name before possibly changing to another directory.
++	 */
++	if (!isc_file_isabsolute(named_g_conffile)) {
++		result = isc_file_absolutepath(named_g_conffile,
++					       absolute_conffile,
++					       sizeof(absolute_conffile));
++		if (result != ISC_R_SUCCESS) {
++			named_main_earlyfatal("could not construct "
++					      "absolute path "
++					      "of configuration file: %s",
++					      isc_result_totext(result));
++		}
++		named_g_conffile = absolute_conffile;
++	}
++
++	/*
++	 * Record the server's startup time.
++	 */
++	result = isc_time_now(&named_g_boottime);
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("isc_time_now() failed: %s",
++				      isc_result_totext(result));
++	}
++
++	result = create_managers();
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("create_managers() failed: %s",
++				      isc_result_totext(result));
++	}
++
++	named_builtin_init();
++
++	/*
++	 * Add calls to register sdb drivers here.
++	 */
++	/* xxdb_init(); */
++
++#ifdef ISC_DLZ_DLOPEN
++	/*
++	 * Register the DLZ "dlopen" driver.
++	 */
++	result = dlz_dlopen_init(named_g_mctx);
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("dlz_dlopen_init() failed: %s",
++				      isc_result_totext(result));
++	}
++#endif /* ifdef ISC_DLZ_DLOPEN */
++
++#if CONTRIB_DLZ
++	/*
++	 * Register any other contributed DLZ drivers.
++	 */
++	result = dlz_drivers_init();
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("dlz_drivers_init() failed: %s",
++				      isc_result_totext(result));
++	}
++#endif /* if CONTRIB_DLZ */
++
++	named_server_create(named_g_mctx, &named_g_server);
++	ENSURE(named_g_server != NULL);
++	sctx = named_g_server->sctx;
++
++	/*
++	 * Modify server context according to command line options
++	 */
++	if (disable4) {
++		ns_server_setoption(sctx, NS_SERVER_DISABLE4, true);
++	}
++	if (disable6) {
++		ns_server_setoption(sctx, NS_SERVER_DISABLE6, true);
++	}
++	if (dropedns) {
++		ns_server_setoption(sctx, NS_SERVER_DROPEDNS, true);
++	}
++	if (ednsformerr) { /* STD13 server */
++		ns_server_setoption(sctx, NS_SERVER_EDNSFORMERR, true);
++	}
++	if (ednsnotimp) {
++		ns_server_setoption(sctx, NS_SERVER_EDNSNOTIMP, true);
++	}
++	if (ednsrefused) {
++		ns_server_setoption(sctx, NS_SERVER_EDNSREFUSED, true);
++	}
++	if (fixedlocal) {
++		ns_server_setoption(sctx, NS_SERVER_FIXEDLOCAL, true);
++	}
++	if (noaa) {
++		ns_server_setoption(sctx, NS_SERVER_NOAA, true);
++	}
++	if (noedns) {
++		ns_server_setoption(sctx, NS_SERVER_NOEDNS, true);
++	}
++	if (nonearest) {
++		ns_server_setoption(sctx, NS_SERVER_NONEAREST, true);
++	}
++	if (nosoa) {
++		ns_server_setoption(sctx, NS_SERVER_NOSOA, true);
++	}
++	if (notcp) {
++		ns_server_setoption(sctx, NS_SERVER_NOTCP, true);
++	}
++	if (sigvalinsecs) {
++		ns_server_setoption(sctx, NS_SERVER_SIGVALINSECS, true);
++	}
++}
++
++static void
++cleanup(void) {
++	destroy_managers();
++
++	if (named_g_mapped != NULL) {
++		dns_acl_detach(&named_g_mapped);
++	}
++
++	named_server_destroy(&named_g_server);
++
++	named_builtin_deinit();
++
++	/*
++	 * Add calls to unregister sdb drivers here.
++	 */
++	/* xxdb_clear(); */
++
++#ifdef CONTRIB_DLZ
++	/*
++	 * Unregister contributed DLZ drivers.
++	 */
++	dlz_drivers_clear();
++#endif /* ifdef CONTRIB_DLZ */
++#ifdef ISC_DLZ_DLOPEN
++	/*
++	 * Unregister "dlopen" DLZ driver.
++	 */
++	dlz_dlopen_clear();
++#endif /* ifdef ISC_DLZ_DLOPEN */
++
++	isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL,
++		      NAMED_LOGMODULE_MAIN, ISC_LOG_NOTICE, "exiting");
++	named_log_shutdown();
++}
++
++static char *memstats = NULL;
++
++void
++named_main_setmemstats(const char *filename) {
++	/*
++	 * Caller has to ensure locking.
++	 */
++
++	if (memstats != NULL) {
++		free(memstats);
++		memstats = NULL;
++	}
++
++	if (filename == NULL) {
++		return;
++	}
++
++	memstats = strdup(filename);
++}
++
++#ifdef HAVE_LIBSCF
++/*
++ * Get FMRI for the named process.
++ */
++isc_result_t
++named_smf_get_instance(char **ins_name, int debug, isc_mem_t *mctx) {
++	scf_handle_t *h = NULL;
++	int namelen;
++	char *instance;
++
++	REQUIRE(ins_name != NULL && *ins_name == NULL);
++
++	if ((h = scf_handle_create(SCF_VERSION)) == NULL) {
++		if (debug) {
++			UNEXPECTED_ERROR(__FILE__, __LINE__,
++					 "scf_handle_create() failed: %s",
++					 scf_strerror(scf_error()));
++		}
++		return (ISC_R_FAILURE);
++	}
++
++	if (scf_handle_bind(h) == -1) {
++		if (debug) {
++			UNEXPECTED_ERROR(__FILE__, __LINE__,
++					 "scf_handle_bind() failed: %s",
++					 scf_strerror(scf_error()));
++		}
++		scf_handle_destroy(h);
++		return (ISC_R_FAILURE);
++	}
++
++	if ((namelen = scf_myname(h, NULL, 0)) == -1) {
++		if (debug) {
++			UNEXPECTED_ERROR(__FILE__, __LINE__,
++					 "scf_myname() failed: %s",
++					 scf_strerror(scf_error()));
++		}
++		scf_handle_destroy(h);
++		return (ISC_R_FAILURE);
++	}
++
++	if ((instance = isc_mem_allocate(mctx, namelen + 1)) == NULL) {
++		UNEXPECTED_ERROR(__FILE__, __LINE__,
++				 "named_smf_get_instance memory "
++				 "allocation failed: %s",
++				 isc_result_totext(ISC_R_NOMEMORY));
++		scf_handle_destroy(h);
++		return (ISC_R_FAILURE);
++	}
++
++	if (scf_myname(h, instance, namelen + 1) == -1) {
++		if (debug) {
++			UNEXPECTED_ERROR(__FILE__, __LINE__,
++					 "scf_myname() failed: %s",
++					 scf_strerror(scf_error()));
++		}
++		scf_handle_destroy(h);
++		isc_mem_free(mctx, instance);
++		return (ISC_R_FAILURE);
++	}
++
++	scf_handle_destroy(h);
++	*ins_name = instance;
++	return (ISC_R_SUCCESS);
++}
++#endif /* HAVE_LIBSCF */
++
++/* main entry point, possibly hooked */
++
++int
++main(int argc, char *argv[]) {
++	isc_result_t result;
++#ifdef HAVE_LIBSCF
++	char *instance = NULL;
++#endif /* ifdef HAVE_LIBSCF */
++
++#ifdef HAVE_GPERFTOOLS_PROFILER
++	(void)ProfilerStart(NULL);
++#endif /* ifdef HAVE_GPERFTOOLS_PROFILER */
++
++#ifdef WIN32
++	/*
++	 * Prevent unbuffered I/O from crippling named performance on Windows
++	 * when it is logging to stderr (e.g. in system tests).  Use full
++	 * buffering (_IOFBF) as line buffering (_IOLBF) is unavailable on
++	 * Windows and fflush() is called anyway after each log message gets
++	 * written to the default stderr logging channels created by libisc.
++	 */
++	setvbuf(stderr, NULL, _IOFBF, BUFSIZ);
++#endif /* ifdef WIN32 */
++
++#ifdef HAVE_LIBXML2
++	xmlInitThreads();
++#endif /* HAVE_LIBXML2 */
++
++	/*
++	 * Record version in core image.
++	 * strings named.core | grep "named version:"
++	 */
++	strlcat(version,
++#if defined(NO_VERSION_DATE) || !defined(__DATE__)
++		"named version: BIND " VERSION " <" SRCID ">",
++#else  /* if defined(NO_VERSION_DATE) || !defined(__DATE__) */
++		"named version: BIND " VERSION " <" SRCID "> (" __DATE__ ")",
++#endif /* if defined(NO_VERSION_DATE) || !defined(__DATE__) */
++		sizeof(version));
++	result = isc_file_progname(*argv, program_name, sizeof(program_name));
++	if (result != ISC_R_SUCCESS) {
++		named_main_earlyfatal("program name too long");
++	}
++
++	isc_assertion_setcallback(assertion_failed);
++	isc_error_setfatal(library_fatal_error);
++	isc_error_setunexpected(library_unexpected_error);
++
++	named_os_init(program_name);
++
++	dns_result_register();
++	dst_result_register();
++	isccc_result_register();
++#if USE_PKCS11
++	pk11_result_register();
++#endif /* if USE_PKCS11 */
++
++#if !ISC_MEM_DEFAULTFILL
++	/*
++	 * Update the default flags to remove ISC_MEMFLAG_FILL
++	 * before we parse the command line. If disabled here,
++	 * it can be turned back on with -M fill.
++	 */
++	isc_mem_defaultflags &= ~ISC_MEMFLAG_FILL;
++#endif /* if !ISC_MEM_DEFAULTFILL */
++
++	parse_command_line(argc, argv);
++
++#ifdef ENABLE_AFL
++	if (named_g_fuzz_type != isc_fuzz_none) {
++		named_fuzz_setup();
++	}
++
++	if (named_g_fuzz_type == isc_fuzz_resolver) {
++		dns_resolver_setfuzzing();
++	} else if (named_g_fuzz_type == isc_fuzz_http) {
++		isc_httpd_setfinishhook(named_fuzz_notify);
++	}
++#endif /* ifdef ENABLE_AFL */
++	/*
++	 * Warn about common configuration error.
++	 */
++	if (named_g_chrootdir != NULL) {
++		int len = strlen(named_g_chrootdir);
++		if (strncmp(named_g_chrootdir, named_g_conffile, len) == 0 &&
++		    (named_g_conffile[len] == '/' ||
++		     named_g_conffile[len] == '\\'))
++		{
++			named_main_earlywarning("config filename (-c %s) "
++						"contains chroot path (-t %s)",
++						named_g_conffile,
++						named_g_chrootdir);
++		}
++	}
++
++	isc_mem_create(&named_g_mctx);
++	isc_mem_setname(named_g_mctx, "main", NULL);
++
++	setup();
++
++	/*
++	 * Start things running and then wait for a shutdown request
++	 * or reload.
++	 */
++	do {
++		result = isc_app_run();
++
++		if (result == ISC_R_RELOAD) {
++			named_server_reloadwanted(named_g_server);
++		} else if (result != ISC_R_SUCCESS) {
++			UNEXPECTED_ERROR(__FILE__, __LINE__,
++					 "isc_app_run(): %s",
++					 isc_result_totext(result));
++			/*
++			 * Force exit.
++			 */
++			result = ISC_R_SUCCESS;
++		}
++	} while (result != ISC_R_SUCCESS);
++
++#ifdef HAVE_LIBSCF
++	if (named_smf_want_disable == 1) {
++		result = named_smf_get_instance(&instance, 1, named_g_mctx);
++		if (result == ISC_R_SUCCESS && instance != NULL) {
++			if (smf_disable_instance(instance, 0) != 0) {
++				UNEXPECTED_ERROR(__FILE__, __LINE__,
++						 "smf_disable_instance() "
++						 "failed for %s : %s",
++						 instance,
++						 scf_strerror(scf_error()));
++			}
++		}
++		if (instance != NULL) {
++			isc_mem_free(named_g_mctx, instance);
++		}
++	}
++#endif /* HAVE_LIBSCF */
++
++	cleanup();
++
++	if (want_stats) {
++		isc_mem_stats(named_g_mctx, stdout);
++		isc_mutex_stats(stdout);
++	}
++
++	if (named_g_memstatistics && memstats != NULL) {
++		FILE *fp = NULL;
++		result = isc_stdio_open(memstats, "w", &fp);
++		if (result == ISC_R_SUCCESS) {
++			isc_mem_stats(named_g_mctx, fp);
++			isc_mutex_stats(fp);
++			(void)isc_stdio_close(fp);
++		}
++	}
++	isc_mem_destroy(&named_g_mctx);
++	isc_mem_checkdestroyed(stderr);
++
++	named_main_setmemstats(NULL);
++
++	isc_app_finish();
++
++	named_os_closedevnull();
++
++	named_os_shutdown();
++
++#ifdef HAVE_LIBXML2
++	xmlCleanupThreads();
++#endif /* HAVE_LIBXML2 */
++
++#ifdef HAVE_GPERFTOOLS_PROFILER
++	ProfilerStop();
++#endif /* ifdef HAVE_GPERFTOOLS_PROFILER */
++
++	return (0);
++}
+diff --git a/bin/tools/Makefile.in b/bin/tools/Makefile.in
+index c099915..9f68569 100644
+--- a/bin/tools/Makefile.in
++++ b/bin/tools/Makefile.in
+@@ -22,7 +22,7 @@ CINCLUDES =	${DNS_INCLUDES} ${ISC_INCLUDES} ${ISCCFG_INCLUDES} \
+ 		${MAXMINDDB_CFLAGS} \
+ 		${LMDB_CFLAGS}
+ 
+-CDEFINES =	-DVERSION=\"${VERSION}\"
++CDEFINES =	-DVERSION=\"${VERSION}\" -DBIND9
+ CWARNINGS =
+ 
+ DNSLIBS =	../../lib/dns/libdns.@A@ @NO_LIBTOOL_DNSLIBS@
+@@ -30,13 +30,18 @@ BIND9LIBS =	../../lib/bind9/libbind9.@A@
+ ISCLIBS =	../../lib/isc/libisc.@A@ @NO_LIBTOOL_ISCLIBS@
+ ISCNOSYMLIBS =	../../lib/isc/libisc-nosymtbl.@A@ @NO_LIBTOOL_ISCLIBS@
+ ISCCFGLIBS = 	../../lib/isccfg/libisccfg.@A@
++ISCCCLIBS = 	../../lib/isccc/libisccc.@A@
+ 
+ DNSDEPLIBS =	../../lib/dns/libdns.@A@
+ BIND9DEPLIBS =	../../lib/bind9/libbind9.@A@
+ ISCDEPLIBS =	../../lib/isc/libisc.@A@
+ ISCCFGDEPLIBS = ../../lib/isccfg/libisccfg.@A@
++ISCCCDEPLIBS =	../../lib/isccc/libisccc.@A@
+ 
+-LIBS =		${ISCLIBS} @LIBS@
++DEPLIBS =	${LWRESDEPLIBS} ${DNSDEPLIBS} ${BIND9DEPLIBS} \
++		${ISCCFGDEPLIBS} ${ISCCCDEPLIBS} ${ISCDEPLIBS}
++LIBS =		${LWRESLIBS} ${DNSLIBS} ${BIND9LIBS} \
++		${ISCCFGLIBS} ${ISCCCLIBS} ${ISCLIBS} ${DBDRIVER_LIBS} @LIBS@
+ NOSYMLIBS =	${ISCNOSYMLIBS} @LIBS@
+ 
+ SUBDIRS =
+@@ -46,13 +51,14 @@ NZDTARGETS =	named-nzd2nzf@EXEEXT@
+ TARGETS =	arpaname@EXEEXT@ named-journalprint@EXEEXT@ \
+ 		named-rrchecker@EXEEXT@ nsec3hash@EXEEXT@ \
+ 		mdig@EXEEXT@ \
+-		@DNSTAPTARGETS@ @NZDTARGETS@
++		@DNSTAPTARGETS@ @NZDTARGETS@ ldap2zone@EXEEXT@ \
++		zone2ldap@EXEEXT@
+ 
+ DNSTAPSRCS  =	dnstap-read.c
+ NZDSRCS  =	named-nzd2nzf.c
+ SRCS =		arpaname.c named-journalprint.c named-rrchecker.c \
+ 		nsec3hash.c mdig.c \
+-		@DNSTAPSRCS@ @NZDSRCS@
++		@DNSTAPSRCS@ @NZDSRCS@ ldap2zone.c zone2ldap.c
+ 
+ @BIND9_MAKE_RULES@
+ 
+@@ -90,6 +96,12 @@ named-nzd2nzf@EXEEXT@: named-nzd2nzf.@O@ ${NZDDEPLIBS}
+ 	export LIBS0="${ISCCFGLIBS} ${ISCCCLIBS} ${BIND9LIBS} ${DNSLIBS} ${LMDB_LIBS}"; \
+ 	${FINALBUILDCMD}
+ 
++ldap2zone@EXEEXT@: ldap2zone.@O@ ${DEPLIBS}
++	${LIBTOOL_MODE_LINK} ${PURIFY} ${CC} ${CFLAGS} ${LDFLAGS} -o $@ ldap2zone.@O@ -lldap -llber ${LIBS}
++
++zone2ldap@EXEEXT@: zone2ldap.@O@ ${DEPLIBS}
++	${LIBTOOL_MODE_LINK} ${PURIFY} ${CC} ${CFLAGS} ${LDFLAGS} -o $@ zone2ldap.@O@ -lldap -llber ${LIBS}
++
+ installdirs:
+ 	$(SHELL) ${top_srcdir}/mkinstalldirs ${DESTDIR}${bindir}
+ 	$(SHELL) ${top_srcdir}/mkinstalldirs ${DESTDIR}${sbindir}
+@@ -113,6 +125,10 @@ install:: ${TARGETS} installdirs @DNSTAP@ @NZD_TOOLS@
+ 		${DESTDIR}${sbindir}
+ 	${LIBTOOL_MODE_INSTALL} ${INSTALL_PROGRAM} mdig@EXEEXT@ \
+ 		${DESTDIR}${bindir}
++	${LIBTOOL_MODE_INSTALL} ${INSTALL_PROGRAM} zone2ldap@EXEEXT@ \
++		${DESTDIR}${sbindir}
++	${LIBTOOL_MODE_INSTALL} ${INSTALL_PROGRAM} ldap2zone@EXEEXT@ \
++		${DESTDIR}${sbindir}
+ 
+ uninstall::
+ 	${LIBTOOL_MODE_UNINSTALL} rm -f \
+diff --git a/contrib/sdb/ldap/INSTALL.ldap b/contrib/sdb/ldap/INSTALL.ldap
+new file mode 100644
+index 0000000..9151129
+--- /dev/null
++++ b/contrib/sdb/ldap/INSTALL.ldap
+@@ -0,0 +1,83 @@
++This is the INSTALL file for 1.0-beta. See
++http://www.venaas.no/ldap/bind-sdb/ for updates or other information.
++
++BUILDING
++
++You need the source for BIND 9.1.0 or newer (for zone transfers you
++will need at least 9.1.1rc3 due to a bug). Basically you need to follow
++the instructions in doc/misc/sdb, if my instructions don't make sense,
++please have a look at those as well.
++
++Copy ldapdb.c to bin/named and ldapdb.h to bin/named/include in the
++source tree.
++
++Next alter bin/named/Makefile.in. Add ldapdb.@O@ to DBDRIVER_OBJS and
++ldapdb.c to DBDRIVER_SRCS. You also need to add something like
++-I/usr/local/include to DBDRIVER_INCLUDES and
++-L/usr/local/lib -lldap -llber -lresolv to DBDRIVER_LIBS
++depending on what LDAP library you have and where you installed it.
++
++Finally you need to edit bin/named/main.c. Below where it says
++"#include "xxdb.h"", add the line "#include <ldapdb.h>". Below where
++it says "xxdb_init();" add the line "ldapdb_init();", and finally
++below where it says "xxdb_clear();", add "ldapdb_clear();".
++
++Now you should hopefully be able to build as usual; first configure
++and then make. If you get an error message about ldap_memfree() not
++being defined, you're probably using an LDAP library with the
++interface defined in RFC 1823. To build, uncomment the "#define
++LDAPDB_RFC1823API" line near the top of ldapdb.c.
++
++Also, if you're using an LDAPv2 only server, you need to change
++the line "#define LDAPDB_LDAP_VERSION 3" in ldapdb.c. Simply
++replace 3 with 2. Instead of editing the file, you may define
++LDAPDB_LDAP_VERSION yourself.
++
++If you want to use TLS, you need to uncommed the #define LDAPDB_TLS"
++line near the top of ldapdb.c.
++
++CONFIGURING
++
++Before you do any configuring of LDAP stuff, please try to configure
++and start bind as usual to see if things work.
++
++To do anything useful, you need to store a zone in some LDAP server.
++You must use a schema called dNSZone. Note that it relies on some
++attribute definitions in the Cosine schema, so that must be included
++as well. The Cosine schema probably comes with your LDAP server. You
++can find dNSZone and further details on how to store the data in your
++LDAP server at http://www.venaas.no/ldap/bind-sdb/
++
++To make BIND use a zone stored in LDAP, you will have to put something
++like this in named.conf:
++
++zone "venaas.com" {
++        type master;
++        database "ldap ldap://158.38.160.245/dc=venaas,dc=com,o=DNS,dc=venaas,dc=no 172800";
++};
++
++When doing lookups BIND will do a sub-tree search below the base in the
++URL. The number 172800 is the TTL which will be used for all entries that
++haven't got the dNSTTL attribute. It is also possible to add a filter to
++the URL, say "ldap://host/base???(o=internal)".
++
++Version 1.0 also has support for simple LDAP bind, that is, binding to
++LDAP using plain text authentication. The bind dn and password is coded
++into the URL as extensions, according to RFC 2255. If you want simple
++bind with say dn "cn=Manager,dc=venaas,dc=no" and password "secret", the
++URL will be something like this:
++
++ldap://158.38.160.245/dc=venaas,dc=com,o=DNS,dc=venaas,dc=no????!bindname=cn=Manager%2cdc=venaas%2cdc=no,!x-bindpw=secret
++
++This URL may also include a filter part if you need it. Note that in
++the bind dn, "," is hex-escaped as "%2c". This is necessary since ","
++is the separator between the extension elements. The "!" in front of
++"bindname" and "x-bindpw" can be omitted if you prefer. "x-bindpw" is
++not standardized, but it's used by several other LDAP applications. See
++RFC 2255 for details.
++
++Finally, if you enabled TLS when compiling, you can also use TLS if
++you like. To do this you use the extension "x-tls", e.g.
++ldap://158.38.160.245/dc=venaas,dc=com,o=DNS,dc=venaas,dc=no????!bindname=cn=Manager%2cdc=venaas%2cdc=no,!x-bindpw=secret,x-tls
++
++Stig Venaas <venaas@uninett.no> 2004-08-15
+diff --git a/contrib/sdb/ldap/README.ldap b/contrib/sdb/ldap/README.ldap
+new file mode 100644
+index 0000000..b4ea18a
+--- /dev/null
++++ b/contrib/sdb/ldap/README.ldap
+@@ -0,0 +1,48 @@
++This is an attempt at an LDAP back-end for BIND 9 using the new simplified
++database interface "sdb". This is release 1.0-beta and should be pretty
++stable. Note that since version 0.4 a new schema is used. It is not
++backwards compatible with versions before 0.4.
++
++1.0-beta fixes a large memory leak. An extension x-tls for enabling TLS
++has been added.
++
++1.0-alpha uses LDAPv3 by default and also supports LDAP simple bind. That
++is, one can use plain text password for authentication. The bind dn and
++password is coded into the URL using extensions bindname and x-bindpw
++per RFC 2255.
++
++In 0.9 the code has been cleaned up a bit and should be slightly faster
++than previous versions. It also fixes an error with zone transfers (AXFR)
++and entries with multiple relativeDomainName values. The problem was
++that it would only use the first value in the result. There's no need
++to upgrade unless you use such entries.
++
++0.8 uses asynchronous LDAP search which should give better performance.
++Thanks to Ashley Burston for providing patch. Another new feature is
++allowing filters in URLs. The syntax is as in RFC 2255. Few people will
++need this, but if you have say an internal and external version of the
++same zone, you could stick say o=internal and o=external into different
++entries, and specify for instance ldap://host/base???(o=internal)
++Some error logging has also been added.
++
++0.7 allows space and other characters to be used in URLs by use of %-quoting.
++For instance space can be written as %20. It also fixes a problem with some
++servers and/or APIs that do not preserve attribute casing.
++
++0.6 fixes some memory leaks present in older versions unless compiled with
++the RFC 1823 API.
++
++The big changes in 0.5 are thread support and improved connection handling.
++Multiple threads can now access the back-end simultaneously, and rather than
++having one connection per zone, there is now one connection per thread per
++LDAP server. This should help people with multiple CPUs and people with a
++huge number of zones. One final change is support for literal IPv6 addresses
++in LDAP URLs. At least OpenLDAP 2 has IPv6 support, so if you use OpenLDAP 2
++libraries and server, you got all you need.
++
++If you have bug reports, fixes, comments, questions or whatever, please
++contact me. See also http://www.venaas.no/ldap/bind-sdb/ for information.
++
++See INSTALL for how to build, install and use.
++
++Stig Venaas <venaas@uninett.no> 2004-08-15
+diff --git a/contrib/sdb/ldap/README.zone2ldap b/contrib/sdb/ldap/README.zone2ldap
+new file mode 100644
+index 0000000..dacb56b
+--- /dev/null
++++ b/contrib/sdb/ldap/README.zone2ldap
+@@ -0,0 +1,17 @@
++INSTALLATION
++
++To Compile zone2ldap from contrib/sdb directory:
++
++   gcc -g `../../../isc-config.sh --cflags isc dns` -c zone2ldap.c
++   gcc -g -o zone2ldap zone2ldap.o `../../../isc-config.sh --libs isc dns` -lldap -llber -lresolv
++
++USAGE:
++
++See zone2ldap.1
++
++BUGS:
++
++Jeff McNeil <jeff@snapcase.g-rock.net>
++
++
++
+diff --git a/contrib/sdb/ldap/ldap2zone.1 b/contrib/sdb/ldap/ldap2zone.1
+new file mode 100644
+index 0000000..a48c69f
+--- /dev/null
++++ b/contrib/sdb/ldap/ldap2zone.1
+@@ -0,0 +1,41 @@
++.\" Copyright (C) 2004, 2005 Stig Venaas <venaas@uninett.no>
++.\" 
++.\" Permission to use, copy, modify, and distribute this software for any
++.\" purpose with or without fee is hereby granted, provided that the above
++.\" copyright notice and this permission notice appear in all copies.
++.\" Manpage written by Jan Gorig
++.TH ldap2zone 1 "15 March 2010" "BIND9"
++.SH NAME
++ldap2zone - Creates zone file from LDAP dnszone information
++.SH SYNOPSIS
++.B ldap2zone zone-name LDAP-URL default-ttl [serial]
++.SH DESCRIPTION
++ldap2zone is a tool that reads info for a zone from LDAP and constructs a standard plain ascii zone file that is written to the standard output. The LDAP information has to be stored using the dnszone schema. The schema is used by BIND with LDAP back-end.
++
++\fBzone-name\fR
++.RS 4
++Name of the zone, eg "mydomain.net."
++.RE
++.PP
++\fBLDAP-URL\fR
++.RS 4
++LDAP URL to dnszone information
++.RE
++.PP
++\fBdefault-ttl\fR
++.RS 4
++Default TTL value to be used in zone
++.RE
++.PP
++\fBserial\fR
++.RS 4
++(optional) Program checks this number to be different than SOA serial number.
++.RE
++
++.SH "EXIT STATUS"
++Exits with 0 on success or 1 on failure.
++.SH "SEE ALSO"
++named(8) ldap(3) 
++http://www.venaas.no/dns/ldap2zone/
++.SH "COPYRIGHT"
++Copyright (C) 2004, 2005 Stig Venaas
+diff --git a/contrib/sdb/ldap/ldap2zone.c b/contrib/sdb/ldap/ldap2zone.c
+new file mode 100644
+index 0000000..80e7919
+--- /dev/null
++++ b/contrib/sdb/ldap/ldap2zone.c
+@@ -0,0 +1,411 @@
++/*
++ * Copyright (C) 2004, 2005 Stig Venaas <venaas@uninett.no>
++ * $Id: ldap2zone.c,v 1.1 2007/07/24 15:18:00 atkac Exp $
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ */
++
++#define LDAP_DEPRECATED 1
++
++#include <sys/types.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <ctype.h>
++
++#include <ldap.h>
++
++struct string {
++    void *data;
++    size_t len;
++};
++
++struct assstack_entry {
++    struct string key;
++    struct string val;
++    struct assstack_entry *next;
++};
++
++struct assstack_entry *assstack_find(struct assstack_entry *stack, struct string *key);
++void assstack_push(struct assstack_entry **stack, struct assstack_entry *item);
++void assstack_insertbottom(struct assstack_entry **stack, struct assstack_entry *item);
++void printsoa(struct string *soa);
++void printrrs(char *defaultttl, struct assstack_entry *item);
++void print_zone(char *defaultttl, struct assstack_entry *stack);
++void usage(char *name);
++void err(char *name, const char *msg);
++int putrr(struct assstack_entry **stack, struct berval *name, char *type, char *ttl, struct berval *val);
++
++struct assstack_entry *assstack_find(struct assstack_entry *stack, struct string *key) {
++    for (; stack; stack = stack->next)
++	if (stack->key.len == key->len && !memcmp(stack->key.data, key->data, key->len))
++	    return stack;
++    return NULL;
++}
++
++void assstack_push(struct assstack_entry **stack, struct assstack_entry *item) {
++    item->next = *stack;
++    *stack = item;
++}
++
++void assstack_insertbottom(struct assstack_entry **stack, struct assstack_entry *item) {
++    struct assstack_entry *p;
++    
++    item->next = NULL;
++    if (!*stack) {
++	*stack = item;
++	return;
++    }
++    /* find end, should keep track of end somewhere */
++    /* really a queue, not a stack */
++    p = *stack;
++    while (p->next)
++	p = p->next;
++    p->next = item;
++}
++
++void printsoa(struct string *soa) {
++    char *s;
++    size_t i;
++    
++    s = (char *)soa->data;
++    i = 0;
++    while (i < soa->len) {
++	putchar(s[i]);
++	if (s[i++] == ' ')
++	    break;
++    }
++    while (i < soa->len) {
++	putchar(s[i]);
++	if (s[i++] == ' ')
++	    break;
++    } 
++    printf("(\n\t\t\t\t");
++    while (i < soa->len) {
++	putchar(s[i]);
++	if (s[i++] == ' ')
++	    break;
++    }
++    printf("; Serialnumber\n\t\t\t\t");
++    while (i < soa->len) {
++	if (s[i] == ' ')
++	    break;
++	putchar(s[i++]);
++    }
++    i++;
++    printf("\t; Refresh\n\t\t\t\t");
++    while (i < soa->len) {
++	if (s[i] == ' ')
++	    break;
++	putchar(s[i++]);
++    }
++    i++;
++    printf("\t; Retry\n\t\t\t\t");
++    while (i < soa->len) {
++	if (s[i] == ' ')
++	    break;
++	putchar(s[i++]);
++    }
++    i++;
++    printf("\t; Expire\n\t\t\t\t");
++    while (i < soa->len) {
++	putchar(s[i++]);
++    }
++    printf(" )\t; Minimum TTL\n");
++}
++
++void printrrs(char *defaultttl, struct assstack_entry *item) {
++    struct assstack_entry *stack;
++    char *s;
++    int first;
++    size_t i;
++    char *ttl, *type;
++    int top;
++    
++    s = (char *)item->key.data;
++
++    if (item->key.len == 1 && *s == '@') {
++	top = 1;
++	printf("@\t");
++    } else {
++	top = 0;
++	for (i = 0; i < item->key.len; i++)
++	    putchar(s[i]);
++	if (item->key.len < 8)
++	    putchar('\t');
++	putchar('\t');
++    }
++    
++    first = 1;
++    for (stack = (struct assstack_entry *) item->val.data; stack; stack = stack->next) {
++	ttl = (char *)stack->key.data;
++	s = strchr(ttl, ' ');
++	*s++ = '\0';
++	type = s;
++	
++	if (first)
++	    first = 0;
++        else
++	    printf("\t\t");
++	    
++	if (strcmp(defaultttl, ttl))
++	    printf("%s", ttl);
++	putchar('\t');
++	
++	if (top) {
++	    top = 0;
++	    printf("IN\t%s\t", type);
++	    /* Should always be SOA here */
++	    if (!strcmp(type, "SOA")) {
++		printsoa(&stack->val);
++		continue;
++	    }
++	} else
++	    printf("%s\t", type);
++
++	s = (char *)stack->val.data;
++	for (i = 0; i < stack->val.len; i++)
++	    putchar(s[i]);
++	putchar('\n');
++    }
++}
++
++void print_zone(char *defaultttl, struct assstack_entry *stack) {
++    printf("$TTL %s\n", defaultttl);
++    for (; stack; stack = stack->next)
++	printrrs(defaultttl, stack);
++};
++
++void usage(char *name) {
++    fprintf(stderr, "Usage:%s zone-name LDAP-URL default-ttl [serial]\n", name);
++    exit(1);
++};
++
++void err(char *name, const char *msg) {
++    fprintf(stderr, "%s: %s\n", name, msg);
++    exit(1);
++};
++
++int putrr(struct assstack_entry **stack, struct berval *name, char *type, char *ttl, struct berval *val) {
++    struct string key;
++    struct assstack_entry *rr, *rrdata;
++    
++    /* Do nothing if name or value have 0 length */
++    if (!name->bv_len || !val->bv_len)
++	return 0;
++
++    /* see if already have an entry for this name */
++    key.len = name->bv_len;
++    key.data = name->bv_val;
++
++    rr = assstack_find(*stack, &key);
++    if (!rr) {
++	/* Not found, create and push new entry */
++	rr = (struct assstack_entry *) malloc(sizeof(struct assstack_entry));
++	if (!rr)
++	    return -1;
++	rr->key.len = name->bv_len;
++	rr->key.data = (void *) malloc(rr->key.len);
++	if (!rr->key.data) {
++	    free(rr);
++	    return -1;
++	}
++	memcpy(rr->key.data, name->bv_val, name->bv_len);
++	rr->val.len = sizeof(void *);
++	rr->val.data = NULL;
++	if (name->bv_len == 1 && *(char *)name->bv_val == '@')
++	    assstack_push(stack, rr);
++	else
++	    assstack_insertbottom(stack, rr);
++    }
++
++    rrdata = (struct assstack_entry *) malloc(sizeof(struct assstack_entry));
++    if (!rrdata) {
++	free(rr->key.data);
++	free(rr);
++	return -1;
++    }
++    rrdata->key.len = strlen(type) + strlen(ttl) + 1;
++    rrdata->key.data = (void *) malloc(rrdata->key.len);
++    if (!rrdata->key.data) {
++	free(rrdata);
++	free(rr->key.data);
++	free(rr);
++	return -1;
++    }
++    sprintf((char *)rrdata->key.data, "%s %s", ttl, type);
++	
++    rrdata->val.len = val->bv_len;
++    rrdata->val.data = (void *) malloc(val->bv_len);
++    if (!rrdata->val.data) {
++	free(rrdata->key.data);
++	free(rrdata);
++	free(rr->key.data);
++	free(rr);
++	return -1;
++    }
++    memcpy(rrdata->val.data, val->bv_val, val->bv_len);
++
++    if (!strcmp(type, "SOA"))
++	assstack_push((struct assstack_entry **) &(rr->val.data), rrdata);
++    else
++	assstack_insertbottom((struct assstack_entry **) &(rr->val.data), rrdata);
++    return 0;
++}
++
++int main(int argc, char **argv) {
++    char *s, *hostporturl, *base = NULL;
++    char *ttl, *defaultttl;
++    LDAP *ld;
++    char *fltr = NULL;
++    LDAPMessage *res, *e;
++    char *a, **ttlvals, **soavals, *serial;
++    struct berval **vals, **names;
++    char type[64];
++    BerElement *ptr;
++    int i, j, rc, msgid;
++    struct assstack_entry *zone = NULL;
++    
++    if (argc < 4 || argc > 5)
++        usage(argv[0]);
++
++    hostporturl = argv[2];
++
++    if (hostporturl != strstr( hostporturl, "ldap"))
++	err(argv[0], "Not an LDAP URL");
++
++    s = strchr(hostporturl, ':');
++
++    if (!s || strlen(s) < 3 || s[1] != '/' || s[2] != '/')
++	err(argv[0], "Not an LDAP URL");
++
++    s = strchr(s+3, '/');
++    if (s) {
++	*s++ = '\0';
++	base = s;
++	s = strchr(base, '?');
++	if (s)
++	    err(argv[0], "LDAP URL can only contain host, port and base");
++    }
++
++    defaultttl = argv[3];
++    
++    rc = ldap_initialize(&ld, hostporturl);
++    if (rc != LDAP_SUCCESS)
++	err(argv[0], "ldap_initialize() failed");
++
++    if (argc == 5) {
++	/* serial number specified, check if different from one in SOA */
++	fltr = (char *)malloc(strlen(argv[1]) + strlen("(&(relativeDomainName=@)(zoneName=))") + 1);
++	sprintf(fltr, "(&(relativeDomainName=@)(zoneName=%s))", argv[1]);
++	msgid = ldap_search(ld, base, LDAP_SCOPE_SUBTREE, fltr, NULL, 0);
++	if (msgid == -1)
++	    err(argv[0], "ldap_search() failed");
++
++	while ((rc = ldap_result(ld, msgid, 0, NULL, &res)) != LDAP_RES_SEARCH_RESULT ) {
++	    /* not supporting continuation references at present */
++	    if (rc != LDAP_RES_SEARCH_ENTRY)
++		err(argv[0], "ldap_result() returned cont.ref? Exiting");
++
++	    /* only one entry per result message */
++	    e = ldap_first_entry(ld, res);
++	    if (e == NULL) {
++		ldap_msgfree(res);
++		err(argv[0], "ldap_first_entry() failed");
++	    }
++	
++	    soavals = ldap_get_values(ld, e, "SOARecord");
++	    if (soavals)
++		break;
++	}
++
++	ldap_msgfree(res);
++	if (!soavals) {
++		err(argv[0], "No SOA Record found");
++	}
++	
++	/* We have a SOA, compare serial numbers */
++	/* Only checkinf first value, should be only one */
++	s = strchr(soavals[0], ' ');
++	s++;
++	s = strchr(s, ' ');
++	s++;
++	serial = s;
++	s = strchr(s, ' ');
++	*s = '\0';
++	if (!strcmp(serial, argv[4])) {
++	    ldap_value_free(soavals);
++	    err(argv[0], "serial numbers match");
++	}
++	ldap_value_free(soavals);
++    }
++
++    if (!fltr)
++	fltr = (char *)malloc(strlen(argv[1]) + strlen("(zoneName=)") + 1);
++    if (!fltr)
++	err(argv[0], "Malloc failed");
++    sprintf(fltr, "(zoneName=%s)", argv[1]);
++
++    msgid = ldap_search(ld, base, LDAP_SCOPE_SUBTREE, fltr, NULL, 0);
++    if (msgid == -1)
++	err(argv[0], "ldap_search() failed");
++
++    while ((rc = ldap_result(ld, msgid, 0, NULL, &res)) != LDAP_RES_SEARCH_RESULT ) {
++	/* not supporting continuation references at present */
++	if (rc != LDAP_RES_SEARCH_ENTRY)
++	    err(argv[0], "ldap_result() returned cont.ref? Exiting");
++
++	/* only one entry per result message */
++	e = ldap_first_entry(ld, res);
++	if (e == NULL) {
++	    ldap_msgfree(res);
++	    err(argv[0], "ldap_first_entry() failed");
++	}
++	
++	names = ldap_get_values_len(ld, e, "relativeDomainName");
++	if (!names)
++	    continue;
++	
++	ttlvals = ldap_get_values(ld, e, "dNSTTL");
++	ttl = ttlvals ? ttlvals[0] : defaultttl;
++
++	for (a = ldap_first_attribute(ld, e, &ptr); a != NULL; a = ldap_next_attribute(ld, e, ptr)) {
++	    char *s;
++
++	    for (s = a; *s; s++)
++		*s = toupper(*s);
++	    s = strstr(a, "RECORD");
++	    if ((s == NULL) || (s == a) || (s - a >= (signed int)sizeof(type))) {
++		ldap_memfree(a);
++		continue;
++	    }
++			
++	    strncpy(type, a, s - a);
++	    type[s - a] = '\0';
++	    vals = ldap_get_values_len(ld, e, a);
++	    if (vals) {
++		for (i = 0; vals[i]; i++)
++		    for (j = 0; names[j]; j++)
++			if (putrr(&zone, names[j], type, ttl, vals[i]))
++			    err(argv[0], "malloc failed");
++		ldap_value_free_len(vals);
++	    }
++	    ldap_memfree(a);
++	}
++
++	if (ptr)
++	    ber_free(ptr, 0);
++	if (ttlvals)
++	    ldap_value_free(ttlvals);
++	ldap_value_free_len(names);
++	/* free this result */
++	ldap_msgfree(res);
++    }
++
++    /* free final result */
++    ldap_msgfree(res);
++
++    print_zone(defaultttl, zone);
++    return 0;
++}
+diff --git a/contrib/sdb/ldap/ldapdb.c b/contrib/sdb/ldap/ldapdb.c
+new file mode 100644
+index 0000000..4c1e90c
+--- /dev/null
++++ b/contrib/sdb/ldap/ldapdb.c
+@@ -0,0 +1,691 @@
++/*
++ * ldapdb.c version 1.0-beta
++ *
++ * Copyright (C) 2002, 2004 Stig Venaas
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * Contributors: Jeremy C. McDermond
++ */
++
++/*
++ * If you want to use TLS, uncomment the define below
++ */
++/* #define LDAPDB_TLS */
++
++/*
++ * If you are using an old LDAP API uncomment the define below. Only do this
++ * if you know what you're doing or get compilation errors on ldap_memfree().
++ * This also forces LDAPv2.
++ */
++/* #define LDAPDB_RFC1823API */
++
++/* Using LDAPv3 by default, change this if you want v2 */
++#ifndef LDAPDB_LDAP_VERSION
++#define LDAPDB_LDAP_VERSION 3
++#define LDAP_DEPRECATED 1
++#endif
++
++#include <config.h>
++
++#include <string.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <ctype.h>
++
++#include <isc/mem.h>
++#include <isc/print.h>
++#include <isc/result.h>
++#include <isc/util.h>
++#include <isc/thread.h>
++
++#include <dns/sdb.h>
++
++#include <named/globals.h>
++#include <named/log.h>
++
++#include <ldap.h>
++#include "ldapdb.h"
++
++/*
++ * A simple database driver for LDAP
++ */ 
++
++/* enough for name with 8 labels of max length */
++#define MAXNAMELEN 519
++
++static dns_sdbimplementation_t *ldapdb = NULL;
++
++struct ldapdb_data {
++	char *hostport;
++	char *hostname;
++	int portno;
++	char *base;
++	int defaultttl;
++	char *filterall;
++	int filteralllen;
++	char *filterone;
++	int filteronelen;
++	char *filtername;
++	char *bindname;
++	char *bindpw;
++#ifdef LDAPDB_TLS
++	int tls;
++#endif
++};
++
++/* used by ldapdb_getconn */
++
++struct ldapdb_entry {
++	void *index;
++	size_t size;
++	void *data;
++	struct ldapdb_entry *next;
++};
++
++static struct ldapdb_entry *ldapdb_find(struct ldapdb_entry *stack,
++					const void *index, size_t size) {
++	while (stack != NULL) {
++		if (stack->size == size && !memcmp(stack->index, index, size))
++			return stack;
++		stack = stack->next;
++	}
++	return NULL;
++}
++
++static void ldapdb_insert(struct ldapdb_entry **stack,
++			  struct ldapdb_entry *item) {
++	item->next = *stack;
++	*stack = item;
++}
++
++static void ldapdb_lock(int what) {
++	static isc_mutex_t lock;
++
++	switch (what) {
++	case 0:
++		isc_mutex_init(&lock);
++		break;
++	case 1:
++		LOCK(&lock);
++		break;
++	case -1:
++		UNLOCK(&lock);
++		break;
++	}
++}
++
++/* data == NULL means cleanup */
++static LDAP **
++ldapdb_getconn(struct ldapdb_data *data)
++{
++	static struct ldapdb_entry *allthreadsdata = NULL;
++	struct ldapdb_entry *threaddata, *conndata;
++	unsigned long threadid;
++
++	if (data == NULL) {
++		/* cleanup */
++		/* lock out other threads */
++		ldapdb_lock(1);
++		while (allthreadsdata != NULL) {
++			threaddata = allthreadsdata;
++			free(threaddata->index);
++			while (threaddata->data != NULL) {
++				conndata = threaddata->data;
++				if (conndata->data != NULL)
++					ldap_unbind((LDAP *)conndata->data);
++				threaddata->data = conndata->next;
++				free(conndata);
++			}
++			allthreadsdata = threaddata->next;
++			free(threaddata);
++		}
++		ldapdb_lock(-1);
++		return (NULL);
++	}
++
++	/* look for connection data for current thread */
++	threadid = isc_thread_self();
++	threaddata = ldapdb_find(allthreadsdata, &threadid, sizeof(threadid));
++	if (threaddata == NULL) {
++		/* no data for this thread, create empty connection list */
++		threaddata = malloc(sizeof(*threaddata));
++		if (threaddata == NULL)
++			return (NULL);
++		threaddata->index = malloc(sizeof(threadid));
++		if (threaddata->index == NULL) {
++			free(threaddata);
++			return (NULL);
++		}
++		*(unsigned long *)threaddata->index = threadid;
++		threaddata->size = sizeof(threadid);
++		threaddata->data = NULL;
++
++		/* need to lock out other threads here */
++		ldapdb_lock(1);
++		ldapdb_insert(&allthreadsdata, threaddata);
++		ldapdb_lock(-1);
++	}
++
++	/* threaddata points at the connection list for current thread */
++	/* look for existing connection to our server */
++	conndata = ldapdb_find((struct ldapdb_entry *)threaddata->data,
++			       data->hostport, strlen(data->hostport));
++	if (conndata == NULL) {
++		/* no connection data structure for this server, create one */
++		conndata = malloc(sizeof(*conndata));
++		if (conndata == NULL)
++			return (NULL);
++		conndata->index = data->hostport;
++		conndata->size = strlen(data->hostport);
++		conndata->data = NULL;
++		ldapdb_insert((struct ldapdb_entry **)&threaddata->data,
++			      conndata);
++	}
++
++	return (LDAP **)&conndata->data;
++}
++
++static void
++ldapdb_bind(struct ldapdb_data *data, LDAP **ldp)
++{
++#ifndef LDAPDB_RFC1823API
++	const int ver = LDAPDB_LDAP_VERSION;
++#endif
++
++	if (*ldp != NULL)
++		ldap_unbind(*ldp);
++	*ldp = ldap_open(data->hostname, data->portno);
++	if (*ldp == NULL)
++		return;
++
++#ifndef LDAPDB_RFC1823API
++	ldap_set_option(*ldp, LDAP_OPT_PROTOCOL_VERSION, &ver);
++#endif
++
++#ifdef LDAPDB_TLS
++	if (data->tls) {
++		ldap_start_tls_s(*ldp, NULL, NULL);
++	}
++#endif
++
++	if (ldap_simple_bind_s(*ldp, data->bindname, data->bindpw) != LDAP_SUCCESS) {
++		ldap_unbind(*ldp);
++		*ldp = NULL;
++	}
++}
++
++#ifdef DNS_CLIENTINFO_VERSION
++static isc_result_t
++ldapdb_search(const char *zone, const char *name, void *dbdata, void *retdata,
++	      dns_clientinfomethods_t *methods, dns_clientinfo_t *clientinfo)
++#else
++static isc_result_t
++ldapdb_search(const char *zone, const char *name, void *dbdata, void *retdata,
++	      void *methods, void *clientinfo)
++#endif /* DNS_CLIENTINFO_VERSION */
++{
++	struct ldapdb_data *data = dbdata;
++	isc_result_t result = ISC_R_NOTFOUND;
++	LDAP **ldp;
++	LDAPMessage *res, *e;
++	char *fltr, *a, **vals = NULL, **names = NULL;
++	char type[64];
++#ifdef LDAPDB_RFC1823API
++	void *ptr;
++#else
++	BerElement *ptr;
++#endif
++	int i, j, errno, msgid;
++
++	UNUSED(methods);
++	UNUSED(clientinfo);
++
++	ldp = ldapdb_getconn(data);
++	if (ldp == NULL)
++		return (ISC_R_FAILURE);
++	if (*ldp == NULL) {
++		ldapdb_bind(data, ldp);
++		if (*ldp == NULL) {
++			isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,	
++				      "LDAP sdb zone '%s': bind failed", zone);
++			return (ISC_R_FAILURE);
++		}
++	}
++
++	if (name == NULL) {
++		fltr = data->filterall;
++	} else {
++		if (strlen(name) > MAXNAMELEN) {
++			isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,
++                                      "LDAP sdb zone '%s': name %s too long", zone, name);
++			return (ISC_R_FAILURE);
++		}
++		sprintf(data->filtername, "%s))", name);
++		fltr = data->filterone;
++	}
++
++	msgid = ldap_search(*ldp, data->base, LDAP_SCOPE_SUBTREE, fltr, NULL, 0);
++	if (msgid == -1) {
++		ldapdb_bind(data, ldp);
++		if (*ldp != NULL)
++			msgid = ldap_search(*ldp, data->base, LDAP_SCOPE_SUBTREE, fltr, NULL, 0);
++	}
++
++	if (*ldp == NULL || msgid == -1) {
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,	
++			      "LDAP sdb zone '%s': search failed, filter %s", zone, fltr);
++		return (ISC_R_FAILURE);
++	}
++
++	/* Get the records one by one as they arrive and return them to bind */
++	while ((errno = ldap_result(*ldp, msgid, 0, NULL, &res)) != LDAP_RES_SEARCH_RESULT ) {
++		LDAP *ld = *ldp;
++		int ttl = data->defaultttl;
++
++		/* not supporting continuation references at present */
++		if (errno != LDAP_RES_SEARCH_ENTRY) {
++			isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,	
++				      "LDAP sdb zone '%s': ldap_result returned %d", zone, errno);
++			ldap_msgfree(res);
++			return (ISC_R_FAILURE);
++                }
++
++		/* only one entry per result message */
++		e = ldap_first_entry(ld, res);
++		if (e == NULL) {
++			ldap_msgfree(res);
++			isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,	
++				      "LDAP sdb zone '%s': ldap_first_entry failed", zone);
++			return (ISC_R_FAILURE);
++                }
++
++		if (name == NULL) {
++			names = ldap_get_values(ld, e, "relativeDomainName");
++			if (names == NULL)
++				continue;
++		}
++
++		vals = ldap_get_values(ld, e, "dNSTTL");
++		if (vals != NULL) {
++			ttl = atoi(vals[0]);
++			ldap_value_free(vals);
++		}
++
++		for (a = ldap_first_attribute(ld, e, &ptr); a != NULL; a = ldap_next_attribute(ld, e, ptr)) {
++			char *s;
++
++			for (s = a; *s; s++)
++				*s = toupper(*s);
++			s = strstr(a, "RECORD");
++			if ((s == NULL) || (s == a) || (s - a >= (signed int)sizeof(type))) {
++#ifndef LDAPDB_RFC1823API
++				ldap_memfree(a);
++#endif
++				continue;
++			}
++
++			strncpy(type, a, s - a);
++			type[s - a] = '\0';
++			vals = ldap_get_values(ld, e, a);
++			if (vals != NULL) {
++				for (i = 0; vals[i] != NULL; i++) {
++					if (name != NULL) {
++						result = dns_sdb_putrr(retdata, type, ttl, vals[i]);
++					} else {
++						for (j = 0; names[j] != NULL; j++) {
++							result = dns_sdb_putnamedrr(retdata, names[j], type, ttl, vals[i]);
++							if (result != ISC_R_SUCCESS)
++								break;
++						}
++					}
++;					if (result != ISC_R_SUCCESS) {
++						isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,	
++							      "LDAP sdb zone '%s': dns_sdb_put... failed for %s", zone, vals[i]);
++						ldap_value_free(vals);
++#ifndef LDAPDB_RFC1823API
++						ldap_memfree(a);
++						if (ptr != NULL)
++							ber_free(ptr, 0);
++#endif
++						if (name == NULL)
++							ldap_value_free(names);
++						ldap_msgfree(res);
++						return (ISC_R_FAILURE);
++					}
++				}
++				ldap_value_free(vals);
++			}
++#ifndef LDAPDB_RFC1823API
++			ldap_memfree(a);
++#endif
++		}
++#ifndef LDAPDB_RFC1823API
++		if (ptr != NULL)
++			ber_free(ptr, 0);
++#endif
++		if (name == NULL)
++			ldap_value_free(names);
++
++		/* free this result */
++		ldap_msgfree(res);
++	}
++
++	/* free final result */
++	ldap_msgfree(res);
++        return (result);
++}
++
++
++/* callback routines */
++#ifdef DNS_CLIENTINFO_VERSION
++static isc_result_t
++ldapdb_lookup(const char *zone, const char *name, void *dbdata,
++	      dns_sdblookup_t *lookup, dns_clientinfomethods_t *methods,
++	      dns_clientinfo_t *clientinfo)
++{
++	UNUSED(methods);
++	UNUSED(clientinfo);
++	return (ldapdb_search(zone, name, dbdata, lookup, NULL, NULL));
++}
++#else
++static isc_result_t
++ldapdb_lookup(const char *zone, const char *name, void *dbdata,
++	      dns_sdblookup_t *lookup)
++{
++	return (ldapdb_search(zone, name, dbdata, lookup, methods,
++			      clientinfo));
++}
++#endif /* DNS_CLIENTINFO_VERSION */
++
++static isc_result_t
++ldapdb_allnodes(const char *zone, void *dbdata,
++		dns_sdballnodes_t *allnodes)
++{
++	return (ldapdb_search(zone, NULL, dbdata, allnodes, NULL, NULL));
++}
++
++static char *
++unhex(char *in)
++{
++	static const char hexdigits[] = "0123456789abcdef";
++	char *p, *s = in;
++	int d1, d2;
++
++	while ((s = strchr(s, '%'))) {
++		if (!(s[1] && s[2]))
++			return NULL;
++		if ((p = strchr(hexdigits, tolower(s[1]))) == NULL)
++			return NULL;
++		d1 = p - hexdigits;
++		if ((p = strchr(hexdigits, tolower(s[2]))) == NULL)
++			return NULL;
++		d2 = p - hexdigits;
++		*s++ = d1 << 4 | d2;
++		memmove(s, s + 2, strlen(s) - 1);
++	}
++	return in;
++}
++
++/* returns 0 for ok, -1 for bad syntax, -2 for unknown critical extension */
++static int
++parseextensions(char *extensions, struct ldapdb_data *data)
++{
++	char *s, *next, *name, *value;
++	int critical;
++
++	while (extensions != NULL) {
++		s = strchr(extensions, ',');
++		if (s != NULL) {
++			*s++ = '\0';
++			next = s;
++		} else {
++			next = NULL;
++		}
++
++		if (*extensions != '\0') {
++			s = strchr(extensions, '=');
++			if (s != NULL) {
++				*s++ = '\0';
++				value = *s != '\0' ? s : NULL;
++			} else {
++				value = NULL;
++			}
++			name = extensions;
++
++			critical = *name == '!';
++			if (critical) {
++				name++;
++			}
++			if (*name == '\0') {
++				return -1;
++			}
++			
++			if (!strcasecmp(name, "bindname")) {
++				data->bindname = value;
++			} else if (!strcasecmp(name, "x-bindpw")) {
++				data->bindpw = value;
++#ifdef LDAPDB_TLS
++			} else if (!strcasecmp(name, "x-tls")) {
++				data->tls = value == NULL || !strcasecmp(value, "true");
++#endif
++			} else if (critical) {
++				return -2;
++			}
++		}
++		extensions = next;
++	}
++	return 0;
++}
++
++static void
++free_data(struct ldapdb_data *data)
++{
++	if (data->hostport != NULL)
++		isc_mem_free(named_g_mctx, data->hostport);
++	if (data->hostname != NULL)
++		isc_mem_free(named_g_mctx, data->hostname);
++	if (data->filterall != NULL)
++		isc_mem_put(named_g_mctx, data->filterall, data->filteralllen);
++	if (data->filterone != NULL)
++		isc_mem_put(named_g_mctx, data->filterone, data->filteronelen);
++        isc_mem_put(named_g_mctx, data, sizeof(struct ldapdb_data));
++}
++
++
++static isc_result_t
++ldapdb_create(const char *zone, int argc, char **argv,
++	      void *driverdata, void **dbdata)
++{
++	struct ldapdb_data *data;
++	char *s, *filter = NULL, *extensions = NULL;
++	int defaultttl;
++
++	UNUSED(driverdata);
++
++	/* we assume that only one thread will call create at a time */
++	/* want to do this only once for all instances */
++
++	if ((argc < 2)
++	    || (argv[0] != strstr( argv[0], "ldap://"))
++	    || ((defaultttl = atoi(argv[1])) < 1))
++                return (ISC_R_FAILURE);
++        data = isc_mem_get(named_g_mctx, sizeof(struct ldapdb_data));
++        if (data == NULL)
++                return (ISC_R_NOMEMORY);
++
++	memset(data, 0, sizeof(struct ldapdb_data));
++	data->hostport = isc_mem_strdup(named_g_mctx, argv[0] + strlen("ldap://"));
++	if (data->hostport == NULL) {
++		free_data(data);
++		return (ISC_R_NOMEMORY);
++	}
++
++	data->defaultttl = defaultttl;
++
++	s = strchr(data->hostport, '/');
++	if (s != NULL) {
++		*s++ = '\0';
++		data->base = s;
++		/* attrs, scope, filter etc? */
++		s = strchr(s, '?');
++		if (s != NULL) {
++			*s++ = '\0';
++			/* ignore attributes */
++			s = strchr(s, '?');
++			if (s != NULL) {
++				*s++ = '\0';
++				/* ignore scope */
++				s = strchr(s, '?');
++				if (s != NULL) {
++					*s++ = '\0';
++					/* filter */
++					filter = s;
++					s = strchr(s, '?');
++					if (s != NULL) {
++						*s++ = '\0';
++						/* extensions */
++						extensions = s;
++						s = strchr(s, '?');
++						if (s != NULL) {
++							*s++ = '\0';
++						}
++						if (*extensions == '\0') {
++							extensions = NULL;
++						}
++					}
++					if (*filter == '\0') {
++						filter = NULL;
++					}
++				}
++			}
++		}
++		if (*data->base == '\0') {
++			data->base = NULL;
++		}
++	}
++
++	/* parse extensions */
++	if (extensions != NULL) {
++		int err;
++
++		err = parseextensions(extensions, data);
++		if (err < 0) {
++			/* err should be -1 or -2 */
++			free_data(data);
++			if (err == -1) {
++				isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,
++					      "LDAP sdb zone '%s': URL: extension syntax error", zone);
++			} else if (err == -2) {
++				isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,
++					      "LDAP sdb zone '%s': URL: unknown critical extension", zone);
++			}
++			return (ISC_R_FAILURE);
++		}
++	}
++
++	if ((data->base != NULL && unhex(data->base) == NULL) ||
++	    (filter != NULL && unhex(filter) == NULL) ||
++	    (data->bindname != NULL && unhex(data->bindname) == NULL) ||
++	    (data->bindpw != NULL && unhex(data->bindpw) == NULL)) {
++		free_data(data);
++		isc_log_write(named_g_lctx, NAMED_LOGCATEGORY_GENERAL, NAMED_LOGMODULE_SERVER, ISC_LOG_ERROR,	
++			      "LDAP sdb zone '%s': URL: bad hex values", zone);
++		return (ISC_R_FAILURE);
++	}
++
++	/* compute filterall and filterone once and for all */
++	if (filter == NULL) {
++		data->filteralllen = strlen(zone) + strlen("(zoneName=)") + 1;
++		data->filteronelen = strlen(zone) + strlen("(&(zoneName=)(relativeDomainName=))") + MAXNAMELEN + 1;
++	} else {
++		data->filteralllen = strlen(filter) + strlen(zone) + strlen("(&(zoneName=))") + 1;
++		data->filteronelen = strlen(filter) + strlen(zone) + strlen("(&(zoneName=)(relativeDomainName=))") + MAXNAMELEN + 1;
++	}
++
++	data->filterall = isc_mem_get(named_g_mctx, data->filteralllen);
++	if (data->filterall == NULL) {
++		free_data(data);
++		return (ISC_R_NOMEMORY);
++	}
++	data->filterone = isc_mem_get(named_g_mctx, data->filteronelen);
++	if (data->filterone == NULL) {
++		free_data(data);
++		return (ISC_R_NOMEMORY);
++	}
++
++	if (filter == NULL) {
++		sprintf(data->filterall, "(zoneName=%s)", zone);
++		sprintf(data->filterone, "(&(zoneName=%s)(relativeDomainName=", zone); 
++	} else {
++		sprintf(data->filterall, "(&%s(zoneName=%s))", filter, zone);
++		sprintf(data->filterone, "(&%s(zoneName=%s)(relativeDomainName=", filter, zone);
++	}
++	data->filtername = data->filterone + strlen(data->filterone);
++
++	/* support URLs with literal IPv6 addresses */
++	data->hostname = isc_mem_strdup(named_g_mctx, data->hostport + (*data->hostport == '[' ? 1 : 0));
++	if (data->hostname == NULL) {
++		free_data(data);
++		return (ISC_R_NOMEMORY);
++	}
++
++	if (*data->hostport == '[' &&
++	    (s = strchr(data->hostname, ']')) != NULL )
++		*s++ = '\0';
++	else
++		s = data->hostname;
++	s = strchr(s, ':');
++	if (s != NULL) {
++		*s++ = '\0';
++		data->portno = atoi(s);
++	} else
++		data->portno = LDAP_PORT;
++
++	*dbdata = data;
++	return (ISC_R_SUCCESS);
++}
++
++static void
++ldapdb_destroy(const char *zone, void *driverdata, void **dbdata) {
++	struct ldapdb_data *data = *dbdata;
++	
++        UNUSED(zone);
++        UNUSED(driverdata);
++
++	free_data(data);
++}
++
++static dns_sdbmethods_t ldapdb_methods = {
++	ldapdb_lookup,
++	NULL, /* authority */
++	ldapdb_allnodes,
++	ldapdb_create,
++	ldapdb_destroy,
++	NULL /* lookup2 */
++};
++
++/* Wrapper around dns_sdb_register() */
++isc_result_t
++ldapdb_init(void) {
++	unsigned int flags =
++		DNS_SDBFLAG_RELATIVEOWNER |
++		DNS_SDBFLAG_RELATIVERDATA |
++		DNS_SDBFLAG_THREADSAFE;
++
++	ldapdb_lock(0);
++	return (dns_sdb_register("ldap", &ldapdb_methods, NULL, flags,
++				 named_g_mctx, &ldapdb));
++}
++
++/* Wrapper around dns_sdb_unregister() */
++void
++ldapdb_clear(void) {
++	if (ldapdb != NULL) {
++		/* clean up thread data */
++		ldapdb_getconn(NULL);
++		dns_sdb_unregister(&ldapdb);
++	}
++}
+diff --git a/contrib/sdb/ldap/ldapdb.h b/contrib/sdb/ldap/ldapdb.h
+new file mode 100644
+index 0000000..a08eb20
+--- /dev/null
++++ b/contrib/sdb/ldap/ldapdb.h
+@@ -0,0 +1,6 @@
++#include <isc/types.h>
++
++isc_result_t ldapdb_init(void);
++
++void ldapdb_clear(void);
++
+diff --git a/contrib/sdb/ldap/zone2ldap.1 b/contrib/sdb/ldap/zone2ldap.1
+new file mode 100644
+index 0000000..781114b
+--- /dev/null
++++ b/contrib/sdb/ldap/zone2ldap.1
+@@ -0,0 +1,64 @@
++.TH zone2ldap 1 "8 March 2001"
++.SH NAME
++zone2ldap /- Load BIND 9 Zone files into LDAP Directory
++.SH SYNOPSIS
++zone2ldap  [-D Bind DN] [-w Bind Password] [-b Base DN] [-z Zone] [-f Zone File ] [-h Ldap Host] [-cd] [-v]
++.SH DESCRIPTION
++zone2ldap will parse a complete BIND 9 format DNS zone file, and load
++the contents into an LDAP directory, for use with the LDAP sdb back-end.
++
++If the zone already exists, zone2ldap will exit succesfully. If the zone does not exists, or 
++partially exists, zone2ldap will attempt to add all/missing zone data.
++
++.SS Options
++.TP
++-b 
++LDAP Base DN. LDAP systems require a "base dn", which is generally considered the LDAP Directory root.
++If the zone you are loading is different from the base, then you will need to tell zone2ldap what your LDAP
++base is. 
++.TP
++-v 
++Print version information, and immediatly exit.
++.TP
++-f 
++Zone file.  Bind 9.1 compatible zone file, from which zone information will be read.
++.TP
++-d 
++Dump debug information to standard out. 
++.TP 
++-w 
++LDAP Bind password, corresponding the the value of "-b".
++.TP
++-h 
++LDAP Directory host. This is the hostname of the LDAP system you wish to store zone information on.
++An LDAP server should be listening on port 389 of the target system. This may be ommited, and will default
++to "localhost".
++.TP
++-c 
++This will create the zone portion of the DN you are importing. For instance, if you are creating a domain.com zone,
++zone2ldap should first create "dc=domain,dc=com".  This is useful if you are creating multiple domains.
++.TP
++-z 
++This is the name of the zone specified in the SOA record.
++.SH EXAMPLES
++Following are brief examples of how to import a zone file into your LDAP DIT.
++.SS Loading zone domain.com, with an LDAP Base DN of dc=domain,dc=com
++zone2ldap -D dc=root -w secret -h localhost -z domain.com -f domain.com.zone 
++
++This will add Resource Records into an ALREADY EXISTING dc=domain,dc=com. The final SOA DN in this case, will be 
++dc=@,dc=domain,dc=com
++
++.SS Loading customer.com, if your LDAP Base DN is dc=provider,dc=net.
++zone2ldap -D dc=root -w secret -h localhost -z customer.com -b dc=provider,dc=net -f customer.com.zone -c
++
++This will create dc=customer,dc=com under dc=provider,dc=net, and add all necessary Resource Records. The final
++root DN to the SOA will be dc=@,dc=customer,dc=com,dc=provider,dc=net.
++
++.SH "SEE ALSO"
++named(8) ldap(3) 
++http://www.venaas.no/ldap/bind-sdb/
++.SH "BUGS"
++Send all bug reports to Jeff McNeil <jeff@snapcase.g-rock.net>
++.SH AUTHOR
++Jeff McNeil <jeff@snapcase.g-rock.net>
++
+diff --git a/contrib/sdb/ldap/zone2ldap.c b/contrib/sdb/ldap/zone2ldap.c
+new file mode 100644
+index 0000000..2e1db12
+--- /dev/null
++++ b/contrib/sdb/ldap/zone2ldap.c
+@@ -0,0 +1,890 @@
++/*
++ * Copyright (C) 2001 Jeff McNeil <jeff@snapcase.g-rock.net>
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * Change Log
++ *
++ * Tue May  1 19:19:54 EDT 2001 - Jeff McNeil
++ * Update to objectClass code, and add_to_rr_list function
++ * (I need to rename that) to support the dNSZone schema,
++ * ditched dNSDomain2 schema support. Version 0.3-ALPHA
++ */
++
++
++#define LDAP_DEPRECATED 1
++
++#include <errno.h>
++#include <string.h>
++#include <stdlib.h>
++#include <unistd.h>
++#include <getopt.h>
++
++#include <isc/buffer.h>
++//#include "entropy_private.h"
++#include <isc/hash.h>
++#include <isc/mem.h>
++#include <isc/print.h>
++#include <isc/hash.h>
++#include <isc/result.h>
++#include <isc/string.h>
++
++#include <dns/db.h>
++#include <dns/dbiterator.h>
++#include <dns/fixedname.h>
++#include <dns/name.h>
++#include <dns/rdata.h>
++#include <dns/rdataset.h>
++#include <dns/rdatasetiter.h>
++#include <dns/result.h>
++#include <dns/rdatatype.h>
++
++#define LDAP_DEPRECATED 1
++
++#include <ldap.h>
++
++#define DNS_OBJECT 6
++#define DNS_TOP	   2
++
++#define VERSION    "0.4-ALPHA"
++
++#define NO_SPEC 0
++#define WI_SPEC  1
++
++/* Global Zone Pointer */
++char *gbl_zone = NULL;
++
++typedef struct LDAP_INFO
++{
++  char *dn;
++  LDAPMod **attrs;
++  struct LDAP_INFO *next;
++  int attrcnt;
++}
++ldap_info;
++
++/* usage Info */
++void usage (void);
++
++/* Check for existence of (and possibly add) containing dNSZone objects */
++int lookup_dns_zones( ldap_info *ldinfo);
++
++/* Add to the ldap dit */
++void add_ldap_values (ldap_info * ldinfo);
++
++/* Init an ldap connection */
++void init_ldap_conn (void);
++
++/* Ldap error checking */
++void ldap_result_check (const char *msg, char *dn, int err);
++
++/* Put a hostname into a char ** array */
++char **hostname_to_dn_list (char *hostname, char *zone, unsigned int flags);
++
++/* Find out how many items are in a char ** array */
++int get_attr_list_size (char **tmp);
++
++/* Get a DN */
++char *build_dn_from_dc_list (char **dc_list, unsigned int ttl, int flag, char *zone);
++
++/* Add to RR list */
++void add_to_rr_list (char *dn, char *name, char *type, char *data,
++		     unsigned int ttl, unsigned int flags);
++
++/* Error checking */
++void isc_result_check (isc_result_t res, const char *errorstr);
++
++/* Generate LDIF Format files */
++void generate_ldap (dns_name_t * dnsname, dns_rdata_t * rdata,
++		    unsigned int ttl);
++
++/* head pointer to the list */
++ldap_info *ldap_info_base = NULL;
++
++ldap_info *
++locate_by_dn (char *dn);
++void
++init_ldap_conn ();
++void usage();
++
++static char *argzone, *ldapbase, *binddn, *bindpw = NULL;
++
++/* these are needed to placate gcc4's const-ness const-ernations : */
++static char localhost[] = "localhost";
++static char *ldapsystem=&(localhost[0]);
++/* dnszone schema class names: */
++static char topClass    [] ="top";
++static char dNSZoneClass[] ="dNSZone";
++static char objectClass [] ="objectClass";
++static char dcObjectClass[]="dcObject";
++/* dnszone schema attribute names: */
++static char relativeDomainName[]="relativeDomainName";
++static char dNSTTL            []="dNSTTL";
++static char zoneName          []="zoneName";
++static char dc                []="dc";
++static char sameZone          []="@";
++/* LDAPMod mod_values: */
++static char *objectClasses    []= { &(topClass[0]), &(dNSZoneClass[0]), NULL };
++static char *topObjectClasses []= { &(topClass[0]), &(dcObjectClass[0]), &(dNSZoneClass[0]), NULL };
++static char *dn_buffer      [64]={NULL};
++
++LDAP *conn;
++unsigned int debug = 0;
++
++#ifdef DEBUG
++debug = 1;
++#endif
++
++static void
++fatal(const char *msg) {
++  perror(msg);
++  if (conn != NULL)
++    ldap_unbind_s(conn);
++  exit(1);
++}
++
++int
++main (int argc, char **argv)
++{
++  isc_mem_t *mctx = NULL;
++  //isc_entropy_t *ectx = NULL;
++  isc_result_t result;
++  char *basedn;
++  ldap_info *tmp;
++  LDAPMod *base_attrs[5];
++  LDAPMod base, dcBase, znBase, rdnBase;
++  isc_buffer_t buff;
++  char *zonefile=0L;
++  char fullbasedn[1024];
++  char *ctmp, *zn, *dcp[2], *znp[2], *rdn[2];
++  dns_fixedname_t fixedzone, fixedname;
++  dns_rdataset_t rdataset;
++  char **dc_list;
++  dns_rdata_t rdata = DNS_RDATA_INIT;
++  dns_rdatasetiter_t *riter;
++  dns_name_t *zone, *name;
++  dns_db_t *db = NULL;
++  dns_dbiterator_t *dbit = NULL;
++  dns_dbnode_t *node;
++  extern char *optarg;
++  extern int optind, opterr, optopt;
++  int create_base = 0;
++  int topt, dcn, zdn, znlen;
++
++  if (argc < 2)
++    {
++      usage ();
++      exit (-1);
++    }
++
++  while ((topt = getopt ((int) argc, argv, "D:Ww:b:z:f:h:?dcv")) != -1)
++    {
++      switch (topt)
++	{
++	case 'v':
++		printf("%s\n", VERSION);
++		exit(0);
++	case 'c':
++	  create_base++;
++	  break;
++	case 'd':
++	  debug++;
++	  break;
++	case 'D':
++	  binddn = strdup (optarg);
++	  if (binddn == NULL)
++	    fatal("strdup");
++	  break;
++	case 'w':
++	  bindpw = strdup (optarg);
++	  if (bindpw == NULL)
++	    fatal("strdup");
++	  break;
++	case 'W':
++	  bindpw = getpass("Enter LDAP Password: ");
++	  break;
++	case 'b':
++	  ldapbase = strdup (optarg);
++	  if (ldapbase == NULL)
++	    fatal("strdup");
++	  break;
++	case 'z':
++	  argzone = strdup (optarg);
++	  // We wipe argzone all to hell when we parse it for the DN */
++	  gbl_zone = strdup(argzone);
++	  if (argzone == NULL || gbl_zone == NULL)
++	    fatal("strdup");
++	  break;
++	case 'f':
++	  zonefile = strdup (optarg);
++	  if (zonefile == NULL)
++	    fatal("strdup");
++	  break;
++	case 'h':
++	  ldapsystem = strdup (optarg);
++	  if (ldapsystem == NULL)
++	    fatal("strdup");
++	  break;
++	case '?':
++	default:
++	  usage ();
++	  exit (0);
++	}
++    }
++
++  if ((argzone == NULL) || (zonefile == NULL))
++    {
++      usage ();
++      exit (-1);
++    }
++
++  if (debug)
++    printf ("Initializing ISC Routines, parsing zone file\n");
++
++  isc_mem_create (&mctx);
++
++  isc_buffer_init (&buff, argzone, strlen (argzone));
++  isc_buffer_add (&buff, strlen (argzone));
++  dns_fixedname_init (&fixedzone);
++  zone = dns_fixedname_name (&fixedzone);
++  result = dns_name_fromtext (zone, &buff, dns_rootname, 0, NULL);
++  isc_result_check (result, "dns_name_fromtext");
++
++  result = dns_db_create (mctx, "rbt", zone, dns_dbtype_zone,
++			  dns_rdataclass_in, 0, NULL, &db);
++  isc_result_check (result, "dns_db_create");
++
++  result = dns_db_load (db, zonefile, dns_masterformat_text, 0);
++  isc_result_check (result, "Check Zone Syntax: dns_db_load");
++
++  result = dns_db_createiterator (db, 0, &dbit);
++  isc_result_check (result, "dns_db_createiterator");
++
++  result = dns_dbiterator_first (dbit);
++  isc_result_check (result, "dns_dbiterator_first");
++
++  dns_fixedname_init (&fixedname);
++  name = dns_fixedname_name (&fixedname);
++  dns_rdataset_init (&rdataset);
++  dns_rdata_init (&rdata);
++
++  while (result == ISC_R_SUCCESS)
++    {
++      node = NULL;
++      result = dns_dbiterator_current (dbit, &node, name);
++
++      if (result == ISC_R_NOMORE)
++	break;
++
++      isc_result_check (result, "dns_dbiterator_current");
++
++      riter = NULL;
++      result = dns_db_allrdatasets (db, node, NULL, 0, 0, &riter);
++      isc_result_check (result, "dns_db_allrdatasets");
++
++      result = dns_rdatasetiter_first (riter);
++      //isc_result_check(result, "dns_rdatasetiter_first");
++
++      while (result == ISC_R_SUCCESS)
++	{
++	  dns_rdatasetiter_current (riter, &rdataset);
++	  result = dns_rdataset_first (&rdataset);
++	  isc_result_check (result, "dns_rdatasetiter_current");
++
++	  while (result == ISC_R_SUCCESS)
++	    {
++	      dns_rdataset_current (&rdataset, &rdata);
++	      generate_ldap (name, &rdata, rdataset.ttl);
++	      dns_rdata_reset (&rdata);
++	      result = dns_rdataset_next (&rdataset);
++	    }
++	  dns_rdataset_disassociate (&rdataset);
++	  result = dns_rdatasetiter_next (riter);
++
++	}
++      dns_rdatasetiter_destroy (&riter);
++      result = dns_dbiterator_next (dbit);
++
++    }
++
++  /* Initialize the LDAP Connection */
++  if (debug)
++    printf ("Initializing LDAP Connection to %s as %s\n", ldapsystem, binddn);
++
++  init_ldap_conn ();
++
++  if (create_base)
++    {
++      if (debug)
++	printf ("Creating base zone DN %s\n", argzone);
++
++      dc_list = hostname_to_dn_list (argzone, argzone, DNS_TOP);
++
++      basedn = build_dn_from_dc_list (dc_list, 0, NO_SPEC, argzone);
++      if (debug)
++	printf ("base DN %s\n", basedn);
++
++      for (ctmp = &basedn[strlen (basedn)], dcn=0; ctmp >= &basedn[0]; ctmp--)
++	{
++	  if ((*ctmp == ',') || (ctmp == &basedn[0]))
++	    {
++	      base.mod_op = LDAP_MOD_ADD;
++	      base.mod_type = objectClass;
++	      base.mod_values = topObjectClasses;
++
++	      base_attrs[0] = (void*)&base;
++	     
++	      dcBase.mod_op = LDAP_MOD_ADD;
++	      dcBase.mod_type = dc;
++	      dcp[0]=dc_list[dcn];
++	      dcp[1]=0L;
++	      dcBase.mod_values=dcp;
++	      base_attrs[1] = (void*)&dcBase;
++
++	      znBase.mod_op = LDAP_MOD_ADD;
++	      znBase.mod_type = zoneName;	      
++	      for( zdn = dcn, znlen = 0; zdn >= 0; zdn-- )
++		  znlen += strlen(dc_list[zdn])+1;
++	      znp[0] = (char*)malloc(znlen+1);
++	      znp[1] = 0L;
++	      for( zdn = dcn, zn=znp[0]; zdn >= 0; zdn-- )		  
++		  zn+=sprintf(zn,"%s%s",dc_list[zdn], 
++			      ((zdn > 0) && (*(dc_list[zdn-1])!='.')) ? "." : ""
++		             );
++
++	      znBase.mod_values = znp;
++	      base_attrs[2] = (void*)&znBase;
++
++	      rdnBase.mod_op = LDAP_MOD_ADD;
++	      rdnBase.mod_type = relativeDomainName;
++	      rdn[0] = strdup(sameZone);
++	      rdn[1] = 0L;
++	      rdnBase.mod_values = rdn;
++	      base_attrs[3] = (void*)&rdnBase;
++	      
++	      dcn++;
++ 
++	      base.mod_values = topObjectClasses;
++	      base_attrs[4] = NULL;	      
++	      
++	      if (ldapbase)
++		{
++		  if (ctmp != &basedn[0])
++		    sprintf (fullbasedn, "%s,%s", ctmp + 1, ldapbase);
++		  else
++		    sprintf (fullbasedn, "%s,%s", ctmp, ldapbase);
++
++		}
++	      else
++		{
++		  if (ctmp != &basedn[0])
++		    sprintf (fullbasedn, "%s", ctmp + 1);
++		  else
++		    sprintf (fullbasedn, "%s", ctmp);
++		}
++
++	      if( debug )
++		  printf("Full base dn: %s\n", fullbasedn);
++
++	      result = ldap_add_s (conn, fullbasedn, base_attrs);
++	      ldap_result_check ("intial ldap_add_s", fullbasedn, result);
++	    }
++
++	}
++    }
++  else
++    {
++      if (debug)
++	printf ("Skipping zone base dn creation for %s\n", argzone);
++    }
++
++  for (tmp = ldap_info_base; tmp != NULL; tmp = tmp->next)
++    {
++
++      if (debug)
++	printf ("Adding DN: %s\n", tmp->dn);
++
++      add_ldap_values (tmp);
++    }
++
++  if (debug)
++	printf("Operation Complete.\n");
++
++  /* Cleanup */
++  //isc_hash_destroy();
++  //isc_entropy_detach(&ectx);
++  isc_mem_destroy(&mctx);
++  if (zonefile)
++	free(zonefile);
++
++  return 0;
++}
++
++
++/* Check the status of an isc_result_t after any isc routines.
++ * I should probably rename this function, as not to cause any
++ * confusion with the isc* routines. Will exit on error. */
++void
++isc_result_check (isc_result_t res, const char *errorstr)
++{
++  if (res != ISC_R_SUCCESS)
++    {
++      fprintf (stderr, " %s: %s\n", errorstr, isc_result_totext (res));
++      exit (-1);
++    }
++}
++
++
++/* Takes DNS information, in bind data structure format, and adds textual
++ * zone information to the LDAP run queue. */
++void
++generate_ldap (dns_name_t * dnsname, dns_rdata_t * rdata, unsigned int ttl)
++{
++  char name[DNS_NAME_MAXTEXT + 1];
++  unsigned int len;
++  char type[20];
++  char data[2048];
++  char **dc_list;
++  char *dn;
++
++  isc_buffer_t buff;
++  isc_result_t result;
++
++  isc_buffer_init (&buff, name, sizeof (name));
++  result = dns_name_totext (dnsname, true, &buff);
++  isc_result_check (result, "dns_name_totext");
++  name[isc_buffer_usedlength (&buff)] = 0;
++
++  isc_buffer_init (&buff, type, sizeof (type));
++  result = dns_rdatatype_totext (rdata->type, &buff);
++  isc_result_check (result, "dns_rdatatype_totext");
++  type[isc_buffer_usedlength (&buff)] = 0;
++
++  isc_buffer_init (&buff, data, sizeof (data));
++  result = dns_rdata_totext (rdata, NULL, &buff);
++  isc_result_check (result, "dns_rdata_totext");
++  data[isc_buffer_usedlength (&buff)] = 0;
++
++  dc_list = hostname_to_dn_list ((char*)name, argzone, DNS_OBJECT);
++  len = (get_attr_list_size (dc_list) - 2);
++  dn = build_dn_from_dc_list (dc_list, ttl, WI_SPEC, argzone);
++
++  if (debug)
++    printf ("Adding %s (%s %s) to run queue list.\n", dn, type, data);
++
++  add_to_rr_list (dn, dc_list[len], (char*)type, (char*)data, ttl, DNS_OBJECT);
++}
++
++
++/* Locate an item in the Run queue linked list, by DN. Used by functions
++ * which add items to the run queue.
++ */
++ldap_info *
++locate_by_dn (char *dn)
++{
++  ldap_info *tmp;
++  for (tmp = ldap_info_base; tmp != (ldap_info *) NULL; tmp = tmp->next)
++    {
++      if (!strncmp (tmp->dn, dn, strlen (dn)))
++	return tmp;
++    }
++  return (ldap_info *) NULL;
++}
++
++
++
++/* Take textual zone data, and add to the LDAP Run queue. This works like so:
++ * If locate_by_dn does not return, alloc a new ldap_info structure, and then
++ * calloc a LDAPMod array, fill in the default "everyone needs this" information,
++ * including object classes and dc's. If it locate_by_dn does return, then we'll
++ * realloc for more LDAPMod structs, and appened the new data.  If an LDAPMod exists
++ * for the parameter we're adding, then we'll realloc the mod_values array, and
++ * add the new value to the existing LDAPMod. Finnaly, it assures linkage exists
++ * within the Run queue linked ilst*/
++
++void
++add_to_rr_list (char *dn, char *name, char *type,
++		char *data, unsigned int ttl, unsigned int flags)
++{
++  int i;
++  int x;
++  ldap_info *tmp;
++  int attrlist;
++  char ldap_type_buffer[128];
++  char charttl[64];
++
++  char *zn;
++  int znlen;
++
++  if ((tmp = locate_by_dn (dn)) == NULL)
++    {
++
++      /* There wasn't one already there, so we need to allocate a new one,
++       * and stick it on the list */
++
++      tmp = (ldap_info *) malloc (sizeof (ldap_info));
++      if (tmp == (ldap_info *) NULL)
++	fatal("malloc");
++
++      tmp->dn = strdup (dn);
++      if (tmp->dn == NULL)
++	fatal("strdup");
++
++      tmp->attrs = (LDAPMod **) calloc (sizeof (LDAPMod *), flags);
++      if (tmp->attrs == (LDAPMod **) NULL)
++	fatal("calloc");
++
++      for (i = 0; i < (int)flags; i++)
++	{
++	  tmp->attrs[i] = (LDAPMod *) malloc (sizeof (LDAPMod));
++	  if (tmp->attrs[i] == (LDAPMod *) NULL)
++	    fatal("malloc");
++	}
++      tmp->attrs[0]->mod_op = LDAP_MOD_ADD;
++      tmp->attrs[0]->mod_type = objectClass;
++
++      if (flags == DNS_OBJECT)
++	tmp->attrs[0]->mod_values = objectClasses;
++      else
++	{
++	  tmp->attrs[0]->mod_values = topObjectClasses;
++	  tmp->attrs[1] = NULL;
++	  tmp->attrcnt = 2;
++	  tmp->next = ldap_info_base;
++	  ldap_info_base = tmp;
++	  return;
++	}
++
++      tmp->attrs[1]->mod_op = LDAP_MOD_ADD;
++      tmp->attrs[1]->mod_type = relativeDomainName;
++      tmp->attrs[1]->mod_values = (char **) calloc (sizeof (char *), 2);
++
++      if (tmp->attrs[1]->mod_values == (char **)NULL)
++	fatal("calloc");
++
++      tmp->attrs[1]->mod_values[0] = strdup (name);
++      tmp->attrs[1]->mod_values[2] = NULL;
++
++      if (tmp->attrs[1]->mod_values[0] == NULL)
++	fatal("strdup");
++
++      sprintf (ldap_type_buffer, "%sRecord", type);
++
++      tmp->attrs[2]->mod_op = LDAP_MOD_ADD;
++      tmp->attrs[2]->mod_type = strdup (ldap_type_buffer);
++      tmp->attrs[2]->mod_values = (char **) calloc (sizeof (char *), 2);
++
++      if (tmp->attrs[2]->mod_type == NULL ||
++	  tmp->attrs[2]->mod_values == (char **)NULL)
++	 fatal("strdup/calloc");
++
++      tmp->attrs[2]->mod_values[0] = strdup (data);
++      tmp->attrs[2]->mod_values[1] = NULL;
++
++      if (tmp->attrs[2]->mod_values[0] == NULL)
++	 fatal("strdup");
++
++      tmp->attrs[3]->mod_op = LDAP_MOD_ADD;
++      tmp->attrs[3]->mod_type = dNSTTL;
++      tmp->attrs[3]->mod_values = (char **) calloc (sizeof (char *), 2);
++
++      if (tmp->attrs[3]->mod_values == (char **)NULL)
++	 fatal("calloc");
++
++      sprintf (charttl, "%d", ttl);
++      tmp->attrs[3]->mod_values[0] = strdup (charttl);
++      tmp->attrs[3]->mod_values[1] = NULL;
++
++      if (tmp->attrs[3]->mod_values[0] == NULL)
++	 fatal("strdup");
++
++      znlen=strlen(gbl_zone);      
++      if ( *(gbl_zone + (znlen-1)) == '.' )
++      { /* ldapdb MUST search by relative zone name */
++	  zn = (char*)malloc(znlen);
++	  strncpy(zn,gbl_zone,znlen-1);
++	  *(zn + (znlen-1))='\0';	  
++      }else
++      {
++	  zn = gbl_zone;
++      }
++
++      tmp->attrs[4]->mod_op = LDAP_MOD_ADD;
++      tmp->attrs[4]->mod_type = zoneName;
++      tmp->attrs[4]->mod_values = (char **)calloc(sizeof(char *), 2);
++
++      if (tmp->attrs[4]->mod_values == (char **)NULL)
++	 fatal("calloc");
++
++      tmp->attrs[4]->mod_values[0] = zn;
++      tmp->attrs[4]->mod_values[1] = NULL;
++
++      tmp->attrs[5] = NULL;
++      tmp->attrcnt = flags;
++      tmp->next = ldap_info_base;
++      ldap_info_base = tmp;
++    }
++  else
++    {
++
++      for (i = 0; tmp->attrs[i] != NULL; i++)
++	{
++	  sprintf (ldap_type_buffer, "%sRecord", type);
++	  if (!strncmp
++	      (ldap_type_buffer, tmp->attrs[i]->mod_type,
++	       strlen (tmp->attrs[i]->mod_type)))
++	    {
++	      attrlist = get_attr_list_size (tmp->attrs[i]->mod_values);
++	      tmp->attrs[i]->mod_values =
++		(char **) realloc (tmp->attrs[i]->mod_values,
++				   sizeof (char *) * (attrlist + 1));
++
++	      if (tmp->attrs[i]->mod_values == (char **) NULL)
++		fatal("realloc");
++
++	      for (x = 0; tmp->attrs[i]->mod_values[x] != NULL; x++);
++
++	      tmp->attrs[i]->mod_values[x] = strdup (data);
++	      if (tmp->attrs[i]->mod_values[x] == NULL)
++		fatal("strdup");
++	      tmp->attrs[i]->mod_values[x + 1] = NULL;
++
++	      return;
++	    }
++	}
++      tmp->attrs =
++	(LDAPMod **) realloc (tmp->attrs,
++			      sizeof (LDAPMod) * ++(tmp->attrcnt));
++      if (tmp->attrs == NULL)
++	fatal("realloc");
++
++      for (x = 0; tmp->attrs[x] != NULL; x++);
++      tmp->attrs[x] = (LDAPMod *) malloc (sizeof (LDAPMod));
++      if (tmp->attrs[x] == NULL)
++	fatal("malloc");
++      tmp->attrs[x]->mod_op = LDAP_MOD_ADD;
++      tmp->attrs[x]->mod_type = strdup (ldap_type_buffer);
++      tmp->attrs[x]->mod_values = (char **) calloc (sizeof (char *), 2);
++
++      if (tmp->attrs[x]->mod_type == NULL ||
++	  tmp->attrs[x]->mod_values == (char **)NULL)
++	fatal("strdup/calloc");
++
++      tmp->attrs[x]->mod_values[0] = strdup (data);
++      if (tmp->attrs[x]->mod_values[0] == NULL)
++	fatal("strdup");
++      tmp->attrs[x]->mod_values[1] = NULL;
++      tmp->attrs[x + 1] = NULL;
++    }
++}
++
++/* Size of a mod_values list, plus the terminating NULL field. */
++int
++get_attr_list_size (char **tmp)
++{
++  int i = 0;
++  char **ftmp = tmp;
++  while (*ftmp != NULL)
++    {
++      i++;
++      ftmp++;
++    }
++  return ++i;
++}
++
++
++/* take a hostname, and split it into a char ** of the dc parts,
++ * example, we have www.domain.com, this function will return:
++ * array[0] = com, array[1] = domain, array[2] = www. */
++
++char **
++hostname_to_dn_list (char *hostname, char *zone, unsigned int flags)
++{
++  char *tmp;
++  int i = 0;
++  dn_buffer[i] = NULL;
++
++  char *hname=0L, *last=0L;
++  int hlen=strlen(hostname), zlen=(strlen(zone));
++
++  /*  printf("hostname: %s zone: %s\n",hostname, zone); */
++  hname=0L;
++  if(flags == DNS_OBJECT)
++  {
++      if( (zone[ zlen - 1 ] == '.') && (hostname[hlen - 1] != '.') )
++      {
++	  hname=(char*)malloc(hlen + 1);
++	  hlen += 1;
++	  sprintf(hname, "%s.", hostname);
++	  hostname = hname;
++      }
++      if(strcmp(hostname, zone) == 0)
++      {
++	  if( hname == 0 )
++	      hname=strdup(hostname);
++  	  last = strdup(sameZone);
++      }else
++      {	   
++	  if(  (hlen < zlen) 
++	     ||( strcmp( hostname + (hlen - zlen), zone ) != 0)
++	    )
++	  {
++	      if( hname != 0 )
++		  free(hname);
++	      hname=(char*)malloc( hlen + zlen + 1);
++	      if( *zone == '.' )
++		  sprintf(hname, "%s%s", hostname, zone);
++	      else
++		  sprintf(hname,"%s",zone);
++	  }else
++	  {
++	      if( hname == 0 )
++		  hname = strdup(hostname);
++	  }
++	  last = hname;
++      }
++  }else
++  { /* flags == DNS_TOP */
++      hname = strdup(zone);
++      last = hname;
++  }
++
++  for (tmp = strrchr (hname, '.'); tmp != (char *) 0;
++       tmp = strrchr (hname, '.'))
++  {
++      if( *( tmp + 1 ) != '\0' )
++      {
++	  *tmp = '\0';
++	  dn_buffer[i++] = ++tmp;
++      }else
++      { /* trailing '.' ! */
++	  dn_buffer[i++] = strdup(".");
++	  *tmp = '\0';
++	  if( tmp == hname )
++	      break;
++      }	  
++  }
++  if( ( last != hname ) && (tmp != hname) )
++      dn_buffer[i++] = hname;
++  dn_buffer[i++] = last;
++  return dn_buffer;
++}
++
++
++/* build an sdb compatible LDAP DN from a "dc_list" (char **).
++ * will append dNSTTL information to each RR Record, with the
++ * exception of "@"/SOA. */
++
++char *
++build_dn_from_dc_list (char **dc_list, unsigned int ttl, int flag, char *zone)
++{
++  int size;
++  int x, znlen;
++  static char dn[1024];
++  char tmp[128];
++  char zn[DNS_NAME_MAXTEXT+1];
++
++  bzero (tmp, sizeof (tmp));
++  bzero (dn, sizeof (dn));
++  size = get_attr_list_size (dc_list);
++  znlen = strlen(zone);
++  if ( *(zone + (znlen-1)) == '.' )
++  { /* ldapdb MUST search by relative zone name */
++      memcpy(&(zn[0]),zone,znlen-1);
++      *(zn + (znlen-1))='\0';
++      zone = zn;
++  }
++  for (x = size - 2; x > 0; x--)
++    {
++    if (flag == WI_SPEC)
++    {
++      if (x == (size - 2) && (strncmp (dc_list[x], "@", 1) == 0) && (ttl))
+++	sprintf (tmp, "zoneName=%s + relativeDomainName=%s,", zone, dc_list[x]);
++      else if (x == (size - 2))
+++	      sprintf(tmp, "zoneName=%s + relativeDomainName=%s,", zone, dc_list[x]);
++      else
++	      sprintf(tmp,"dc=%s,", dc_list[x]);
++    }
++    else
++    {
++	    sprintf(tmp, "dc=%s,", dc_list[x]);
++    }
++
++
++      strlcat (dn, tmp, sizeof (dn));
++    }
++
++  sprintf (tmp, "dc=%s", dc_list[0]);
++  strlcat (dn, tmp, sizeof (dn));
++
++	    fflush(NULL);
++  return dn;
++}
++
++
++/* Initialize LDAP Conn */
++void
++init_ldap_conn ()
++{
++  int result;
++  char ldb_tag[]="LDAP Bind";
++  conn = ldap_open (ldapsystem, LDAP_PORT);
++  if (conn == NULL)
++    {
++      fprintf (stderr, "Error opening Ldap connection: %s\n",
++	       strerror (errno));
++      exit (-1);
++    }
++
++  result = ldap_simple_bind_s (conn, binddn, bindpw);
++  ldap_result_check ("ldap_simple_bind_s", ldb_tag , result);
++}
++
++/* Like isc_result_check, only for LDAP */
++void
++ldap_result_check (const char *msg, char *dn, int err)
++{
++  if ((err != LDAP_SUCCESS) && (err != LDAP_ALREADY_EXISTS))
++    {
++      fprintf(stderr, "Error while adding %s (%s):\n",
++		      dn, msg);
++      ldap_perror (conn, dn);
++      ldap_unbind_s (conn);
++      exit (-1);
++    }
++}
++
++
++
++/* For running the ldap_info run queue. */
++void
++add_ldap_values (ldap_info * ldinfo)
++{
++  int result;
++  char dnbuffer[1024];
++
++
++  if (ldapbase != NULL)
++    sprintf (dnbuffer, "%s,%s", ldinfo->dn, ldapbase);
++  else
++    sprintf (dnbuffer, "%s", ldinfo->dn);
++
++  result = ldap_add_s (conn, dnbuffer, ldinfo->attrs);
++  ldap_result_check ("ldap_add_s", dnbuffer, result);
++}
++
++
++
++
++/* name says it all */
++void
++usage ()
++{
++  fprintf (stderr,
++	   "zone2ldap -D [BIND DN] [-w BIND PASSWORD | -W:prompt] -b [BASE DN] -z [ZONE] -f [ZONE FILE] -h [LDAP HOST]\n"
++	   "\t[-c Create LDAP Base structure][-d Debug Output (lots !)]\n "
++          );
++}
++

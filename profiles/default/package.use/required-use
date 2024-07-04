@@ -25,9 +25,6 @@ media-plugins/audacious-plugins -libnotify
 # lm-sensors? ( opencl )
 net-misc/bfgminer opencl
 
-# spell? ( exactly-one-of ( aspell enchant hunspell ) )
-net-im/vacuum -enchant
-
 # timidity? ( midi )
 media-libs/sdl2-mixer midi
 
@@ -67,4 +64,13 @@ media-video/pipewire sound-server
 
 # libnotify? ( gui )
 net-p2p/deluge gui
+
+# opengl? ( gui )
+games-board/gnubg gui
+
+# ffmpeg? ( gui ) jpeg? ( gui )
+media-gfx/netgen gui
+
+# skins? ( archive )
+media-video/vlc archive
 

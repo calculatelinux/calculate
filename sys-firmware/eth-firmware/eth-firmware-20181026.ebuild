@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=8
 
 MYPN=linux-firmware
 MYP=linux-firmware-${PV}
@@ -15,9 +15,7 @@ HOMEPAGE="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git
 
 LICENSE="linux-firmware ( BSD ISC MIT no-source-code ) GPL-2 GPL-2+ freedist"
 SLOT="0"
-IUSE=""
 
-DEPEND=""
 RDEPEND="!sys-kernel/linux-firmware"
 
 RESTRICT="binchecks strip"

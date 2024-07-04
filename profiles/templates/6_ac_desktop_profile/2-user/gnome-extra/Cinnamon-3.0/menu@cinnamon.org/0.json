@@ -100,7 +100,7 @@
         "dependency": "menu-custom",
 #pkg#
         "indent": "true",
-        "value": "/usr/share/pixmaps/calculate/start-here-brown.svg"
+        "value": "/usr/share/pixmaps/calculate/start-here-blue.svg"
     },
     "menu-label": {
         "type": "entry",

@@ -6,4 +6,5 @@
 		<name>Mir Calculate</name>
 		<description>Calculate Overlay</description>
 	</maintainer>
+	<upstream><remote-id type="github">PapirusDevelopmentTeam/papirus-smplayer-theme</remote-id></upstream>
 </pkgmetadata>

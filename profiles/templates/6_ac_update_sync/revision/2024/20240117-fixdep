@@ -1,0 +1,7 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+sed -i 's/sys-devel\/make/dev-build\/make/' /var/db/pkg/sys-kernel/calculate-sources-*/RDEPEND 2>/dev/null
+
+exit 0

@@ -1,0 +1,9 @@
+# need old ffmpeg-4
+dev-games/openscenegraph -ffmpeg
+media-libs/libquicktime -ffmpeg
+media-sound/moc -ffmpeg
+media-tv/kodi -system-ffmpeg
+media-tv/tvheadend -ffmpeg
+media-video/mjpegtools -quicktime
+media-video/vlc -vaapi
+sci-libs/opencascade -ffmpeg

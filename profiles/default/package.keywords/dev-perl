@@ -7,7 +7,6 @@
 ~dev-perl/CGI-PSGI-0.150.0 amd64
 ~dev-perl/Chart-2.4.10 amd64
 ~dev-perl/Class-Accessor-Lite-0.80.0 amd64
-~dev-perl/Convert-Color-0.110.0 amd64
 ~dev-perl/CPAN-DistnameInfo-0.120.0 amd64
 ~dev-perl/CPAN-Mini-Inject-0.350.0 amd64
 ~dev-perl/Crypt-DH-GMP-0.0.120 amd64
@@ -23,15 +22,12 @@
 ~dev-perl/FCGI-ProcManager-0.280.0 amd64
 ~dev-perl/File-Slurp-Tiny-0.4.0 amd64
 ~dev-perl/File-Spec-Native-1.4.0 amd64
-~dev-perl/GD-2.730.0 amd64
 ~dev-perl/GD-Barcode-1.150.0 amd64
-~dev-perl/GDGraph-1.540.0 amd64
 ~dev-perl/GD-Graph3d-0.630.0 amd64
 ~dev-perl/GD-SVG-0.330.0 amd64
 ~dev-perl/GDTextUtil-0.860.0 amd64
 ~dev-perl/Getopt-GUI-Long-0.930.0 amd64
 ~dev-perl/HTML-Mason-PSGIHandler-0.530.0 amd64
-~dev-perl/HTML-Quoted-0.40.0 amd64
 ~dev-perl/HTML-RewriteAttributes-0.50.0 amd64
 ~dev-perl/HTTP-Body-1.220.0 amd64
 ~dev-perl/HTTP-Request-AsCGI-1.200.0 amd64

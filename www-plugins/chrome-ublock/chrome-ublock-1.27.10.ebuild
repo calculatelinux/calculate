@@ -1,10 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="7"
-
-inherit eutils
+EAPI=8
 
 SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 
@@ -14,16 +12,13 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
 
-DEPEND=""
-RDEPEND="${DEPEND}
-	dev-python/plyvel"
+RDEPEND="dev-python/plyvel"
 
 S="${WORKDIR}"
 
 src_install() {
-	dodir /usr/share/chrome-ublock
 	insinto /usr/share/chrome-ublock
 	doins -r *
-	doins ${FILESDIR}/configure.py
+	doins "${FILESDIR}/configure.py"
 	fperms 755 /usr/share/chrome-ublock/configure.py
 }

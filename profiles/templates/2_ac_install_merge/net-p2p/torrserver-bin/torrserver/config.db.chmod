@@ -1,4 +1,0 @@
-# Calculate run=/bin/bash
-
-chown torrserver. /var/lib/torrserver/config.db
-exit 0

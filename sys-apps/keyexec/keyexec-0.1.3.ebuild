@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=7
+EAPI=8
 DESCRIPTION="Runs other programs with the user password, kept in the Linux kernel"
-HOMEPAGE="http://www.calculate-linux.org/main/en/keyexec"
+HOMEPAGE="https://www.calculate-linux.org/main/en/keyexec"
 SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"
@@ -20,7 +20,7 @@ DEPEND="
 	freerdp? ( net-misc/freerdp )
 	>=sys-apps/keyutils-1.1
 	>=sys-auth/pam_keystore-0.1
-	kde? ( >=kde-base/kdelibs-4.1.0 )"
+	kde? ( kde-plasma/kde-cli-tools:5 )"
 
 RDEPEND="${DEPEND}"
 

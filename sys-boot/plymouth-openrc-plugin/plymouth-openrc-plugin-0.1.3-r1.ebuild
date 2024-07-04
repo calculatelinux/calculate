@@ -17,8 +17,8 @@ RDEPEND="${DEPEND}
 	sys-boot/plymouth
 	!sys-apps/systemd"
 
-PATCHES=( "${FILESDIR}/${P}-disable-messages.patch" 
-	"${FILESDIR}/${P}-restart-consolefont.patch" 
+PATCHES=( "${FILESDIR}/${P}-disable-messages.patch"
+	"${FILESDIR}/${P}-restart-consolefont.patch"
 	"${FILESDIR}/${P}-silent-shutdown.patch" )
 
 src_install() {

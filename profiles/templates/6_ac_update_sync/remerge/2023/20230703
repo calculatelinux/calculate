@@ -1,0 +1,4 @@
+# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=net-misc/openssh
+
+[overlay-calculate]
+remerge = #-cl_pass_file-#

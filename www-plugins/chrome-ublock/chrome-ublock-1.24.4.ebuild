@@ -4,8 +4,6 @@
 
 EAPI="7"
 
-inherit eutils
-
 SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 
 DESCRIPTION="An efficient blocker for Chromium"
@@ -14,16 +12,13 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
 
-DEPEND=""
-RDEPEND="${DEPEND}
-	dev-python/plyvel"
+RDEPEND="dev-python/plyvel"
 
 S="${WORKDIR}"
 
 src_install() {
-	dodir /usr/share/chrome-ublock
 	insinto /usr/share/chrome-ublock
 	doins -r *
-	doins ${FILESDIR}/configure.py
+	doins "${FILESDIR}"/configure.py
 	fperms 755 /usr/share/chrome-ublock/configure.py
 }

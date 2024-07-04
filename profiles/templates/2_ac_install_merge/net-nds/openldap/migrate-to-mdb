@@ -1,0 +1,17 @@
+# Calculate run=/bin/bash
+
+if [[ ! -e /var/lib/openldap-data/data.mdb && \
+	-e /var/calculate/tmp/migrate_data.ldif
+]]
+then
+	/etc/init.d/slapd stop
+	sed -i -E 's/^(database\s+)bdb/\1mdb/g' /etc/openldap/slapd.conf
+	sed -i -E 's/^(checkpoint)/#\1/g' /etc/openldap/slapd.conf
+	sed -i -E 's/^(cachesize)/#\1/g' /etc/openldap/slapd.conf
+	slapadd -l /var/calculate/tmp/migrate_data.ldif
+	chown ldap:ldap /var/lib/openldap-data/*
+	/etc/init.d/slapd start
+fi
+
+exit 0
+

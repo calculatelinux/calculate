@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <upstream>
+        <remote-id type="cpe">cpe:/a:rakuten:viber</remote-id>
+        <bugs-to>https://help.viber.com/en</bugs-to>
+    </upstream>
+    <longdescription lang="en">
+        Viber is a calling and messaging app that connects people–no matter who they are, or where they’re from.
+        Each month, hundreds of millions of people connect, for free, with their loved ones via messaging, high-quality
+        voice and video calls, and more. All one-on-one Viber calls and personal chats, and all group chats
+        are protected by built-in end-to-end encryption, so you can be sure that your conversations are always secure.
+    </longdescription>
+    <use lang="en">
+        <flag name="apulse">Support for PulseAudio emulation for ALSA</flag>
+    </use>
+    <use lang="ru">
+        <flag name="apulse">Поддержка эмуляции PulseAudio для ALSA</flag>
+    </use>
+</pkgmetadata>

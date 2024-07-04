@@ -1,0 +1,6 @@
+# Calculate format=patch path=~/.config/xfce4/xfconf/xfce-perchannel-xml
+<reg>&lt;property name="plugin-5" type="string" value="datetime"/&gt;</reg>
+<text>&lt;property name="plugin-5" type="string" value="clock"&gt;
+      &lt;property name="digital-time-font" type="string" value="Sans 18"/&gt;
+      &lt;property name="digital-layout" type="uint" value="3"/&gt;
+    &lt;/property&gt;</text>

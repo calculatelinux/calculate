@@ -1,0 +1,1 @@
+# Calculate append=skip mergepkg(xfce-base/xfce4-session)!=&&ini(update.patch)!=off&&ini(ver.patch)<63

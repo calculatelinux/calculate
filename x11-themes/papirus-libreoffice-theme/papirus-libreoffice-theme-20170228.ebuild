@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 DESCRIPTION="Papirus icon theme for LibreOffice"
 HOMEPAGE="https://git.io/papirus-libreoffice-theme"
@@ -12,7 +12,7 @@ if [[ ${PV} == 99999999 ]];then
 	EGIT_REPO_URI="https://github.com/PapirusDevelopmentTeam/${PN}.git"
 else
 	SRC_URI="https://github.com/PapirusDevelopmentTeam/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="x86 amd64"
+	KEYWORDS="amd64 x86"
 fi
 
 LICENSE="GPL-3"
