@@ -458,8 +458,8 @@ www-client/w3m imlib
 # required by media-video/gnome-mpv-0.16
 media-video/mpv libmpv
 
-# required by dev-python/python-ldap-3.1.0-r1
-net-nds/openldap sasl
+# required by dev-python/python-ldap-3.1.0-r1, sys-auth/sssd-2.9.5
+net-nds/openldap sasl experimental
 
 # required by gnome-extra/gnome-boxes-3.30.3
 app-emulation/qemu smartcard
