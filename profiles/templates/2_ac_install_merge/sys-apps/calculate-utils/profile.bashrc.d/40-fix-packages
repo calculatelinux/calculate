@@ -9,7 +9,7 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 
-if [[ ${CATEGORY}/${PN} == "sys-auth/nss_ldap" ]] && [[ ${EBUILD_PHASE} == "preinst" ]]
+if [[ ${CATEGORY}/${PN} == "sys-auth/sssd" ]] && [[ ${EBUILD_PHASE} == "preinst" ]]
 then
     mv ${D}/etc/ldap.conf ${D}/etc/ldap.conf.example &>/dev/null
 fi

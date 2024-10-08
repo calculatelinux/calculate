@@ -4,14 +4,14 @@ auth       required     pam_env.so
 #?pkg(sys-auth/pam_client)!=&&module(client)!=&&pkg(sys-apps/calculate-server)==#
 auth       [success=3 new_authtok_reqd=done default=ignore]   pam_unix.so try_first_pass
 auth       requisite    pam_client.so
-auth       [success=1 new_authtok_reqd=done default=ignore]   pam_ldap.so use_first_pass
+auth       [success=1 new_authtok_reqd=done default=ignore]   pam_sss.so use_first_pass
 auth       requisite     pam_deny.so
 auth       required     pam_permit.so
 #pkg#
 #module#
 #?pkg(sys-apps/calculate-server)!=||module(unix)!=&&server.sr_unix_set==on#
 auth       [success=2 new_authtok_reqd=done default=ignore]   pam_unix.so try_first_pass
-auth       [success=1 new_authtok_reqd=done default=ignore]   pam_ldap.so use_first_pass
+auth       [success=1 new_authtok_reqd=done default=ignore]   pam_sss.so use_first_pass
 auth       requisite    pam_deny.so
 auth       required     pam_permit.so
 #pkg#
@@ -29,7 +29,7 @@ auth       optional     pam_ecryptfs.so unwrap
 
 account    required     pam_unix.so
 #?pkg(sys-auth/pam_client)!=&&module(client)!=||pkg(sys-apps/calculate-server)!=||module(unix)!=&&server.sr_unix_set==on#
-account    sufficient   pam_ldap.so
+account    sufficient   pam_sss.so
 #pkg#
 
 #?pkg(sys-libs/pam)>=1.4#
@@ -42,7 +42,7 @@ password   sufficient   pam_unix.so nullok sha256 shadow use_authtok
 password   optional     pam_ecryptfs.so
 #pkg#
 #?pkg(sys-auth/pam_client)!=&&module(client)!=||pkg(sys-apps/calculate-server)!=||module(unix)!=&&server.sr_unix_set==on#
-password   sufficient   pam_ldap.so
+password   sufficient   pam_sss.so
 #pkg#
 password   required     pam_deny.so
 
@@ -57,7 +57,7 @@ session    required     pam_unix.so
 session    optional     pam_ecryptfs.so unwrap
 #pkg#
 #?pkg(sys-auth/pam_client)!=&&module(client)!=||pkg(sys-apps/calculate-server)!=||module(unix)!=&&server.sr_unix_set==on#
-session    optional     pam_ldap.so
+session    optional     pam_sss.so
 #pkg#
 #?pkg(sys-apps/systemd)!=#
 session    optional     pam_systemd.so

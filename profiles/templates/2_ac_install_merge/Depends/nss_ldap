@@ -1,1 +1,1 @@
-# Calculate append=skip merge(sys-auth/nss_ldap)!= merge=sys-libs/glibc
+# Calculate append=skip merge(sys-auth/sssd)!= merge=sys-libs/glibc

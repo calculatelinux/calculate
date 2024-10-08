@@ -1,4 +1,4 @@
-# Calculate env=client exec=/bin/bash mergepkg(sys-apps/calculate-utils[client])!=&&ini(merge-calculate.client)<3.3.0_alpha2 merge=sys-apps/sysvinit,sys-auth/pambase,sys-auth/nss_ldap,sys-libs/glibc
+# Calculate env=client exec=/bin/bash mergepkg(sys-apps/calculate-utils[client])!=&&ini(merge-calculate.client)<3.3.0_alpha2 merge=sys-apps/sysvinit,sys-auth/pambase,sys-auth/sssd,sys-libs/glibc
 
 #?cl_remote_host!=&&cl_remote_pw!=&&cl_chroot_status==off#
 /usr/sbin/cl-core --method client --mount
