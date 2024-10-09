@@ -13,6 +13,6 @@ if pgrep -f /usr/sbin/nscd &>/dev/null; then
     # check multiplicity of 3 and check domain server available
     if [[ "$(( $working_hours % #-client.cl_client_nscd_cache-# ))" == "0" ]] &&
         ldapsearch -D "#-server(unix.bind_dn)-#" -w "#-server(unix.bind_pw)-#" -b "#-server(ldap.services_dn)-#"  -h "#-client.cl_remote_host-#" -l5 -onettimeout=5 -n &>/dev/null;then
-        /usr/sbin/nscd-refresh
+        sss_cache -E
     fi
 fi

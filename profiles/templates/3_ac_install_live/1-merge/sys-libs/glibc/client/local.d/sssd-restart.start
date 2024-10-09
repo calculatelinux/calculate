@@ -1,0 +1,8 @@
+# Calculate chmod=0755 module(client)!=&&client.os_remote_auth!=
+#!/bin/bash
+
+pidfile="/var/run/sssd.pid"
+if [ -f ${pidfile} ]
+then
+	rc-service sssd restart &>/dev/null
+fi

@@ -1,7 +1,6 @@
 # Calculate exec=/bin/bash module(client)!=&&client.os_remote_auth!=&&client.ac_client_configure==on&&cl_system_boot_set==off
 
 
-(/etc/init.d/nscd status || /etc/init.d/nscd restart ) &>/dev/null
-/etc/local.d/nscd-restart.start &>/dev/null
+(/etc/init.d/sssd status || /etc/init.d/sssd restart ) &>/dev/null
 
 true

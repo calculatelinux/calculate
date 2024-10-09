@@ -10,8 +10,7 @@
 #?os_install_locale_language#
 
 # invalidate passwd and group caches
-nscd -i passwd
-nscd -i group
+sss_cache -E
 # get information about all users
 getent passwd | cut -d: -f1 |
 while read user;do

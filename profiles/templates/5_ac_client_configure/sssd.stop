@@ -1,12 +1,11 @@
 # Calculate exec=/bin/bash module(client)!=&&client.os_remote_auth==&&client.ac_client_configure==on||merge(sys-apps/calculate-utils)!=&&module(client)==&&ini(merge-calculate.client)!=
 
 #?cl_system_boot_set==off&&module(client)!=&&client.ac_client_configure==on&&client.os_remote_auth==||cl_system_boot_set==off&&merge(sys-apps/calculate-utils)!=&&module(client)==&&ini(merge-calculate.client)!=#
-(/etc/init.d/nscd status && /etc/init.d/nscd stop ) &>/dev/null
+(/etc/init.d/sssd status && /etc/init.d/sssd stop ) &>/dev/null
 #cl_system_boot_set#
 #?cl_system_boot_set==on&&module(client)!=&&client.os_remote_auth==&&client.ac_client_configure==on#
 pidfile="/var/run/nscd/nscd.pid"
 [[ -f $pidfile ]] && start-stop-daemon --stop --quiet \
-	--exec /usr/sbin/nscd --pidfile ${pidfile} &>/dev/null
+	--exec /usr/sbin/sssd --pidfile ${pidfile} &>/dev/null
 #cl_system_boot_set#
-
 true
