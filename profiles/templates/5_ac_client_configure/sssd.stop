@@ -4,7 +4,7 @@
 (/etc/init.d/sssd status && /etc/init.d/sssd stop ) &>/dev/null
 #cl_system_boot_set#
 #?cl_system_boot_set==on&&module(client)!=&&client.os_remote_auth==&&client.ac_client_configure==on#
-pidfile="/var/run/nscd/nscd.pid"
+pidfile="/var/run/sssd.pid"
 [[ -f $pidfile ]] && start-stop-daemon --stop --quiet \
 	--exec /usr/sbin/sssd --pidfile ${pidfile} &>/dev/null
 #cl_system_boot_set#

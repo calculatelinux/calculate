@@ -1,1 +1,1 @@
-# Calculate append=remove name=refresh-nscd module(client)==||client.os_remote_auth==
+# Calculate append=remove name=refresh-sssd module(client)==||client.os_remote_auth==
