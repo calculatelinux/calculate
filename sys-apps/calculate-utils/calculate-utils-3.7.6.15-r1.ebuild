@@ -311,7 +311,8 @@ RDEPEND="
 	client? (
 		dev-python/python-ldap[ssl,${PYTHON_USEDEP}]
 		sys-auth/pam_client
-		=sys-auth/sssd-2.9.4[experimental]
+		=sys-auth/sssd-2.9.4
+		net-nds/openldap[experimental]
 	)
 	backup? ( !sys-apps/calculate-server )
 "
