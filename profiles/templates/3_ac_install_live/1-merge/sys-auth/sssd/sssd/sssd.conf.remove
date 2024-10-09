@@ -1,0 +1,3 @@
+# Calculate append=remove name=sssd.conf force pkg(sys-apps/calculate-server)== module(client)==||client.os_remote_auth== module(unix)==||server.sr_unix_set!=on
+
+# Удаляем ldap.conf если нет пакета calculate-server и (нет модуля client или машение не в домене) и (нет модуля unix или unix не настроен)

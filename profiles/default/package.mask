@@ -6,3 +6,6 @@ sys-libs/db:6.0
 
 
 =media-video/ffmpeg-6.1.1-r8
+
+# not compiled
+=sys-auth/sssd-2.9.5
