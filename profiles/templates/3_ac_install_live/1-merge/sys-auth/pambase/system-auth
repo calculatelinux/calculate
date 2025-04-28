@@ -2,11 +2,18 @@
 auth       required     pam_env.so
 #?module(unix)==||server.sr_unix_set!=on#
 #?pkg(sys-auth/pam_client)!=&&module(client)!=&&pkg(sys-apps/calculate-server)==#
+#?client.os_remote_type==ad#
+auth       [success=2 new_authtok_reqd=done default=ignore]   pam_unix.so try_first_pass
+auth       [success=1 default=ignore]   pam_sss.so use_first_pass
+auth       requisite     pam_deny.so
+auth       required     pam_permit.so
+#!client.os_remote_type#
 auth       [success=3 new_authtok_reqd=done default=ignore]   pam_unix.so try_first_pass
 auth       requisite    pam_client.so
 auth       [success=1 new_authtok_reqd=done default=ignore]   pam_ldap.so use_first_pass
 auth       requisite     pam_deny.so
 auth       required     pam_permit.so
+#client.os_remote_type#
 #pkg#
 #module#
 #?pkg(sys-apps/calculate-server)!=||module(unix)!=&&server.sr_unix_set==on#
