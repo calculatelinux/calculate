@@ -27,6 +27,7 @@ lxqt-base/lxqt-meta -sddm
 mail-client/roundcube -spell
 mail-filter/opendkim -sasl
 mate-base/mate -themes
+net-print/gutenprint -gimp
 mate-extra/mate-sensors-applet -video_cards_nvidia
 media-fonts/noto -extra
 media-fonts/terminus-font -pcf

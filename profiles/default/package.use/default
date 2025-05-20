@@ -183,7 +183,8 @@ net-im/pidgin gnutls
 net-libs/gtk-vnc python
 
 # support HTTP streams through neon (radio)
-media-plugins/audacious-plugins http
+media-plugins/audacious-plugins http -qt6
+media-sound/audacious -qt6
 
 # add support for applications using legacy xembed systray icons
 kde-plasma/plasma-desktop touchpad
@@ -383,3 +384,6 @@ media-sound/picard fingerprints
 
 # enable support for georeplication
 sys-cluster/glusterfs georeplication xml
+
+# Provides OpenRC versions of reboot/halt/poweroff/shutdown
+sys-apps/openrc sysv-utils

@@ -22,9 +22,6 @@ net-irc/epic5 ruby
 # sasl? ( ldap )
 net-fs/autofs ldap
 
-# qt5? ( !libnotify )
-media-plugins/audacious-plugins -libnotify
-
 # lm-sensors? ( opencl )
 net-misc/bfgminer opencl
 
@@ -85,3 +82,9 @@ dev-lang/lazarus -gtk
 
 # bluetooth? opengl? ( widgets ) svg? ( widgets )
 dev-python/pyqt5 widgets
+
+# p2p? ( ap wps )
+net-wireless/wpa_supplicant wps
+
+# dbus? ( gui )
+media-video/mkvtoolnix gui
