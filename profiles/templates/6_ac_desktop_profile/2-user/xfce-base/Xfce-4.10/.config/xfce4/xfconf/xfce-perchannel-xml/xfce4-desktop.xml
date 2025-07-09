@@ -27,21 +27,14 @@
   </property>
   <property name="backdrop" type="empty">
     <property name="screen0" type="empty">
-      <property name="monitor0" type="empty">
-#?ini(profile.appearance-wallpaper)!=#
-        <property name="image-path" type="string" value="#-ini(profile.appearance-wallpaper)-#"/>
-#!ini#
-        <property name="image-path" type="string" value="#-wallpaper(#-os_x11_resolution-#,/usr/share/wallpapers/Calculate_Linux/contents/images)-#"/>
-#ini#
-#?ini(profile.wallpaper-cycle)>0#
+      <property name="monitor#-xfcedisplay()-#" type="empty">
         <property name="workspace0" type="empty">
-          <property name="backdrop-cycle-enable" type="bool" value="true"/>
-          <property name="backdrop-cycle-random-order" type="bool" value="true"/>
-          <property name="backdrop-cycle-timer" type="uint" value="#-ini(profile.wallpaper-cycle)-#"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/Calculate Linux"/>
         </property>
-#ini#
       </property>
     </property>
+    <property name="single-workspace-mode" type="bool" value="true"/>
+    <property name="single-workspace-number" type="int" value="0"/>
   </property>
   <property name="desktop-menu" type="empty">
     <property name="show" type="bool" value="false"/>

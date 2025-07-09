@@ -49,7 +49,7 @@ index 0000000..d3152f6
 +
 +import portage
 +from portage import os
-+from portage.util import writemsg_level, shlex_split
++from portage.util import writemsg_level
 +from portage.util.futures import asyncio
 +from portage.output import create_color_func, EOutput
 +good = create_color_func("GOOD")

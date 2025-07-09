@@ -6,9 +6,10 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
-    <upstream><remote-id type="freedesktop-gitlab">plymouth/plymouth</remote-id></upstream>
+    <!-- Необходимо добавить description. -->
     <use>
-	    <flag name="drm">Use direct rendering</flag>
-	    <flag name="pango">Use pango</flag>
+        <flag name="drm">Use direct rendering</flag>
+        <flag name="pango">Use pango</flag>
     </use>
+    <!-- Необходимо добавить remote-id. -->
 </pkgmetadata>

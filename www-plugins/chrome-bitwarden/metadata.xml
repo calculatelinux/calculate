@@ -6,4 +6,15 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Bitwarden - The password manager (Chrome plugin).
+    </longdescription>
+    <longdescription lang="ru">
+        Bitwarden - Менеджер паролей (плагин для Chrome).
+    </longdescription>
+    <upstream>
+        <remote-id type="github">bitwarden/clients</remote-id>
+        <bugs-to>https://github.com/bitwarden/clients/issues</bugs-to>
+        <changelog>https://github.com/bitwarden/clients/releases</changelog>
+    </upstream>
 </pkgmetadata>

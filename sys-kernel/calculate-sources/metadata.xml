@@ -12,7 +12,7 @@
     <longdescription lang="ru">
         Полные исходники ядра Linux, включая набор патчей Calculate.
     </longdescription>
-    <use lang="en">
+    <use>
         <flag name="desktop">Desktop kernel configuration</flag>
         <flag name="firmware">Install linux kernel firmware</flag>
         <flag name="grub">Adds sys-boot/grub dependence</flag>

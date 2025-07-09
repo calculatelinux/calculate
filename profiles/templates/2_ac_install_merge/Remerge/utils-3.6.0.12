@@ -1,1 +1,1 @@
-# Calculate append=skip mergepkg(sys-apps/calculate-utils:3)>=3.6.0.12&&ini(merge-calculate.utils)<3.6.0.12 merge=media-sound/alsa-utils,media-sound/pulseaudio,kde-plasma/plasma-pa,kde-apps/kmix,media-sound/volumeicon,media-sound/pavucontrol,media-sound/qastools
+# Calculate append=skip mergepkg(sys-apps/calculate-utils)>=3.6.0.12&&ini(merge-calculate.utils)<3.6.0.12 merge=media-sound/alsa-utils,media-sound/pulseaudio,kde-plasma/plasma-pa,kde-apps/kmix,media-sound/volumeicon,media-sound/pavucontrol,media-sound/qastools

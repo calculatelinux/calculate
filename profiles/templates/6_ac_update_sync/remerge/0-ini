@@ -2,4 +2,4 @@
 
 [overlay-calculate]
 # Save the latest version, because when switching profile cl-setup-profile 3.2.2 makes a call cl-setup-system
-remerge = 20240415
+remerge = 20250610

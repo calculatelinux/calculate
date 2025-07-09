@@ -6,5 +6,13 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
-    <upstream><remote-id type="github">Kangie/plymouth-openrc-plugin</remote-id></upstream>
+    <longdescription lang="en">
+        Plymouth plugin for OpenRC.
+    </longdescription>
+    <longdescription lang="ru">
+        Plymouth-плагин для OpenRC.
+    </longdescription>
+    <upstream>
+        <remote-id type="github">Kangie/plymouth-openrc-plugin</remote-id>
+    </upstream>
 </pkgmetadata>

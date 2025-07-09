@@ -1,0 +1,30 @@
+--- a/src/core/dhcp/nm-dhcp-dhcpcd.c	2024-09-14 18:08:58.474760270 +0300
++++ b/src/core/dhcp/nm-dhcp-dhcpcd.c	2024-09-14 18:13:14.549392058 +0300
+@@ -164,25 +164,9 @@
+     if (pid > 1) {
+         sig = release ? SIGALRM : SIGTERM;
+         _LOGD("sending %s to dhcpcd pid %d", sig == SIGALRM ? "SIGALRM" : "SIGTERM", pid);
+-
+-        /* dhcpcd-9.x features privilege separation.
+-         * It's not our job to track all these processes so we rely on dhcpcd
+-         * to always cleanup after itself.
+-         * Because it also re-parents itself to PID 1, the process cannot be
+-         * reaped or waited for.
+-         * As such, just send the correct signal.
+-         */
+-        if (kill(pid, sig) == -1) {
+-            errsv = errno;
+-            _LOGE("failed to kill dhcpcd %d:%s", errsv, nm_strerror_native(errsv));
+-        }
+-
+-        /* When this function exits NM expects the PID to be -1.
+-         * This means we also need to stop watching the pid.
+-         * If we need to know the exit status then we need to refactor NM
+-         * to allow a non -1 to mean we're waiting to exit still.
+-         */
++        /* We need to remove the watch before stopping the process */
+         nm_dhcp_client_stop_watch_child(client, pid);
++		nm_dhcp_client_stop_pid(pid, nm_dhcp_client_get_iface(client));
+     }
+ }
+ 

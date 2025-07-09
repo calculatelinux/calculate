@@ -1,2 +1,2 @@
-# Calculate env=client path=/etc/runlevels mergepkg(sys-apps/calculate-utils:3[client])!=
+# Calculate env=client path=/etc/runlevels mergepkg(sys-apps/calculate-utils[client])!=
 

@@ -1,3 +1,4 @@
+#
 >=dev-qt/qtcore-5.4.2 icu
 ~dev-perl/Alien-wxWidgets-0.690.0 gstreamer
 sys-cluster/openmpi romio fortran cxx
@@ -41,10 +42,6 @@ www-servers/apache apache2_modules_auth_digest
 dev-lua/mpack luajit
 dev-lua/lpeg luajit
 
-# required by sys-devel/clang-3.7.1-r100
-# required by clang (argument)
-sys-devel/llvm clang
-
 # required by dev-util/nvidia-cuda-sdk-8.0.44-r1[examples]
 x11-drivers/nvidia-drivers uvm
 
@@ -66,8 +63,8 @@ sys-process/audit static-libs
 # required by x11-misc/shutter-0.93.1-r3
 virtual/imagemagick-tools perl
 
-# required by x11-terms/cool-retro-term-1.2.0, kde-misc/plasma-applet-weather-widget-1.6.8
-dev-qt/qtdeclarative localstorage xml
+# required by x11-terms/cool-retro-term-1.2.0, kde-misc/plasma-applet-weather-widget-1.6.8, dev-python/pyside-6.8.3[tools]
+dev-qt/qtdeclarative localstorage xml qmlls
 
 # required by dev-java/netbeans-platform-8.2
 dev-java/junit source
@@ -91,13 +88,13 @@ dev-libs/libxml2 icu
 # required by sys-devel/prelink
 dev-libs/elfutils static-libs
 
-# required by kde-base/kopete-4.14.3-r1[ssl]
-app-crypt/qca openssl
+# required by net-im/psi-0.15::gentoo[crypt], dev-libs/qoauth-2.0.1_pre20160315-r3
+app-crypt/qca gpg qt5
 
 # [melt, xml] required by media-video/kdenlive
 # required by media-video/openshot-1.4.3o
 # required by media-video/shotcut
-media-libs/mlt fftw melt xml kdenlive -xine qt5 python frei0r sdl2 jack
+media-libs/mlt fftw melt xml kdenlive -xine python frei0r sdl2 jack
 
 # required by kde-apps/libkface-15.08.3
 media-libs/opencv contrib
@@ -112,22 +109,17 @@ dev-libs/libgdata gnome-online-accounts
 # required by media-sound/gnome-music-3.18.2
 media-plugins/grilo-plugins tracker
 
-# required by kde-apps/ktp-call-ui-16.04.1
-net-libs/telepathy-qt farstream
-
 # required by media-video/handbrake-1.3.3
 # required by kde-apps/kdenlive-22.08.3
 # required by media-video/openshot-1.4.3-r1[-libav,ffmpeg]
-media-video/ffmpeg fdk libass vpx
+# required by net-im/telegram-desktop-5.12.3-r4
+media-video/ffmpeg fdk libass vpx amrenc twolame
 
 # required by sci-chemistry/chemical-mime-data-0.1.94-r2
 media-gfx/imagemagick xml
 
-# required by kde-apps/ktp-text-ui-15.12.3
-kde-apps/ktp-common-internals otr
-
-# required by dev-qt/qtwebengine-5.6.0
-dev-qt/qtwebchannel qml
+# required by dev-qt/qtwebengine-5.6.0, media-gfx/skanpage-24.05.2
+dev-qt/qtwebchannel qml pdfium
 
 # add support for the framework for loop optimizations
 # required by games-action/oolite-1.82::calculate
@@ -153,9 +145,6 @@ dev-libs/libdbusmenu gtk3
 
 # required by sci-geosciences/qgis-1.8.0
 sci-libs/gdal geos
-
-# required by net-im/psi-0.15::gentoo[crypt]
-app-crypt/qca gpg
 
 # required by sci-visualization/qtiplot-0.9.8.9-r2
 dev-qt/qthelp compat
@@ -203,14 +192,11 @@ dev-python/numpy lapack
 # required by dev-python/pytables-3.1.1-r2
 dev-libs/c-blosc hdf5
 
-# required by net-im/telegram-desktop-5.0.1[-qt6,webkit], kde-frameworks/kwayland-5.28.0
-dev-qt/qtwayland compositor egl
+# required by net-im/telegram-desktop-5.0.1[-qt6,webkit], kde-frameworks/kwayland-5.28.0, net-im/telegram-desktop-5.2.3[qt6,webkit]
+dev-qt/qtwayland compositor egl qml
 
 # required by www-client/firefox-50.0.2[pgo]
 x11-base/xorg-server xvfb
-
-# required by kde-apps/libkleo-16.12.0
-app-crypt/gpgme qt5
 
 # required by app-office/calligra-3.0.0[calligra_features_karbon]
 media-gfx/pstoedit plotutils
@@ -222,7 +208,7 @@ app-text/xmlto text
 dev-libs/libnl utils
 
 # required by www-client/qutebrowser-0.9.1, dev-python/pytest-qt-2.3.0-r2, dev-util/eric-17.04, net-misc/gns3-gui-2.1.21
-dev-python/PyQt5 declarative testlib multimedia sql help websockets
+dev-python/pyqt5 declarative testlib multimedia sql help websockets
 
 # required by net-im/pidgin-2.12.0[gadu]
 net-libs/libgadu gnutls
@@ -298,10 +284,7 @@ dev-libs/liblouis python
 # required by kde-apps/okular-15.08.3-r1::gentoo[pdf]
 # required by kde-frameworks/kfilemetadata-5.13.0 [pdf]
 # required by kde-apps/okular-21.04.3-r2[pdf]
-app-text/poppler qt5 nss
-
-# required by media-gfx/nomacs-3.0.0
-media-libs/opencv qt5
+app-text/poppler nss
 
 # required by (sys-apps/calculate-server-2.1.16-r17
 net-ftp/proftpd ident
@@ -350,8 +333,8 @@ dev-libs/libgpg-error static-libs
 # required by sys-power/suspend-1.0_p20150810[lzo]
 dev-libs/lzo static-libs
 
-# required by dev-python/qtconsole-4.7.5, dev-python/pytest-qt-3.3.0
-dev-python/QtPy printsupport testlib
+# required by dev-python/qtconsole-4.7.5
+dev-python/qtpy printsupport
 
 # required by dev-tex/culmus-latex-0.7
 media-fonts/culmus fancy
@@ -401,14 +384,8 @@ media-libs/sdl2-mixer timidity
 # required by www-client/uget-2.2.0 [aria2]
 net-misc/aria2 xmlrpc
 
-# required by x11-misc/xflux-gui-1.1.10
-dev-libs/libappindicator python
-
 # required by sys-boot/os-prober-1.76-r1
 sys-boot/grub mount
-
-# webkit? ( qt5 )
-sys-libs/gwenhywfar qt5
 
 # required by sys-apps/gptfdisk-1.0.1
 dev-libs/popt static-libs
@@ -452,8 +429,8 @@ dev-libs/libgamin python
 # required by net-wireless/mousejack-0.0_p20160726-r1
 dev-embedded/sdcc mcs51 device-lib
 
-# required by www-client/chromium-70.0.3538.67
-net-libs/nodejs inspector
+# required by www-client/chromium-70.0.3538.67, dev-python/jupyterlab-4.3.2
+net-libs/nodejs inspector npm
 
 # required by app-crypt/yubikey-manager-qt-1.0.0
 dev-qt/qtquickcontrols2 widgets
@@ -467,14 +444,11 @@ www-client/w3m imlib
 # required by media-video/gnome-mpv-0.16
 media-video/mpv libmpv
 
-# required by dev-python/python-ldap-3.1.0-r1
-net-nds/openldap sasl
+# required by dev-python/python-ldap-3.1.0-r1, sys-auth/sssd-2.9.5
+net-nds/openldap sasl experimental
 
 # required by gnome-extra/gnome-boxes-3.30.3
 app-emulation/qemu smartcard
-
-# required by dev-util/lldb-7.1.0
-sys-devel/clang xml
 
 # required by dev-db/mysql-workbench-8.0.14
 net-libs/libssh server
@@ -503,8 +477,8 @@ app-i18n/scim gtk3
 # required by app-i18n/dbskkd-cdb-2.00
 app-i18n/skk-jisyo cdb
 
-# required by media-sound/teamspeak-client-3.3.2, dev-qt/qtwebview-6.6.1, net-misc/nextcloud-client-3.0.3
-dev-qt/qtwebengine geolocation qml widgets
+# required by media-sound/teamspeak-client-3.3.2, dev-qt/qtwebview-6.6.1, net-misc/nextcloud-client-3.0.3, media-gfx/skanpage-24.05.2
+dev-qt/qtwebengine geolocation qml widgets pdfium
 
 # required by @selected
 dev-python/pallets-sphinx-themes -python_targets_python2_7
@@ -542,8 +516,8 @@ app-arch/bzip2 static-libs
 # required by net-misc/econnman-1.1-r1, x11-wm/enlightenment-0.24.2[wayland]
 dev-libs/efl connman drm
 
-# required by sci-chemistry/votca-xtp-1.6
-sci-libs/hdf5 cxx
+# required by sci-chemistry/votca-xtp-1.6, media-gfx/freecad-1.0.0
+sci-libs/hdf5 cxx fortran
 
 # required by media-sound/picard-2.0.0_beta3, dev-qt/qtwayland-5.6.1, app-office/onlyoffice-bin-8.0.0, kde-apps/kopete-4.14.3-r1:4/4.14, net-im/telegram-desktop-2.1.20
 dev-qt/qtgui accessibility egl eglfs mng wayland
@@ -566,7 +540,7 @@ sys-apps/xdg-desktop-portal screencast
 # required by media-gfx/digikam-7.1.0::gentoo
 # # required by @selected
 # # required by @world (argument)
-media-libs/opencv contribdnn
+media-libs/opencv contribdnn features2d
 
 # required by media-gfx/fbida-2.14-r2::gentoo[X]
 x11-libs/motif xft
@@ -593,7 +567,6 @@ kde-frameworks/prison qml
 sys-fs/squashfs-tools lzma
 
 # required by media-tv/dtv-scan-tables-0_p20171003
-media-tv/v4l-utils -bpf dvb
 media-libs/libv4l dvb
 
 # required by net-misc/rygel-0.40.1
@@ -604,10 +577,9 @@ net-libs/gupnp-av vala
 sys-libs/ldb ldap
 
 # required by media-gfx/freecad-0.20.1
-dev-python/pyside2 positioning qml quick webchannel webengine
 sci-libs/med python
 sci-libs/opencascade json vtk
-sci-libs/vtk boost python qt5
+sci-libs/vtk boost python
 
 # required by dev-python/pyls-spyder-0.4.0-r1
 dev-python/python-lsp-server all-plugins
@@ -686,8 +658,8 @@ net-wireless/wpa_supplicant p2p
 # required by sys-fs/dmraid-1.0.0_rc16-r6
 sys-fs/lvm2 lvm
 
-# required by media-gfx/blender-3.3.2
-media-libs/freetype brotli
+# required by media-gfx/blender-3.3.2, x11-terms/ghostty-1.1.3
+media-libs/freetype brotli harfbuzz
 
 # required by dev-util/ropper-1.13.8
 dev-libs/keystone python
@@ -732,17 +704,16 @@ dev-lua/lua-argparse lua_targets_luajit
 dev-lua/LuaBitOp lua_targets_luajit
 
 # required by dev-util/bindgen-0.62.0
-virtual/rust rustfmt
 dev-lang/rust rustfmt
 dev-lang/rust-bin rustfmt
 
 # required by dev-qt/qt-creator-11.0.2[designer,help]
 dev-qt/qttools assistant designer qml
 
-# required by www-client/qutebrowser-3.0.0
-dev-python/PyQt6 qml webchannel
-dev-qt/qt5compat icu
-dev-qt/qtbase icu
+# required by www-client/qutebrowser-3.0.0, kde-frameworks/kirigami-6.5.0, kde-frameworks/kio-6.5.0
+dev-qt/qt5compat icu qml
+dev-python/pyqt6 qml quick webchannel
+dev-qt/qtbase icu libproxy
 
 # required by dev-python/cypari2-2.1.4-r1
 sci-mathematics/pari doc gmp
@@ -765,9 +736,6 @@ sys-kernel/installkernel dracut
 # required by www-client/chromium-121.0.6167.139
 dev-lang/rust profiler
 
-# required by dev-python/PyQt6-6.6.1
-dev-python/PyQt6 quick
-
 # required by net-misc/tuba-0.6.2
 gui-libs/gtk gstreamer
 
@@ -788,15 +756,73 @@ dev-libs/apache-arrow compute dataset re2
 
 www-apps/ttyd mbedtls
 
-# required by www-client/chromium-123.0.6312.105[system-toolchain]
-virtual/rust profiler
-
 # required by dev-python/pikepdf-8.14.0-r1
 dev-python/pillow lcms
 
-# required by dev-python/pyside6-tools-6.7.0
-dev-python/pyside6 quick qml
-
 # required by app-editors/qxmledit-0.9.18-r1
 dev-qt/qtimageformats mng
+
+# required by dev-java/javacc-7.0.13-r1
+dev-java/ant junit
+
+# required by kde-plasma/krdp-6.1.4
+net-misc/freerdp server
+
+# required by media-radio/wsjtx-2.6.1
+sci-libs/fftw fortran
+
+# required by "dev-db/redis-7.4.0[jemalloc]
+dev-libs/jemalloc stats
+
+# required by sci-geosciences/qgis-3.38.3
+sci-libs/gdal spatialite sqlite
+
+# required by sci-geosciences/qgis-3.38.3
+x11-libs/qwt polar
+
+# required by app-i18n/fcitx-chinese-addons-5.1.7[gui,qt5]
+app-i18n/fcitx-qt qt5
+
+# required by net-wireless/gnuradio-3.10.9.2-r6
+dev-python/pyqtgraph qt5
+
+# required by dev-libs/gobject-introspection-1.80.1-r3
+dev-libs/glib introspection
+
+# required by media-gfx/freecad-1.0.0-r2[gui,python_single_target_python3_12], net-wireless/nanovna-saver
+dev-python/pyside uitools tools
+
+# dependency required by www-apps/icingaweb2-2.12.1-r2
+acct-user/nginx icingaweb2
+
+# required by media-gfx/gimp-3.0.2
+media-libs/babl lcms
+media-libs/gegl lcms
+
+# required by dev-python/qpageview-1.0.0
+dev-python/pyqt6 pdfium
+
+# required by media-gfx/photoqt-4.8.1[imagemagick,-graphicsmagick]
+media-gfx/imagemagick hdri
+
+# required by dev-cpp/prometheus-cpp-1.2.4
+www-servers/civetweb cxx
+
+# required by sys-auth/sssd-2.9.6-r3
+net-dns/bind gssapi
+
+# required by app-crypt/certbot-nginx-3.2.0-r100
+app-crypt/certbot certbot-nginx
+
+# required by app-crypt/certbot-dns-nsone-3.2.0-r100
+app-crypt/certbot certbot-dns-nsone
+
+# required by net-misc/tuba-0.9.2-r2[spell]
+app-text/libspelling vala
+
+# required by app-misc/byobu-5.133-r1[python_single_target_python3_12]
+dev-libs/newt python
+
+# required by sys-process/gnome-usage-46.0
+app-misc/tinysparql vala
 

@@ -2,8 +2,21 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
     <maintainer type="project">
+        <email>emacs@gentoo.org</email>
+        <name>Gentoo Emacs project</name>
+    </maintainer>
+    <maintainer type="project">
+        <email>vim@gentoo.org</email>
+        <name>Gentoo Vim Project</name>
+    </maintainer>
+    <maintainer type="project">
+        <email>base-system@gentoo.org</email>
+        <name>Gentoo Base System</name>
+    </maintainer>
+    <maintainer type="project">
         <email>support@calculate.ru</email>
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <stabilize-allarches/>
 </pkgmetadata>

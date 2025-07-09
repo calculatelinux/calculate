@@ -1,4 +1,4 @@
-# Calculate path=/var/lib/calculate name=ini.env format=samba mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.3.0_alpha2 merge=sys-process/htop,x11-terms/xterm,sys-process/vixie-cron,media-gfx/calculate-wallpapers,sys-apps/sysvinit,sys-auth/pambase,x11-themes/gnome-icon-theme,x11-themes/hicolor-icon-theme,app-portage/layman,app-portage/eix
+# Calculate path=/var/lib/calculate name=ini.env format=samba mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.3.0_alpha2 merge=sys-process/htop,x11-terms/xterm,sys-process/vixie-cron,media-gfx/calculate-wallpapers,sys-apps/sysvinit,sys-auth/pambase,x11-themes/gnome-icon-theme,x11-themes/hicolor-icon-theme,app-portage/layman,app-portage/eix
 
 [update]
 !packages =

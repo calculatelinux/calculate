@@ -1,0 +1,3 @@
+# Calculate path=~/.config format=kde
+[General]
+Show welcome view for new window=false

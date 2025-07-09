@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,6 +6,14 @@ EAPI=7
 
 DESCRIPTION="Calculate Linux theme for gensplash"
 HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/calculate-splash-themes"
+SRC_URI="silent? (
+		https://mirror.calculate-linux.org/themes/calculate/splash-silent-${PV}.png -> ${PN}-silent-${PV}.png
+	)
+	silent-shutdown? (
+		https://mirror.calculate-linux.org/themes/calculate/splash-shutdown-${PV}.jpg -> ${PN}-shutdown-${PV}.jpg
+	)"
+
+S="${WORKDIR}"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -13,13 +21,6 @@ KEYWORDS="amd64 x86"
 IUSE="+silent +silent-shutdown"
 
 REQUIRED_USE="|| ( silent silent-shutdown )"
-
-SRC_URI="silent? (
-		https://mirror.calculate-linux.org/themes/calculate/splash-silent-${PV}.png -> ${PN}-silent-${PV}.png
-	)
-	silent-shutdown? (
-		https://mirror.calculate-linux.org/themes/calculate/splash-shutdown-${PV}.jpg -> ${PN}-shutdown-${PV}.jpg
-	)"
 
 DEPEND="sys-boot/plymouth-calculate-plugin
 	sys-boot/plymouth-openrc-plugin
@@ -30,8 +31,6 @@ DEPEND="sys-boot/plymouth-calculate-plugin
 RDEPEND="${DEPEND}
 	|| ( media-gfx/imagemagick
 	media-gfx/graphicsmagick )"
-
-S="${WORKDIR}"
 
 src_install() {
 	insinto /usr/share/themes/Calculate/

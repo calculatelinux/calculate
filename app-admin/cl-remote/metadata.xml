@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        Parallel SSH execution of shell scripts on multiple hosts.
+    </longdescription>
+    <longdescription lang="ru">
+		Параллельное выполнение SSH shell-скриптов на нескольких хостах.
+    </longdescription>
+    <longdescription lang="fr">
+		Exécution parallèle de scripts shell via SSH sur plusieurs hôtes.
+    </longdescription>
+    <longdescription lang="pl">
+		Równoległe wykonywanie skryptów powłoki przez SSH na wielu hostach.
+    </longdescription>
+    <upstream>
+        <bugs-to>mailto:support@calculate.ru</bugs-to>
+    </upstream>
+</pkgmetadata>

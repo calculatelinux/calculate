@@ -18,12 +18,12 @@ USE="${USE} -sdl -sdl2 -vaapi -xv"
 USE="${USE} -gimp"
 
 # System
-USE="${USE} -abi_x86_32 -elogind -gnome-keyring -introspection -policykit"
+USE="${USE} -elogind -gnome-keyring -introspection -policykit"
 
 # Wireless
 USE="${USE} -bluetooth -wimax"
 
 # Window manager and speciality
-USE="${USE} -dbus -gtk -gui -qt5 -libnotify -X -xcb"
+USE="${USE} -dbus -gtk -gui -qt5 -qt6 -libnotify -X -xcb"
 
 CAMERAS=""

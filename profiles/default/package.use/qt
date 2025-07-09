@@ -1,0 +1,6 @@
+# required by app-text/qpdfview-0.5, media-gfx/engauge-12.1, media-gfx/photoqt-3.2
+app-text/poppler qt5
+
+x11-themes/QGnomePlatform -qt5
+www-client/chromium -qt6 -qt5
+media-gfx/flameshot -wayland

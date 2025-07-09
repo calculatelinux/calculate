@@ -1,0 +1,4 @@
+# Calculate format=kde
+[KSplash]
+Engine=KSplashQML
+Theme=org.kde.breezetwilight.desktop

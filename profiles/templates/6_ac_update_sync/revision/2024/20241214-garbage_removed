@@ -1,0 +1,9 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+if [[ -e /binutils/rebuild-for-fix ]]; then
+	rm -rf /binutils
+fi
+
+exit 0

@@ -1,0 +1,11 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+for i in $(ls /var/db/pkg/*/*/autodeps 2>/dev/null)
+do
+	sed -i '/sys-libs\/libcxxabi:0/d' $i
+	sed -i '/sys-libs\/libcxx:0/d' $i
+done
+
+exit 0

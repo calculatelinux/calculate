@@ -1,5 +1,6 @@
 # Calculate format=kde path=~/.config/volumeicon
 [Alsa]
+card=default
 channel=PCM
 
 [Notification]

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="project">
+        <email>support@calculate.ru</email>
+        <name>Mir Calculate</name>
+        <description>Calculate Overlay</description>
+    </maintainer>
+    <longdescription lang="en">
+        Free, open-source permission-less ad content blocker (Chrome plugin).
+    </longdescription>
+    <longdescription lang="ru">
+        Свободный блокировщик рекламы с открытым исходным кодом, не требующий разрешений (плагин для Chrome).
+    </longdescription>
+    <upstream>
+        <remote-id type="github">uBlockOrigin/uBOL-home</remote-id>
+        <bugs-to>https://github.com/uBlockOrigin/uBOL-home/issues</bugs-to>
+        <changelog>https://github.com/uBlockOrigin/uBOL-home/releases</changelog>
+    </upstream>
+</pkgmetadata>

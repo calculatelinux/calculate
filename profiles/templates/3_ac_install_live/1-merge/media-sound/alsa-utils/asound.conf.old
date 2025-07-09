@@ -1,4 +1,4 @@
-# Calculate comment=# name=asound.conf protected pkg(sys-apps/calculate-utils:3)<3.6.0.12
+# Calculate comment=# name=asound.conf protected pkg(sys-apps/calculate-utils)<3.6.0.12
 #?os_audio==alsa#
 pcm.!default {
     type hw

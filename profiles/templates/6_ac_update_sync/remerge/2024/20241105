@@ -1,0 +1,4 @@
+# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=net-misc/dhcp
+
+[overlay-calculate]
+remerge = #-cl_pass_file-#

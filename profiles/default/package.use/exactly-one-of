@@ -4,12 +4,6 @@ sci-libs/vtk tbb
 # exactly-one-of ( expat xml )
 media-libs/libmetalink expat
 
-# exactly-one-of ( python_single_target_python2_7 python_single_target_python3_4 python_single_target_python3_5 python_single_target_python3_6 )
-kde-apps/lokalize -python_single_target_python2_7
-
-# exactly-one-of ( mysql postgres )
-net-dns/mydns postgres
-
 # exactly-one-of ( agent hybrid local server ) at-most-one-of ( mysql postgres )
 net-analyzer/ossec-hids hybrid postgres
 
@@ -26,8 +20,8 @@ mail-filter/rspamd lua_single_target_luajit -lua_single_target_lua5-1
 # lua? ( exactly-one-of ( lua_single_target_lua5-2 lua_single_target_lua5-3 ) )
 #app-editors/vis lua_single_target_lua5-3
 
-# exactly-one-of ( lua_single_target_lua5-2 lua_single_target_lua5-3 )
-#app-admin/lsyncd lua_single_target_lua5-3
+# exactly-one-of ( lua_single_target_lua5-3 lua_single_target_lua5-4 )
+app-admin/lsyncd lua_single_target_lua5-4
 
 # exactly-one-of ( mariadb mysql )
 dev-ruby/mysql2 mariadb
@@ -44,5 +38,10 @@ acct-user/git gitea
 # exactly-one-of ( lua_single_target_luajit lua_single_target_lua5-3 lua_single_target_lua5-4 )
 dev-lang/fennel lua_single_target_lua5-4
 
-# exactly-one-of ( apulse pulseaudio )
-net-im/viber -apulse
+# exactly-one-of ( guile_single_target_2-2 )
+media-sound/denemo guile_single_target_2-2
+sci-electronics/geda guile_single_target_2-2
+sci-electronics/gwave guile_single_target_2-2
+
+# exactly-one-of ( gtk qt6 )
+media-libs/libmediaart -gtk

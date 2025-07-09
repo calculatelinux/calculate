@@ -1,3 +1,0 @@
-# Calculate format=openrc
-
-SUSPEND_MODULES="i2c_hid"

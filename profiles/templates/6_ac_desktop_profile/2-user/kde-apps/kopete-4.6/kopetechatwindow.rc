@@ -1,8 +1,0 @@
-# Calculate path=~/.kde4/share/apps/kopete
-<!DOCTYPE kpartgui>
-<kpartgui version="34" name="kopetechatwindow" >
- <ActionProperties>
-  <Action shortcut="Ctrl+Return" name="chat_send" />
-  <Action shortcut="Esc" name="file_quit" />
- </ActionProperties>
-</kpartgui>

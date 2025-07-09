@@ -6,4 +6,10 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Xorg meta package for Calculate Linux.
+    </longdescription>
+    <longdescription lang="ru">
+        Мета-пакет Xorg для Calculate Linux.
+    </longdescription>
 </pkgmetadata>

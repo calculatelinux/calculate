@@ -1,10 +1,11 @@
-# Copyright 2007-2024 Mir Calculate
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_12 )
+PYTHON_COMPAT=( python3_{11..12} )
 
+DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1
 
 DESCRIPTION="Configuration utility for Linux services"
@@ -30,24 +31,17 @@ DEPEND="!sys-apps/calculate-lib
 	>=sys-auth/nss_ldap-239
 	!<sys-apps/calculate-utils-3.5.0_alpha44
 	!calculate_nosamba? (
-		|| (
-			<net-fs/samba-4[acl,client,cups,ldap,netapi,pam,server,smbclient]
-			>=net-fs/samba-4[acl,client,cups,ldap,pam]
-		)
+		>=net-fs/samba-4[acl,client,cups,ldap,pam]
 	)
 	!calculate_nomail? (
-		|| ( <net-mail/dovecot-1.2.0[pop3d,ldap,pam,ssl]
-			>=net-mail/dovecot-1.2.0[ldap,pam,ssl(+)]
-		)
+		>=net-mail/dovecot-1.2.0[ldap,pam,ssl(+)]
 		>=mail-filter/procmail-3.22
-		|| ( dev-python/pymilter[python_targets_python3_12]
-			dev-python/pymilter[python_targets_python3_12] )
+		|| ( dev-python/pymilter[${PYTHON_USEDEP}]
+			dev-python/pymilter[${PYTHON_USEDEP}] )
 		>=mail-mta/postfix-2.2[ldap,pam,ssl,sasl,dovecot-sasl]
 	)
 	!calculate_noftp? (
-		|| ( <net-ftp/proftpd-1.3.3[-acl,ldap,ncurses,nls,pam,ssl]
-			>=net-ftp/proftpd-1.3.3[-acl,ident,ldap,ncurses,nls,pam,ssl]
-		)
+		>=net-ftp/proftpd-1.3.3[-acl,ident,ldap,ncurses,nls,pam,ssl]
 	)
 	!calculate_nojabber? (
 		|| ( >=net-im/ejabberd-2.1.8[mod_pubsub,ldap]
@@ -55,13 +49,13 @@ DEPEND="!sys-apps/calculate-lib
 		|| ( media-gfx/imagemagick
 			media-gfx/graphicsmagick )
 	)
-	!calculate_nonamed? ( >=net-dns/bind-9.6.1_p1[sdb-ldap] )
+	!calculate_nonamed? ( >=net-dns/bind-9.6.1_p1[sdb-ldap(-)] )
 	!calculate_noproxy? ( >=net-proxy/squid-3.0.14[ldap,pam,ssl] )
 	!calculate_nodhcp? ( >=net-misc/dhcp-3.1.2_p1 )
-	|| ( dev-python/python-ldap[ssl,python_targets_python3_12]
-		dev-python/python-ldap[ssl,python_targets_python3_12] )
-	|| ( dev-python/lxml[python_targets_python3_12]
-		dev-python/lxml[python_targets_python3_12] )
+	|| ( dev-python/python-ldap[ssl,${PYTHON_USEDEP}]
+		dev-python/python-ldap[ssl,${PYTHON_USEDEP}] )
+	|| ( dev-python/lxml[${PYTHON_USEDEP}]
+		dev-python/lxml[${PYTHON_USEDEP}] )
 "
 RDEPEND="${DEPEND}"
 

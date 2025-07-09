@@ -1,4 +1,4 @@
-# Calculate format=diff
+# Calculate format=diff merge(xfce-base/xfce4-power-manager)<4.20.0
 diff --git a/src/xfpm-manager.c b/src/xfpm-manager.c
 index e9acaa0..a08f42c 100644
 --- a/src/xfpm-manager.c

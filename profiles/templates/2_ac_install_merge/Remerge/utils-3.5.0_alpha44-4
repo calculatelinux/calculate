@@ -1,1 +1,1 @@
-# Calculate path=/etc/calculate name=calculate.ldap append=remove mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.5.0_alpha44
+# Calculate path=/etc/calculate name=calculate.ldap append=remove mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.5.0_alpha44

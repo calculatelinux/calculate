@@ -1,1 +1,1 @@
-# Calculate append=skip merge(sys-apps/calculate-utils:3)!=&&pkg(sys-apps/calculate-utils:3[client])!=&&ini(merge-calculate.client)<3.3.0_alpha2 merge=sys-apps/sysvinit,sys-auth/pambase
+# Calculate append=skip merge(sys-apps/calculate-utils)!=&&pkg(sys-apps/calculate-utils[client])!=&&ini(merge-calculate.client)<3.3.0_alpha2 merge=sys-apps/sysvinit,sys-auth/pambase

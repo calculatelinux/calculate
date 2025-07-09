@@ -25,7 +25,10 @@
             "nngceckbapebfimnlniiiahkandclblb",
 #exists#
 #?exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
-            "cjpalhdlnbpafiamejdnhcphjbkeiagm"
+            "cjpalhdlnbpafiamejdnhcphjbkeiagm",
+#exists#
+#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+            "ddkjiahejlhfcafbddmgiahcphecmpfh"
 #exists#
         ],
         "settings": {
@@ -167,7 +170,11 @@
                 "state": 1,
                 "was_installed_by_default": false,
                 "was_installed_by_oem": false,
-                "withholding_permissions": false
+                "withholding_permissions": false,
+				"mv2_deprecation_did_disable": true,
+		        "mv2_deprecation_disabled_dialog_ack": true,
+        		"mv2_deprecation_user_re_enabled": true
+
             }
 #exists#
 #?exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
@@ -276,16 +283,1164 @@
                 "state": 1,
                 "was_installed_by_default": false,
                 "was_installed_by_oem": false,
-                "withholding_permissions": false
+                "withholding_permissions": false,
+				"mv2_deprecation_did_disable": true,
+		        "mv2_deprecation_disabled_dialog_ack": true,
+        		"mv2_deprecation_user_re_enabled": true
             }
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
-	    ,
+#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+        ,
+#exists#
+#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+            "ddkjiahejlhfcafbddmgiahcphecmpfh": {
+              "account_extension_type": 0,
+			  "active_bit": false,
+              "active_permissions": {
+                "api": [
+                  "activeTab",
+                  "storage",
+                  "declarativeNetRequest",
+                  "scripting"
+                ],
+                "explicit_host": [
+				  "*://*.extensions/*",
+                  "\u003Call_urls>"
+                ],
+                "manifest_permissions": [],
+                "scriptable_host": []
+              },
+              "commands": {
+                "enter-zapper-mode": {
+                  "suggested_key": ""
+                }
+              },
+              "content_settings": [],
+              "creation_flags": 9,
+              "disable_reasons": [],
+              "dnr_dynamic_ruleset": {
+                "checksum": 1955458424
+              },
+              "dnr_enabled_ruleset_ids": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                45
+              ],
+              "dnr_static_ruleset": {
+                "1": {
+                  "checksum": 1197574578,
+                  "ignore_ruleset": false
+                },
+                "2": {
+                  "checksum": 477786237,
+                  "ignore_ruleset": false
+                },
+                "3": {
+                  "checksum": 708038950,
+                  "ignore_ruleset": false
+                },
+                "4": {
+                  "checksum": 1578266308,
+                  "ignore_ruleset": false
+                },
+                "45": {
+                  "checksum": 238108147
+                },
+                "5": {
+                  "checksum": 1685426204,
+                  "ignore_ruleset": false
+                },
+                "6": {
+                  "checksum": 1435632278,
+                  "ignore_ruleset": false
+                }
+              },
+              "dnr_use_action_count_as_badge_text": true,
+              "first_install_time": "13392899187877945",
+              "from_webstore": true,
+              "granted_permissions": {
+                "api": [
+                  "activeTab",
+                  "storage",
+                  "declarativeNetRequest",
+                  "scripting"
+                ],
+                "explicit_host": [
+				  "*://*.extensions/*",
+                  "\u003Call_urls>"
+                ],
+                "manifest_permissions": [],
+                "scriptable_host": []
+              },
+              "incognito_content_settings": [],
+              "incognito_preferences": {},
+              "last_update_time": "13392899187877945",
+              "location": 1,
+              "manifest": {
+                "action": {
+                  "default_icon": {
+                    "16": "img/icon_16.png",
+                    "32": "img/icon_32.png",
+                    "64": "img/icon_64.png"
+                  },
+                  "default_popup": "popup.html"
+                },
+                "author": "Raymond Hill",
+                "background": {
+                  "service_worker": "/js/background.js",
+                  "type": "module"
+                },
+                "commands": {
+                  "enter-zapper-mode": {
+                    "description": "Войти в режим временного скрытия элемента"
+                  }
+                },
+                "current_locale": "ru",
+                "declarative_net_request": {
+                  "rule_resources": [
+                    {
+                      "enabled": true,
+                      "id": "ublock-filters",
+                      "path": "/rulesets/main/ublock-filters.json"
+                    },
+                    {
+                      "enabled": true,
+                      "id": "easylist",
+                      "path": "/rulesets/main/easylist.json"
+                    },
+                    {
+                      "enabled": true,
+                      "id": "easyprivacy",
+                      "path": "/rulesets/main/easyprivacy.json"
+                    },
+                    {
+                      "enabled": true,
+                      "id": "pgl",
+                      "path": "/rulesets/main/pgl.json"
+                    },
+                    {
+                      "enabled": true,
+                      "id": "ublock-badware",
+                      "path": "/rulesets/main/ublock-badware.json"
+                    },
+                    {
+                      "enabled": true,
+                      "id": "urlhaus-full",
+                      "path": "/rulesets/main/urlhaus-full.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "adguard-mobile",
+                      "path": "/rulesets/main/adguard-mobile.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "block-lan",
+                      "path": "/rulesets/main/block-lan.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "dpollock-0",
+                      "path": "/rulesets/main/dpollock-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "adguard-spyware-url",
+                      "path": "/rulesets/main/adguard-spyware-url.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "annoyances-cookies",
+                      "path": "/rulesets/main/annoyances-cookies.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "annoyances-overlays",
+                      "path": "/rulesets/main/annoyances-overlays.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "annoyances-social",
+                      "path": "/rulesets/main/annoyances-social.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "annoyances-widgets",
+                      "path": "/rulesets/main/annoyances-widgets.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "annoyances-others",
+                      "path": "/rulesets/main/annoyances-others.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "stevenblack-hosts",
+                      "path": "/rulesets/main/stevenblack-hosts.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "ubol-tests",
+                      "path": "/rulesets/main/ubol-tests.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "alb-0",
+                      "path": "/rulesets/main/alb-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "bgr-0",
+                      "path": "/rulesets/main/bgr-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "chn-0",
+                      "path": "/rulesets/main/chn-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "cze-0",
+                      "path": "/rulesets/main/cze-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "deu-0",
+                      "path": "/rulesets/main/deu-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "est-0",
+                      "path": "/rulesets/main/est-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "fin-0",
+                      "path": "/rulesets/main/fin-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "fra-0",
+                      "path": "/rulesets/main/fra-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "grc-0",
+                      "path": "/rulesets/main/grc-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "hrv-0",
+                      "path": "/rulesets/main/hrv-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "hun-0",
+                      "path": "/rulesets/main/hun-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "idn-0",
+                      "path": "/rulesets/main/idn-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "ind-0",
+                      "path": "/rulesets/main/ind-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "irn-0",
+                      "path": "/rulesets/main/irn-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "isl-0",
+                      "path": "/rulesets/main/isl-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "isr-0",
+                      "path": "/rulesets/main/isr-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "ita-0",
+                      "path": "/rulesets/main/ita-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "jpn-1",
+                      "path": "/rulesets/main/jpn-1.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "kor-1",
+                      "path": "/rulesets/main/kor-1.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "ltu-0",
+                      "path": "/rulesets/main/ltu-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "lva-0",
+                      "path": "/rulesets/main/lva-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "mkd-0",
+                      "path": "/rulesets/main/mkd-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "nld-0",
+                      "path": "/rulesets/main/nld-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "nor-0",
+                      "path": "/rulesets/main/nor-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "pol-0",
+                      "path": "/rulesets/main/pol-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "pol-3",
+                      "path": "/rulesets/main/pol-3.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "rou-1",
+                      "path": "/rulesets/main/rou-1.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "rus-0",
+                      "path": "/rulesets/main/rus-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "rus-1",
+                      "path": "/rulesets/main/rus-1.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "spa-0",
+                      "path": "/rulesets/main/spa-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "spa-1",
+                      "path": "/rulesets/main/spa-1.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "svn-0",
+                      "path": "/rulesets/main/svn-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "swe-1",
+                      "path": "/rulesets/main/swe-1.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "tha-0",
+                      "path": "/rulesets/main/tha-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "tur-0",
+                      "path": "/rulesets/main/tur-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "ukr-0",
+                      "path": "/rulesets/main/ukr-0.json"
+                    },
+                    {
+                      "enabled": false,
+                      "id": "vie-1",
+                      "path": "/rulesets/main/vie-1.json"
+                    }
+                  ]
+                },
+                "default_locale": "en",
+                "description": "Эффективный блокировщик веб-элементов. Сразу после установки блокирует рекламу, трекеры, майнеры и многое другое.",
+                "host_permissions": [
+                  "\u003Call_urls>"
+                ],
+                "icons": {
+                  "128": "img/icon_128.png",
+                  "16": "img/icon_16.png",
+                  "32": "img/icon_32.png",
+                  "64": "img/icon_64.png"
+                },
+                "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqJE6DLdtfHXfeaGDSKdUuCvvb3pYEpH7jsuYMdExgIqmKRux2dknlJAnYkamBMcirGBfwCFjqE++TAkCs8AcrYLOGRRMt8oa7DXuFWzgtQpkwigI1+dnIuYLzERLQx/O02/p//fHdDQfxWKvySnN+VHdINOHsUD6OcoC5I7CXIBSrateRpRGpFxxR6F4nWvK3aq2j3L6A/qRg+pr0QVqL8p1TOJG+vSh234YHnsO9Dsys+VNbT0k0n8enCm/VsOCMjihgHpmftd1bSfSr8s1IwBuFdaLVQKghyDn1PvhFNBkuAXu+J/z0/o5Nio+/bIz406ECI9Qtkr9kqVboFDtzwIDAQAB",
+                "manifest_version": 3,
+                "minimum_chrome_version": "122.0",
+                "name": "uBlock Origin Lite",
+                "options_page": "dashboard.html",
+                "optional_host_permissions": [
+                  "\u003Call_urls>"
+                ],
+                "permissions": [
+                  "activeTab",
+                  "declarativeNetRequest",
+                  "scripting",
+                  "storage"
+                ],
+                "short_name": "uBO Lite",
+                "storage": {
+                  "managed_schema": "managed_storage.json"
+                },
+                "update_url": "https://clients2.google.com/service/update2/crx",
+                "version": "2025.518.1611",
+                "web_accessible_resources": [
+                  {
+                    "matches": [
+                      "\u003Call_urls>"
+                    ],
+                    "resources": [
+                      "/strictblock.html"
+                    ],
+                    "use_dynamic_url": true
+                  },
+                  {
+                    "matches": [
+                      "\u003Call_urls>"
+                    ],
+                    "resources": [
+                      "/zapper-ui.html"
+                    ],
+                    "use_dynamic_url": true
+                  },
+                  {
+                    "matches": [
+                      "\u003Call_urls>"
+                    ],
+                    "resources": [
+                      "web_accessible_resources/noop.js",
+                      "web_accessible_resources/amazon_apstag.js",
+                      "web_accessible_resources/google-ima.js",
+                      "web_accessible_resources/noop.txt",
+                      "web_accessible_resources/noop.css",
+                      "web_accessible_resources/1x1.gif",
+                      "web_accessible_resources/32x32.png",
+                      "web_accessible_resources/2x2.png",
+                      "web_accessible_resources/empty",
+                      "web_accessible_resources/noop.html",
+                      "web_accessible_resources/amazon_ads.js",
+                      "web_accessible_resources/googletagservices_gpt.js",
+                      "web_accessible_resources/google-analytics_analytics.js",
+                      "web_accessible_resources/fingerprint2.js",
+                      "web_accessible_resources/nofab.js",
+                      "web_accessible_resources/hd-main.js",
+                      "web_accessible_resources/popads.js",
+                      "web_accessible_resources/googlesyndication_adsbygoogle.js",
+                      "web_accessible_resources/prebid-ads.js",
+                      "web_accessible_resources/doubleclick_instream_ad_status.js",
+                      "web_accessible_resources/google-analytics_cx_api.js",
+                      "web_accessible_resources/scorecardresearch_beacon.js",
+                      "web_accessible_resources/google-analytics_ga.js",
+                      "web_accessible_resources/outbrain-widget.js",
+                      "web_accessible_resources/fingerprint3.js",
+                      "web_accessible_resources/noop-vmap1.xml",
+                      "web_accessible_resources/noop-vast3.xml",
+                      "web_accessible_resources/noop-0.1s.mp3",
+                      "web_accessible_resources/noop-1s.mp4",
+                      "web_accessible_resources/nobab2.js",
+                      "web_accessible_resources/chartbeat.js",
+                      "web_accessible_resources/noop.json",
+                      "web_accessible_resources/click2load.html",
+                      "web_accessible_resources/noeval-silent.js"
+                    ],
+                    "use_dynamic_url": true
+                  }
+                ]
+              },
+              "needs_sync": true,
+              "path": "ddkjiahejlhfcafbddmgiahcphecmpfh/2025.518.1611_0",
+              "persistent_script_url_patterns": [
+                "*://*.08sportbar.com/*",
+                "*://*.08sportbar.online/*",
+                "*://*.1001tracklists.com/*",
+                "*://*.10play.com.au/*",
+                "*://*.116.ru/*",
+                "*://*.14.ru/*",
+                "*://*.161.ru/*",
+                "*://*.164.ru/*",
+                "*://*.173.ru/*",
+                "*://*.178.ru/*",
+                "*://*.1cloudfile.com/*",
+                "*://*.1plus1.video/*",
+                "*://*.247sports.com/*",
+                "*://*.24pdd.ru/*",
+                "*://*.24smi.org/*",
+                "*://*.26.ru/*",
+                "*://*.29.ru/*",
+                "*://*.35.ru/*",
+                "*://*.43.ru/*",
+                "*://*.45.ru/*",
+                "*://*.48.ru/*",
+                "*://*.4pda.to/*",
+                "*://*.51.ru/*",
+                "*://*.53.ru/*",
+                "*://*.56.ru/*",
+                "*://*.59.ru/*",
+                "*://*.60.ru/*",
+                "*://*.63.ru/*",
+                "*://*.66ccff.work/*",
+                "*://*.68.ru/*",
+                "*://*.71.ru/*",
+                "*://*.72.ru/*",
+                "*://*.74.ru/*",
+                "*://*.76.ru/*",
+                "*://*.777sportba.com/*",
+                "*://*.777sportba.org/*",
+                "*://*.777streams.pro/*",
+                "*://*.7streams.pro/*",
+                "*://*.86.ru/*",
+                "*://*.89.ru/*",
+                "*://*.93.ru/*",
+                "*://*.abczdrowie.pl/*",
+                "*://*.abs-cbn.com/*",
+                "*://*.abysscdn.com/*",
+                "*://*.adme.media/*",
+                "*://*.adrissa.com.co/*",
+                "*://*.advocate-news.com/*",
+                "*://*.afisha.ru/*",
+                "*://*.akronnewsreporter.com/*",
+                "*://*.americansoda.co.uk/*",
+                "*://*.androidpolice.com/*",
+                "*://*.anidub.vip/*",
+                "*://*.anidubonline.com/*",
+                "*://*.animefire.info/*",
+                "*://*.animesonlinecc.us/*",
+                "*://*.animesonliner4.com/*",
+                "*://*.animesup.info/*",
+                "*://*.animeyabu.net/*",
+                "*://*.animeyabu.org/*",
+                "*://*.animix.lol/*",
+                "*://*.aniqit.com/*",
+                "*://*.anitube.us/*",
+                "*://*.anitube.vip/*",
+                "*://*.anivod.com/*",
+                "*://*.app.blubank.com/*",
+                "*://*.app.hellovaia.com/*",
+                "*://*.app.studysmarter.de/*",
+                "*://*.app.vaia.com/*",
+                "*://*.appleinsider.ru/*",
+                "*://*.appsmodz.com/*",
+                "*://*.armypowerinfo.com/*",
+                "*://*.arstechnica.com/*",
+                "*://*.artoffocas.com/*",
+                "*://*.artribune.com/*",
+                "*://*.ashdi.vip/*",
+                "*://*.assiatv.com/*",
+                "*://*.audizine.com/*",
+                "*://*.autocentrum.pl/*",
+                "*://*.autoinfo24.ru/*",
+                "*://*.autokult.pl/*",
+                "*://*.av01.tv/*",
+                "*://*.avito.ru/*",
+                "*://*.barsportbar.com/*",
+                "*://*.benchmark.pl/*",
+                "*://*.bestfonts.pro/*",
+                "*://*.bhugolinfo.com/*",
+                "*://*.blackenterprise.com/*",
+                "*://*.bocopreps.com/*",
+                "*://*.bolighub.dk/*",
+                "*://*.boom365hd.com/*",
+                "*://*.boston.com/*",
+                "*://*.bostonherald.com/*",
+                "*://*.bowfile.com/*",
+                "*://*.bringmethenews.com/*",
+                "*://*.britannica.com/*",
+                "*://*.broomfieldenterprise.com/*",
+                "*://*.brushnewstribune.com/*",
+                "*://*.buffzone.com/*",
+                "*://*.burlington-record.com/*",
+                "*://*.canela.tv/*",
+                "*://*.canoncitydailyrecord.com/*",
+                "*://*.caroloportunidades.com.br/*",
+                "*://*.casteloforte.com.br/*",
+                "*://*.cattime.com/*",
+                "*://*.cbr.com/*",
+                "*://*.cbsnews.com/*",
+                "*://*.cdnneedtv.ru/*",
+                "*://*.cdnpotok.com/*",
+                "*://*.cdntvpotok.com/*",
+                "*://*.centerfabril.com.br/*",
+                "*://*.channels247.net/*",
+                "*://*.cheatsheet.com/*",
+                "*://*.chicagotribune.com/*",
+                "*://*.chicoer.com/*",
+                "*://*.chita.ru/*",
+                "*://*.cinelatino.net/*",
+                "*://*.cinemitas.org/*",
+                "*://*.cineplus123.org/*",
+                "*://*.cnews.ru/*",
+                "*://*.coffeete.ir/*",
+                "*://*.collider.com/*",
+                "*://*.coloradodaily.com/*",
+                "*://*.coloradohometownweekly.com/*",
+                "*://*.comdotgame.com/*",
+                "*://*.comedy-radio.ru/*",
+                "*://*.comingsoon.net/*",
+                "*://*.coomer.su/*",
+                "*://*.courant.com/*",
+                "*://*.crimsonav.com/*",
+                "*://*.cryptofactss.com/*",
+                "*://*.cwtv.com/*",
+                "*://*.cxissuegk.com/*",
+                "*://*.dailybreeze.com/*",
+                "*://*.dailybulletin.com/*",
+                "*://*.dailycamera.com/*",
+                "*://*.dailydemocrat.com/*",
+                "*://*.dailyfreeman.com/*",
+                "*://*.dailylocal.com/*",
+                "*://*.dailynews.com/*",
+                "*://*.dailypress.com/*",
+                "*://*.dailytribune.com/*",
+                "*://*.dattebayo-br.com/*",
+                "*://*.deezer.com/*",
+                "*://*.delcotimes.com/*",
+                "*://*.denverpost.com/*",
+                "*://*.desired.de/*",
+                "*://*.direct.farm/*",
+                "*://*.disqus.com/*",
+                "*://*.dobreprogramy.pl/*",
+                "*://*.doctorrouter.ru/*",
+                "*://*.dogtime.com/*",
+                "*://*.dopomininfo.com/*",
+                "*://*.download.megaup.net/*",
+                "*://*.dp73.spb.ru/*",
+                "*://*.dropmefiles.com.ua/*",
+                "*://*.dropmefiles.net/*",
+                "*://*.drstonebr.com/*",
+                "*://*.dtf.ru/*",
+                "*://*.dudestream.com/*",
+                "*://*.dzen.ru/*",
+                "*://*.e.mail.ru/*",
+                "*://*.e1.ru/*",
+                "*://*.eastbaytimes.com/*",
+                "*://*.emturbovid.com/*",
+                "*://*.energiasolare100.it/*",
+                "*://*.eptrail.com/*",
+                "*://*.esportstales.com/*",
+                "*://*.excelsiorcalifornia.com/*",
+                "*://*.expressnews.com/*",
+                "*://*.falatron.com/*",
+                "*://*.fedex.com/*",
+                "*://*.file4go.com/*",
+                "*://*.film.ru/*",
+                "*://*.filmpro.ru/*",
+                "*://*.filmweb.pl/*",
+                "*://*.financenova.online/*",
+                "*://*.financewada.com/*",
+                "*://*.findjav.com/*",
+                "*://*.fitnesssguide.com/*",
+                "*://*.flyanimes.cloud/*",
+                "*://*.forqueen.cz/*",
+                "*://*.fortmorgantimes.com/*",
+                "*://*.forum.ixbt.com/*",
+                "*://*.forums.hfboards.com/*",
+                "*://*.fotoblogia.pl/*",
+                "*://*.fox.com/*",
+                "*://*.foxsports.com/*",
+                "*://*.freehat.cc/*",
+                "*://*.freep.com/*",
+                "*://*.freetp.org/*",
+                "*://*.freetp.ru/*",
+                "*://*.freex2line.online/*",
+                "*://*.fresnobee.com/*",
+                "*://*.frontend.vh.yandex.ru/*",
+                "*://*.fssp.gov.ru/*",
+                "*://*.fullfreeimage.com/*",
+                "*://*.funker530.com/*",
+                "*://*.gadzetomania.pl/*",
+                "*://*.game4you.top/*",
+                "*://*.gamemag.ru/*",
+                "*://*.gamerant.com/*",
+                "*://*.gbatemp.net/*",
+                "*://*.gecmisi.com.tr/*",
+                "*://*.genialne.pl/*",
+                "*://*.gfycat.com/*",
+                "*://*.gknutshell.com/*",
+                "*://*.globo.com/*",
+                "*://*.go.gets4link.com/*",
+                "*://*.goanimes.vip/*",
+                "*://*.godstoryinfo.com/*",
+                "*://*.goflix.sbs/*",
+                "*://*.golfdigest.com/*",
+                "*://*.goool7.ws/*",
+                "*://*.governing.com/*",
+                "*://*.govtech.com/*",
+                "*://*.goyabu.us/*",
+                "*://*.grabify.link/*",
+                "*://*.greeleytribune.com/*",
+                "*://*.gtavicecity.ru/*",
+                "*://*.hancinema.net/*",
+                "*://*.hd24.pro/*",
+                "*://*.hd24.watch/*",
+                "*://*.hd365.ws/*",
+                "*://*.hdstream365.com/*",
+                "*://*.hemmings.com/*",
+                "*://*.hihihaha1.xyz/*",
+                "*://*.hinatasoul.com/*",
+                "*://*.hostingdetailer.com/*",
+                "*://*.hot.game/*",
+                "*://*.howtogeek.com/*",
+                "*://*.hoyolab.com/*",
+                "*://*.hoyoverse.com/*",
+                "*://*.hydraxcdn.biz/*",
+                "*://*.i-ua.tv/*",
+                "*://*.igromania.ru/*",
+                "*://*.ijr.com/*",
+                "*://*.imagelovers.com/*",
+                "*://*.infinityscans.net/*",
+                "*://*.infinityscans.org/*",
+                "*://*.infinityscans.xyz/*",
+                "*://*.informazionefiscale.it/*",
+                "*://*.infox.sg/*",
+                "*://*.innal.top/*",
+                "*://*.inquirer.net/*",
+                "*://*.insider-gaming.com/*",
+                "*://*.insurancesfact.com/*",
+                "*://*.inter.ua/*",
+                "*://*.ircity.ru/*",
+                "*://*.isekaibrasil.com/*",
+                "*://*.ivanovonews.ru/*",
+                "*://*.iwb.jp/*",
+                "*://*.ixbt.com/*",
+                "*://*.iz.ru/*",
+                "*://*.izh1.ru/*",
+                "*://*.japscan.lol/*",
+                "*://*.jastrzabpost.pl/*",
+                "*://*.javggvideo.xyz/*",
+                "*://*.jetpunk.com/*",
+                "*://*.joinusonline.net/*",
+                "*://*.jollibee.com.vn/*",
+                "*://*.journal-advocate.com/*",
+                "*://*.julesburgadvocate.com/*",
+                "*://*.kafeteria.pl/*",
+                "*://*.kakprosto.ru/*",
+                "*://*.kanobu.ru/*",
+                "*://*.kemono.su/*",
+                "*://*.kinotv.ru/*",
+                "*://*.kitapsan.com.tr/*",
+                "*://*.kluchikipro.ru/*",
+                "*://*.knowyourmeme.com/*",
+                "*://*.kodik.cc/*",
+                "*://*.kodik.info/*",
+                "*://*.kodikdb.com/*",
+                "*://*.komorkomania.pl/*",
+                "*://*.koramaup.com/*",
+                "*://*.kufar.by/*",
+                "*://*.kvadratmetr.uz/*",
+                "*://*.kwejk.pl/*",
+                "*://*.labgame.io/*",
+                "*://*.lalapaluza.ru/*",
+                "*://*.lamarledger.com/*",
+                "*://*.laurelberninteriors.com/*",
+                "*://*.laweducationinfo.com/*",
+                "*://*.learnmarketinfo.com/*",
+                "*://*.lenta.ru/*",
+                "*://*.lifehacker.ru/*",
+                "*://*.liga.net/*",
+                "*://*.light.mail.ru/*",
+                "*://*.limetvv.com/*",
+                "*://*.littlebigsnake.com/*",
+                "*://*.live-stream365.com/*",
+                "*://*.live365tv.site/*",
+                "*://*.liveinternet.ru/*",
+                "*://*.livejournal.com/*",
+                "*://*.lostfilm.download/*",
+                "*://*.lostfilm.life/*",
+                "*://*.lostfilm.one/*",
+                "*://*.lostfilm.pro/*",
+                "*://*.lostfilm.today/*",
+                "*://*.lostfilm.tv/*",
+                "*://*.lostfilm.tw/*",
+                "*://*.lostfilm.uno/*",
+                "*://*.lostfilm.win/*",
+                "*://*.lostfilmtv.site/*",
+                "*://*.lostfilmtv.uno/*",
+                "*://*.lostfilmtv1.site/*",
+                "*://*.lostfilmtv2.site/*",
+                "*://*.lostfilmtv3.site/*",
+                "*://*.lostfilmtv4.site/*",
+                "*://*.lostfilmtv5.site/*",
+                "*://*.lowellsun.com/*",
+                "*://*.lundracing.com/*",
+                "*://*.m.nivod4.tv/*",
+                "*://*.m.nivod5.tv/*",
+                "*://*.m1.nivod.tv/*",
+                "*://*.macombdaily.com/*",
+                "*://*.magesypro.pro/*",
+                "*://*.mail.ru/*",
+                "*://*.mainlinemedianews.com/*",
+                "*://*.makeincomeinfo.com/*",
+                "*://*.makeuseof.com/*",
+                "*://*.marinij.com/*",
+                "*://*.mc.today/*",
+                "*://*.mcall.com/*",
+                "*://*.mebelinovdom.com/*",
+                "*://*.mendocinobeacon.com/*",
+                "*://*.mensjournal.com/*",
+                "*://*.mephimtv.cc/*",
+                "*://*.mercurynews.com/*",
+                "*://*.meuanime.info/*",
+                "*://*.mgorsk.ru/*",
+                "*://*.mirror.co.uk/*",
+                "*://*.mmtv01.xyz/*",
+                "*://*.mobileweb.bankmellat.ir/*",
+                "*://*.money.it/*",
+                "*://*.money.pl/*",
+                "*://*.moneycontrol.com/*",
+                "*://*.montereyherald.com/*",
+                "*://*.morningjournal.com/*",
+                "*://*.motorbiscuit.com/*",
+                "*://*.motorpage.ru/*",
+                "*://*.movieweb.com/*",
+                "*://*.mp3party.net/*",
+                "*://*.msk1.ru/*",
+                "*://*.mt-soft.sakura.ne.jp/*",
+                "*://*.multiup.eu/*",
+                "*://*.multiup.io/*",
+                "*://*.multiup.org/*",
+                "*://*.mwed.jp/*",
+                "*://*.myshared.ru/*",
+                "*://*.myshows.me/*",
+                "*://*.nashobavalleyvoice.com/*",
+                "*://*.naszemiasto.pl/*",
+                "*://*.nationalreview.com/*",
+                "*://*.naydex.net/*",
+                "*://*.naylo.top/*",
+                "*://*.nbcnews.com/*",
+                "*://*.needrom.com/*",
+                "*://*.neopets.com/*",
+                "*://*.news-herald.com/*",
+                "*://*.news.bg/*",
+                "*://*.ngs.ru/*",
+                "*://*.ngs22.ru/*",
+                "*://*.ngs24.ru/*",
+                "*://*.ngs42.ru/*",
+                "*://*.ngs55.ru/*",
+                "*://*.ngs70.ru/*",
+                "*://*.ngsingleissues.nationalgeographic.com/*",
+                "*://*.nicovideo.jp/*",
+                "*://*.njavtv.com/*",
+                "*://*.nn.ru/*",
+                "*://*.nofilmschool.com/*",
+                "*://*.norton.com/*",
+                "*://*.nsportal.ru/*",
+                "*://*.nvidia.com/*",
+                "*://*.nydailynews.com/*",
+                "*://*.nypost.com/*",
+                "*://*.o2.pl/*",
+                "*://*.obozrevatel.com/*",
+                "*://*.ocregister.com/*",
+                "*://*.octavius.mail.ru/*",
+                "*://*.ohmywishes.com/*",
+                "*://*.ojworld.it/*",
+                "*://*.ok.ru/*",
+                "*://*.oligarx.uz/*",
+                "*://*.omg.blog/*",
+                "*://*.oneidadispatch.com/*",
+                "*://*.oneliketv.com/*",
+                "*://*.online-fix.me/*",
+                "*://*.onlineatlas.us/*",
+                "*://*.ontivi.net/*",
+                "*://*.open.fm/*",
+                "*://*.opennet.me/*",
+                "*://*.opennet.ru/*",
+                "*://*.order-order.com/*",
+                "*://*.orlandosentinel.com/*",
+                "*://*.orovillemr.com/*",
+                "*://*.otakuanimess.net/*",
+                "*://*.otzovik.com/*",
+                "*://*.oxax.tv/*",
+                "*://*.paid4.link/*",
+                "*://*.paradisepost.com/*",
+                "*://*.paraveronline.org/*",
+                "*://*.parenting.pl/*",
+                "*://*.pasadenastarnews.com/*",
+                "*://*.pes-files.ru/*",
+                "*://*.phileweb.com/*",
+                "*://*.phim1080.in/*",
+                "*://*.phonereviewinfo.com/*",
+                "*://*.phys-kids.com/*",
+                "*://*.pikabu.ru/*",
+                "*://*.pilotonline.com/*",
+                "*://*.platformcraft.ru/*",
+                "*://*.player-cdn.com/*",
+                "*://*.player.smotrim.ru/*",
+                "*://*.player.theplatform.com/*",
+                "*://*.playermeow.com/*",
+                "*://*.playground.ru/*",
+                "*://*.playhydrax.com/*",
+                "*://*.playstationlifestyle.net/*",
+                "*://*.pobreflix.vc/*",
+                "*://*.polygamia.pl/*",
+                "*://*.portalvirtualreality.ru/*",
+                "*://*.pottsmerc.com/*",
+                "*://*.pressandguide.com/*",
+                "*://*.pressenterprise.com/*",
+                "*://*.presstelegram.com/*",
+                "*://*.protv.md/*",
+                "*://*.pudelek.pl/*",
+                "*://*.pussyspace.com/*",
+                "*://*.pussyspace.net/*",
+                "*://*.pwinsider.com/*",
+                "*://*.pysznosci.pl/*",
+                "*://*.qualityrental.com/*",
+                "*://*.quizlet.com/*",
+                "*://*.radioromantika.ru/*",
+                "*://*.raes.tech/*",
+                "*://*.ranker.com/*",
+                "*://*.ranobe-novels.ru/*",
+                "*://*.rbc.ru/*",
+                "*://*.readingeagle.com/*",
+                "*://*.record-bee.com/*",
+                "*://*.red17.co.uk/*",
+                "*://*.redbluffdailynews.com/*",
+                "*://*.redlandsdailyfacts.com/*",
+                "*://*.relax-fm.ru/*",
+                "*://*.reporterherald.com/*",
+                "*://*.reshu.by/*",
+                "*://*.rg.ru/*",
+                "*://*.ritsatv.ru/*",
+                "*://*.rooter.gg/*",
+                "*://*.rsadnetworkinfo.com/*",
+                "*://*.rseducationinfo.com/*",
+                "*://*.rsfinanceinfo.com/*",
+                "*://*.rsgamer.app/*",
+                "*://*.rshostinginfo.com/*",
+                "*://*.rsinsuranceinfo.com/*",
+                "*://*.rssoftwareinfo.com/*",
+                "*://*.rufiiguta.com/*",
+                "*://*.rustorka.com/*",
+                "*://*.rustorka.net/*",
+                "*://*.rustorka.top/*",
+                "*://*.rustorkacom.lib/*",
+                "*://*.rusvesna.su/*",
+                "*://*.s7yours.com/*",
+                "*://*.sandiegouniontribune.com/*",
+                "*://*.santacruzsentinel.com/*",
+                "*://*.saratogian.com/*",
+                "*://*.savefrom.net/*",
+                "*://*.savemoneyinfo.com/*",
+                "*://*.savvytime.com/*",
+                "*://*.sbautumn.com/*",
+                "*://*.sblive.online/*",
+                "*://*.sbs.com.au/*",
+                "*://*.sbsports.pro/*",
+                "*://*.sbstreams.ws/*",
+                "*://*.sbsun.com/*",
+                "*://*.screenrant.com/*",
+                "*://*.sdamgia.ru/*",
+                "*://*.seclore.com/*",
+                "*://*.sentinelandenterprise.com/*",
+                "*://*.sfchronicle.com/*",
+                "*://*.sgvtribune.com/*",
+                "*://*.shd247.com/*",
+                "*://*.shedevrum.ai/*",
+                "*://*.sidereel.com/*",
+                "*://*.siliconera.com/*",
+                "*://*.siliconvalley.com/*",
+                "*://*.silvercube12.xyz/*",
+                "*://*.simpleflying.com/*",
+                "*://*.skmedix.pl/*",
+                "*://*.sm.news/*",
+                "*://*.smostafa.ir/*",
+                "*://*.so1.asia/*",
+                "*://*.sochi1.ru/*",
+                "*://*.soft98.ir/*",
+                "*://*.softoroom.org/*",
+                "*://*.softwaredetail.com/*",
+                "*://*.southpark.su/*",
+                "*://*.southplattesentinel.com/*",
+                "*://*.sporcle.com/*",
+                "*://*.sport365hd.com/*",
+                "*://*.sport365hd.net/*",
+                "*://*.sport7.biz/*",
+                "*://*.sportabar01.com/*",
+                "*://*.sportbar.biz/*",
+                "*://*.sportbar.pm/*",
+                "*://*.sportbarchik88.com/*",
+                "*://*.sportbox.ws/*",
+                "*://*.sporting7.pw/*",
+                "*://*.sporting77.com/*",
+                "*://*.sportsite777.com/*",
+                "*://*.spotless365.net/*",
+                "*://*.stalker-mods.clan.su/*",
+                "*://*.stalker-mods.su/*",
+                "*://*.stalkermods.ru/*",
+                "*://*.stbturbo.xyz/*",
+                "*://*.stealthoptional.com/*",
+                "*://*.sterlitamak1.ru/*",
+                "*://*.stream365.pro/*",
+                "*://*.streamelements.com/*",
+                "*://*.streamsilk.com/*",
+                "*://*.successstoryinfo.com/*",
+                "*://*.sumax43.autos/*",
+                "*://*.sun-sentinel.com/*",
+                "*://*.superanimes.in/*",
+                "*://*.svoboda.org/*",
+                "*://*.sysban.ir/*",
+                "*://*.szaszmotorshop.hu/*",
+                "*://*.techlicious.com/*",
+                "*://*.technicpack.net/*",
+                "*://*.tehnar.net.ua/*",
+                "*://*.telecdn.net/*",
+                "*://*.tests24.su/*",
+                "*://*.thedraftnetwork.com/*",
+                "*://*.thefashionspot.com/*",
+                "*://*.thegamer.com/*",
+                "*://*.thelastupd.org/*",
+                "*://*.themorningsun.com/*",
+                "*://*.thenerdstash.com/*",
+                "*://*.thenewsherald.com/*",
+                "*://*.theoaklandpress.com/*",
+                "*://*.theporndude.com/*",
+                "*://*.thereporter.com/*",
+                "*://*.thereporteronline.com/*",
+                "*://*.times-standard.com/*",
+                "*://*.timescall.com/*",
+                "*://*.timesherald.com/*",
+                "*://*.timesheraldonline.com/*",
+                "*://*.titantv.com/*",
+                "*://*.tivix.co/*",
+                "*://*.tokopedia.com/*",
+                "*://*.tolyatty.ru/*",
+                "*://*.top1iq.com/*",
+                "*://*.topspeed.com/*",
+                "*://*.tortuga.wtf/*",
+                "*://*.touch.mail.ru/*",
+                "*://*.tradingfact4u.com/*",
+                "*://*.transkarpatia.net/*",
+                "*://*.travellingdetail.com/*",
+                "*://*.trentonian.com/*",
+                "*://*.troyrecord.com/*",
+                "*://*.trychatgpt.ru/*",
+                "*://*.turkcinema.org/*",
+                "*://*.tv-assia.org/*",
+                "*://*.tv-kanali.online/*",
+                "*://*.tv.acestream.org/*",
+                "*://*.tv.youtube.com/*",
+                "*://*.tv8.md/*",
+                "*://*.tvojstyl.sk/*",
+                "*://*.twincities.com/*",
+                "*://*.twinfinite.net/*",
+                "*://*.twitter.com/*",
+                "*://*.u24.ua/*",
+                "*://*.ufa1.ru/*",
+                "*://*.ufchgu.ru/*",
+                "*://*.ukiahdailyjournal.com/*",
+                "*://*.uma.media/*",
+                "*://*.up-shop.org/*",
+                "*://*.upshrink.com/*",
+                "*://*.ura.news/*",
+                "*://*.usaa.com/*",
+                "*://*.utkarshonlinetest.com/*",
+                "*://*.v1.ru/*",
+                "*://*.vc.ru/*",
+                "*://*.vecdn.pw/*",
+                "*://*.verpelis.gratis/*",
+                "*://*.veseloeradio.ru/*",
+                "*://*.vichitrainfo.com/*",
+                "*://*.videogamer.com/*",
+                "*://*.vip7stream.pw/*",
+                "*://*.visible.com/*",
+                "*://*.vix.com/*",
+                "*://*.vk.com/*",
+                "*://*.vk.ru/*",
+                "*://*.vkvideo.ru/*",
+                "*://*.vladivostok1.ru/*",
+                "*://*.vmusi.ru/*",
+                "*://*.voicenews.com/*",
+                "*://*.volley.ru/*",
+                "*://*.voronezh1.ru/*",
+                "*://*.vz.ru/*",
+                "*://*.web.facebook.com/*",
+                "*://*.whd365.pro/*",
+                "*://*.whittierdailynews.com/*",
+                "*://*.widgets.kinopoisk.ru/*",
+                "*://*.willitsnews.com/*",
+                "*://*.wnd.com/*",
+                "*://*.workplace-products.co.uk/*",
+                "*://*.workproductivityinfo.com/*",
+                "*://*.worldaffairinfo.com/*",
+                "*://*.worldpopulationreview.com/*",
+                "*://*.wotspeak.org/*",
+                "*://*.wp.pl/*",
+                "*://*.wral.com/*",
+                "*://*.wrestlezone.com/*",
+                "*://*.wrestlinginc.com/*",
+                "*://*.www.cambe.pr.gov.br/*",
+                "*://*.www.facebook.com/*",
+                "*://*.www.fontanka.ru/*",
+                "*://*.www.ixbt.com/*",
+                "*://*.www.kinopoisk.ru/*",
+                "*://*.www.ukr.net/*",
+                "*://*.www.youtube.com/*",
+                "*://*.x.com/*",
+                "*://*.xda-developers.com/*",
+                "*://*.xsport.ua/*",
+                "*://*.ya62.ru/*",
+                "*://*.yairalon.com.br/*",
+                "*://*.yandex.by/*",
+                "*://*.yandex.kz/*",
+                "*://*.yandex.ru/*",
+                "*://*.yandex.uz/*",
+                "*://*.yapx.ru/*",
+                "*://*.yastatic.net/*",
+                "*://*.youtube.com/*",
+                "*://*.znanija.com/*",
+                "\u003Call_urls>"
+              ],
+              "preferences": {},
+              "regular_only_preferences": {},
+			  "runtime_granted_permissions": {
+                "api": [],
+                "explicit_host": [
+                  "*://*.extensions/*",
+                  "\u003Call_urls>"
+                ],
+                "manifest_permissions": [],
+                "scriptable_host": []
+              },
+              "service_worker_registration_info": {
+                "version": "2025.518.1611"
+              },
+              "serviceworkerevents": [
+                "commands.onCommand",
+                "permissions.onAdded",
+                "permissions.onRemoved"
+              ],
+              "was_installed_by_default": false,
+              "was_installed_by_oem": false,
+              "withholding_permissions": false
+            }
+      
 #exists#
 #?exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
-           "nngceckbapebfimnlniiiahkandclblb": {
+        "nngceckbapebfimnlniiiahkandclblb": {
             "active_permissions": {
                 "api": [
+                    "activeTab",
+                    "alarms",
                     "clipboardRead",
                     "clipboardWrite",
                     "contextMenus",
@@ -293,26 +1448,32 @@
                     "storage",
                     "tabs",
                     "unlimitedStorage",
+                    "webNavigation",
                     "webRequest",
-                    "webRequestBlocking"
+                    "scripting",
+                    "offscreen",
+                    "webRequestAuthProvider"
                 ],
                 "explicit_host": [
-                    "*://*/*",
-                    "<all_urls>",
-                    "chrome://favicon/*"
+                    "http://*/*",
+                    "https://*/*"
                 ],
                 "manifest_permissions": [],
                 "scriptable_host": [
                     "*://*/*",
                     "file:///*",
-                    "https://*/*",
                     "https://lastpass.com/export.php"
                 ]
             },
             "commands": {
-                "_execute_browser_action": {
-                    "suggested_key": "Ctrl+Shift+U",
+                "_execute_action": {
                     "was_assigned": true
+                },
+                "autofill_card": {
+                    "suggested_key": ""
+                },
+                "autofill_identity": {
+                    "suggested_key": ""
                 },
                 "autofill_login": {
                     "suggested_key": "Ctrl+Shift+L",
@@ -329,10 +1490,12 @@
             "content_settings": [],
             "creation_flags": 9,
             "events": [],
-            "first_install_time": "13358702574263915",
+            "first_install_time": "13373540258971782",
             "from_webstore": true,
             "granted_permissions": {
                 "api": [
+                    "activeTab",
+                    "alarms",
                     "clipboardRead",
                     "clipboardWrite",
                     "contextMenus",
@@ -340,33 +1503,34 @@
                     "storage",
                     "tabs",
                     "unlimitedStorage",
+                    "webNavigation",
                     "webRequest",
-                    "webRequestBlocking"
+                    "scripting",
+                    "offscreen",
+                    "webRequestAuthProvider"
                 ],
                 "explicit_host": [
-                    "*://*/*",
-                    "<all_urls>",
-                    "chrome://favicon/*"
+                    "http://*/*",
+                    "https://*/*"
                 ],
                 "manifest_permissions": [],
                 "scriptable_host": [
                     "*://*/*",
                     "file:///*",
-                    "https://*/*",
                     "https://lastpass.com/export.php"
                 ]
             },
             "incognito_content_settings": [],
             "incognito_preferences": {},
-            "last_update_time": "13358702574263915",
+            "last_update_time": "13373540258971782",
             "location": 1,
             "manifest": {
                 "author": "Bitwarden Inc.",
                 "background": {
-                    "page": "background.html",
-                    "persistent": true
+                    "service_worker": "background.js",
+                    "type": "module"
                 },
-                "browser_action": {
+                "action": {
                     "default_icon": {
                         "19": "images/icon19.png",
                         "38": "images/icon38.png"
@@ -375,15 +1539,21 @@
                     "default_title": "Bitwarden"
                 },
                 "commands": {
-                    "_execute_browser_action": {
+                    "_execute_action": {
                         "description": "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0445\u0440\u0430\u043d\u0438\u043b\u0438\u0449\u0435 \u0432\u043e \u0432\u0441\u043f\u043b\u044b\u0432\u0430\u044e\u0449\u0435\u043c \u043e\u043a\u043d\u0435",
                         "suggested_key": {
                             "default": "Ctrl+Shift+Y",
                             "linux": "Ctrl+Shift+U"
                         }
                     },
+                    "autofill_card": {
+                        "description": "\u0410\u0432\u0442\u043e\u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0439 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u043a\u0430\u0440\u0442\u044b \u0434\u043b\u044f \u0442\u0435\u043a\u0443\u0449\u0435\u0433\u043e \u0441\u0430\u0439\u0442\u0430"
+                    },
+                    "autofill_identity": {
+                        "description": "\u0410\u0432\u0442\u043e\u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0439 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u043b\u0438\u0447\u043d\u043e\u0441\u0442\u0438 \u0434\u043b\u044f \u0442\u0435\u043a\u0443\u0449\u0435\u0433\u043e \u0441\u0430\u0439\u0442\u0430"
+                    },
                     "autofill_login": {
-                        "description": "\u0410\u0432\u0442\u043e\u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0433\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u043b\u043e\u0433\u0438\u043d\u0430 \u0434\u043b\u044f \u0442\u0435\u043a\u0443\u0449\u0435\u0433\u043e \u0441\u0430\u0439\u0442\u0430.",
+                        "description": "\u0410\u0432\u0442\u043e\u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0433\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u043b\u043e\u0433\u0438\u043d\u0430 \u0434\u043b\u044f \u0442\u0435\u043a\u0443\u0449\u0435\u0433\u043e \u0441\u0430\u0439\u0442\u0430",
                         "suggested_key": {
                             "default": "Ctrl+Shift+L"
                         }
@@ -416,19 +1586,6 @@
                     },
                     {
                         "all_frames": true,
-                        "exclude_matches": [
-                            "https://*/*.xml*"
-                        ],
-                        "js": [
-                            "content/fido2/trigger-fido2-content-script-injection.js"
-                        ],
-                        "matches": [
-                            "https://*/*"
-                        ],
-                        "run_at": "document_start"
-                    },
-                    {
-                        "all_frames": true,
                         "css": [
                             "content/autofill.css"
                         ],
@@ -437,7 +1594,8 @@
                             "file:///*.xml*"
                         ],
                         "js": [
-                            "content/trigger-autofill-script-injection.js"
+                            "content/trigger-autofill-script-injection.js",
+                            "content/misc-utils.js"
                         ],
                         "matches": [
                             "*://*/*",
@@ -456,11 +1614,18 @@
                         "run_at": "document_start"
                     }
                 ],
-                "content_security_policy": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'",
+                "content_security_policy": {
+                    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'",
+                    "sandbox": "sandbox allow-scripts; script-src 'self'"
+                },
                 "current_locale": "ru",
                 "default_locale": "en",
-                "description": "\u0417\u0430\u0449\u0438\u0449\u0435\u043d\u043d\u044b\u0439 \u0438 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 \u043f\u0430\u0440\u043e\u043b\u0435\u0439 \u0434\u043b\u044f \u0432\u0441\u0435\u0445 \u0432\u0430\u0448\u0438\u0445 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432.",
+                "description": "\u0414\u043e\u043c\u0430, \u043d\u0430 \u0440\u0430\u0431\u043e\u0442\u0435 \u0438\u043b\u0438 \u0432 \u043f\u0443\u0442\u0438 - Bitwarden \u0432\u0441\u0435\u0433\u0434\u0430 \u0437\u0430\u0449\u0438\u0442\u0438\u0442 \u0432\u0430\u0448\u0438 \u043f\u0430\u0440\u043e\u043b\u0438, passkeys \u0438 \u043a\u043e\u043d\u0444\u0438\u0434\u0435\u043d\u0446\u0438\u0430\u043b\u044c\u043d\u0443\u044e \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e",
                 "homepage_url": "https://bitwarden.com",
+                "host_permissions": [
+                    "https://*/*",
+                    "http://*/*"
+                ],
                 "icons": {
                     "128": "images/icon128.png",
                     "16": "images/icon16.png",
@@ -469,15 +1634,15 @@
                     "96": "images/icon96.png"
                 },
                 "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmqKbvreshyXRuN2gikeR1idqR6KL0Di89JZcMyD4bjJRZVmQO7aznSGSALIHzSAUGYocUYBNDOP5QAhImxXyQ1qG8+goXs93v9GzrNJETdVuCEhqBggC4/DFabryJZDiKvZ2Jl0DM7MsWdoybZPwrj70V3aJ/nVNOMkf868scNTMliwitCqqjT5baTANsG0DkZWQExD4lSXzSZHH9MEO8q0iZ7RRlNuGRBAkZgNV8FwZRsPKm/rwQ9dy3VpgLcmLp5GiMt+kAEncqKAkuRYnhVXXBsKqIyYTMjHSLkLnpfFySyOPLBdS617i/PGNiP/MT6Xy6z//v5NozUgaAZ4gJQIDAQAB",
-                "manifest_version": 2,
-                "name": "Bitwarden - \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 \u043f\u0430\u0440\u043e\u043b\u0435\u0439",
+                "manifest_version": 3,
+                "minimum_chrome_version": "102.0",
+                "name": "Bitwarden - \u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 \u043f\u0430\u0440\u043e\u043b\u0435\u0439",
                 "optional_permissions": [
                     "nativeMessaging",
                     "privacy"
                 ],
                 "permissions": [
-                    "<all_urls>",
-                    "*://*/*",
+                    "activeTab",
                     "tabs",
                     "contextMenus",
                     "storage",
@@ -485,12 +1650,17 @@
                     "clipboardRead",
                     "clipboardWrite",
                     "idle",
+                    "alarms",
+                    "scripting",
+                    "offscreen",
                     "webRequest",
-                    "webRequestBlocking"
+                    "webRequestAuthProvider",
+                    "webNavigation"
                 ],
                 "sandbox": {
-                    "content_security_policy": "sandbox allow-scripts; script-src 'self'",
                     "pages": [
+                        "overlay/menu-button.html",
+                        "overlay/menu-list.html",
                         "overlay/button.html",
                         "overlay/list.html"
                     ]
@@ -502,25 +1672,497 @@
                 "update_url": "https://clients2.google.com/service/update2/crx",
                 "version": "#-pkg(www-plugins/chrome-bitwarden)-#",
                 "web_accessible_resources": [
-                    "content/fido2/page-script.js",
-                    "content/lp-suppress-import-download.js",
-                    "notification/bar.html",
-                    "images/icon38.png",
-                    "images/icon38_locked.png",
-                    "overlay/button.html",
-                    "overlay/list.html",
-                    "popup/fonts/*"
+                    {
+                        "matches": [
+                            "<all_urls>"
+                        ],
+                        "resources": [
+                            "content/fido2-page-script.js",
+                            "notification/bar.html",
+                            "images/icon38.png",
+                            "images/icon38_locked.png",
+                            "overlay/menu-button.html",
+                            "overlay/menu-list.html",
+                            "overlay/menu.html",
+                            "overlay/button.html",
+                            "overlay/list.html",
+                            "popup/fonts/*"
+                        ]
+                    }
                 ]
             },
             "needs_sync": true,
             "path": "nngceckbapebfimnlniiiahkandclblb/#-pkg(www-plugins/chrome-bitwarden)-#_0",
+            "persistent_script_url_patterns": [
+                "http://localhost/*",
+                "https://*/*"
+            ],
             "preferences": {},
             "regular_only_preferences": {},
+            "service_worker_registration_info": {
+                "version": "2024.10.0"
+            },
+            "serviceworkerevents": [
+                "alarms.onAlarm",
+                "commands.onCommand",
+                "contextMenus.onClicked",
+                "idle.onStateChanged",
+                "permissions.onAdded",
+                "runtime.onInstalled",
+                "storage.local.onChanged",
+                "tabs.onActivated",
+                "webRequest.onAuthRequired/s1",
+                "webRequest.onCompleted/s2",
+                "webRequest.onErrorOccurred/s3"
+            ],
             "state": 1,
             "was_installed_by_default": false,
             "was_installed_by_oem": false,
-            "withholding_permissions": false
+            "withholding_permissions": false,
+			"mv2_deprecation_did_disable": true,
+	        "mv2_deprecation_disabled_dialog_ack": true,
+    	    "mv2_deprecation_user_re_enabled": true
+        }
+#exists#
+#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+        ,
+#exists#
+#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+        "ddkjiahejlhfcafbddmgiahcphecmpfh": {
+        "account_extension_type": 0,
+        "active_bit": false,
+        "active_permissions": {
+            "api": [
+                "activeTab",
+                "storage",
+                "declarativeNetRequest",
+                "scripting"
+            ],
+            "explicit_host": [
+                "\u003Call_urls>"
+			],
+            "manifest_permissions": [],
+            "scriptable_host": []
+        },
+        "allowlist": 1,
+        "commands": {},
+        "content_settings": [],
+        "creation_flags": 9,
+        "dnr_dynamic_ruleset": {
+            "checksum": 1141569535
+        },
+        "dnr_enabled_ruleset_ids": [
+            1,
+            2,
+            11,
+            12,
+            39
+        ],
+        "dnr_static_ruleset": {
+            "1": {
+                "checksum": 113388263,
+                "ignore_ruleset": false
+            },
+            "11": {
+                "checksum": 147483167,
+                "ignore_ruleset": false
+            },
+            "12": {
+                "checksum": 507499947,
+                "ignore_ruleset": false
+            },
+            "2": {
+                "checksum": 650286096,
+                "ignore_ruleset": false
+            },
+            "39": {
+                "checksum": 1459310023
             }
+        },
+        "dnr_use_action_count_as_badge_text": true,
+        "first_install_time": "13385735146217956",
+        "from_webstore": true,
+        "granted_permissions": {
+            "api": [
+                "activeTab",
+                "storage",
+                "declarativeNetRequest",
+                "scripting"
+            ],
+            "explicit_host": [
+                "\u003Call_urls>"
+			],
+            "manifest_permissions": [],
+            "scriptable_host": []
+        },
+        "incognito_content_settings": [],
+        "incognito_preferences": {},
+        "last_update_time": "13385735146217956",
+        "location": 1,
+        "manifest": {
+            "action": {
+                "default_icon": {
+                    "16": "img/icon_16.png",
+                    "32": "img/icon_32.png",
+                    "64": "img/icon_64.png"
+                },
+                "default_popup": "popup.html"
+            },
+            "author": "Raymond Hill",
+            "background": {
+                "service_worker": "/js/background.js",
+                "type": "module"
+            },
+            "current_locale": "ru",
+            "declarative_net_request": {
+                "rule_resources": [
+                    {
+                        "enabled": true,
+                        "id": "default",
+                        "path": "/rulesets/main/default.json"
+                    },
+                    {
+                        "enabled": true,
+                        "id": "badware",
+                        "path": "/rulesets/main/badware.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "block-lan",
+                        "path": "/rulesets/main/block-lan.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "dpollock-0",
+                        "path": "/rulesets/main/dpollock-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "adguard-spyware-url",
+                        "path": "/rulesets/main/adguard-spyware-url.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "annoyances-cookies",
+                        "path": "/rulesets/main/annoyances-cookies.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "annoyances-overlays",
+                        "path": "/rulesets/main/annoyances-overlays.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "annoyances-social",
+                        "path": "/rulesets/main/annoyances-social.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "annoyances-widgets",
+                        "path": "/rulesets/main/annoyances-widgets.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "annoyances-others",
+                        "path": "/rulesets/main/annoyances-others.json"
+                    },
+                    {
+                        "enabled": true,
+                        "id": "urlhaus-full",
+                        "path": "/rulesets/main/urlhaus-full.json"
+                    },
+                    {
+                        "enabled": true,
+                        "id": "openphish-domains",
+                        "path": "/rulesets/main/openphish-domains.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "stevenblack-hosts",
+                        "path": "/rulesets/main/stevenblack-hosts.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "alb-0",
+                        "path": "/rulesets/main/alb-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "bgr-0",
+                        "path": "/rulesets/main/bgr-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "chn-0",
+                        "path": "/rulesets/main/chn-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "cze-0",
+                        "path": "/rulesets/main/cze-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "deu-0",
+                        "path": "/rulesets/main/deu-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "fin-0",
+                        "path": "/rulesets/main/fin-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "fra-0",
+                        "path": "/rulesets/main/fra-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "grc-0",
+                        "path": "/rulesets/main/grc-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "hrv-0",
+                        "path": "/rulesets/main/hrv-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "hun-0",
+                        "path": "/rulesets/main/hun-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "idn-0",
+                        "path": "/rulesets/main/idn-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "ind-0",
+                        "path": "/rulesets/main/ind-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "irn-0",
+                        "path": "/rulesets/main/irn-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "isl-0",
+                        "path": "/rulesets/main/isl-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "isr-0",
+                        "path": "/rulesets/main/isr-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "ita-0",
+                        "path": "/rulesets/main/ita-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "jpn-1",
+                        "path": "/rulesets/main/jpn-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "kor-1",
+                        "path": "/rulesets/main/kor-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "ltu-0",
+                        "path": "/rulesets/main/ltu-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "lva-0",
+                        "path": "/rulesets/main/lva-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "mkd-0",
+                        "path": "/rulesets/main/mkd-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "nld-0",
+                        "path": "/rulesets/main/nld-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "nor-0",
+                        "path": "/rulesets/main/nor-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "pol-0",
+                        "path": "/rulesets/main/pol-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "rou-1",
+                        "path": "/rulesets/main/rou-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "rus-0",
+                        "path": "/rulesets/main/rus-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "rus-1",
+                        "path": "/rulesets/main/rus-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "spa-0",
+                        "path": "/rulesets/main/spa-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "spa-1",
+                        "path": "/rulesets/main/spa-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "svn-0",
+                        "path": "/rulesets/main/svn-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "swe-1",
+                        "path": "/rulesets/main/swe-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "tha-0",
+                        "path": "/rulesets/main/tha-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "tur-0",
+                        "path": "/rulesets/main/tur-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "ukr-0",
+                        "path": "/rulesets/main/ukr-0.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "vie-1",
+                        "path": "/rulesets/main/vie-1.json"
+                    },
+                    {
+                        "enabled": false,
+                        "id": "est-0",
+                        "path": "/rulesets/main/est-0.json"
+                    }
+                ]
+            },
+            "default_locale": "en",
+            "description": "\u0411\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0449\u0438\u043a \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430, \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0439. \u0421\u0440\u0430\u0437\u0443 \u043f\u043e\u0441\u043b\u0435 \u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438 \u0431\u043b\u043e\u043a\u0438\u0440\u0443\u0435\u0442 \u0440\u0435\u043a\u043b\u0430\u043c\u0443, \u0442\u0440\u0435\u043a\u0435\u0440\u044b, \u043c\u0430\u0439\u043d\u0435\u0440\u044b \u0438 \u043c\u043d\u043e\u0433\u043e\u0435 \u0434\u0440\u0443\u0433\u043e\u0435.",
+            "icons": {
+                "128": "img/icon_128.png",
+                "16": "img/icon_16.png",
+                "32": "img/icon_32.png",
+                "64": "img/icon_64.png"
+            },
+            "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqJE6DLdtfHXfeaGDSKdUuCvvb3pYEpH7jsuYMdExgIqmKRux2dknlJAnYkamBMcirGBfwCFjqE++TAkCs8AcrYLOGRRMt8oa7DXuFWzgtQpkwigI1+dnIuYLzERLQx/O02/p//fHdDQfxWKvySnN+VHdINOHsUD6OcoC5I7CXIBSrateRpRGpFxxR6F4nWvK3aq2j3L6A/qRg+pr0QVqL8p1TOJG+vSh234YHnsO9Dsys+VNbT0k0n8enCm/VsOCMjihgHpmftd1bSfSr8s1IwBuFdaLVQKghyDn1PvhFNBkuAXu+J/z0/o5Nio+/bIz406ECI9Qtkr9kqVboFDtzwIDAQAB",
+            "manifest_version": 3,
+            "minimum_chrome_version": "122.0",
+            "name": "uBlock Origin Lite",
+            "optional_host_permissions": [
+                "<all_urls>"
+            ],
+            "options_page": "dashboard.html",
+            "permissions": [
+                "activeTab",
+                "declarativeNetRequest",
+                "scripting",
+                "storage"
+            ],
+            "short_name": "uBO Lite",
+            "storage": {
+                "managed_schema": "managed_storage.json"
+            },
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "version": "2025.3.2.1298",
+            "web_accessible_resources": [
+                {
+                    "matches": [
+                        "<all_urls>"
+                    ],
+                    "resources": [
+                        "/strictblock.html"
+                    ],
+                    "use_dynamic_url": true
+                },
+                {
+                    "matches": [
+                        "<all_urls>"
+                    ],
+                    "resources": [
+                        "/web_accessible_resources/noop.js",
+                        "/web_accessible_resources/google-ima.js",
+                        "/web_accessible_resources/noop.txt",
+                        "/web_accessible_resources/noop-1s.mp4",
+                        "/web_accessible_resources/noop.css",
+                        "/web_accessible_resources/1x1.gif",
+                        "/web_accessible_resources/2x2.png",
+                        "/web_accessible_resources/32x32.png",
+                        "/web_accessible_resources/empty",
+                        "/web_accessible_resources/noop.html",
+                        "/web_accessible_resources/nofab.js",
+                        "/web_accessible_resources/hd-main.js",
+                        "/web_accessible_resources/popads.js",
+                        "/web_accessible_resources/googlesyndication_adsbygoogle.js",
+                        "/web_accessible_resources/google-analytics_analytics.js",
+                        "/web_accessible_resources/prebid-ads.js",
+                        "/web_accessible_resources/amazon_apstag.js",
+                        "/web_accessible_resources/doubleclick_instream_ad_status.js",
+                        "/web_accessible_resources/google-analytics_cx_api.js",
+                        "/web_accessible_resources/googletagservices_gpt.js",
+                        "/web_accessible_resources/scorecardresearch_beacon.js",
+                        "/web_accessible_resources/google-analytics_ga.js",
+                        "/web_accessible_resources/outbrain-widget.js",
+                        "/web_accessible_resources/fingerprint2.js",
+                        "/web_accessible_resources/amazon_ads.js",
+                        "/web_accessible_resources/chartbeat.js",
+                        "/web_accessible_resources/noop-vmap1.xml",
+                        "/web_accessible_resources/noop-vast3.xml",
+                        "/web_accessible_resources/noop-0.1s.mp3",
+                        "/web_accessible_resources/nobab2.js",
+                        "/web_accessible_resources/noop.json",
+                        "/web_accessible_resources/click2load.html",
+                        "/web_accessible_resources/noeval-silent.js"
+                    ],
+                    "use_dynamic_url": true
+                }
+            ]
+        },
+        "needs_sync": true,
+        "path": "ddkjiahejlhfcafbddmgiahcphecmpfh/2025.3.2.1298",
+        "preferences": {},
+        "regular_only_preferences": {},
+        "service_worker_registration_info": {
+            "version": "2025.3.2.1298"
+        },
+        "serviceworkerevents": [
+            "permissions.onAdded",
+            "permissions.onRemoved"
+        ],
+        "state": 1,
+        "was_installed_by_default": false,
+        "was_installed_by_oem": false,
+        "withholding_permissions": false,
+		"mv2_deprecation_did_disable": true,
+        "mv2_deprecation_disabled_dialog_ack": true,
+        "mv2_deprecation_user_re_enabled": true
+    }
 #exists#
 	},
         "toolbar": [
@@ -534,9 +2176,10 @@
                 "settings": {
                     "cjpalhdlnbpafiamejdnhcphjbkeiagm": "4013706C949FD89AD1F588F32A08A9656D83C0A61DB56C141341E60CF4404C95",
                     "fnaicdffflnofjppbagibeoednhnbjhg": "8CD963F9765D0603AD154C7D14611AC1EBAC635E5306FE23E4614A506D1BCB19",
-                    "nngceckbapebfimnlniiiahkandclblb": "352693DBB8EA3CBB866B78C7FB53632DE87AAA0D81D56A18752D2C858284FB9D"
+                    "nngceckbapebfimnlniiiahkandclblb": "A819A6FDDE8FD1404F197920AC1CD1296A092DACE30C8FDE72586F066C7EBEDD"
                 }
             }
         }
     }
 }
+

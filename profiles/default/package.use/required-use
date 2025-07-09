@@ -1,3 +1,6 @@
+# required by @selected
+app-emulation/protontricks -gui
+
 # upnp? ( expat )
 media-sound/mpd expat
 
@@ -19,9 +22,6 @@ net-irc/epic5 ruby
 # sasl? ( ldap )
 net-fs/autofs ldap
 
-# qt5? ( !libnotify )
-media-plugins/audacious-plugins -libnotify
-
 # lm-sensors? ( opencl )
 net-misc/bfgminer opencl
 
@@ -32,14 +32,8 @@ media-libs/sdl2-mixer midi
 # wayland? ( gles2-only )
 dev-libs/efl fbcon gles2-only
 
-# ogre? ( !opengl ) opengl? ( !ogre )
-dev-games/mygui -ogre
-
 # drm? ( gles2 )
 dev-libs/efl gles2
-
-# openal? ( wxwidgets )
-games-emulation/vbam wxwidgets
 
 # wayland? ( egl )
 media-libs/clutter egl
@@ -65,12 +59,23 @@ media-video/pipewire sound-server
 # libnotify? ( gui )
 net-p2p/deluge gui
 
-# opengl? ( gui )
-games-board/gnubg gui
-
 # ffmpeg? ( gui ) jpeg? ( gui )
 media-gfx/netgen gui
 
 # skins? ( archive )
 media-video/vlc archive
 
+# qt6? ( gui )
+dev-util/cppcheck gui
+
+# gui? ( exactly-one-of ( gtk2 gtk qt5 qt6 ) )
+dev-lang/lazarus -gtk
+
+# bluetooth? opengl? ( widgets ) svg? ( widgets )
+dev-python/pyqt5 widgets
+
+# p2p? ( ap wps )
+net-wireless/wpa_supplicant wps
+
+# dbus? ( gui )
+media-video/mkvtoolnix gui

@@ -1,1 +1,1 @@
-# Calculate append=skip mergepkg(sys-apps/calculate-utils:3)>=3.6.8.17&&ini(merge-calculate.utils)<3.6.8.17 merge=sys-boot/grub
+# Calculate append=skip mergepkg(sys-apps/calculate-utils)>=3.6.8.17&&ini(merge-calculate.utils)<3.6.8.17 merge=sys-boot/grub

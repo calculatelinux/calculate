@@ -1,4 +1,4 @@
-# Calculate format=kde link=/usr/share/applications/zzz-gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)>=2.6.11
+# Calculate format=kde link=/usr/share/applications/zzz-gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)<>2.6,3.0
 
 # Hide icon
 [Desktop Entry]

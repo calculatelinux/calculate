@@ -1,0 +1,4 @@
+# Calculate exists(~/.config/discord/settings.json)!= name=settings.json path=~/.config/discord format=patch
+<reg>{</reg>
+<text>{
+  "SKIP_HOST_UPDATE": true,</text>

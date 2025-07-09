@@ -1,1 +1,0 @@
-sys-kernel/calculate-sources muqss

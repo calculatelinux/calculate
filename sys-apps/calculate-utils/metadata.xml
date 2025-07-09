@@ -12,17 +12,29 @@
     <longdescription lang="ru">
         Набор утилит Calculate для установки системы, сборки и обновления.
     </longdescription>
-    <use>
-        <flag name="backup">Includes backup module.</flag>
-        <flag name="client">Includes module for setting and storing the user accounts in the domain.</flag>
-        <flag name="console">Includes console module.</flag>
-        <flag name="desktop">Includes module for desktop configuration.</flag>
-        <flag name="install">Enables support for disk installation.</flag>
-        <flag name="minimal">Use minimal depends for calculate install.</flag>
-        <flag name="pxe">Enables support for PXE installation.</flag>
-        <flag name="dbus">Enables ability to run core server by dbus.</flag>
-        <flag name="qt5">Include Qt5 gui console</flag>
-        <flag name="gpg">Enables the signature checking</flag>
+    <use lang="en">
+        <flag name="backup">Include backup module</flag>
+        <flag name="client">Include module for setting and storing the user accounts in the domain</flag>
+        <flag name="console">Include console module</flag>
+        <flag name="desktop">Include module for desktop configuration</flag>
+        <flag name="install">Enable support for disk installation</flag>
+        <flag name="minimal">Use minimal depends for Calculate install</flag>
+        <flag name="pxe">Enable support for PXE installation</flag>
+        <flag name="dbus">Enable ability to run core server by DBus</flag>
+        <flag name="qt6">Include Qt 6 GUI console</flag>
+        <flag name="gpg">Enable the signature checking</flag>
+    </use>
+    <use lang="ru">
+        <flag name="backup">Включить модуль бекапа</flag>
+        <flag name="client">Включить модуль для установки их хранения профилей пользователей в домене</flag>
+        <flag name="console">Включить модуль консоли</flag>
+        <flag name="desktop">Включить модуль для настройки рабочей станции</flag>
+        <flag name="install">Включить поддержку для установки на диск</flag>
+        <flag name="minimal">Использовать минимальный набор зависимостей при установке Calculate</flag>
+        <flag name="pxe">Включить поддержку PXE установки</flag>
+        <flag name="dbus">Включить возможность запуска сервера по DBus</flag>
+        <flag name="qt6">Включить GUI-консоль на Qt 6</flag>
+        <flag name="gpg">Включить проверку сигнатур</flag>
     </use>
     <upstream>
         <bugs-to>mailto:support@calculate.ru</bugs-to>

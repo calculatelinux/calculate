@@ -1,1 +1,1 @@
-# Calculate name=conf.d path=/etc ini(container.type)==desktop&&pkg(sys-apps/calculate-utils:3[client])!=
+# Calculate name=conf.d path=/etc ini(container.type)==desktop&&pkg(sys-apps/calculate-utils[client])!=

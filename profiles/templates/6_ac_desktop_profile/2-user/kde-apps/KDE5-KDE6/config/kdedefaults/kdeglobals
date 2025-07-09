@@ -1,0 +1,10 @@
+# Calculate format=kde
+[General]
+ColorScheme=BreezeLight
+
+[Icons]
+Theme=breeze
+
+[KDE]
+widgetStyle=Breeze
+

@@ -1,0 +1,3 @@
+=net-dns/bind-9.18.29-r3
+=net-dns/bind-9.18.31-r2
+=net-dns/bind-tools-9.18.0-r1

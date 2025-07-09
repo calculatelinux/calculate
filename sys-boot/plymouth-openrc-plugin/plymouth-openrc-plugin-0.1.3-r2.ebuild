@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,14 +9,16 @@ SRC_URI="https://github.com/Kangie/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
+KEYWORDS="amd64"
 
 DEPEND="sys-apps/openrc:="
 RDEPEND="${DEPEND}
 	sys-boot/plymouth
 	!sys-apps/systemd"
 
-PATCHES=( "${FILESDIR}/${P}-r2.patch" )
+PATCHES=(
+	"${FILESDIR}"/${P}-r2.patch
+)
 
 src_install() {
 	insinto /$(get_libdir)/rc/plugins

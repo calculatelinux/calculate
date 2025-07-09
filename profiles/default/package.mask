@@ -1,9 +1,10 @@
-# mask portage wgetpaste
->=app-text/wgetpaste-2.35
-
 # prevent automagic depends
 sys-libs/db:6.0
 
-# not compiled
-=gnome-base/gnome-panel-3.50.0
+=gnome-base/gnome-panel-3.54.0
 
+=app-accessibility/emacspeak-60.0-r1
+
+=net-libs/pjproject-2.15.1
+
+=sys-kernel/calculate-sources-6.12.28

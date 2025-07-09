@@ -1,6 +1,10 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# NOTE: This is a version of `virtual/editor-0-r6::gentoo` with additional editors allowed
+
+# NOTE: This is the modification of `virtual/editor-0-r7::gentoo` with additional editors allowed
+# Модификация сводится к добавлению `sys-apps/busybox` в ||-clause RDEPEND'ов.
+# Учитывая, что данный пакет входит в сет `@system`, это позволяет иметь в системе
+# из перечисленных ниже RDEPEND'ов только `sys-apps/busybox`.
 
 EAPI=8
 
@@ -46,3 +50,8 @@ RDEPEND="|| (
 	mail-client/alpine[-onlyalpine]
 	sys-apps/busybox
 )"
+
+# Packages outside app-editors providing an editor:
+#	app-misc/mc: mcedit (#62643)
+#	dev-lisp/cmucl: hemlock
+#	mail-client/alpine: pico

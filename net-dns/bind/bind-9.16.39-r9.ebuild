@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Re dlz/mysql and threads, needs to be verified..
@@ -27,9 +27,10 @@ RRL_PV="${MY_PV}"
 # SDB-LDAP: http://bind9-ldap.bayour.com/
 
 DESCRIPTION="Berkeley Internet Name Domain - Name Server"
-HOMEPAGE="https://www.isc.org/software/bind https://gitlab.isc.org/isc-projects/bind9"
+HOMEPAGE="https://www.isc.org/bind/ https://gitlab.isc.org/isc-projects/bind9"
 SRC_URI="https://downloads.isc.org/isc/bind9/${PV}/${P}.tar.xz
 	doc? ( mirror://gentoo/dyndns-samples.tbz2 )"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="Apache-2.0 BSD BSD-2 GPL-2 HPND ISC MPL-2.0"
 SLOT="0"
@@ -88,8 +89,6 @@ BDEPEND="
 		dev-util/kyua
 	)
 "
-
-S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
 	"${FILESDIR}/ldap-library-path-on-multilib-machines.patch"

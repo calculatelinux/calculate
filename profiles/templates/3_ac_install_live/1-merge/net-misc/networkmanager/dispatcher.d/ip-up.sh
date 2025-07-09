@@ -2,9 +2,9 @@
 #!/bin/bash
 
 DEV_NAME="$1"
-NM_ACTION="$2"
+# NM_DISPATCHER_ACTION="$2"
 
-if [[ ${NM_ACTION} == "up" ]]
+if [[ ${NM_DISPATCHER_ACTION} == "up" ]]
 then
-	:
+        :
 fi

@@ -6,4 +6,15 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Sync your bookmarks privately across browsers and devices (Chrome plugin).
+    </longdescription>
+    <longdescription lang="ru">
+        Защищённо синхронизирует ваши закладки между браузерами и устройствами (плагин для Chrome).
+    </longdescription>
+    <upstream>
+        <remote-id type="github">floccusaddon/floccus</remote-id>
+        <bugs-to>https://github.com/floccusaddon/floccus/issues</bugs-to>
+        <changelog>https://github.com/floccusaddon/floccus/blob/develop/CHANGELOG.md</changelog>
+    </upstream>
 </pkgmetadata>

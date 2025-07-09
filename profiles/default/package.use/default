@@ -56,9 +56,6 @@ app-emulation/qemu gnutls spice usbredir qemu_softmmu_targets_i386 qemu_softmmu_
 app-arch/zip natspec
 app-arch/unzip natspec
 
-# enable mpeg2 codec for cutscenes
-games-engines/scummvm mpeg2
-
 # support/bindings for the Python
 media-gfx/gimp python
 
@@ -72,7 +69,7 @@ sys-fs/cryptsetup python
 www-apache/mod_perl ithreads
 
 # include backup, client, desktop, console and console-gui modules
-sys-apps/calculate-utils backup client desktop console qt5
+sys-apps/calculate-utils backup client desktop console
 
 # support caja
 app-arch/engrampa caja
@@ -121,8 +118,8 @@ media-fonts/terminus-font -X
 # SMplayer support, streaming media support
 media-video/mplayer bidi live -video_cards_tdfx
 
-# support modemmanager, select dhcp client
-net-misc/networkmanager connection-sharing dhcpcd
+# support modemmanager, select dhclient, use net-firewall/nftables for connection sharing
+net-misc/networkmanager connection-sharing dhclient nftables -iptables
 
 # enable fax, support work over networks, IJS driver for cups, exclude scanner GUI (use XSane)
 net-print/hplip hpijs -X
@@ -137,9 +134,6 @@ x11-base/xorg-drivers -video_cards_nvidia -video_cards_vmware -video_cards_glint
 
 # remove the sound when changing volume in pulseaudio
 media-libs/libcanberra -sound
-
-# add functionality
-net-wireless/blueman network
 
 # support for encrypted user directories
 sys-fs/ecryptfs-utils suid
@@ -186,7 +180,8 @@ net-im/pidgin gnutls
 net-libs/gtk-vnc python
 
 # support HTTP streams through neon (radio)
-media-plugins/audacious-plugins http
+media-plugins/audacious-plugins http -qt6
+media-sound/audacious -qt6
 
 # add support for applications using legacy xembed systray icons
 kde-plasma/plasma-desktop touchpad
@@ -197,10 +192,6 @@ lxqt-base/lxqt-panel colorpicker cpuload dom networkmonitor sysstat tray
 # support for XPM graphics format
 x11-wm/jwm xpm
 
-# support GUI/Application
-media-video/avidemux qt5
-media-libs/avidemux-plugins qt5
-
 # extensions without dependencies
 mate-extra/caja-extensions -cdr image-converter share
 
@@ -210,12 +201,10 @@ app-text/atril epub
 # openssl support needed for mpv, to play over ssh
 # builds libffmpeg.so to enable media playback in Chromium-based browsers like Opera and Vivaldi
 # xcb for video capture screen monitor
-media-video/ffmpeg openssl chromium xcb libaom
+media-video/ffmpeg openssl chromium xcb libaom svt-av1
 
-# opengl? ( gui widgets ), webkit? ( network printsupport )
-dev-python/PyQt5 gui printsupport network widgets
-#  webengine? ( widgets? ( webchannel ) )
-dev-python/PyQt5 webengine webchannel
+# opengl? ( gui widgets ), webkit? ( network printsupport ) webengine? ( widgets? ( webchannel ) )
+dev-python/pyqt5 gui printsupport network widgets webchannel
 
 # vpn, bluetooth, etc support
 net-misc/connman l2tp ofono openconnect openvpn pptp vpnc wispr
@@ -272,11 +261,6 @@ x11-drivers/xf86-video-intel dri3 uxa
 
 # enable face detection and recognition
 media-gfx/kphotoalbum face
-
-# support for the Qt GUI/Application
-app-backup/backintime qt5
-app-backup/bacula qt5
-net-print/hplip qt5
 
 # mate-base/mate -> x11-misc/mozo-1.8.0
 mate-base/mate-menus python
@@ -335,11 +319,9 @@ xfce-extra/xfce4-sensors-plugin lm-sensors
 # Enable monitoring of hdd temperature (app-admin/hddtemp)
 sys-apps/inxi hddtemp
 
-# Enable nm-applet support
-net-vpn/networkmanager-l2tp gnome
-
 # Unsupported closed-source DRM capability (required by Netflix VOD)
-www-client/chromium widevine
+# Add kerberos support
+www-client/chromium widevine kerberos
 
 # Enable display of detailed memory information using dev-qt/qtwebengine
 kde-plasma/libksysguard webengine
@@ -349,7 +331,6 @@ media-libs/vulkan-loader layers
 
 # to support patent-encumbered media codecs and closed-source DRM capability
 www-client/vivaldi proprietary-codecs widevine
-www-client/vivaldi-snapshot proprietary-codecs widevine
 
 # WireGuard VPN support
 net-misc/connman wireguard
@@ -397,3 +378,9 @@ app-editors/vim terminal
 
 # enable calculation and lookup of AcoustID fingerprints
 media-sound/picard fingerprints
+
+# enable support for georeplication
+sys-cluster/glusterfs georeplication xml
+
+# Provides OpenRC versions of reboot/halt/poweroff/shutdown
+sys-apps/openrc sysv-utils

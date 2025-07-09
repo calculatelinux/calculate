@@ -1,0 +1,4 @@
+# Calculate format=samba name=ini.env ini(overlay-calculate.remerge)<#-cl_pass_file-# merge=x11-misc/lightdm-gtk-greeter
+
+[overlay-calculate]
+remerge = #-cl_pass_file-#

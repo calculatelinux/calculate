@@ -14,12 +14,11 @@ app-text/evince -nsplugin
 dev-lang/php -spell
 dev-libs/folks -bluetooth
 dev-python/netaddr -cli
-dev-python/PyQt5 -webengine -webkit
+dev-python/pyqt5 -webengine -webkit
 dev-python/translate-toolkit -html
 dev-qt/qt-creator -qmldesigner
 dev-qt/qtgui -vnc
 dev-vcs/git -gtk
-games-util/game-device-udev-rules -acl
 games-util/steam-launcher -video_cards_nvidia
 gnome-extra/zenity -webkit
 kde-apps/kget -bittorrent
@@ -28,6 +27,7 @@ lxqt-base/lxqt-meta -sddm
 mail-client/roundcube -spell
 mail-filter/opendkim -sasl
 mate-base/mate -themes
+net-print/gutenprint -gimp
 mate-extra/mate-sensors-applet -video_cards_nvidia
 media-fonts/noto -extra
 media-fonts/terminus-font -pcf
@@ -46,6 +46,7 @@ net-analyzer/vnstat -gd
 net-analyzer/zabbix -postgres
 net-dialup/rp-pppoe -X
 net-dns/avahi -gtk
+net-firewall/nftables -xtables
 net-im/telegram-desktop -screencast
 net-irc/weechat -spell
 net-libs/webkit-gtk -geoloc
@@ -53,9 +54,12 @@ net-misc/asterisk -bluetooth
 net-misc/remmina -appindicator -webkit
 net-p2p/ktorrent -infowidget
 net-print/cups -X
+net-proxy/tinyproxy -xtinyproxy-header
+net-wireless/wpa_supplicant -qt6
 sci-libs/vtk tbb -video_cards_nvidia
 sys-apps/dbus-broker -launcher
 sys-apps/hwloc -video_cards_nvidia
+sys-apps/iproute2 -iptables
 sys-apps/man-db -nls
 sys-apps/portage -rsync-verify
 sys-auth/polkit -gtk

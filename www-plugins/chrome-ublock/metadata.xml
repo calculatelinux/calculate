@@ -6,4 +6,15 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription lang="en">
+        Free, open-source ad content blocker (Chrome plugin).
+    </longdescription>
+    <longdescription lang="ru">
+        Свободный блокировщик рекламы с открытым исходным кодом (плагин для Chrome).
+    </longdescription>
+    <upstream>
+        <remote-id type="github">gorhill/uBlock</remote-id>
+        <bugs-to>https://github.com/gorhill/uBlock/issues</bugs-to>
+        <changelog>https://github.com/gorhill/uBlock/blob/master/CHANGELOG.md</changelog>
+    </upstream>
 </pkgmetadata>

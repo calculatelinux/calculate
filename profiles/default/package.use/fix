@@ -39,9 +39,17 @@ www-client/firefox -system-av1
 # not compiled kde-apps/cantor-22.08.3
 kde-apps/kdeedu-meta -webengine
 
-# berkdb requires db-4.8
-net-p2p/bitcoin-qt sqlite -berkdb
-net-p2p/bitcoind sqlite -berkdb
-
 # not stable work on net-misc/freerdp-3.4.0-3.5.1
 net-misc/freerdp -fuse
+
+# without this flag, it requires graphicsmagick
+sci-mathematics/octave -imagemagick
+
+# app-misc/yq[yq-symlink is soft blocking app-misc/yq-go-4.44.3
+app-misc/yq -yq-symlink
+
+# not compiled
+games-board/stockfish -cpu_flags_x86_avx512f
+
+# not working
+sys-cluster/glusterfs -ipv6

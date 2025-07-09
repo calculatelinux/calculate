@@ -6,5 +6,14 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
-    <upstream><remote-id type="github">morrownr/8814au</remote-id></upstream>
+    <longdescription lang="en">
+        Linux Driver for USB WiFi Adapters that are based on the RTL8814AU Chipset.
+    </longdescription>
+    <longdescription lang="ru">
+        Linux-драйвер для USB WiFi адаптеров, базированных на чипсете RTL8814AU.
+    </longdescription>
+    <upstream>
+        <remote-id type="github">morrownr/8814au</remote-id>
+        <bugs-to>https://github.com/morrownr/8814au/issues</bugs-to>
+    </upstream>
 </pkgmetadata>

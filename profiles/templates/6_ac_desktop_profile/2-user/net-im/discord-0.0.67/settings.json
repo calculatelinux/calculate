@@ -1,0 +1,4 @@
+# Calculate exists(~/.config/discord/settings.json)== path=~/.config/discord
+{
+  "SKIP_HOST_UPDATE": true
+}

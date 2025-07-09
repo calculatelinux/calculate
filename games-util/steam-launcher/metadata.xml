@@ -5,6 +5,11 @@
 		<email>chewi@gentoo.org</email>
 		<name>James Le Cuirot</name>
 	</maintainer>
+	<maintainer type="project">
+		<email>support@calculate.ru</email>
+		<name>Mir Calculate</name>
+		<description>Calculate Overlay</description>
+	</maintainer>
 	<longdescription>
 		This ebuild installs common files for the Steam environment,
 		like bootstrap archive and icons, but not the client itself.

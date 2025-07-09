@@ -1,0 +1,23 @@
+diff '--color=auto' -ur a/src/main.ts b/src/main.ts
+--- a/src/main.ts	2025-03-26 21:23:45.000000000 +0300
++++ b/src/main.ts	2025-04-03 12:46:00.138447011 +0300
+@@ -1,4 +1,4 @@
+-import { app } from 'electron';
++import { app, shell } from 'electron';
+ import electronDl from 'electron-dl';
+ 
+ import { performElectronStartup, setupApp } from './app/main/app';
+@@ -41,7 +41,11 @@
+   startVideoCallWindowHandler,
+ } from './videoCallWindow/ipc';
+ 
+-electronDl({ saveAs: true });
++electronDl({
++  onCompleted: (file) => {
++    shell.openPath(file.path);
++  },
++});
+ 
+ const start = async (): Promise<void> => {
+   setUserDataDirectory();
+

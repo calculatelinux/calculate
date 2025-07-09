@@ -1,0 +1,1 @@
+# Calculate mergepkg()>=8.4&&ini(update.prismlauncher)!=off&&ini(ver.prismlauncher)==&&exists(~/.local/share/PrismLauncher/accounts.json)== append=skip

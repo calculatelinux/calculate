@@ -1,1 +1,1 @@
-# Calculate append=skip mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.5.0_alpha25 merge=x11-themes/calculate-icon-theme
+# Calculate append=skip mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.5.0_alpha25 merge=x11-themes/calculate-icon-theme

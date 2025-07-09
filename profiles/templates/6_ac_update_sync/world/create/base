@@ -2,7 +2,7 @@
 
 app-portage/eix
 dev-vcs/git
-sys-apps/calculate-utils:3
+sys-apps/calculate-utils
 sys-apps/openrc
 
 #?in(os_linux_pkglist,CCS)==#

@@ -1,6 +1,6 @@
 # Calculate format=samba merge=x11-base/xorg-server,gnome-base/gdm,gnome-base/gdm,sys-boot/grub,media-gfx/calculate-wallpapers,media-gfx/dm-themes-calculate,media-gfx/kdm-themes-calculate cl_setup==video||cl_setup== path=/var/lib/calculate name=calculate.env
 
-#?pkg(sys-apps/calculate-utils:3)>=3.6.4.12#
+#?pkg(sys-apps/calculate-utils)>=3.6.4.12#
 [install]
 os_install_fb_resolution_preferred = #-os_install_fb_resolution_preferred-#
 #pkg#

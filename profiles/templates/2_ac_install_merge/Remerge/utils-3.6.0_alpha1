@@ -1,4 +1,4 @@
-# Calculate format=contents mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.6.0_alpha1
+# Calculate format=contents mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.6.0_alpha1
 !sys-apps/openrc /etc/conf.d/net
 !sys-apps/openrc /etc/init.d/net.*
 !sys-apps/openrc /etc/runlevels/default/net.*

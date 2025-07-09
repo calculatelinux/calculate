@@ -1,4 +1,4 @@
-# Calculate path=/usr/share/calculate/xdm/logout.d pkg(sys-apps/calculate-utils:3[desktop])!=
+# Calculate path=/usr/share/calculate/xdm/logout.d pkg(sys-apps/calculate-utils[desktop])!=
 #!/bin/bash
 
 chvt $(ps ax | grep -v root/$DISPLAY | sed -rn 's/^.*lightdm\/root.*vt([0-9]+).*$/\1/p' | awk '{print $1}')

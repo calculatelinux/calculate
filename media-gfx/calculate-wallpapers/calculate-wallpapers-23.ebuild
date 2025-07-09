@@ -1,4 +1,4 @@
-# Copyritght 1999-2011 Gentoo Foundation
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,13 +6,6 @@ EAPI=7
 
 DESCRIPTION="Wallpapers for Calculate Linux"
 HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/calculate-wallpapers"
-
-LICENSE="Apache-2.0"
-SLOT="0"
-KEYWORDS="amd64"
-VERSION_IUSE="CL11 CL12 CL13 CL14 CL15 CL17 CL21 CL22"
-IUSE="+CL11 +CL12 +CL13 +CL14 +CL15 +CL17 +CL21 +CL22"
-
 SRC_URI="
 	https://mirror.calculate-linux.org/themes/calculate/wallpaper-23.jpg -> ${PF}.jpg
 	CL22? (
@@ -41,12 +34,18 @@ SRC_URI="
 	)
 	"
 
+S="${WORKDIR}"
+
+LICENSE="Apache-2.0"
+SLOT="0"
+KEYWORDS="amd64"
+VERSION_IUSE="CL11 CL12 CL13 CL14 CL15 CL17 CL21 CL22"
+IUSE="+CL11 +CL12 +CL13 +CL14 +CL15 +CL17 +CL21 +CL22"
+
 # need for templates
 RDEPEND="${DEPEND}
 	|| ( media-gfx/imagemagick
 	media-gfx/graphicsmagick )"
-
-S="${WORKDIR}"
 
 src_install() {
 	insinto /usr/share/themes/Calculate/

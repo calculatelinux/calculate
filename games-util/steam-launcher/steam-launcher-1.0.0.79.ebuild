@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,10 +12,12 @@ DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam clien
 HOMEPAGE="https://store.steampowered.com"
 SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
 
+S="${WORKDIR}/${PN}"
+
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayicon +udev video_cards_nvidia wayland"
+IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr +udev video_cards_nvidia wayland"
 RESTRICT="bindist mirror test"
 
 # This can help to determine the dependencies:
@@ -81,8 +83,6 @@ RDEPEND="
 			>=gnome-extra/zenity-3
 			x11-terms/xterm
 		) )
-
-		trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 	)
 
 	desktop-portal? ( sys-apps/xdg-desktop-portal )
@@ -110,8 +110,6 @@ RDEPEND="
 		>=sys-libs/glibc-2.15
 	)
 "
-
-S="${WORKDIR}/${PN}"
 
 pkg_setup() {
 	linux-info_pkg_setup

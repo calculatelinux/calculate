@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Foundation
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,10 +11,9 @@ SLOT="0"
 KEYWORDS="amd64"
 
 # Server
-RDEPEND="${RDEPEND}
-	x11-base/xorg-server[-minimal]
+RDEPEND="x11-base/xorg-server[-minimal]
 "
-#Applications
+# Applications
 RDEPEND="${RDEPEND}
 	x11-apps/appres
 	x11-apps/bitmap

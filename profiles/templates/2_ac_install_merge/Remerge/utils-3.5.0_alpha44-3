@@ -1,1 +1,1 @@
-# Calculate path=/var/lib/calculate name=calculate.ldap link=/etc/calculate/calculate.ldap mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.5.0_alpha44&&load(/etc/calculate/calculate.ldap)!= protected
+# Calculate path=/var/lib/calculate name=calculate.ldap link=/etc/calculate/calculate.ldap mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.5.0_alpha44&&load(/etc/calculate/calculate.ldap)!= protected

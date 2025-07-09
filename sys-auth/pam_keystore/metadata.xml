@@ -6,4 +6,7 @@
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription>
+        PAM Module, keeps a login and the password the user in the kernel.
+    </longdescription>
 </pkgmetadata>

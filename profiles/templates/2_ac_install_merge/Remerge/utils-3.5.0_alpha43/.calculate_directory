@@ -1,1 +1,1 @@
-# Calculate path=/etc/calculate name=profile.bashrc.d append=clear mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.5.0_alpha43
+# Calculate path=/etc/calculate name=profile.bashrc.d append=clear mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.5.0_alpha43

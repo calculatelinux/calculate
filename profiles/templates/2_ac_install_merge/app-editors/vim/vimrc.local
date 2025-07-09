@@ -1,5 +1,17 @@
 # Calculate comment=" path=/etc/vim
+" Set tab width to 4 spaces
+set ts=4
+
+" Enable 256-color mode for a richer color palette
 set t_Co=256
+
 #?pkg(app-vim/colorschemes)!=#
+" Set the desert256 color scheme
 colorscheme desert256
+
 #pkg#
+" Remove background for the main text
+highlight Normal ctermbg=NONE guibg=NONE
+
+" Remove background for hidden symbols, such as end-of-buffer
+highlight NonText ctermbg=NONE guibg=NONE

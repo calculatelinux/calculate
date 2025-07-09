@@ -1,7 +1,8 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+
 inherit linux-mod-r1
 
 COMMIT="d8208c83ecfd9b286f3ea45a7eb7d78d10560670"
@@ -14,7 +15,7 @@ S="${WORKDIR}/8814au-${COMMIT}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 DEPEND="virtual/linux-sources"
 

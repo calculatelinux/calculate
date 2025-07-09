@@ -4,9 +4,6 @@ sys-apps/calculate-utils backup client desktop console qt5
 # Calculate themes dependence
 sys-kernel/calculate-sources desktop themes
 
-###
-media-sound/audacious -gtk qt5
-
 # Support for DNS Service Discovery
 net-print/cups zeroconf
 
@@ -17,7 +14,8 @@ app-emacs/emacs-common gui
 
 
 # removed unnecessary dependence
-net-irc/kvirc -audiofile -dcc_video -dcc_voice -theora -webkit -phonon -spell doc
+net-irc/kvirc -audiofile -theora -phonon -spell doc
+net-misc/dhcp -server
 
 
 

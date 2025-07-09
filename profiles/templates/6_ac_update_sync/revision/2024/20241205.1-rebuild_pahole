@@ -1,0 +1,4 @@
+# Calculate name=ini.env format=samba ini(overlay-calculate.revision)<#-cut(0,-)-#  rebuild=dev-util/pahole,net-wireless/broadcom-sta,net-wireless/rtl8814au
+
+[overlay-calculate]
+revision = #-cut(0)-#

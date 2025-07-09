@@ -1,0 +1,1 @@
+# Calculate append=skip merge(app-editors/vim)!=||merge(app-editors/neovim)!= merge=app-editors/vim,app-editors/neovim,sys-apps/busybox

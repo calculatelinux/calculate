@@ -1,1 +1,1 @@
-# Calculate path=/usr/share/calculate/xdm/logout.d name=99lightdm append=remove pkg(sys-apps/calculate-utils:3[desktop])==
+# Calculate path=/usr/share/calculate/xdm/logout.d name=99lightdm append=remove pkg(sys-apps/calculate-utils[desktop])==

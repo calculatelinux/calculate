@@ -1,9 +1,0 @@
-# Calculate path=~/.config/eiskaltdc++
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<DCPlusPlus>
-        <Settings>
-                <DownloadDirectory type="string">#-ini(resource.downloads)-#/</DownloadDirectory>
-                <TempDownloadDirectory type="string">#-ini(resource.downloads)-#/eiskaltdc++/Incomplete/</TempDownloadDirectory>
-        </Settings>
-        <Share/>
-</DCPlusPlus>

@@ -1,0 +1,17 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+if [[ -e /var/lib/calculate/calculate.env ]]; then
+	ver=$(grep os_linux_build /var/lib/calculate/calculate.env)
+	ver=${ver##* }
+fi
+
+if (( ver >= 20241007 )) && [[ -e /etc/ssh/ssh_host_ed25519_key.pub ]]; then
+	if grep -q root@sandbox /etc/ssh/ssh_host_ed25519_key.pub; then
+		rm -r /etc/ssh/ssh_host_*
+		rc-service -q --ifstarted --nodeps sshd restart
+	fi
+fi
+
+exit 0

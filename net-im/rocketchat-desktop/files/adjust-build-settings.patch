@@ -1,0 +1,92 @@
+diff '--color=auto' -ur a/electron-builder.json b/electron-builder.json
+--- a/electron-builder.json	2025-03-26 21:23:45.000000000 +0300
++++ b/electron-builder.json	2025-04-03 12:46:00.128447083 +0300
+@@ -1,5 +1,5 @@
+ {
+-  "files": ["app/**/*", "package.json"],
++  "files": ["app/**/*", "package.json","dist/**/*"],
+   "extraResources": ["build/icon.ico", "servers.json"],
+   "appId": "chat.rocket",
+   "protocols": {
+@@ -107,7 +107,7 @@
+     "displayName": "Rocket.Chat"
+   },
+   "linux": {
+-    "target": ["AppImage", "tar.gz", "deb", "rpm", "snap", "flatpak"],
++    "target": ["tar.gz"],
+     "executableName": "rocketchat-desktop",
+     "category": "GNOME;GTK;Network;InstantMessaging",
+     "desktop": {
+@@ -117,7 +117,12 @@
+     "artifactName": "rocketchat-${version}-${os}-${arch}.${ext}"
+   },
+   "rpm": {
+-    "fpm": ["--rpm-rpmbuild-define=_build_id_links none"]
++    "fpm": [
++      "--rpm-rpmbuild-define=_build_id_links none",
++      "--verbose",
++      "--debug",
++      "--debug-workspace"
++    ]
+   },
+   "snap": {
+     "plugs": [
+@@ -141,11 +146,5 @@
+   "afterSign": "./build/notarize.js",
+   "generateUpdatesFilesForAllChannels": true,
+   "publish": [
+-    {
+-      "provider": "github",
+-      "owner": "RocketChat",
+-      "repo": "Rocket.Chat.Electron",
+-      "vPrefixedTagName": false
+-    }
+   ]
+ }
+Только в b: .git
+Только в a: .github
+diff '--color=auto' -ur a/.gitignore b/.gitignore
+--- a/.gitignore	2025-03-26 21:23:45.000000000 +0300
++++ b/.gitignore	2025-04-03 12:46:00.051780945 +0300
+@@ -17,4 +17,7 @@
+ !.yarn/releases
+ !.yarn/sdks
+ !.yarn/versions
+-supportedVersions.jwt
+\ В конце файла нет новой строки
++supportedVersions.jwt
++
++# JetBrains
++/.idea
+diff '--color=auto' -ur a/package.json b/package.json
+--- a/package.json	2025-03-26 21:23:45.000000000 +0300
++++ b/package.json	2025-04-03 12:46:00.131780391 +0300
+@@ -37,7 +37,7 @@
+     "build-linux": "yarn build && yarn electron-builder --publish never --linux",
+     "build-assets": "ts-node -O '{\"module\":\"commonjs\"}' src/buildAssets.ts",
+     "build-assets-win": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/buildAssets.ts",
+-    "release": "yarn electron-builder --publish onTagOrDraft --x64",
++    "release": "yarn electron-builder --publish never --x64",
+     "install-app-deps": "electron-builder install-app-deps",
+     "test": "xvfb-maybe jest --forceExit --detectOpenHandles --maxWorkers=1",
+     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+@@ -60,6 +60,7 @@
+     "@rocket.chat/fuselage-polyfills": "~0.31.25",
+     "@rocket.chat/icons": "0.37.0",
+     "axios": "~1.6.4",
++    "chokidar": "~3.5.3",
+     "detect-browsers": "~6.1.0",
+     "electron-dl": "3.5.2",
+     "electron-store": "~8.1.0",
+diff '--color=auto' -ur a/rollup.config.mjs b/rollup.config.mjs
+--- a/rollup.config.mjs	2025-03-26 21:23:45.000000000 +0300
++++ b/rollup.config.mjs	2025-04-03 12:46:00.131780391 +0300
+@@ -12,7 +12,7 @@
+ 
+ import appManifest from './package.json' with { type: 'json' };
+ 
+-const NODE_ENV = process.env.NODE_ENV || 'development';
++const NODE_ENV = process.env.NODE_ENV || 'production';
+ const canRun =
+   process.env.ROLLUP_WATCH === 'true' && process.env.NO_RUN !== 'true';
+

@@ -2,7 +2,7 @@
 #!/bin/sh
 # Xlogout - run as root after user logout
 
-#?pkg(sys-apps/calculate-utils:3[desktop])!=#
+#?pkg(sys-apps/calculate-utils[desktop])!=#
 VT="vt$(( ${DISPLAY#:} + 7 ))"
 XAUTHORITY=$(ps ax | sed -nr "s/.*usr\/bin\/X.*-auth (\S+).*$VT.*/\1/p")
 export XAUTHORITY

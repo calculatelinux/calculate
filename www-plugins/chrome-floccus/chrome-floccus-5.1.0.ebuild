@@ -1,25 +1,24 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=8
 
+DESCRIPTION="Sync your bookmarks privately across browsers and devices (Chrome plugin)"
+HOMEPAGE="https://floccus.org/ https://chrome.google.com/webstore/detail/fnaicdffflnofjppbagibeoednhnbjhg"
 SRC_URI="https://mirror.calculate-linux.org/source/${PN}/${P}.tar.bz2"
 
-DESCRIPTION="Sync your bookmarks privately across browsers an devices"
-HOMEPAGE="https://chrome.google.com/webstore/detail/fnaicdffflnofjppbagibeoednhnbjhg"
-LICENSE="GPL-3"
+S="${WORKDIR}"
+
+LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64"
 
 RDEPEND="dev-python/plyvel
 	dev-python/sjcl"
 
-S="${WORKDIR}"
-
 src_install() {
 	insinto /usr/share/${PN}
-	doins -r *
+	doins -r * .*
 	doins "${FILESDIR}"/configure.py
 	fperms 755 /usr/share/$PN/configure.py
 }

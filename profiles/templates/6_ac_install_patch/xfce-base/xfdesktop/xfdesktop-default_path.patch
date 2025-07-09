@@ -1,4 +1,4 @@
-# Calculate format=diff merge(xfce-base/xfdesktop)>=4.11
+# Calculate format=diff merge(xfce-base/xfdesktop)<4.20.0
 diff --git settings/main.c settings/main.c
 index e3d234b..b0b7150 100644
 --- settings/main.c

@@ -7,57 +7,46 @@ cp -r /usr/share/chrome-bitwarden/* #-ur_home_path-#/.config/chromium/Default/Ex
 
 /usr/share/chrome-bitwarden/configure.py #-ur_home_path-#/.config/chromium $plugin_id "#-ini(user_credentials.bitwarden_login)-#" "#-ini(user_credentials.bitwarden_pw)-#" "#-ini(user_credentials.bitwarden_url)-#" <<EOF
 {
-    "userId": {
-	"ciphers": {},
-	"data": {
-	    "ciphers": {
-		"encrypted": {}
-	    },
-	    "passwordGenerationHistory": {},
-	    "sends": {
-		"encrypted": {}
-	    }
-	},
-	"keys": {
-	    "cryptoSymmetricKey": {},
-	    "masterKeyEncryptedUserKey": {}
-	},
-	"profile": {
-	    "email": "#-ini(user_credentials.bitwarden_login)-#",
-	    "emailVerified": true,
-	    "keyHash": {},
-	    "userId": {}
-	},
-	"settings": {
-	    "vaultTimeout": null,
-	    "vaultTimeoutAction": "lock"
-	},
-	"tokens": {}
+  "userId": {
+    "keys": {
+      "cryptoSymmetricKey": {}
     },
-    "userId_user_auto": {},
-    "activeUserId": {},
-    "authenticatedAccounts": {},
-    "user_userId_autofillSettings_autofillOnPageLoad": true,
-    "user_userId_autofillSettings_autofillOnPageLoadDefault": true,
-    "user_userId_autofillSettings_autofillOnPageLoadPolicyToastHasDisplayed": false,
-    "user_userId_crypto_organizationKeys": {
-	"organizationId": {
-	    "key": {},
-	    "type": "organization"
-	}
-    },
-    "user_userId_crypto_privateKey": {},
-    "user_userId_domainSettings_defaultUriMatchStrategy": 1,
-    "user_userId_environment_environment": {
-	"urls": {
-	    "base": "#-ini(user_credentials.bitwarden_url)-#"
-	}
-    },
-    "user_userId_token_accessToken": {},
-    "user_userId_token_refreshToken": {},
-    "user_userId_userDecryptionOptions_decryptionOptions": {
-	"hasMasterPassword": true
+    "profile": {
+      "userId": null,
+      "name": null,
+      "email": null
     }
+  },
+  "global_account_accounts": {
+    "userId": {
+      "name": null,
+      "email": null,
+      "emailVerified": true
+    }
+  },
+  "global_account_activeAccountId": null,
+  "userId_user_auto": null,
+  "user_userId_autofillSettings_autofillOnPageLoad": true,
+  "user_userId_userDecryptionOptions_decryptionOptions": {
+    "hasMasterPassword": true
+  },
+  "user_userId_token_accessToken": null,
+  "user_userId_token_refreshToken": null,
+  "user_userId_environment_environment": {
+    "region": "Self-hosted",
+    "urls": {
+      "base": null
+    }
+  },
+  "user_userId_domainSettings_defaultUriMatchStrategy": 1,
+  "user_userId_crypto_privateKey": null,
+  "user_userId_crypto_organizationKeys": {
+    "OrganizationId": {
+      "type": "organization",
+      "key": null
+    }
+  },
+  "user_userId_vaultTimeoutSettings_vaultTimeout": "never"
 }
 EOF
 

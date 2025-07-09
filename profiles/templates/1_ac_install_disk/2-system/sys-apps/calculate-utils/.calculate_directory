@@ -1,1 +1,1 @@
-# Calculate mergepkg(sys-apps/calculate-utils:3[client])!=&&env(client.os_remote_auth)!= path=/var name=calculate
+# Calculate mergepkg(sys-apps/calculate-utils[client])!=&&env(client.os_remote_auth)!= path=/var name=calculate

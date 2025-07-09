@@ -1,0 +1,6 @@
+# Calculate path=/etc/portage/repos.conf name=custom.conf exists(/etc/portage/repos.conf/custom.conf)== protected 
+#?os_install_locale_lang==ru_RU#
+# Этот файл будет перенесён при установке системы
+#!os_install_locale_lang#
+# This file will be migrate to new installation
+#os_install_locale_lang#

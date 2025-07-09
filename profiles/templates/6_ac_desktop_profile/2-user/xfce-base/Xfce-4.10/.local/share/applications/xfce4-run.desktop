@@ -1,5 +1,5 @@
 # Calculate format=kde link=/usr/share/applications/xfce4-run.desktop mirror
 [Desktop Entry]
 #смена иконки
-Icon=player_play
+Icon=org.xfce.appfinder
 Categories=X-XFCE;X-Xfce-Toplevel;

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+    <maintainer type="person">
+        <email>chutzpah@gentoo.org</email>
+        <name>Patrick McLean</name>
+    </maintainer>
     <maintainer type="project">
         <email>support@calculate.ru</email>
         <name>Mir Calculate</name>
         <description>Calculate Overlay</description>
     </maintainer>
+    <longdescription>
+        Berkeley Internet Name Domain - Name Server.
+    </longdescription>
     <use>
         <flag name="dnstap">Enables dnstap packet logging</flag>
         <flag name="dnsrps">Enable the DNS Response Policy Service (DNSRPS) API, a mechanism to allow an external response policy provider</flag>

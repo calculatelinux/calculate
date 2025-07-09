@@ -1,0 +1,7 @@
+# Calculate format=kde link=/usr/share/applications/gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)>=3.0
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=
+Icon=gimp

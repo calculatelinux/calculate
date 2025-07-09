@@ -1,1 +1,1 @@
-# Calculate path=/var/lib/calculate name=ini.env link=/etc/calculate/ini.env mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.5.0_alpha38&&load(/etc/calculate/ini.env)!= protected
+# Calculate path=/var/lib/calculate name=ini.env link=/etc/calculate/ini.env mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.5.0_alpha38&&load(/etc/calculate/ini.env)!= protected

@@ -3,7 +3,6 @@ media-video/ffmpeg -chromium
 
 # Removed unnecessary dependence
 app-emulation/qemu -doc
-app-misc/mc -samba
 dev-lang/erlang -wxwidgets
 dev-lang/mono minimal
 dev-libs/libxml2 -icu
@@ -12,9 +11,10 @@ media-libs/imlib2 -shm
 media-video/mediainfo -wxwidgets
 media-video/vlc -svg
 net-libs/libsoup -samba
+sys-boot/plymouth -pango
 sys-kernel/calculate-sources -themes
 sys-libs/glibc -gd
-x11-drivers/nvidia-drivers -compat -gtk3 -multilib -static-libs -tools -uvm -wayland -X
+x11-drivers/nvidia-drivers -static-libs -tools -wayland
 
 # required by net-misc/networkmanager-1.8.4
 net-wireless/wpa_supplicant dbus
@@ -24,5 +24,13 @@ net-dns/dnsmasq dbus
 
 # required by app-emulation/virt-manager-4.1.0-r1
 app-emulation/libvirt-glib introspection
-sys-libs/libosinfo introspection
 net-libs/libsoup introspection
+sys-libs/libosinfo introspection
+
+# required by dev-libs/gobject-introspection-1.80.1-r3
+dev-libs/glib introspection
+
+# required by x11-drivers/xf86-video-amdgpu-23.0.0
+media-libs/libglvnd X
+media-libs/mesa X
+media-libs/libepoxy X

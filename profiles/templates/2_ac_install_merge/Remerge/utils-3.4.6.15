@@ -1,1 +1,1 @@
-# Calculate append=skip mergepkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.4.6.15 merge=sys-libs/glibc,sys-apps/openrc
+# Calculate append=skip mergepkg(sys-apps/calculate-utils)!=&&ini(merge-calculate.utils)<3.4.6.15 merge=sys-libs/glibc,sys-apps/openrc

@@ -1,1 +1,1 @@
-# Calculate path=/etc/local.d name=logout.stop append=remove merge(sys-apps/calculate-utils:3)!=&&pkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.3.0_alpha1
+# Calculate path=/etc/local.d name=logout.stop append=remove merge(sys-apps/calculate-utils)!=&&pkg(sys-apps/calculate-utils:3)!=&&ini(merge-calculate.utils)<3.3.0_alpha1

@@ -1,0 +1,9 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+if [[ -e /etc/runlevels/boot/consolefont ]] && [[ ! -e /etc/runlevels/default/consolefont ]]; then
+	mv /etc/runlevels/boot/consolefont /etc/runlevels/default/consolefont
+fi
+
+exit 0

@@ -1,8 +1,0 @@
-# ChangeLog for sys-auth/pam_keystore
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  01 Jun 2010; Mike Hiretsky (mhiretskiy) <mh@calculate.ru>
-  pam_keystore-0.1.3.ebuild:
-  Change home page.
-

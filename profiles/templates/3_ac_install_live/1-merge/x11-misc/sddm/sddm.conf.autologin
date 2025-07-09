@@ -1,4 +1,4 @@
-# Calculate pkg(sys-apps/calculate-utils:3[desktop])!= format=kde name=sddm.conf
+# Calculate pkg(sys-apps/calculate-utils[desktop])!= format=kde name=sddm.conf
 
 #?cl_autologin!=#
 [Autologin]

@@ -1,4 +1,4 @@
-# Calculate format=diff
+# Calculate format=diff merge(lxqt-base/lxqt-panel)<2.1.4
 diff --git a/plugin-desktopswitch/desktopswitch.cpp b/plugin-desktopswitch/desktopswitch.cpp
 index bba5f7a..ad9cceb 100644
 --- a/plugin-desktopswitch/desktopswitch.cpp

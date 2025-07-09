@@ -1,16 +1,15 @@
-# Copyright 1999-2008 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header:
 
 EAPI=8
 
-DESCRIPTION="tool to test and create graphical boot logos"
-HOMEPAGE="https://www.calculate-linux.org/"
+DESCRIPTION="Tool to test and create graphical boot logos"
+HOMEPAGE="https://launchpad.net/ubuntu/precise/+source/gfxboot-themes"
 SRC_URI="https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/gfxboot/${PV}-1/${PN}_${PV}.orig.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="4"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64"
 
 DEPEND="app-arch/cpio
 	app-text/docbook-xml-dtd:4.1.2
@@ -19,7 +18,6 @@ DEPEND="app-arch/cpio
 	dev-libs/libxslt
 	dev-perl/HTML-Parser
 	>=media-libs/freetype-2"
-
 RDEPEND="${DEPEND}"
 
 PATCHES=(
@@ -28,5 +26,5 @@ PATCHES=(
 )
 
 src_install() {
-	emake DESTDIR="${D}" THEMES="" install || die
+	emake DESTDIR="${D}" THEMES="" install
 }
