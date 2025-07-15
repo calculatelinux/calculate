@@ -32,14 +32,8 @@ media-libs/sdl2-mixer midi
 # wayland? ( gles2-only )
 dev-libs/efl fbcon gles2-only
 
-# ogre? ( !opengl ) opengl? ( !ogre )
-dev-games/mygui -ogre
-
 # drm? ( gles2 )
 dev-libs/efl gles2
-
-# openal? ( wxwidgets )
-games-emulation/vbam wxwidgets
 
 # wayland? ( egl )
 media-libs/clutter egl
@@ -64,9 +58,6 @@ media-video/pipewire sound-server
 
 # libnotify? ( gui )
 net-p2p/deluge gui
-
-# opengl? ( gui )
-games-board/gnubg gui
 
 # ffmpeg? ( gui ) jpeg? ( gui )
 media-gfx/netgen gui

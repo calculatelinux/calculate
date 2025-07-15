@@ -56,9 +56,6 @@ app-emulation/qemu gnutls spice usbredir qemu_softmmu_targets_i386 qemu_softmmu_
 app-arch/zip natspec
 app-arch/unzip natspec
 
-# enable mpeg2 codec for cutscenes
-games-engines/scummvm mpeg2
-
 # support/bindings for the Python
 media-gfx/gimp python
 

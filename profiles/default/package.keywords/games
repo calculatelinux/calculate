@@ -1,4 +1,3 @@
-~dev-games/mygui-3.4.1 amd64
 ~games-action/0verkill-0.16 amd64
 ~games-action/abuse-0.9.1 amd64
 ~games-action/atanks-6.6 amd64
@@ -10,7 +9,6 @@
 ~games-action/deathchase3d-0.9 amd64
 ~games-action/descent1-demodata-1.4 amd64
 ~games-action/descent2-demodata-1.0 amd64
-~games-action/extreme-tuxracer-0.8.2 amd64
 ~games-action/fakk2-1.02 amd64
 ~games-action/formido-1.0.1 amd64
 ~games-action/garden-1.0.9 amd64
@@ -61,7 +59,6 @@
 ~games-arcade/blobwars-2.00 amd64
 ~games-arcade/bomns-0.99.2 amd64
 ~games-arcade/briquolo-0.5.7 amd64
-~games-arcade/bumprace-1.5.3 amd64
 ~games-arcade/cavezofphear-0.5.1 amd64
 ~games-arcade/circuslinux-1.0.3 amd64
 ~games-arcade/cob-0.9 amd64
@@ -84,7 +81,6 @@
 ~games-arcade/insaneodyssey-000311 amd64
 ~games-arcade/jardinains-2.0 amd64
 ~games-arcade/jumpnbump-1.61_p20210421 amd64
-~games-arcade/jvgs-0.5 amd64
 ~games-arcade/kajaani-kombat-0.7 amd64
 ~games-arcade/kobodeluxe-0.5.1 amd64
 ~games-arcade/komi-1.04 amd64
@@ -153,12 +149,9 @@
 ~games-board/megamek-0.34.10 amd64
 ~games-board/mt_dolphin_ia-0.1.98 amd64
 ~games-board/openyahtzee-1.9.3 amd64
-~games-board/peg-e-1.2.8 amd64
 ~games-board/phalanx-22 amd64
 ~games-board/pioneers-15.6 amd64
 ~games-board/pokerth-1.1.2 amd64
-~games-board/scid-4.7.0 amd64
-~games-board/simsu-1.3.9 amd64
 ~games-board/sjeng-11.2_p8_p1 amd64
 ~games-board/xboard-4.9.1 amd64
 ~games-board/xfreecell-1.0.5b amd64
@@ -190,7 +183,6 @@
 ~games-emulation/mupen64plus-ui-console-2.5.9 amd64
 ~games-emulation/mupen64plus-video-glide64mk2-2.5.9 amd64
 ~games-emulation/mupen64plus-video-rice-2.5.9 amd64
-~games-emulation/nestopia-1.52.1 amd64
 ~games-emulation/vgba-4.8 amd64
 ~games-emulation/zinc-1.1 amd64
 ~games-emulation/zsnes-2.0.10 amd64
@@ -200,7 +192,6 @@
 ~games-engines/love-0.8.0 amd64
 ~games-engines/love-11.4 amd64
 ~games-engines/openxcom-1.0.0_p20180317 amd64
-~games-engines/scummvm-2.8.1 amd64
 ~games-engines/scummvm-tools-2.7.0_p1 amd64
 ~games-engines/solarus-1.6.5 amd64
 ~games-engines/xzip-1.8.2 amd64
@@ -208,10 +199,7 @@
 ~games-fps/avp-20150214 amd64
 ~games-fps/blackshades-20070723 amd64
 ~games-fps/darkplaces-20140513 amd64
-~games-fps/freedoom-0.12.1 amd64
-~games-fps/freedoom-data-0.12.1 amd64
 ~games-fps/glxquake-bin-0 amd64
-~games-fps/gzdoom-4.10.0 amd64
 ~games-fps/legends-0.4.1.43 amd64
 ~games-fps/quake1-demodata-1.06 amd64
 ~games-fps/quake1-killer-2.2z amd64
@@ -281,11 +269,8 @@
 ~games-puzzle/atomix-3.34.0 amd64
 ~games-puzzle/biniax2-1.30 amd64
 ~games-puzzle/brainparty-0.61 amd64
-~games-puzzle/colorcode-0.8.5 amd64
 ~games-puzzle/concentration-1.2 amd64
-~games-puzzle/connectagram-1.2.11 amd64
 ~games-puzzle/construo-0.2.3 amd64
-~games-puzzle/cutemaze-1.2.6 amd64
 ~games-puzzle/cuyo-2.1.1 amd64
 ~games-puzzle/einstein-2.1.1 amd64
 ~games-puzzle/enigma-1.21 amd64
@@ -297,15 +282,12 @@
 ~games-puzzle/gfifteen-1.0.3 amd64
 ~games-puzzle/glightoff-1.0.0 amd64
 ~games-puzzle/gnurobbo-0.68 amd64
-~games-puzzle/gottet-1.1.9 amd64
 ~games-puzzle/greedy-0.2.0 amd64
 ~games-puzzle/gtkballs-3.1.5 amd64
 ~games-puzzle/gweled-0.9.1 amd64
-~games-puzzle/hexalate-1.1.6 amd64
 ~games-puzzle/lmarbles-1.0.8 amd64
 ~games-puzzle/lpairs-1.0.5 amd64
 ~games-puzzle/ltris-1.0.19 amd64
-~games-puzzle/mirrormagic-2.0.2 amd64
 ~games-puzzle/monsterz-0.7.1_p12 amd64
 ~games-puzzle/mures-0.5 amd64
 ~games-puzzle/neverball-1.6.0 amd64
@@ -320,7 +302,6 @@
 ~games-puzzle/sdl-jewels-1.1.1 amd64
 ~games-puzzle/sgt-puzzles-20190415 amd64
 ~games-puzzle/splice-20121120 amd64
-~games-puzzle/tanglet-1.6.1.1 amd64
 ~games-puzzle/tetrinet-0.11 amd64
 ~games-puzzle/textmaze-1.2 amd64
 ~games-puzzle/tiny-and-big-1.4.1 amd64
@@ -343,7 +324,6 @@
 ~games-roguelike/FTL-1.5.13 amd64
 ~games-roguelike/scourge-0.21.1 amd64
 ~games-roguelike/tome-2.3.5 amd64
-~games-roguelike/tomenet-4.7.3 amd64
 ~games-roguelike/wrogue-0.8.0b amd64
 ~games-roguelike/zangband-2.7.4c amd64
 ~games-rpg/bass-1.3 amd64
@@ -355,7 +335,6 @@
 ~games-rpg/eschalon-book-1-demo-106 amd64
 ~games-rpg/freedink-109.6 amd64
 ~games-rpg/freedink-data-1.08.20190120 amd64
-~games-rpg/freedroid-1.2.1 amd64
 ~games-rpg/gwiz-0.8 amd64
 ~games-rpg/lure-1.1 amd64
 ~games-rpg/manaplus-1.9.3.23 amd64
@@ -423,7 +402,6 @@
 ~games-util/uglygs-0_rc11 amd64
 ~games-util/umodpack-0.5_beta16 amd64
 ~games-util/uz2unpack-0.1 amd64
-~games-util/vispatch-1.4.6 amd64
 ~games-util/wiiload-0.5 amd64
 ~games-util/wxchtdecoder-1.5a amd64
 ~games-util/xqf-1.0.6.2 amd64

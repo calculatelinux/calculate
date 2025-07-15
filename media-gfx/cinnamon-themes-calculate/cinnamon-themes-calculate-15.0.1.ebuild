@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Cinnamon theme for Calculate Linux"
 HOMEPAGE="https://www.calculate-linux.org/packages/media-gfx/cinnamon-themes-calculate"
@@ -12,7 +12,7 @@ S="${WORKDIR}"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64"
 
 src_install() {
 	insinto /

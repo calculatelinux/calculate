@@ -200,14 +200,6 @@ plugin=org.kde.plasma.lock_logout
 show_lockScreen=true
 show_requestShutDown=false
 
-[Containments][1][Applets][65]
-immutability=1
-plugin=org.kde.plasma.lock_logout
-
-[Containments][1][Applets][65][Configuration][General]
-show_lockScreen=false
-show_requestShutDown=true
-
 [Containments][1][Applets][67]
 immutability=1
 plugin=org.kde.plasma.taskmanager
@@ -236,12 +228,12 @@ DialogWidth=#-os_x11_width-#
 
 [Containments][1][General]
 #?env(client.os_remote_auth)==||ur_domain_set!=on#
-AppletOrder=44;45;46;54;67;70;55;63;64;65
+AppletOrder=44;45;46;54;67;70;55;63;64
 #!env#
 #?server(ftp.host)==#
-AppletOrder=44;45;47;46;54;67;70;55;63;64;65
+AppletOrder=44;45;47;46;54;67;70;55;63;64
 #!server#
-AppletOrder=44;45;47;48;46;54;67;70;55;63;64;65
+AppletOrder=44;45;47;48;46;54;67;70;55;63;64
 #server#
 #env#
 

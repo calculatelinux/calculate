@@ -1,9 +1,7 @@
-~dev-python/aiohttp-cors-0.7.0 amd64
 ~dev-python/click-log-0.4.0 amd64
 ~dev-python/dockerpty-0.4.1 amd64
 ~dev-python/flask-sphinx-themes-1.0.2 amd64
 ~dev-python/google-pasta-0.2.0 amd64
-~dev-python/ioflo-2.0.2 amd64
 ~dev-python/mccabe-0.7.0 amd64
 ~dev-python/mkdocs-bootswatch-1.1 amd64
 ~dev-python/os-client-config-2.1.0 amd64

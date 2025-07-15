@@ -42,3 +42,6 @@ dev-lang/fennel lua_single_target_lua5-4
 media-sound/denemo guile_single_target_2-2
 sci-electronics/geda guile_single_target_2-2
 sci-electronics/gwave guile_single_target_2-2
+
+# exactly-one-of ( gtk qt6 )
+media-libs/libmediaart -gtk
