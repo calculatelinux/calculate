@@ -586,6 +586,8 @@ app-editors/emacs dynamic-loading json tree-sitter
 
 # required by media-gfx/blender-3.0.0
 media-libs/opencolorio -opengl
+sci-physics/bullet double-precision
+media-libs/opensubdiv tbb
 
 # required by kde-frameworks/qqc2-desktop-style-5.88.0
 kde-frameworks/sonnet qml
@@ -678,9 +680,6 @@ dev-python/pyzmq drafts
 
 # required by app-misc/golly-4.2
 x11-libs/wxGTK curl
-
-# required by sys-process/gnome-usage-3.38.1-r2
-app-misc/tracker vala
 
 # required by net-im/neochat-23.04.2
 kde-frameworks/knotifications qml
@@ -819,4 +818,7 @@ dev-libs/newt python
 
 # required by sys-process/gnome-usage-46.0
 app-misc/tinysparql vala
+
+# required by app-admin/calamares-3.3.14-r1[python_single_target_python3_12]
+dev-libs/libpwquality python
 

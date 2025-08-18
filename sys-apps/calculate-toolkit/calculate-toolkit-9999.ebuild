@@ -5,6 +5,9 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..12} )
 
+DESCRIPTION="Collection of administration scripts for Calculate"
+HOMEPAGE="https://www.calculate-linux.org"
+
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://git.calculate-linux.org/calculate/calculate-toolkit.git"
@@ -13,9 +16,6 @@ else
 	S="${WORKDIR}/${PN}"
 	KEYWORDS="amd64"
 fi
-
-DESCRIPTION="Collection of administration scripts for Calculate"
-HOMEPAGE="https://www.calculate-linux.org"
 
 LICENSE="Apache-2.0"
 SLOT="0"

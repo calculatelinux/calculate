@@ -222,9 +222,6 @@ dev-db/sqlite secure-delete
 # include OpenGL ES support
 media-libs/libsdl2 gles
 
-# at-most-one-of ( gstreamer ffmpeg )
-app-misc/tracker ffmpeg -gstreamer -cue
-
 # enable color management, enable sound support for animations
 media-gfx/krita color-management qtmedia
 

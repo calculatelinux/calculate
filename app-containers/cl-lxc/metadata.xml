@@ -7,16 +7,10 @@
         <description>Calculate Overlay</description>
     </maintainer>
     <longdescription lang="en">
-        Parallel SSH execution of shell scripts on multiple hosts.
+        Automates creation and upgrade of Calculate Linux LXC containers.
     </longdescription>
     <longdescription lang="ru">
-        Параллельное выполнение SSH shell-скриптов на нескольких хостах.
-    </longdescription>
-    <longdescription lang="fr">
-        Exécution parallèle de scripts shell via SSH sur plusieurs hôtes.
-    </longdescription>
-    <longdescription lang="pl">
-        Równoległe wykonywanie skryptów powłoki przez SSH na wielu hostach.
+        Автоматизирует создание и обновление LXC-контейнеров Calculate Linux.
     </longdescription>
     <upstream>
         <bugs-to>mailto:support@calculate.ru</bugs-to>

@@ -10,20 +10,11 @@ media-libs/sdl2-mixer mod
 # x264? ( dec_av2 ) x265? ( dec_av2 )
 x11-wm/xpra dec_av2
 
-# linguas_nl_NL? ( ljr )
-net-p2p/bitcoin-qt ljr
-
 # smtp? ( libuv ) ssl? ( mbedtls )
 net-libs/libwebsockets libuv mbedtls
 
-# ruby_targets_ruby22? ( ruby )
-net-irc/epic5 ruby
-
 # sasl? ( ldap )
 net-fs/autofs ldap
-
-# lm-sensors? ( opencl )
-net-misc/bfgminer opencl
 
 # timidity? ( midi )
 media-libs/sdl2-mixer midi

@@ -3,8 +3,8 @@
 
 EAPI=8
 
-DESCRIPTION="Parallel SSH execution of shell scripts on multiple hosts"
-HOMEPAGE="https://git.calculate-linux.org/calculate/cl-remote"
+DESCRIPTION="Automates creation and upgrade of Calculate Linux LXC containers"
+HOMEPAGE="https://git.lautre.me/alex/cl-lxc"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -22,14 +22,12 @@ BDEPEND="
 	sys-devel/gettext
 "
 RDEPEND="
-	net-dns/bind-tools
-	net-misc/iputils
-	net-misc/openssh
-	net-misc/sshpass
-	sys-apps/coreutils
-	sys-apps/iproute2
+	app-containers/lxc
+	app-shells/bash
+	dev-vcs/git
+	sys-apps/openrc
+	sys-apps/util-linux
 	sys-devel/gettext
-	sys-process/procps
 "
 
 src_compile() {

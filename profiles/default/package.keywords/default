@@ -76,7 +76,6 @@ sys-apps/inxi amd64
 ~sys-cluster/cluster-glue-1.0.12 amd64
 ~sys-firmware/b43-firmware-5.100.138 amd64
 ~sys-fs/btrfsmaintenance-0.5.2 amd64
-~sys-fs/btrfs-progs-6.13 amd64
 ~sys-fs/compsize-1.5 amd64
 www-client/firefox amd64
 www-client/opera amd64
@@ -88,7 +87,6 @@ www-plugins/chrome-binary-plugins:stable amd64
 ~x11-misc/snixembed-0.3.0 amd64
 ~x11-misc/spacefm-1.0.6 amd64
 ~x11-misc/sunflower-0.5 amd64
-~x11-misc/x11vnc-0.9.16 amd64
 ~x11-plugins/pidgin-bot-sentry-1.3.0 amd64
 ~x11-plugins/pidgin-gpg-0.9.3 amd64
 ~x11-plugins/pidgin-led-notification-0.1 amd64
