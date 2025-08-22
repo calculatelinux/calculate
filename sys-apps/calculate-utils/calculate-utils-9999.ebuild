@@ -15,7 +15,7 @@ inherit distutils-r1
 
 if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
-	EGIT_BRANCH="arerich"
+	EGIT_BRANCH="master"
 	EGIT_REPO_URI="https://git.calculate-linux.org/calculate/calculate-utils.git"
 else
 	SRC_URI="https://git.calculate-linux.org/calculate/calculate-utils/archive/${PV}.tar.gz -> calculate-utils-${PV}.tar.gz"
