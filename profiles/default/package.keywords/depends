@@ -338,6 +338,7 @@ net-vpn/wireguard-tools amd64
 ~sys-cluster/kronosnet-1.25 amd64
 ~sys-cluster/mpich-3.4.3 amd64
 ~sys-cluster/torque-6.0.4 amd64
+~sys-devel/smatch-1.73 amd64
 ~sys-firmware/b43legacy-firmware-3.130.20.0 amd64
 ~sys-firmware/midisport-firmware-1.2 amd64
 ~sys-firmware/nvidia-firmware-340.32 amd64
