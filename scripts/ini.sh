@@ -51,14 +51,17 @@ ini_repo_dirs(){
 ini_list_files(){
 	if [[ -z ${1:-} ]]; then
 		[[ -n ${HOME:-} ]] && local home="$HOME/.calculate"
-		local script_dir="$(dirname "$(readlink -f "$0")")"
+		local script_dir
+		# Compute the script path only if the function is not called from a login shell
+		if [[ ${0:0:1} != '-' ]]; then
+			script_dir=$'\n'"$(dirname "$(readlink -f "$0")")"
+		fi
 		local default_path="/var/lib/calculate/calculate-update \
 			${home:-} \
 			/var/lib/calculate \
 			/etc/calculate \
 			/var/calculate \
-			/var/calculate/remote \
-			${script_dir}"
+			/var/calculate/remote${script_dir}"
 	fi
 
 	local path
