@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+
+name="grafana-alloy"
+description="Grafana Alloy: A modern distribution of the OpenTelemetry Collector"
+command="/opt/grafana-alloy/bin/alloy"
+
+command_args="run /etc/grafana-alloy/config.alloy --storage.path=/var/lib/${name}"
+
+pidfile="/run/${name}.pid"
+
+start() {
+	ebegin "Starting ${name}"
+
+	start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile "${pidfile}" --exec "${command}" -- ${command_args}
+	eend $?
+}
