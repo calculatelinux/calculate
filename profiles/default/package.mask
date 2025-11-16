@@ -7,3 +7,4 @@ sys-libs/db:6.0
 
 # not compiled
 ~net-libs/pjproject-2.15.1
+=media-video/smplayer-25.6.0_p20250903-r1
