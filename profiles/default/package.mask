@@ -1,10 +1,7 @@
 # prevent automagic depends
 sys-libs/db:6.0
 
-=gnome-base/gnome-panel-3.54.0
-
 =app-accessibility/emacspeak-60.0-r1
 
 # not compiled
 ~net-libs/pjproject-2.15.1
-=media-video/smplayer-25.6.0_p20250903-r1
