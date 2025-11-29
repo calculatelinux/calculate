@@ -27,7 +27,7 @@ app-admin/lsyncd lua_single_target_lua5-4
 dev-ruby/mysql2 mariadb
 
 # exactly-one-of ( bliss nauty )
-sci-mathematics/polymake nauty
+sci-mathematics/polymake bliss -nauty
 
 # exactly-one-of ( apache2-server nginx )
 www-apps/icingaweb2 nginx

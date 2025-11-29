@@ -826,3 +826,6 @@ dev-qt/qtspeech qml
 
 # required by app-arch/pigz-2.8
 virtual/zlib static-libs
+
+# required by sci-mathematics/polymake-4.14[bliss]
+sci-libs/bliss gmp

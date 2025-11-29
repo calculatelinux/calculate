@@ -184,6 +184,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-lisp/clx-0.7.5 amd64
 ~dev-perl/Net-CUPS-0.640.0 amd64
 ~dev-perl/Number-Bytes-Human-0.110.0 amd64
+~dev-perl/X11-XCB-0.240.0 amd64
 ~dev-python/git-review-2.5.0 amd64
 ~dev-python/omemo-dr-1.0.1 amd64
 ~dev-python/pysdl2-0.9.17 amd64
@@ -324,6 +325,7 @@ net-vpn/wireguard-tools amd64
 ~sci-geosciences/gshhs-data-2.2.0 amd64
 ~sci-geosciences/mc2bsbh-0.0.9 amd64
 ~sci-geosciences/readosm-1.1.0a amd64
+~sci-libs/gdal-3.11.4 amd64
 ~sci-libs/pcl-1.14.1 amd64
 ~sci-libs/tamu_anova-0.2 amd64
 ~sci-libs/vtk-9.4.2 amd64
