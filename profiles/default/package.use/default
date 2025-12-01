@@ -386,4 +386,4 @@ sys-apps/openrc sysv-utils
 net-misc/freerdp kerberos
 
 # Enable nginx stream features required for TCP/UDP forwarding
-www-servers/nginx nginx_modules_stream_ssl_preread nginx_modules_stream_map
+www-servers/nginx stream nginx_modules_stream_ssl_preread nginx_modules_stream_map
