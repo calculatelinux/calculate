@@ -829,3 +829,6 @@ virtual/zlib static-libs
 
 # required by sci-mathematics/polymake-4.14[bliss]
 sci-libs/bliss gmp
+
+# required by dev-util/flatpak-builder-1.4.6-r3
+dev-libs/appstream compose
