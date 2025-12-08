@@ -832,3 +832,6 @@ sci-libs/bliss gmp
 
 # required by dev-util/flatpak-builder-1.4.6-r3
 dev-libs/appstream compose
+
+# required by app-misc/calamares-gentoo-livecd-3.3.14_p20250918
+app-admin/calamares livecd

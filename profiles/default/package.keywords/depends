@@ -319,6 +319,7 @@ net-vpn/wireguard-tools amd64
 ~sci-chemistry/dssp-4.5.3 amd64
 ~sci-electronics/espresso-ab-1.0 amd64
 ~sci-electronics/kicad-9.0.2 amd64
+~sci-electronics/kicad-9.0.6 amd64
 ~sci-geosciences/gpscorrelate-2.0 amd64
 ~sci-geosciences/gpx-viewer-0.4.0 amd64
 ~sci-geosciences/gshhs-1.13 amd64
