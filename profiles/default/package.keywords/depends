@@ -173,7 +173,7 @@
 ~dev-libs/lzo-2.10 amd64
 ~dev-libs/mimetic-0.9.8 amd64
 ~dev-libs/mmtf-cpp-1.0.0 amd64
-~dev-libs/nspr-4.37 amd64
+~dev-libs/nspr-4.38.2 amd64
 dev-libs/nss amd64
 dev-libs/opencl-clang:19 amd64
 ~dev-libs/OpenNI2-2.2_beta2 amd64
