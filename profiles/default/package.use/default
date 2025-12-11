@@ -387,3 +387,6 @@ net-misc/freerdp kerberos
 
 # Enable nginx stream features required for TCP/UDP forwarding and HTTP/2 (v2) support
 www-servers/nginx nginx_modules_http_v2 stream nginx_modules_stream_ssl_preread nginx_modules_stream_map
+
+# switched OpenConnect to OpenSSL backend
+net-vpn/openconnect -gnutls
