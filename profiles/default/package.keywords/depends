@@ -251,6 +251,7 @@ dev-libs/opencl-clang:19 amd64
 ~media-libs/rnnoise-0.4.1_p20210122 amd64
 ~media-libs/sdl3-ttf-3.2.2 amd64
 ~media-libs/sdl-pango-0.1.2 amd64
+~media-libs/tiff-4.7.0 amd64
 ~media-plugins/vdr-dvbhddevice-2.2.0_p20180420 amd64
 ~media-plugins/vdr-ttxtsubs-0.3.0 amd64
 ~media-plugins/vdr-vompserver-0.5.1 amd64
