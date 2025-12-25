@@ -1,6 +1,6 @@
 ~app-backup/btrbk-0.32.6 amd64
 ~app-containers/docker-swarm-1.2.9 amd64
-~app-crypt/acme-sh-3.1.1 amd64
+app-crypt/acme-sh amd64
 app-editors/vscode amd64
 <app-emulation/wine-staging-9999 amd64
 ~app-i18n/man-pages-ru-5.03.2390.2390.20191017 amd64
