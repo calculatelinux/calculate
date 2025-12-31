@@ -835,3 +835,6 @@ dev-libs/appstream compose
 
 # required by app-misc/calamares-gentoo-livecd-3.3.14_p20250918
 app-admin/calamares livecd
+
+# dependency required by kde-plasma/kscreen-6.5.4
+kde-frameworks/kimageformats avif

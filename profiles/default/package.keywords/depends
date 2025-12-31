@@ -1,4 +1,5 @@
 ~app-accessibility/at-spi2-atk-2.46.0 amd64
+~sys-auth/polkit-qt-0.200.0 amd64
 ~app-accessibility/caribou-0.4.21 amd64
 ~app-accessibility/speech-tools-2.5.0 amd64
 ~app-admin/ansible-core-2.18.6 amd64
