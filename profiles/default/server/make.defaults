@@ -24,6 +24,6 @@ USE="${USE} -elogind -gnome-keyring -introspection -policykit"
 USE="${USE} -bluetooth -wimax"
 
 # Window manager and speciality
-USE="${USE} -dbus -gtk -gui -qt5 -qt6 -libnotify -X -xcb"
+USE="${USE} -dbus -gtk -gui -qt5 -qt6 -libnotify -wayland -X -xcb"
 
 CAMERAS=""
