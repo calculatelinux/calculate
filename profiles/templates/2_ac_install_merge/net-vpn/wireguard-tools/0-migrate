@@ -1,9 +1,0 @@
-# Calculate exists(/etc/init.d/wireguard)!= run=/bin/bash
-
-# Remove the deprecated startup script if it is not in use
-if [ ! -e /etc/runlevels/*/wireguard* ] && \
-	[ ! -e /etc/wireguard/wg0.conf ] && \
-	[ ! -e /etc/init.d/wireguard.* ]
-then
-	rm /etc/init.d/wireguard
-fi

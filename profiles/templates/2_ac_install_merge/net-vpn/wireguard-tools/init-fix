@@ -1,0 +1,13 @@
+# Calculate grep(/etc/init.d/wg-quick,Calculate-FIX)== path=/etc/init.d name=wg-quick format=patch multiline comment=#
+<reg>start\(\) {
+	checkconfig \|\| return 1</reg>
+<text>start() {
+	checkconfig || return 1
+
+	# Calculate-FIX: delete leftover interface before wg-quick up
+	if ip link show dev "$CONF" &gt; /dev/null 2&gt;&amp;1; then
+		ewarn "Calculate: $CONF already exists, deleting before start"
+		ip link delete dev "$CONF" &gt;/dev/null 2&gt;&amp;1 || true
+	fi
+
+</text>
