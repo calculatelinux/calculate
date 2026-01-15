@@ -1,9 +1,9 @@
-# Calculate format=diff merge(sys-kernel/dracut)>107
+# Calculate format=diff merge(sys-kernel/dracut)<107
 Патч для загрузки с неполных raid массивов
-diff --git modules.d/70mdraid/parse-md.sh modules.d/70mdraid/parse-md.sh
+diff --git modules.d/90mdraid/parse-md.sh modules.d/90mdraid/parse-md.sh
 index dd7bda2..3c88b6f 100755
---- modules.d/70mdraid/parse-md.sh
-+++ modules.d/70mdraid/parse-md.sh
+--- modules.d/90mdraid/parse-md.sh
++++ modules.d/90mdraid/parse-md.sh
 @@ -8,6 +8,7 @@ if ( ! [ -n "$MD_UUID" ] && ! getargbool 0 rd.auto ) || ! getargbool 1 rd.md -d
      info "rd.md=0: removing MD RAID activation"
      udevproperty rd_NO_MD=1
