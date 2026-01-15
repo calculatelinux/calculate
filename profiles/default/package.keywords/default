@@ -79,7 +79,7 @@ www-client/opera-beta amd64
 www-client/opera-developer amd64
 www-plugins/chrome-binary-plugins:stable amd64
 ~x11-misc/cdm-0.7 amd64
-~x11-misc/qlipper-5.1.2_p20241029 amd64
+~x11-misc/qlipper-6.0.0 amd64
 ~x11-misc/snixembed-0.3.0 amd64
 ~x11-misc/spacefm-1.0.6 amd64
 ~x11-misc/sunflower-0.5 amd64
