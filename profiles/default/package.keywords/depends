@@ -162,7 +162,6 @@
 ~dev-libs/bglibs-2.04 amd64
 ~dev-libs/cxxtools-3.0 amd64
 ~dev-libs/dietlibc-0.34 amd64
-~dev-libs/icu-78.2 amd64
 ~dev-libs/libcpuid-0.8.0 amd64
 ~dev-libs/libdynd-0.7.2 amd64
 ~dev-libs/libfmt-11.1.4 amd64
