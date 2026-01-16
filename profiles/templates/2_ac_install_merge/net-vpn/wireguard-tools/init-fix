@@ -9,5 +9,4 @@
 		ewarn "Calculate: $CONF already exists, deleting before start"
 		ip link delete dev "$CONF" &gt;/dev/null 2&gt;&amp;1 || true
 	fi
-
 </text>
