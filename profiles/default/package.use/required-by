@@ -838,3 +838,6 @@ app-admin/calamares livecd
 
 # dependency required by kde-plasma/kscreen-6.5.4
 kde-frameworks/kimageformats avif
+
+# dependency required by dev-embedded/u-boot-tools-2025.01-r1
+sys-apps/dtc python
