@@ -1,0 +1,4 @@
+# Calculate path=/etc/udev/rules.d comment=#
+
+# Allow non-root access to Google Pixel (Vendor ID 18d1) for fastboot/WebUSB (GrapheneOS install)
+SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0666", GROUP="plugdev"
