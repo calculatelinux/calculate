@@ -15,7 +15,7 @@ S="${WORKDIR}/8814au-${COMMIT}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 DEPEND="virtual/linux-sources"
 
