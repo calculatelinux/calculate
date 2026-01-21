@@ -37,7 +37,7 @@ media-gfx/darktable amd64
 <media-video/obs-studio-9999 amd64
 ~media-video/shotcut-25.08.16 amd64
 ~media-video/simplescreenrecorder-0.4.4_p20250125 amd64
-~media-video/v4l2loopback-0.13.1 amd64
+~media-video/v4l2loopback-0.15.3 amd64
 ~net-analyzer/squid-graph-3.2 amd64
 ~net-fs/nfs4-acl-tools-0.3.7 amd64
 ~net-fs/smbnetfs-0.6.3 amd64
