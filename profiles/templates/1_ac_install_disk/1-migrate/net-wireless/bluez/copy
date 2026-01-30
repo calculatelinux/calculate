@@ -1,0 +1,6 @@
+# Calculate exec=/bin/bash
+
+if [[ -d /var/lib/bluetooth ]]; then
+    rsync -a --delete /var/lib/bluetooth/ #-cl_chroot_path-#/var/lib/bluetooth/
+fi
+true
