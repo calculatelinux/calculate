@@ -32,8 +32,8 @@ virtual/mysql embedded
 dev-db/mariadb embedded
 dev-db/mysql embedded
 
-# required by x11-misc/shutter-0.90
-media-gfx/imagemagick perl
+# required by x11-misc/shutter-0.90, x11-themes/fedora-backgrounds-42.0.0
+media-gfx/imagemagick perl jpegxl
 
 # required by gnome-extra/gnome-user-share-3.18.1-r1
 www-servers/apache apache2_modules_auth_digest

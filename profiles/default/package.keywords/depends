@@ -187,6 +187,8 @@ dev-libs/opencl-clang:19 amd64
 ~dev-perl/Number-Bytes-Human-0.110.0 amd64
 ~dev-perl/X11-XCB-0.240.0 amd64
 ~dev-python/git-review-2.5.0 amd64
+~dev-python/myst-parser-5.0.0 amd64
+~dev-python/myst-parser-5.0.0 ~amd64
 ~dev-python/omemo-dr-1.0.1 amd64
 ~dev-python/pysdl2-0.9.17 amd64
 ~dev-python/respx-0.22.0 amd64
