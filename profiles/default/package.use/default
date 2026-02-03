@@ -382,7 +382,7 @@ sys-cluster/glusterfs georeplication xml
 # Provides OpenRC versions of reboot/halt/poweroff/shutdown
 sys-apps/openrc sysv-utils
 
-# Add kerberos support
+# add kerberos support
 net-misc/freerdp kerberos
 
 # Enable nginx stream features required for TCP/UDP forwarding and HTTP/2 (v2) support
@@ -390,3 +390,6 @@ www-servers/nginx nginx_modules_http_v2 stream nginx_modules_stream_ssl_preread 
 
 # switched OpenConnect to OpenSSL backend
 net-vpn/openconnect -gnutls
+
+# add support for SSL/TLS connections
+net-misc/rsync rrsync
