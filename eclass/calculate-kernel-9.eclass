@@ -1,11 +1,11 @@
-# Copyright 2007-2024 Mir Calculate
+# Copyright 2007-2026 Mir Calculate
 # Distributed under the terms of the GNU General Public License v2
 
 #
-# Original Author: © 2007-2009 Mir Calculate, Ltd.
+# Original Author: © 2026 Mir Calculate, Ltd.
 # Purpose: Installing linux-desktop, linux-server.
 # Build the kernel from source.
-# @ECLASS: calculate-kernel-8.eclass
+# @ECLASS: calculate-kernel-9.eclass
 # @MAINTAINER:
 # support@calculate.ru
 # @AUTHOR:
@@ -42,7 +42,7 @@ DEPEND="${CDEPEND}
 RDEPEND="
 	${CDEPEND}
 	vmlinuz? (
-		sys-kernel/dracut
+		>=sys-kernel/dracut-109
 		net-misc/dhcp
 	)"
 
@@ -62,14 +62,14 @@ KV_FULL="${PV}${EXTRAVERSION}"
 
 S="${WORKDIR}/linux-${KV_FULL}"
 
-calculate-kernel-8_pkg_setup() {
+calculate-kernel-9_pkg_setup() {
 	kernel-2_pkg_setup
 	eqawarn "!!! WARNING !!!  WARNING !!!  WARNING !!!  WARNING !!!"
 	eqawarn "After the kernel assemble perform command to update modules:"
 	eqawarn "  emerge @modules-rebuild"
 }
 
-calculate-kernel-8_src_unpack() {
+calculate-kernel-9_src_unpack() {
 	kernel-2_src_unpack
 	cd "${S}"
 	local GENTOOARCH="${ARCH}"
@@ -96,7 +96,7 @@ vmlinuz_src_compile() {
 	ARCH="${GENTOOARCH}"
 }
 
-calculate-kernel-8_src_compile() {
+calculate-kernel-9_src_compile() {
 	use vmlinuz && vmlinuz_src_compile
 }
 
@@ -131,9 +131,14 @@ vmlinuz_src_install() {
 	else
 		RDARCH=""
 	fi
-	/usr/bin/dracut "${RDARCH}" -c dracut.conf -k "${D}/lib/modules/${KV_FULL}" \
-		--kver ${KV_FULL} \
-		"${D}/usr/share/${PN}/${PV}/boot/initramfs-${KV_FULL}"
+
+	/usr/bin/dracut "${RDARCH}" \
+        -N -f \
+        -a "modsign calculate video network-legacy btrfs dmsquash-live nvdimm overlayfs resume img-lib" \
+        -c dracut.conf \
+        -k "${D}/lib/modules/${KV_FULL}" \
+        --kver ${KV_FULL} \
+        "${D}/usr/share/${PN}/${PV}/boot/initramfs-${KV_FULL}"
 	# move firmware to share, because /lib/firmware installation does collisions
 	rm dracut.conf
 
@@ -209,7 +214,7 @@ clean_for_minimal() {
 	rm -r Documentation
 }
 
-calculate-kernel-8_src_install() {
+calculate-kernel-9_src_install() {
 	use vmlinuz && vmlinuz_src_install
 	use minimal && clean_for_minimal
 	kernel-2_src_install
@@ -235,7 +240,7 @@ vmlinuz_pkg_postinst() {
 	calculate_update_modules
 }
 
-calculate-kernel-8_pkg_postinst() {
+calculate-kernel-9_pkg_postinst() {
 	kernel-2_pkg_postinst
 
 	KV_OUT_DIR=${ROOT}/usr/src/linux-${KV_FULL}
