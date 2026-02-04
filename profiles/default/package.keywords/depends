@@ -370,6 +370,7 @@ net-vpn/wireguard-tools amd64
 ~sys-fs/yaffs2utils-0.2.9 amd64
 ~sys-fs/zerofree-1.1.1 amd64
 ~sys-fs/zfs-auto-snapshot-1.2.4 amd64
+~sys-kernel/dracut-109 amd64
 ~sys-libs/libixp-0.5_p20110208 amd64
 ~sys-libs/libstdc++-v3-3.3.6 amd64
 ~sys-libs/libudev-compat-186 amd64
