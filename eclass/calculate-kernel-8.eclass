@@ -131,9 +131,14 @@ vmlinuz_src_install() {
 	else
 		RDARCH=""
 	fi
-	/usr/bin/dracut "${RDARCH}" -c dracut.conf -k "${D}/lib/modules/${KV_FULL}" \
-		--kver ${KV_FULL} \
-		"${D}/usr/share/${PN}/${PV}/boot/initramfs-${KV_FULL}"
+
+	/usr/bin/dracut "${RDARCH}" \
+        -N -f \
+        -a "modsign calculate video network-legacy btrfs dmsquash-live nvdimm overlayfs resume img-lib" \
+        -c dracut.conf \
+        -k "${D}/lib/modules/${KV_FULL}" \
+        --kver ${KV_FULL} \
+        "${D}/usr/share/${PN}/${PV}/boot/initramfs-${KV_FULL}"
 	# move firmware to share, because /lib/firmware installation does collisions
 	rm dracut.conf
 
