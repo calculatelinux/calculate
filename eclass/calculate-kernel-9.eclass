@@ -44,6 +44,7 @@ RDEPEND="
 	vmlinuz? (
 		>=sys-kernel/dracut-109
 		net-misc/dhcp
+		sys-fs/btrfs-progs
 	)"
 
 detect_version
