@@ -841,3 +841,6 @@ kde-frameworks/kimageformats avif
 
 # dependency required by dev-embedded/u-boot-tools-2025.01-r1
 sys-apps/dtc python
+
+# dependency required by "net-voip/murmur-1.6.0_pre20250920-r3
+dev-db/soci sqlite
