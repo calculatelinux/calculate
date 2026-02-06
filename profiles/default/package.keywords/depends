@@ -393,6 +393,7 @@ net-vpn/wireguard-tools amd64
 ~x11-misc/bbtime-0.1.5 amd64
 ~x11-misc/blockdpy-1 amd64
 ~x11-misc/cairo-clock-0.3.4 amd64
+~x11-misc/copyq-13.0.0 amd64
 ~x11-misc/devilspie-0.23 amd64
 ~x11-misc/dxpc-3.9.2 amd64
 ~x11-misc/fracplanet-0.5.1 amd64
