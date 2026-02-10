@@ -17,6 +17,7 @@ dev-java/openjdk-bin:21 amd64
 dev-util/android-studio amd64
 dev-util/pycharm-community amd64
 dev-util/pycharm-professional amd64
+~games-emulation/dosbox-staging-0.82.2 amd64
 ~lxde-base/lxde-meta-0.5.5 amd64
 ~mail-client/claws-mail-4.3.1 amd64
 mail-client/thunderbird amd64
