@@ -51,6 +51,7 @@ net-im/zoom amd64
 ~net-libs/libbloom-1.6 amd64
 ~net-libs/libcork-0.15.0 amd64
 ~net-libs/libcorkipset-1.1.1.20150311_p8 amd64
+~net-misc/asterisk-22.8.2 amd64
 ~net-misc/connman-gtk-1.1.1 amd64
 ~net-misc/connman-notify-0_pre20191003 amd64
 ~net-misc/freerdp-3.16.0 amd64
