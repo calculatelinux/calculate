@@ -1,6 +1,6 @@
-~app-emulation/virtualbox-7.1.12 amd64
-~app-emulation/virtualbox-additions-7.1.12 amd64
-~app-emulation/virtualbox-extpack-oracle-7.1.12 amd64
-~app-emulation/virtualbox-guest-additions-7.1.12 amd64
-~app-emulation/virtualbox-guest-modules-7.1.12 amd64
-~app-emulation/virtualbox-modules-7.1.12 amd64
+~app-emulation/virtualbox-7.2.26 amd64
+~app-emulation/virtualbox-additions-7.2.26 amd64
+~app-emulation/virtualbox-extpack-oracle-7.2.26 amd64
+~app-emulation/virtualbox-guest-additions-7.2.26 amd64
+~app-emulation/virtualbox-guest-modules-7.2.26 amd64
+~app-emulation/virtualbox-modules-7.2.26 amd64

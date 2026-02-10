@@ -15,7 +15,6 @@
 ~dev-perl/Dist-Metadata-0.927.0 amd64
 ~dev-perl/Encode-EUCJPASCII-0.30.0 amd64
 ~dev-perl/Encode-HanExtra-0.230.0 amd64
-~dev-perl/ExtUtils-LibBuilder-0.80.0 amd64
 ~dev-perl/FCGI-ProcManager-0.280.0 amd64
 ~dev-perl/File-Slurp-Tiny-0.4.0 amd64
 ~dev-perl/File-Spec-Native-1.4.0 amd64
@@ -24,7 +23,6 @@
 ~dev-perl/GDTextUtil-0.860.0 amd64
 ~dev-perl/Getopt-GUI-Long-0.930.0 amd64
 ~dev-perl/HTML-Mason-PSGIHandler-0.530.0 amd64
-~dev-perl/HTML-RewriteAttributes-0.50.0 amd64
 ~dev-perl/HTTP-Request-AsCGI-1.200.0 amd64
 ~dev-perl/HTTP-Server-Simple-PSGI-0.160.0 amd64
 ~dev-perl/LWP-Protocol-http10-6.30.0 amd64
