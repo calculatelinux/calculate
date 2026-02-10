@@ -1,3 +1,6 @@
+#
+~dev-perl/Alien-wxWidgets-0.690.0 gstreamer
+
 # required by @selected
 app-emulation/protontricks -gui
 
@@ -70,3 +73,6 @@ media-video/mkvtoolnix gui
 
 # wow64? ( !arm64? ( !abi_x86_32 ) )
 app-emulation/wine-staging -abi_x86_32
+
+# sdl? ( gui )
+media-libs/libcamera gui
