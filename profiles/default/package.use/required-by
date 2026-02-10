@@ -1,6 +1,5 @@
 #
 >=dev-qt/qtcore-5.4.2 icu
-~dev-perl/Alien-wxWidgets-0.690.0 gstreamer
 sys-cluster/openmpi romio fortran cxx
 
 
@@ -179,12 +178,6 @@ x11-libs/cairo xcb
 
 # required by media-tv/kodi-14.1
 net-libs/libmicrohttpd messages
-
-# required by kde-plasma/plasma-pa-5.8.3
-media-sound/pulseaudio gnome
-
-# required by media-sound/pulseeffects-3.1.6
-media-sound/pulseaudio equalizer
 
 # required by sci-libs/scipy-0.16.1
 dev-python/numpy lapack
@@ -598,9 +591,6 @@ app-text/texlive xetex
 # required by www-client/chromium-96.0.4664.110
 media-libs/libpng -apng
 
-# masked by: use flag configuration mismatch
-net-dns/bind-tools gssapi
-
 # required by x11-misc/urxvt-perls-2.3-r1
 x11-terms/rxvt-unicode perl fading-colors
 
@@ -841,6 +831,3 @@ kde-frameworks/kimageformats avif
 
 # dependency required by dev-embedded/u-boot-tools-2025.01-r1
 sys-apps/dtc python
-
-# dependency required by "net-voip/murmur-1.6.0_pre20250920-r3
-dev-db/soci sqlite

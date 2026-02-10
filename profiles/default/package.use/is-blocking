@@ -4,8 +4,3 @@ x11-terms/gnome-terminal -gnome-shell
 # The following REQUIRED_USE flag constraints are unsatisfied:
 # threads? ( !cxx !fortran )
 sci-libs/hdf5 -threads
-
-# conflict with media-video/pipewire[pipewire-alsa]
-#media-sound/pulseaudio -alsa-plugin
-#media-plugins/alsa-plugins -pulseaudio
-

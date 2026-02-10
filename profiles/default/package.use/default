@@ -81,9 +81,6 @@ mail-client/thunderbird -system-libvpx
 # use streaming
 media-video/smplayer autoshutdown streaming
 
-# build with native HSP backend and oFono HFP backend for bluez 5
-media-sound/pulseaudio native-headset ofono-headset
-
 # enable Direct 3D9 API, Vulkan drivers
 media-libs/mesa d3d9 wayland
 

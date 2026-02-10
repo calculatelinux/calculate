@@ -38,7 +38,6 @@ media-libs/libcanberra -sound
 media-libs/phonon minimal
 media-libs/simage -tiff
 media-libs/tg_owt -screencast
-media-sound/pulseaudio -daemon
 media-video/ffmpeg-chromium -video_cards_nvidia
 media-video/ffmpeg -samba -video_cards_nvidia
 net-analyzer/net-snmp -X
