@@ -390,6 +390,3 @@ net-vpn/openconnect -gnutls
 
 # add support for SSL/TLS connections
 net-misc/rsync rrsync
-
-# add support for the postgresql database
-net-misc/asterisk postgres
