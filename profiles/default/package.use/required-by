@@ -831,3 +831,6 @@ kde-frameworks/kimageformats avif
 
 # dependency required by dev-embedded/u-boot-tools-2025.01-r1
 sys-apps/dtc python
+
+# required by app-emacs/password-store-otp-0.1.5
+app-admin/pass emacs
