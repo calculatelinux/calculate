@@ -9,7 +9,7 @@ net-proxy/squid ldap
 net-ftp/proftpd -ipv6 -acl ldap openssl
 net-fs/samba ldap aio
 
-net-misc/asterisk alsa pjproject span speex vorbis
+net-misc/asterisk lua pjproject postgres span speex vorbis
 net-misc/asterisk-extra-sounds alaw g722 g729 siren14 siren7 sln16 ulaw wav
 net-misc/asterisk-moh-opsound alaw g722 g729 siren14 siren7 sln16 ulaw wav
 net-misc/asterisk-core-sounds alaw g722 g729 siren14 siren7 sln16 ulaw wav
