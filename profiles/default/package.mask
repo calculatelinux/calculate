@@ -3,5 +3,7 @@ sys-libs/db:6.0
 
 =app-accessibility/emacspeak-60.0-r1
 
+=dev-util/premake-5.0.0_beta7
+
 # not compiled
 ~net-libs/pjproject-2.15.1
