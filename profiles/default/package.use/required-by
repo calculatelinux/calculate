@@ -87,8 +87,8 @@ dev-libs/libxml2 icu python
 # required by dev-util/libabigail-2.7-r2
 dev-libs/elfutils lzma
 
-# required by net-im/psi-0.15::gentoo[crypt], dev-libs/qoauth-2.0.1_pre20160315-r3
-app-crypt/qca gpg qt5
+# required by net-im/psi-0.15::gentoo[crypt]
+app-crypt/qca gpg
 
 # [melt, xml] required by media-video/kdenlive
 # required by media-video/openshot-1.4.3o
@@ -761,12 +761,6 @@ sci-libs/gdal spatialite sqlite
 
 # required by sci-geosciences/qgis-3.38.3
 x11-libs/qwt polar
-
-# required by app-i18n/fcitx-chinese-addons-5.1.7[gui,qt5]
-app-i18n/fcitx-qt qt5
-
-# required by net-wireless/gnuradio-3.10.9.2-r6
-dev-python/pyqtgraph qt5
 
 # required by dev-libs/gobject-introspection-1.80.1-r3
 dev-libs/glib introspection
