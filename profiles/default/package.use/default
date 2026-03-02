@@ -204,7 +204,7 @@ media-video/ffmpeg openssl chromium xcb libaom svt-av1
 dev-python/pyqt5 gui printsupport network widgets webchannel
 
 # vpn, bluetooth, etc support
-net-misc/connman l2tp ofono openconnect openvpn pptp vpnc wispr
+net-misc/connman -iptables l2tp nftables ofono openconnect openvpn pptp vpnc wispr
 net-misc/connman-gtk openconnect
 
 # install firmware for older chipsets
