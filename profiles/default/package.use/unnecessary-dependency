@@ -55,6 +55,7 @@ net-misc/remmina -appindicator -webkit
 net-p2p/ktorrent -infowidget
 net-print/cups -X
 net-proxy/tinyproxy -xtinyproxy-header
+net-wireless/gnuradio -qt5
 net-wireless/wpa_supplicant -qt6
 sci-libs/vtk tbb -video_cards_nvidia
 sys-apps/dbus-broker -launcher

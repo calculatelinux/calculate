@@ -1,5 +1,5 @@
 # include backup, client, desktop, console and console-gui modules
-sys-apps/calculate-utils backup client desktop console qt5
+sys-apps/calculate-utils backup client desktop console qt6
 
 # Calculate themes dependence
 sys-kernel/calculate-sources desktop themes

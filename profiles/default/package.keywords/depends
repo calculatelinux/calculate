@@ -177,6 +177,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-python/myst-parser-5.0.0 ~amd64
 ~dev-python/pysdl2-0.9.17 amd64
 ~dev-python/respx-0.22.0 amd64
+~dev-python/sphinx-9.1.0 amd64
 ~dev-ruby/optimist-3.2.1 amd64
 ~dev-tcltk/expect-5.45.4 amd64
 ~dev-tex/bibtex2html-1.99 amd64

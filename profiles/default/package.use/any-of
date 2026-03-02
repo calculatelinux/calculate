@@ -30,3 +30,6 @@ sci-mathematics/octave gui
 
 # any-of ( mysql postgres sqlite )
 kde-apps/akonadi-config -mysql sqlite
+
+# any-of ( mysql postgres sqlite )
+dev-db/soci sqlite
