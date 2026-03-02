@@ -1,9 +1,6 @@
 # any-of ( mysql postgres sqlite )
 mail-client/roundcube sqlite
 
-# any-of ( iptables nftables )
-net-misc/connman iptables
-
 # any-of ( emacs fcitx4 ibus )
 app-i18n/mozc -ibus fcitx4
 
@@ -18,9 +15,6 @@ mail-client/roundcube postgres -sqlite
 
 # any-of ( perl python ruby php5-6 php7-1 php7-2 )
 www-servers/nginx-unit python
-
-# connection-sharing? ( any-of ( iptables nftables ) )
-net-misc/networkmanager iptables
 
 # any-of ( keyring pass )
 app-containers/docker-credential-helpers keyring

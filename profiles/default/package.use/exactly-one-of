@@ -7,9 +7,6 @@ media-libs/libmetalink expat
 # exactly-one-of ( agent hybrid local server ) at-most-one-of ( mysql postgres )
 net-analyzer/ossec-hids hybrid postgres
 
-# exactly-one-of ( iptables nftables )
-net-misc/connman -nftables
-
 # exactly-one-of ( gbm raspberry-pi wayland X ) ( gbm wayland X ) vdpau? ( !gbm )
 media-tv/kodi -gbm -wayland
 
