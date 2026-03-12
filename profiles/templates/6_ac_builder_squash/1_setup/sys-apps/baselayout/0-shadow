@@ -1,4 +1,4 @@
-# Calculate format=patch name=shadow protected chmod=0600 cl_ver<3.5.4.1||cl_builder_container_set==off
+# Calculate format=patch name=shadow protected cl_builder_container_set==off
 <reg>^root:.*
 </reg>
 <text>root:$1$JMvNh5xg$VnV1DyJdTcwuZ0hp5YiJG0:14349:0:::::
