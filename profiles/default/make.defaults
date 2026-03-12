@@ -12,7 +12,7 @@ USE="${USE} chm djvu ebook postscript"
 USE="${USE} crypt ssl cracklib"
 
 # Hardware
-USE="${USE} acpi cairo cpudetection dbus dri opengl scanner smp upower usb vdpau -video_cards_dummy -video_cards_v4l video_cards_via vulkan xcomposite"
+USE="${USE} acpi cairo cpudetection dbus dri opengl scanner smp upower usb vdpau -video_cards_dummy video_cards_lavapipe -video_cards_v4l video_cards_via vulkan xcomposite"
 
 # Hardware CPU
 USE="${USE} 3dnow 3dnowext aes avx fma3 fma4 lm-sensors mmx mmxext padlock popcnt sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3 xop"
