@@ -9,7 +9,7 @@ USE="${USE} -postscript"
 USE="${USE} -openexr -pdf -svg -tiff"
 
 # Hardware
-USE="${USE} -cairo -opengl -vdpau -vulkan"
+USE="${USE} -cairo -opengl -vdpau -vulkan -video_cards_lavapipe"
 
 # Video
 USE="${USE} -sdl -sdl2 -vaapi -xv"
