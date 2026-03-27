@@ -67,6 +67,7 @@ sys-apps/inxi amd64
 ~sys-fs/btrfsmaintenance-0.5.2 amd64
 ~sys-fs/compsize-1.5 amd64
 www-client/firefox amd64
+www-client/firefox-l10n amd64
 www-client/opera amd64
 www-client/opera-beta amd64
 www-client/opera-developer amd64
