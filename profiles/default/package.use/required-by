@@ -828,3 +828,6 @@ sys-apps/dtc python
 
 # required by app-emacs/password-store-otp-0.1.5
 app-admin/pass emacs
+
+# required by net-fs/samba-4.23.6
+net-libs/ngtcp2 gnutls
