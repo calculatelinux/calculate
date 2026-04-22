@@ -2,7 +2,6 @@
 ~app-accessibility/caribou-0.4.21 amd64
 ~app-accessibility/speech-tools-2.5.0 amd64
 ~app-admin/watchfolder-0.3.3 amd64
-~app-admin/webapp-config-1.55 amd64
 ~app-arch/csnappy-0_pre20220804 amd64
 ~app-arch/lcab-1.0_beta12 amd64
 ~app-arch/vimball-0.5.1 amd64
@@ -152,7 +151,6 @@
 ~dev-libs/dietlibc-0.34 amd64
 ~dev-libs/icu-78.2 amd64
 ~dev-libs/libcpuid-0.8.0 amd64
-~dev-libs/libfmt-11.1.4 amd64
 ~dev-libs/libkpass-6 amd64
 ~dev-libs/libplatform-2.1.0.1 amd64
 ~dev-libs/libtecla-1.6.3 amd64
@@ -191,9 +189,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-util/shellcheck-0.9.0 amd64
 ~dev-util/vint-0.3.21 amd64
 ~games-action/spacearyarya-kxl-1.0.3 amd64
-~games-engines/scummvm-2.9.1 amd64
 ~games-util/qstat-2.17 amd64
-~gnome-base/gnome-shell-47.8 amd64
 ~gnustep-apps/gnumail-1.4.0 amd64
 ~gnustep-base/mknfonts-0.5 amd64
 ~gnustep-libs/dbuskit-0.1.1 amd64
@@ -235,9 +231,7 @@ dev-libs/opencl-clang:19 amd64
 ~media-libs/rnnoise-0.4.1_p20210122 amd64
 ~media-libs/sdl3-ttf-3.2.2 amd64
 ~media-libs/sdl-pango-0.1.2 amd64
-~media-libs/tiff-4.7.0 amd64
 ~media-plugins/vdr-dvbhddevice-2.2.0_p20180420 amd64
-~media-plugins/vdr-ttxtsubs-0.3.0 amd64
 ~media-plugins/vdr-vompserver-0.5.1 amd64
 ~media-plugins/xsynth-dssi-0.9.4 amd64
 ~media-sound/baudline-1.08 amd64
@@ -273,7 +267,6 @@ dev-libs/opencl-clang:19 amd64
 ~net-libs/libircclient-1.10 amd64
 ~net-libs/llhttp-9.2.1 amd64
 ~net-libs/netwib-5.39.0 amd64
-~net-libs/tdlib-1.8.49_p20250510 amd64
 ~net-libs/wvstreams-4.6.1_p14 amd64
 ~net-mail/gnubiff-2.2.17 amd64
 ~net-mail/qmail-autoresponder-2.0 amd64
@@ -284,7 +277,6 @@ dev-libs/opencl-clang:19 amd64
 ~net-misc/l7-protocols-2009.05.28 amd64
 ~net-nds/ldapvi-1.7_p20101214 amd64
 ~net-news/snownews-1.9 amd64
-~net-p2p/retroshare-0.6.7 amd64
 ~net-print/c2esp-27 amd64
 ~net-print/dymo-cups-drivers-1.4.0 amd64
 ~net-print/pnm2ppa-1.13 amd64
@@ -306,7 +298,6 @@ net-vpn/wireguard-tools amd64
 ~sci-geosciences/gshhs-data-2.2.0 amd64
 ~sci-geosciences/mc2bsbh-0.0.9 amd64
 ~sci-geosciences/readosm-1.1.0a amd64
-~sci-libs/gdal-3.11.4 amd64
 ~sci-libs/pcl-1.14.1 amd64
 ~sci-libs/tamu_anova-0.2 amd64
 ~sci-libs/vtk-9.5.2 amd64
@@ -344,7 +335,6 @@ net-vpn/wireguard-tools amd64
 ~sys-fs/yaffs2utils-0.2.9 amd64
 ~sys-fs/zerofree-1.1.1 amd64
 ~sys-fs/zfs-auto-snapshot-1.2.4 amd64
-~sys-kernel/dracut-109 amd64
 ~sys-libs/libixp-0.5_p20110208 amd64
 ~sys-libs/libstdc++-v3-3.3.6 amd64
 ~sys-libs/libudev-compat-186 amd64
