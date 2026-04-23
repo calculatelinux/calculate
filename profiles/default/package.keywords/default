@@ -21,6 +21,7 @@ dev-util/pycharm-professional amd64
 ~lxde-base/lxde-meta-0.5.5 amd64
 ~mail-client/claws-mail-4.3.1 amd64
 mail-client/thunderbird amd64
+mail-client/thunderbird-l10n amd64
 media-gfx/darktable amd64
 ~media-gfx/displaycal-py3-3.9.16 amd64
 ~media-gfx/gimp-3.0.6 amd64

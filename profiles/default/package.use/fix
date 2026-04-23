@@ -53,3 +53,6 @@ games-board/stockfish -cpu_flags_x86_avx512f
 
 # not working
 sys-cluster/glusterfs -ipv6
+
+# otherwise dev-python/scipy-1.17.1 fails to build when dev-python/numpy is built with these CPU flags
+dev-python/numpy -cpu_flags_x86_avx512f -cpu_flags_x86_fma4 -cpu_flags_x86_xop
