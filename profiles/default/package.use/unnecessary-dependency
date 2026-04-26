@@ -11,6 +11,7 @@ app-emulation/wine-vanilla -gstreamer
 app-i18n/uim -anthy -libnotify -ncurses -nls -ssl
 app-misc/mc -spell
 app-text/evince -nsplugin
+app-text/zathura -man
 dev-lang/php -spell
 dev-libs/folks -bluetooth
 dev-python/netaddr -cli
