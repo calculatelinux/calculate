@@ -12,11 +12,9 @@ app-editors/emacs gui
 app-emacs/emacs-common gui
 
 
-
 # removed unnecessary dependence
 net-irc/kvirc -audiofile -theora -phonon -spell doc
 net-misc/dhcp -server
-
 
 
 # exactly-one-of ( alsa oss portaudio pulseaudio )
@@ -24,3 +22,6 @@ app-accessibility/julius -pulseaudio
 
 # player? ( exactly-one-of ( alsa oss openal ) )
 media-sound/wildmidi -openal
+
+# Add kerberos support
+net-misc/openssh kerberos
