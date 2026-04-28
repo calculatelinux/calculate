@@ -9,7 +9,7 @@ net-proxy/squid ldap
 net-ftp/proftpd -ipv6 -acl ldap openssl
 net-fs/samba ldap aio
 
-net-misc/asterisk lua pjproject postgres span speex vorbis
+net-misc/asterisk lua pjproject postgres span speex vorbis unbound srtp
 net-misc/asterisk-extra-sounds alaw g722 g729 siren14 siren7 sln16 ulaw wav
 net-misc/asterisk-moh-opsound alaw g722 g729 siren14 siren7 sln16 ulaw wav
 net-misc/asterisk-core-sounds alaw g722 g729 siren14 siren7 sln16 ulaw wav
@@ -197,8 +197,8 @@ app-text/atril epub
 
 # openssl support needed for mpv, to play over ssh
 # builds libffmpeg.so to enable media playback in Chromium-based browsers like Opera and Vivaldi
-# xcb for video capture screen monitor
-media-video/ffmpeg openssl chromium xcb libaom svt-av1
+# xcb for video capture screen monitor, opus and amr for asterisk
+media-video/ffmpeg openssl chromium xcb libaom svt-av1 opus amr
 
 # opengl? ( gui widgets ), webkit? ( network printsupport ) webengine? ( widgets? ( webchannel ) )
 dev-python/pyqt5 gui printsupport network widgets webchannel
