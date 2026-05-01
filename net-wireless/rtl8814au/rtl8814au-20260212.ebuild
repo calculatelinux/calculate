@@ -5,7 +5,7 @@ EAPI=8
 
 inherit linux-mod-r1
 
-COMMIT="d8208c83ecfd9b286f3ea45a7eb7d78d10560670"
+COMMIT="b1866ce2b857a8dfe2e147e19eb8eca0a842ce18"
 
 DESCRIPTION="Realtek 8814AU USB WiFi module for Linux kernel"
 HOMEPAGE="https://github.com/morrownr/8814au"
@@ -18,6 +18,18 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="virtual/linux-sources"
+
+src_prepare() {
+	default
+
+	# Replace wrong EXTRA_CFLAGS (stopped working with kernels >= 6.15)
+	# with proper CFLAGS_MODULE (available since 2.6.36).
+	# Bug 957883
+	sed -E -i'' \
+	  -e 's/(^|[^A-Za-z0-9_])EXTRA_CFLAGS([^A-Za-z0-9_]|$)/\1CFLAGS_MODULE\2/g' \
+	  Makefile || die
+}
+
 
 src_compile() {
 	local modlist=( 8814au=net/wireless )
