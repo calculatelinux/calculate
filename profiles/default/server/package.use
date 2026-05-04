@@ -6,6 +6,7 @@ app-emulation/qemu -doc
 dev-lang/erlang -wxwidgets
 dev-lang/mono minimal
 dev-libs/libxml2 -icu
+media-gfx/graphviz -gtk2
 media-gfx/imagemagick -djvu -svg -wmf
 media-libs/imlib2 -shm
 media-video/mediainfo -wxwidgets
