@@ -831,3 +831,6 @@ app-admin/pass emacs
 
 # required by net-fs/samba-4.23.6
 net-libs/ngtcp2 gnutls
+
+# required by sci-libs/cantera-3.2.0
+app-text/doxygen dot
