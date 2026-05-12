@@ -242,6 +242,7 @@ dev-libs/opencl-clang:19 amd64
 ~media-sound/orpheus-1.6 amd64
 ~media-sound/sooperlooper-1.7.8_p3 amd64
 ~media-tv/linuxtv-dvb-apps-1.1.1.20140321 amd64
+~media-video/kaffeine-2.1.0_pre20260210 amd64
 ~media-video/recordmydesktop-0.4.0 amd64
 ~media-video/vcdimager-2.0.1 amd64
 ~net-analyzer/argus-clients-3.0.8.4 amd64
