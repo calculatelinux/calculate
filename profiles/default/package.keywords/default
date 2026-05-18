@@ -6,6 +6,7 @@ app-editors/vscode amd64
 ~app-i18n/man-pages-ru-5.03.2390.2390.20191017 amd64
 ~app-i18n/nabi-1.0.1 amd64
 app-misc/anki amd64
+app-misc/gojq amd64
 ~app-misc/rox-filer-2.11 amd64
 app-mobilephone/scrcpy amd64
 app-office/onlyoffice-bin amd64
