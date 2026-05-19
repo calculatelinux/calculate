@@ -1,0 +1,6 @@
+.calculate_directory:# Calculate append=skip pkg(media-gfx/gimp)!= ini(desktop.imageedit)==||ini(desktop.imageedit)==gimp
+gimp-2.8.2.desktop:# Calculate format=kde link=/usr/share/applications/zzz-gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)<>2.6,3.0
+gimp-3.0.desktop:# Calculate format=kde link=/usr/share/applications/gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)>=3.0
+mimeapps.list:application/illustrator=zzz-gimp.desktop
+mimeapps.list:application/illustrator=zzz-gimp.desktop
+gimp-3.2.desktop:# Calculate format=kde link=/usr/share/applications/gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)>=3.0
