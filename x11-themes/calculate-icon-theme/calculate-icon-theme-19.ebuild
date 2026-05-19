@@ -13,7 +13,7 @@ SRC_URI="https://mirror.calculate-linux.org/themes/icon/icon-calculate-19.tar.bz
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE="+qt5"
+IUSE="+qt6"
 
 RDEPEND="|| (
 		x11-themes/adwaita-icon-theme
@@ -23,7 +23,7 @@ RDEPEND="|| (
 		x11-themes/mate-icon-theme
 		x11-themes/papirus-icon-theme
 	)
-	qt5? ( dev-qt/qtsvg:5 )"
+	qt6? ( dev-qt/qtsvg:6 )"
 
 DEPEND="${RDEPEND}"
 
