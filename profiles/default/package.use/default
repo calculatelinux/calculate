@@ -234,10 +234,6 @@ www-plugins/chrome-binary-plugins -flash
 # support for wxWidgets/wxGTK GUI toolkit
 media-video/mediainfo wxwidgets
 
-# Build standalone client with integrated core, no external quasselcore needed.
-# use postgresql database for not using '-secure-delete' sqlite USE flag
-net-irc/quassel monolithic postgres
-
 # enable support for mobile broadband devices
 gnome-extra/nm-applet modemmanager
 
