@@ -106,3 +106,8 @@ app-emulation/spice -smartcard
 #  (dev-lang/mono-6.12.0.199-r2:0/0::gentoo, ebuild scheduled for merge) (buildtime)
 dev-lang/mono minimal
 
+# (net-print/cups-2.4.16:0/0::gentoo, binary scheduled for merge) depends on
+#  (net-dns/avahi-0.9_rc3:0/0::gentoo, binary scheduled for merge) (runtime)
+#    (dev-qt/qtbase-6.10.3-r1:6/6.10.3::gentoo, binary scheduled for merge) (runtime_slot_op)
+#       (net-print/cups-2.4.16:0/0::gentoo, binary scheduled for merge) (runtime)
+net-dns/avahi -qt6
