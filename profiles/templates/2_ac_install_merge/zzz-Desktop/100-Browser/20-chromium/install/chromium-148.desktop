@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/chromium-browser.desktop name=calculate-browser.desktop mirror pkg(www-client/chromium)>=148
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

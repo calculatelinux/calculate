@@ -5,29 +5,29 @@
 #-ini(desktop.browser, chromium)-#
 
 [Added Associations]
-application/rss+xml=chromium-browser-chromium.desktop;
-application/vnd.mozilla.xul+xml=chromium-browser-chromium.desktop;
-application/x-font-ttx=chromium-browser-chromium.desktop;
-application/xhtml+xml=chromium-browser-chromium.desktop;
-application/xml=chromium-browser-chromium.desktop;
-application/xml-external-parsed-entity=chromium-browser-chromium.desktop;
-application/xsd=chromium-browser-chromium.desktop;
-application/xslt+xml=chromium-browser-chromium.desktop;
-application/x-ufraw=chromium-browser-chromium.desktop;
-text/html=chromium-browser-chromium.desktop;
-x-scheme-handler/http=chromium-browser-chromium.desktop;
-x-scheme-handler/https=chromium-browser-chromium.desktop;
+application/rss+xml=chromium-browser.desktop;
+application/vnd.mozilla.xul+xml=chromium-browser.desktop;
+application/x-font-ttx=chromium-browser.desktop;
+application/xhtml+xml=chromium-browser.desktop;
+application/xml=chromium-browser.desktop;
+application/xml-external-parsed-entity=chromium-browser.desktop;
+application/xsd=chromium-browser.desktop;
+application/xslt+xml=chromium-browser.desktop;
+application/x-ufraw=chromium-browser.desktop;
+text/html=chromium-browser.desktop;
+x-scheme-handler/http=chromium-browser.desktop;
+x-scheme-handler/https=chromium-browser.desktop;
 
 [Default Applications]
-application/rss+xml=chromium-browser-chromium.desktop;
-application/vnd.mozilla.xul+xml=chromium-browser-chromium.desktop;
-application/x-font-ttx=chromium-browser-chromium.desktop;
-application/xhtml+xml=chromium-browser-chromium.desktop;
-application/xml=chromium-browser-chromium.desktop;
-application/xml-external-parsed-entity=chromium-browser-chromium.desktop;
-application/xsd=chromium-browser-chromium.desktop;
-application/xslt+xml=chromium-browser-chromium.desktop;
-application/x-ufraw=chromium-browser-chromium.desktop;
-text/html=chromium-browser-chromium.desktop;
-x-scheme-handler/http=chromium-browser-chromium.desktop;
-x-scheme-handler/https=chromium-browser-chromium.desktop;
+application/rss+xml=chromium-browser.desktop;
+application/vnd.mozilla.xul+xml=chromium-browser.desktop;
+application/x-font-ttx=chromium-browser.desktop;
+application/xhtml+xml=chromium-browser.desktop;
+application/xml=chromium-browser.desktop;
+application/xml-external-parsed-entity=chromium-browser.desktop;
+application/xsd=chromium-browser.desktop;
+application/xslt+xml=chromium-browser.desktop;
+application/x-ufraw=chromium-browser.desktop;
+text/html=chromium-browser.desktop;
+x-scheme-handler/http=chromium-browser.desktop;
+x-scheme-handler/https=chromium-browser.desktop;
