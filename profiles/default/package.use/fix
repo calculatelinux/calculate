@@ -2,10 +2,10 @@
 media-libs/babl -cpu_flags_x86_f16c -cpu_flags_x86_sse4_1
 
 # Missins support for required CPU baseline features. Was tested at the start of the `nomacs`. Also with these options is not going to the virtualbox.
-media-libs/opencv -cpu_flags_x86_f16c -cpu_flags_x86_fma3 -cpu_flags_x86_avx -cpu_flags_x86_avx2 -cpu_flags_x86_avx512f -cpu_flags_x86_popcnt -cpu_flags_x86_sse4_1 -cpu_flags_x86_sse4_2 -cpu_flags_x86_ssse3
+media-libs/opencv -cpu_flags_x86_f16c -cpu_flags_x86_fma3 -cpu_flags_x86_avx -cpu_flags_x86_avx2 -cpu_flags_x86_popcnt -cpu_flags_x86_sse4_1 -cpu_flags_x86_sse4_2 -cpu_flags_x86_ssse3
 
 # Missins support for required CPU baseline features. Was tested at the start of the `blender`.
-media-libs/openimageio -cpu_flags_x86_f16c -cpu_flags_x86_avx -cpu_flags_x86_avx2 -cpu_flags_x86_avx512f -cpu_flags_x86_avx512f -cpu_flags_x86_f16c
+media-libs/openimageio -cpu_flags_x86_f16c -cpu_flags_x86_avx -cpu_flags_x86_avx2 -cpu_flags_x86_f16c
 
 # block <media-gfx/imagemagick-7:=
 app-misc/graphlcd-base -imagemagick
@@ -48,11 +48,8 @@ sci-mathematics/octave -imagemagick
 # app-misc/yq[yq-symlink is soft blocking app-misc/yq-go-4.44.3
 app-misc/yq -yq-symlink
 
-# not compiled
-games-board/stockfish -cpu_flags_x86_avx512f
-
 # not working
 sys-cluster/glusterfs -ipv6
 
 # otherwise dev-python/scipy-1.17.1 fails to build when dev-python/numpy is built with these CPU flags
-dev-python/numpy -cpu_flags_x86_avx512f -cpu_flags_x86_fma4 -cpu_flags_x86_xop
+dev-python/numpy -cpu_flags_x86_fma4 -cpu_flags_x86_xop
