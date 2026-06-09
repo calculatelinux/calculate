@@ -834,3 +834,9 @@ net-libs/ngtcp2 gnutls
 
 # required by sci-libs/cantera-3.2.0
 app-text/doxygen dot
+
+# required by kde-apps/kdenetwork-filesharing-26.04.1
+dev-libs/qcoro qml
+
+# required by media-plugins/photoqt-extensions-5.3
+media-gfx/photoqt extensions
