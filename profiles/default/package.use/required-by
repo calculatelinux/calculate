@@ -73,7 +73,7 @@ dev-java/swing-layout source
 
 # required by sys-boot/plymouth [libkms]
 # required by media-libs/mesa-11.0.6 [video_cards_radeonsi]
-x11-libs/libdrm libkms video_cards_amdgpu video_cards_vmware
+x11-libs/libdrm libkms video_cards_amdgpu
 
 # required by kde-plasma/kwin-5.5.0, virtual/opencl-0-r6
 media-libs/mesa xa opencl
