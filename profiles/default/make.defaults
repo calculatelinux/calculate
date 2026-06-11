@@ -70,7 +70,7 @@ CPU_FLAGS_X86="3dnow 3dnowext mmx sse sse2 * -avx512_* -avx512bw -avx512dq -avx5
 DISTDIR="/var/calculate/distfiles"
 EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --autounmask --binpkg-changed-deps=n --binpkg-respect-use=y --jobs=4 --quiet-build=n"
 #EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --autounmask --binpkg-changed-deps=n --binpkg-respect-use=y --jobs=4 --quiet-build=n --jobs-tmpdir-require-free-gb=0"
-FEATURES="getbinpkg parallel-install -news -userpriv -pkgdir-index-trusted"
+FEATURES="getbinpkg parallel-install -news -userpriv -pkgdir-index-trusted news"
 GENTOO_MIRRORS="https://distfiles.gentoo.org"
 INPUT_DEVICES="${INPUT_DEVICES} evdev mutouch synaptics"
 INSTALL_MASK="/etc/systemd /lib*/systemd/*/*.service /usr/lib*/systemd/*/*.service /etc/shorewall*/* -/etc/shorewall*/shorewall*.conf"
