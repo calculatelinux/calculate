@@ -28,7 +28,6 @@ dev-python/setuptools-scm python_targets_python3_13
 dev-python/pyasn1 python_targets_python3_13
 dev-python/multidict python_targets_python3_13
 dev-python/six python_targets_python3_13
-dev-python/m2crypto python_targets_python3_13
 dev-python/pytz python_targets_python3_13
 dev-python/pyinotify python_targets_python3_13
 dev-python/pexpect python_targets_python3_13
