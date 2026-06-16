@@ -257,7 +257,7 @@ RDEPEND="
 		dev-python/cffi[${PYTHON_USEDEP}]
 		dev-python/six[${PYTHON_USEDEP}]
 		dev-libs/openssl
-		dev-python/m2crypto[${PYTHON_USEDEP}]
+		dev-python/cryptography[${PYTHON_USEDEP}]
 		dev-python/pytz[${PYTHON_USEDEP}]
 	)
 	gpg? (
