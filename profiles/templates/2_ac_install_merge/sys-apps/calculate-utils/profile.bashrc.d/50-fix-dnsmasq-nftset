@@ -1,0 +1,15 @@
+# Calculate comment=# protected
+# vim: set syntax=sh
+#
+# Copyright 2026 Calculate Ltd. http://www.calculate-linux.org
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+pre_src_compile() {
+    if [[ ${CATEGORY}/${PN} == "net-dns/dnsmasq" ]]; then
+        COPTS+=( "-DHAVE_NFTSET" )
+    fi
+}
