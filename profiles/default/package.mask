@@ -7,3 +7,8 @@ sys-libs/db:6.0
 
 # not compiled
 ~net-libs/pjproject-2.15.1
+
+# gedit-48.2 is incompatible with the new API in libgedit-gtksourceview >= 299.7.0
+# and libgedit-tepl >= 6.14.0 (requires libgedit-gtksourceview >= 299.6.0)
+=gui-libs/libgedit-gtksourceview-299.7.0
+=gui-libs/libgedit-tepl-6.14.0
