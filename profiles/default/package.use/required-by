@@ -840,3 +840,6 @@ dev-libs/qcoro qml
 
 # required by media-plugins/photoqt-extensions-5.3
 media-gfx/photoqt extensions
+
+# required by sys-process/gnome-usage-48.0
+net-misc/networkmanager vala
