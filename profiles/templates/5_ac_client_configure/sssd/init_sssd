@@ -1,0 +1,3 @@
+# Calculate path=/etc/init.d name=#-cut(1)-# format=patch multiline mirror
+<reg>^command_user="sssd:sssd"\n</reg>
+<text></text>

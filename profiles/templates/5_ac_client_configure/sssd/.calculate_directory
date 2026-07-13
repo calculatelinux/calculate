@@ -1,1 +1,1 @@
-# Calculate mergepkg()!=&&client.os_remote_type==ad append=skip
+# Calculate mergepkg(sys-auth/sssd)!=&&client.os_remote_type==ad append=skip
