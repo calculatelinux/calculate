@@ -67,7 +67,6 @@ sys-apps/portage -rsync-verify
 sys-auth/polkit -gtk
 sys-fs/btrfs-progs -convert
 sys-fs/mtools -X
-sys-fs/ntfs3g -fuse -mount-ntfs
 www-client/links -X
 www-client/seamonkey -system-png
 www-client/w3m -imlib
