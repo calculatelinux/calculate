@@ -79,3 +79,6 @@ media-libs/libcamera gui
 
 # wow64? ( !arm64? ( !abi_x86_32 ) )
 app-emulation/wine-vanilla -abi_x86_32
+
+# qt6? ( doc )
+dev-libs/uriparser doc
