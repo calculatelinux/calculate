@@ -28,3 +28,6 @@ app-crypt/sbsigntools
 #?in(os_linux_pkglist, desktop)!=#
 sys-fs/ecryptfs-utils
 #in#
+
+acct-group/root
+acct-user/root
