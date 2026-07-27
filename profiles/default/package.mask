@@ -7,3 +7,5 @@ sys-libs/db:6.0
 
 # not compiled
 ~net-libs/pjproject-2.15.1
+=dev-java/log4j-core-2.26.0
+=dev-java/log4j-12-api-2.26.0
