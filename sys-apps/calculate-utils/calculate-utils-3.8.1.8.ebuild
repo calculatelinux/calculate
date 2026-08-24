@@ -19,7 +19,7 @@ if [[ ${PV} == *9999* ]]; then
 	EGIT_REPO_URI="https://git.calculate-linux.org/calculate/calculate-utils.git"
 else
 	SRC_URI="https://git.calculate-linux.org/calculate/calculate-utils/archive/${PV}.tar.gz -> calculate-utils-${PV}.tar.gz"
-	KEYWORDS="amd64"
+	KEYWORDS="~amd64"
 	S="${WORKDIR}/${PN}"
 fi
 
@@ -309,23 +309,18 @@ RDEPEND="
 		sys-auth/pam_keystore
 		dev-lang/swig
 		dev-qt/qttools[qdbus]
-		sys-apps/edid-decode
+		|| ( >=media-libs/libv4l-1.30.1[utils] sys-apps/edid-decode )
 		dev-python/pygobject[${PYTHON_USEDEP}]
 		dev-python/dbus-python[${PYTHON_USEDEP}]
 	)
 
 	client? (
+		app-crypt/adcli
 		dev-python/python-ldap[ssl,${PYTHON_USEDEP}]
+		>=sys-auth/nss_ldap-239
 		sys-auth/pam_client
 		>=sys-auth/pam_ldap-180[ssl]
-		>=sys-auth/nss_ldap-239
+		sys-auth/sssd
 	)
 	backup? ( !sys-apps/calculate-server )
 "
-#	server? (
-#		sys-auth/pam_ldap
-#		sys-auth/nss_ldap
-#		dev-python/python-ldap[${PYTHON_USEDEP}]
-#	)
-#
-#	server? ( !sys-apps/calculate-server )
