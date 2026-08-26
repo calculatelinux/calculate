@@ -50,6 +50,7 @@ net-im/zoom amd64
 ~net-misc/asterisk-22.8.2 amd64
 ~net-misc/connman-gtk-1.1.1 amd64
 ~net-misc/connman-notify-0_pre20191003 amd64
+net-misc/ipcalc-ng amd64
 ~net-nds/shelldap-1.5.2 amd64
 ~net-print/foo2zjs-20200221 amd64
 ~net-print/foomatic-db-4.0.20190226 amd64
