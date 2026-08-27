@@ -10,7 +10,16 @@ inherit distutils-r1
 
 DESCRIPTION="Configuration utility for Linux services"
 HOMEPAGE="https://www.calculate-linux.org/main/en/calculate2"
-SRC_URI="https://mirror.calculate-linux.org/source/calculate2/${PN}/${P}.tar.bz2"
+
+if [[ ${PV} == *9999* ]]; then
+	inherit git-r3
+	EGIT_BRANCH="master"
+	EGIT_REPO_URI="https://git.calculate-linux.org/calculate/calculate-utils-2.1-server.git"
+else
+	SRC_URI="https://git.calculate-linux.org/calculate/calculate-utils-2.1-server/archive/${PV}.tar.gz -> calculate-utils-${PV}.tar.gz"
+	KEYWORDS="amd64"
+	S="${WORKDIR}/calculate-utils-2.1-server"
+fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -19,7 +28,6 @@ IUSE="calculate_nomail
 calculate_nodhcp
 calculate_noftp
 calculate_nojabber
-calculate_nonamed
 calculate_nosamba
 calculate_noproxy"
 
@@ -49,13 +57,43 @@ DEPEND="!sys-apps/calculate-lib
 		|| ( media-gfx/imagemagick
 			media-gfx/graphicsmagick )
 	)
-	!calculate_nonamed? ( >=net-dns/bind-9.6.1_p1[sdb-ldap(-)] )
 	!calculate_noproxy? ( >=net-proxy/squid-3.0.14[ldap,pam,ssl] )
 	!calculate_nodhcp? ( >=net-misc/dhcp-3.1.2_p1 )
 	dev-python/python-ldap[ssl,${PYTHON_USEDEP}]
 	dev-python/lxml[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
+
+src_install() {
+    local ret=0
+
+    if declare -f python_install >/dev/null; then
+            _distutils-r1_run_foreach_impl python_install || ret=${?}
+    else
+            _distutils-r1_run_foreach_impl distutils-r1_python_install || ret=${?}
+    fi
+
+    if declare -f python_install_all >/dev/null; then
+            _distutils-r1_run_common_phase python_install_all || ret=${?}
+    else
+            _distutils-r1_run_common_phase distutils-r1_python_install_all || ret=${?}
+    fi
+
+    _distutils-r1_check_namespace_pth
+
+    # now copy the extra directories outside the Python package tree
+    insinto /usr/lib/calculate/calculate-server/pym
+    doins -r "${S}/pym"/*
+
+    insinto /usr/lib/calculate/calculate-server/ldif
+    doins -r "${S}/ldif"/*
+
+    insinto /usr/lib/calculate/calculate-server/profile
+    doins -r "${S}/profile"/*
+
+    insinto /usr/lib/calculate/calculate-server/bin
+    doins -r "${S}/scripts"/*
+}
 
 pkg_postinst() {
 	if [ -d /var/calculate/server-data/mail/imap ] || \
@@ -180,3 +218,4 @@ pkg_postinst() {
 	ewarn "WARNING!!! If you have the samba service, then update it by the command:"
 	ewarn "\tcl-update samba"
 }
+
