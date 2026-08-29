@@ -8,6 +8,9 @@
 # Usage: world <category>
 # Output: category/package:slot
 #
+
+set -euo pipefail
+
 main() {
 	local category=${1:-}
 
@@ -34,11 +37,11 @@ main() {
 				-U python_targets_python${python_ver} -o \
 				-U python_single_target_python${python_ver} \
 			-\) \
-			--format '<bestslotversions:MY_SLOT>' '-*'
+			--format '<bestslotversions:MY_SLOT>' '-*' || true
 	else
 		MY_SLOT='<category>/<name>:<slot>\n' \
 		eix -C "$category" --stable \
-			--format '<bestslotversions:MY_SLOT>' '-*'
+			--format '<bestslotversions:MY_SLOT>' '-*' || true
 	fi
 }
 
