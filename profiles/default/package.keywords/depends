@@ -183,7 +183,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-python/myst-parser-5.0.0 ~amd64
 ~dev-python/pygobject-3.50.2 amd64
 ~dev-python/pygobject-3.50.2 amd64
-~dev-python/pyopenssl-26.2.0 amd64
+~dev-python/pyopenssl-26.4.0 amd64
 ~dev-python/pysdl2-0.9.17 amd64
 ~dev-python/respx-0.22.0 amd64
 ~dev-python/simpy-4.1.2 amd64
@@ -200,6 +200,8 @@ dev-libs/opencl-clang:19 amd64
 ~dev-util/rats-2.4 amd64
 ~dev-util/shellcheck-0.9.0 amd64
 ~dev-util/vint-0.3.21 amd64
+~dev-vcs/hg-git-1.2.0_p20260328 amd64
+~dev-vcs/tortoisehg-7.2.2 amd64
 ~games-action/spacearyarya-kxl-1.0.3 amd64
 ~games-util/qstat-2.17 amd64
 ~gnome-extra/evolution-data-server-3.60.1 amd64
