@@ -40,14 +40,8 @@ main() {
 
 		"${chroot_cmd[@]}" env MY_SLOT='<category>/<name>:<slot>\n' \
 		eix -C "$category" --stable \
-			-\( \
-				-\! -U "python_(targets|single_target)_python" \
-				-o \
-				-\( \
-					-U "python_targets_python${python_ver}" -o \
-					-U "python_single_target_python${python_ver}" \
-				-\) \
-			-\) \
+			-U "python_(targets|single_target)_python${python_ver}\$" \
+			-o '-!' -U "python_(targets|single_target)_python" \
 			--format '<bestslotversions:MY_SLOT>' '-*' || true
 	else
 		"${chroot_cmd[@]}" env MY_SLOT='<category>/<name>:<slot>\n' \
