@@ -26,13 +26,13 @@ main() {
 	fi
 
 	if [[ ! "$category" =~ / ]]; then
-		if ! grep -qx "$category" "$(portageq get_repo_path / gentoo)/profiles/categories"; then
+		if ! grep -qx "$category" "$("${chroot_cmd[@]}" portageq get_repo_path / gentoo)/profiles/categories"; then
 			echo "Error! world(): category '$category' not found." >&2
 			exit 1
 		fi
 
 		local python_ver
-		python_ver=$(portageq envvar USE | grep -oP 'python_single_target_python\K[0-9_]+')
+		python_ver=$("${chroot_cmd[@]}" portageq envvar USE | grep -oP 'python_single_target_python\K[0-9_]+')
 		if [[ -z "$python_ver" ]]; then
 			echo "Error! world(): failed to detect active python target version." >&2
 			exit 1
