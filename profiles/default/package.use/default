@@ -383,3 +383,6 @@ www-servers/nginx nginx_modules_http_v2 stream nginx_modules_stream_ssl_preread 
 
 # add support for SSL/TLS connections
 net-misc/rsync rrsync
+
+# support plugins
+media-gfx/nomacs plugins

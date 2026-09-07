@@ -75,5 +75,4 @@ x11-misc/xscreensaver -perl
 x11-terms/gnome-terminal -nautilus
 xfce-extra/xfce4-sensors-plugin -video_cards_nvidia
 
-media-gfx/nomacs -opencv -raw -tiff
 media-plugins/frei0r-plugins -facedetect
