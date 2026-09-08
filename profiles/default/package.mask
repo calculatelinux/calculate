@@ -11,3 +11,8 @@ sys-libs/db:6.0
 =dev-java/log4j-12-api-2.26.0
 
 =dev-libs/libfmt-12.1.0
+
+# dev-python/sip-6.16.1 breaks dev-python/wxpython-4.2.5 build:
+# "sip-build: ABI v12 is being targeted but the wx._core module doesn't support it"
+# Masking until wxpython gets a fix or bump for the new sip ABI handling.
+>=dev-python/sip-6.16.1
