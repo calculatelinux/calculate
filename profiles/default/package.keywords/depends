@@ -178,6 +178,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-lisp/alexandria-1.4 amd64
 ~dev-lisp/clx-0.7.5 amd64
 ~dev-lua/luv-1.52.1.0 amd64
+~dev-perl/Gtk2-1.249.930 amd64
 ~dev-perl/Net-CUPS-0.640.0 amd64
 ~dev-perl/Number-Bytes-Human-0.110.0 amd64
 ~dev-perl/X11-XCB-0.240.0 amd64
