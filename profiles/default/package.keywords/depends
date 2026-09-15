@@ -55,7 +55,7 @@
 ~app-dicts/mecab-unidic-2.1.2 amd64
 ~app-editors/kakoune-2022.10.31 amd64
 ~app-editors/levee-4.0 amd64
-~app-editors/neovim-0.12.3 amd64
+~app-editors/neovim-0.12.5 amd64
 ~app-editors/ng-1.5_beta1 amd64
 ~app-emulation/coldfire-0.3.1 amd64
 ~app-emulation/diskimage-builder-3.41.0 amd64
@@ -174,6 +174,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-libs/qr-code-generator-1.8.0 amd64
 ~dev-libs/spsdeclib-5.1 amd64
 ~dev-libs/tinyxml-2.6.2 amd64
+~dev-libs/tree-sitter-markdown-inline-0.5.3 amd64
 ~dev-lisp/alexandria-1.4 amd64
 ~dev-lisp/clx-0.7.5 amd64
 ~dev-lua/luv-1.52.1.0 amd64
