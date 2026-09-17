@@ -236,6 +236,7 @@ dev-libs/opencl-clang:19 amd64
 ~media-gfx/pqiv-2.13.3 amd64
 ~media-gfx/springgraph-88 amd64
 ~media-libs/aubio-0.4.9 amd64
+~media-libs/dav1d-1.5.4 amd64
 ~media-libs/elles_icc_profiles-20160501.0932 amd64
 ~media-libs/Field3D-1.7.3_p20230509 amd64
 ~media-libs/gst-plugins-bad-1.26.11 amd64
