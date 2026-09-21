@@ -146,6 +146,7 @@
 ~dev-db/mariadb-connector-odbc-3.1.18 amd64
 ~dev-db/oracle-instantclient-21.13.0.0.0 amd64
 ~dev-db/postgis-3.5.7 amd64
+~dev-erlang/jose-1.11.12 amd64
 ~dev-games/t4k-common-0.1.1 amd64
 ~dev-java/animal-sniffer-annotations-1.15 amd64
 ~dev-java/ant-contrib-1.0_beta6_pre20201123 amd64
