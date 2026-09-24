@@ -5,8 +5,8 @@ WebBrowser=opera-browser
 #?pkg(www-client/firefox)!=#
 WebBrowser=firefox
 #pkg#
-#?pkg(www-client/chromium)!=#
-WebBrowser=chromium-browser-chromium
+#?pkg(www-client/google-chrome)!=#
+WebBrowser=google-chrome
 #pkg#
 
 FileManager=Thunar
