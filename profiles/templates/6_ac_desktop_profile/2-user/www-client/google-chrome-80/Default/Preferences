@@ -1,6 +1,6 @@
 # Calculate format=json
 {
-#?pkg(www-client/chromium)>=83#
+#?pkg(www-client/google-chrome)>=83#
     "omnibox": {
         "prevent_url_elisions": true
     },

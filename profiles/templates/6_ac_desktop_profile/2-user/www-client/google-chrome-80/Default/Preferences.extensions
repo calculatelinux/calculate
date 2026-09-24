@@ -1,7 +1,7 @@
 # Calculate format=json name=Preferences
 {
     "extensions": {
-#?exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
         "commands": {
             "linux:Ctrl+Shift+9": {
                 "command_name": "generate_password",
@@ -21,18 +21,18 @@
         },
 #exists#
         "pinned_extensions": [
-#?exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
             "nngceckbapebfimnlniiiahkandclblb",
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
             "cjpalhdlnbpafiamejdnhcphjbkeiagm",
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
             "ddkjiahejlhfcafbddmgiahcphecmpfh"
 #exists#
         ],
         "settings": {
-#?exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
             "cjpalhdlnbpafiamejdnhcphjbkeiagm": {
                 "active_permissions": {
                     "api": [
@@ -177,10 +177,10 @@
 
             }
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
 	    ,
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=#
             "fnaicdffflnofjppbagibeoednhnbjhg": {
                 "active_bit": false,
                 "active_permissions": {
@@ -289,10 +289,10 @@
         		"mv2_deprecation_user_re_enabled": true
             }
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
         ,
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
             "ddkjiahejlhfcafbddmgiahcphecmpfh": {
               "account_extension_type": 0,
 			  "active_bit": false,
@@ -1435,10 +1435,10 @@
             }
       
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
         ,
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
         "nngceckbapebfimnlniiiahkandclblb": {
             "active_permissions": {
                 "api": [
@@ -1727,10 +1727,10 @@
     	    "mv2_deprecation_user_re_enabled": true
         }
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/chromium/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
         ,
 #exists#
-#?exists(~/.config/chromium/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
         "ddkjiahejlhfcafbddmgiahcphecmpfh": {
         "account_extension_type": 0,
         "active_bit": false,

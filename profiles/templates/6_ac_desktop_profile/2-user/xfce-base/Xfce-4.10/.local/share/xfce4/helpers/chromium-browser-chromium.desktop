@@ -1,7 +1,0 @@
-# Calculate format=compiz pkg(www-client/chromium)!= link=/usr/share/applications/chromium-browser-chromium.desktop mirror
-[Desktop Entry]
-#поддержка вызова /usr/lib64/xfce4/exo-1/exo-helper-1 --launch WebBrowser
-Type=X-XFCE-Helper
-X-XFCE-Category=WebBrowser
-X-XFCE-Commands=chromium-browser
-X-XFCE-CommandsWithParameter=chromium-browser "%s"

@@ -1,0 +1,33 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.browser, google-chrome)-#
+
+[Added Associations]
+application/rss+xml=google-chrome.desktop;
+application/vnd.mozilla.xul+xml=google-chrome.desktop;
+application/x-font-ttx=google-chrome.desktop;
+application/xhtml+xml=google-chrome.desktop;
+application/xml=google-chrome.desktop;
+application/xml-external-parsed-entity=google-chrome.desktop;
+application/xsd=google-chrome.desktop;
+application/xslt+xml=google-chrome.desktop;
+application/x-ufraw=google-chrome.desktop;
+text/html=google-chrome.desktop;
+x-scheme-handler/http=google-chrome.desktop;
+x-scheme-handler/https=google-chrome.desktop;
+
+[Default Applications]
+application/rss+xml=google-chrome.desktop;
+application/vnd.mozilla.xul+xml=google-chrome.desktop;
+application/x-font-ttx=google-chrome.desktop;
+application/xhtml+xml=google-chrome.desktop;
+application/xml=google-chrome.desktop;
+application/xml-external-parsed-entity=google-chrome.desktop;
+application/xsd=google-chrome.desktop;
+application/xslt+xml=google-chrome.desktop;
+application/x-ufraw=google-chrome.desktop;
+text/html=google-chrome.desktop;
+x-scheme-handler/http=google-chrome.desktop;
+x-scheme-handler/https=google-chrome.desktop;

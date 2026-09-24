@@ -1,9 +1,9 @@
 # Calculate pkg(www-plugins/chrome-ublock)!= run=/bin/bash
 
 plugin_id="cjpalhdlnbpafiamejdnhcphjbkeiagm"
-mkdir -p #-ur_home_path-#/.config/chromium/Default/Extensions/$plugin_id
-mkdir -p "#-ur_home_path-#/.config/chromium/Default/Local Extension Settings" &>/dev/null
-cp -r /usr/share/chrome-ublock/* #-ur_home_path-#/.config/chromium/Default/Extensions/$plugin_id
+mkdir -p #-ur_home_path-#/.config/google-chrome/Default/Extensions/$plugin_id
+mkdir -p "#-ur_home_path-#/.config/google-chrome/Default/Local Extension Settings" &>/dev/null
+cp -r /usr/share/chrome-ublock/* #-ur_home_path-#/.config/google-chrome/Default/Extensions/$plugin_id
 
 #?ini(user_credentials.ublock_whitelist)!=#
 NETWHITELIST="$(sed -r 's/([^,]+)/\\"\1\\"/g' <<<"#-ini(user_credentials.ublock_whitelist)-#"),"
@@ -11,7 +11,7 @@ NETWHITELIST="$(sed -r 's/([^,]+)/\\"\1\\"/g' <<<"#-ini(user_credentials.ublock_
 NETWHITELIST=""
 #ini#
 
-/usr/share/chrome-ublock/configure.py #-ur_home_path-#/.config/chromium $plugin_id &>/dev/null <<EOF
+/usr/share/chrome-ublock/configure.py #-ur_home_path-#/.config/google-chrome $plugin_id &>/dev/null <<EOF
 {
     "compiledMagic": "23",
     "hostnameSwitchesString": "\"no-large-media: behind-the-scene false\"",
@@ -22,6 +22,6 @@ NETWHITELIST=""
 }
 EOF
 
-chown #-ur_login-#:#-ur_group-# -R #-ur_home_path-#/.config/chromium/Default/Extensions
-chown #-ur_login-#:#-ur_group-# -R "#-ur_home_path-#/.config/chromium/Default/Local Extension Settings"
+chown #-ur_login-#:#-ur_group-# -R #-ur_home_path-#/.config/google-chrome/Default/Extensions
+chown #-ur_login-#:#-ur_group-# -R "#-ur_home_path-#/.config/google-chrome/Default/Local Extension Settings"
 exit 0

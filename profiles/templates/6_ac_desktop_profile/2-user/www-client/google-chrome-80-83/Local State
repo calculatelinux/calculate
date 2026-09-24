@@ -1,4 +1,4 @@
-# Calculate format=json path=~/.config/chromium 
+# Calculate format=json path=~/.config/google-chrome 
 {
      "browser": {
         "enabled_labs_experiments":["omnibox-context-menu-show-full-urls@1"]
