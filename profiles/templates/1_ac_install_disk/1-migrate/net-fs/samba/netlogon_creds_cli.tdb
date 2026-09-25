@@ -1,0 +1,1 @@
+# Calculate path=/var/lib/samba/private append=replace link=#-cl_install_path_from-#/var/lib/samba/private/netlogon_creds_cli.tdb mirror force
