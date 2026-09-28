@@ -1,12 +1,9 @@
 ~dev-python/click-log-0.4.0 amd64
-~dev-python/dockerpty-0.4.1 amd64
 ~dev-python/flask-sphinx-themes-1.0.2 amd64
 ~dev-python/google-pasta-0.2.0 amd64
 ~dev-python/mccabe-0.7.0 amd64
 ~dev-python/plyvel-1.5.1 amd64
-~dev-python/python-axolotl-curve25519-0.4.1_p2 amd64
 ~dev-python/python-pam-2.0.2 amd64
-~dev-python/raet-0.6.8 amd64
 ~dev-python/sphinxcontrib-jsmath-1.0.1 amd64
 ~dev-python/txamqp-0.8.2 amd64
 ~dev-python/whisper-1.1.10 amd64
