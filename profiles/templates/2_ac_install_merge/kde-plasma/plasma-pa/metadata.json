@@ -1,8 +1,0 @@
-# Calculate format=json
-{
-#?pkg(kde-apps/kmix)!=#
-	"X-Plasma-NotificationArea": "false"
-#!pkg#
-	"X-Plasma-NotificationArea": "true"
-#pkg#
-}
