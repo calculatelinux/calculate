@@ -1,10 +1,10 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# NOTE: This is the modification of `virtual/editor-0-r7::gentoo` with additional editors allowed
-# Модификация сводится к добавлению `sys-apps/busybox` в ||-clause RDEPEND'ов.
-# Учитывая, что данный пакет входит в сет `@system`, это позволяет иметь в системе
-# из перечисленных ниже RDEPEND'ов только `sys-apps/busybox`.
+# NOTE: This is a modification of virtual/editor-0-r9::gentoo to allow additional editors.
+# The change consists of adding sys-apps/busybox to the RDEPEND ||-clause.
+# Since this package is part of the @system set, this allows the system to have
+# only sys-apps/busybox among the listed RDEPENDs.
 
 EAPI=8
 
@@ -41,7 +41,9 @@ RDEPEND="|| (
 	app-editors/uemacs-pk
 	app-editors/vile
 	app-editors/vim
+	app-editors/vim-classic
 	app-editors/gvim
+	app-editors/gvim-classic
 	app-editors/vis
 	app-editors/xemacs
 	app-editors/zile
@@ -55,3 +57,4 @@ RDEPEND="|| (
 #	app-misc/mc: mcedit (#62643)
 #	dev-lisp/cmucl: hemlock
 #	mail-client/alpine: pico
+#	sys-apps/busybox: vi
