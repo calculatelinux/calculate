@@ -1,4 +1,4 @@
-# Calculate format=diff merge(net-misc/freerdp)==3.32.0
+# Calculate format=diff merge(net-misc/freerdp)>=3.32.1
 diff --git a/client/X11/xf_cliprdr.c b/client/X11/xf_cliprdr.c
 index 728773ca7d5a..dfa4ef8d64e2 100644
 --- a/client/X11/xf_cliprdr.c
