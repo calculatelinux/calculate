@@ -1,0 +1,13 @@
+# Calculate chmod=0755
+#!/sbin/openrc-run
+description="Remount domain shares for logged-in users"
+command=/usr/local/sbin/cl-mount-watch.sh
+command_background=true
+pidfile=/run/client-mount-watch.pid
+output_log=/var/log/client-mount-watch.log
+error_log=/var/log/client-mount-watch.log
+
+depend() {
+	need localmount net
+	after client
+}

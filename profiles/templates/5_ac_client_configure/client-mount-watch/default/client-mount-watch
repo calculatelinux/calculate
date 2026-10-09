@@ -1,0 +1,1 @@
+# Calculate link=/etc/init.d/client-mount-watch symbolic ini(runlevels.client-mount-watch)!=on&&ini(runlevels.client-mount-watch,on)==||grep(/var/lib/calculate/-runlevels-client-mount-watch,/client-mount-watch)!=
