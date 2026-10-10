@@ -379,3 +379,6 @@ www-servers/nginx nginx_modules_http_v2 stream nginx_modules_stream_ssl_preread 
 
 # add support for SSL/TLS connections
 net-misc/rsync rrsync
+
+# enable natspec for correct decoding of Cyrillic filenames
+app-arch/unzip natspec
