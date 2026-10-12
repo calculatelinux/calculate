@@ -1,1 +1,0 @@
-# Calculate append=skip mergepkg(www-client/google-chrome)>=83&&ini(update.google-chrome)!=off&&ini(ver.google-chrome)==80

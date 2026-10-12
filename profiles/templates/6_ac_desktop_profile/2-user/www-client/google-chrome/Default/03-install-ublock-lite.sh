@@ -14,10 +14,7 @@ cp -r /usr/share/chrome-ublock-lite/* #-ur_home_path-#/.config/google-chrome/Def
   "admin_showBlockedCount": {},
   "admin_strictBlockMode": {},
   "defaultRulesetIds": [
-    "default",
-    "badware",
     "urlhaus-full",
-    "openphish-domains",
     "rus-0"
   ],
   "filteringModeDetails": {
@@ -37,8 +34,7 @@ cp -r /usr/share/chrome-ublock-lite/* #-ur_home_path-#/.config/google-chrome/Def
     ],
     "hasBroadHostPermissions": true,
     "showBlockedCount": true,
-    "strictBlockMode": true,
-    "version": "2025.518.1611"
+    "strictBlockMode": true
   }
 }
 EOF

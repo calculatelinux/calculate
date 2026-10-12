@@ -1,0 +1,13 @@
+# Calculate pkg(www-client/google-chrome)!=
+[Desktop Entry]
+Name=Google Chrome
+Comment=The web browser from Google
+Exec=google-chrome-stable --password-store=basic %U
+TryExec=google-chrome-stable
+Icon=google-chrome
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;
+Categories=Network;WebBrowser;
+X-XFCE-Category=WebBrowser
+X-XFCE-Commands=google-chrome-stable --password-store=basic
+X-XFCE-CommandsWithParameter=google-chrome-stable --password-store=basic "%s"
+Type=X-XFCE-Helper

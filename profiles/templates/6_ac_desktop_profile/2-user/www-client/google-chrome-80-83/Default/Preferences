@@ -1,6 +1,0 @@
-# Calculate format=json
-{
-    "omnibox": {
-        "prevent_url_elisions": true
-    }
-}

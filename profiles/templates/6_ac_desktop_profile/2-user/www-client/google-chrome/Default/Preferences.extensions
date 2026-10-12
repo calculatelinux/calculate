@@ -22,276 +22,16 @@
 #exists#
         "pinned_extensions": [
 #?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
-            "nngceckbapebfimnlniiiahkandclblb",
+            "nngceckbapebfimnlniiiahkandclblb"
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+        ,
 #exists#
-#?exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
-            "cjpalhdlnbpafiamejdnhcphjbkeiagm",
 #exists#
 #?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
             "ddkjiahejlhfcafbddmgiahcphecmpfh"
 #exists#
         ],
         "settings": {
-#?exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=#
-            "cjpalhdlnbpafiamejdnhcphjbkeiagm": {
-                "active_permissions": {
-                    "api": [
-                        "contextMenus",
-                        "privacy",
-                        "storage",
-                        "tabs",
-                        "unlimitedStorage",
-                        "webNavigation",
-                        "webRequest",
-                        "webRequestBlocking"
-                    ],
-                    "explicit_host": [
-                        "<all_urls>",
-                        "chrome://favicon/*"
-                    ],
-                    "manifest_permissions": [],
-                    "scriptable_host": [
-                        "http://*/*",
-                        "https://*/*"
-                    ]
-                },
-                "content_settings": [],
-                "creation_flags": 9,
-                "events": [],
-                "from_bookmark": false,
-                "from_webstore": true,
-                "granted_permissions": {
-                    "api": [
-                        "contextMenus",
-                        "privacy",
-                        "storage",
-                        "tabs",
-                        "unlimitedStorage",
-                        "webNavigation",
-                        "webRequest",
-                        "webRequestBlocking"
-                    ],
-                    "explicit_host": [
-                        "<all_urls>",
-                        "chrome://favicon/*"
-                    ],
-                    "manifest_permissions": [],
-                    "scriptable_host": [
-                        "http://*/*",
-                        "https://*/*"
-                    ]
-                },
-                "incognito": true,
-                "incognito_content_settings": [],
-                "incognito_preferences": {},
-                "location": 1,
-                "manifest": {
-                    "author": "All uBlock Origin contributors",
-                    "background": {
-                        "page": "background.html"
-                    },
-                    "browser_action": {
-                        "default_icon": {
-                            "16": "img/icon_16.png",
-                            "32": "img/icon_32.png"
-                        },
-                        "default_popup": "popup.html",
-                        "default_title": "uBlock Origin"
-                    },
-                    "content_scripts": [
-                        {
-                            "all_frames": true,
-                            "js": [
-                                "/js/vapi.js",
-                                "/js/vapi-client.js",
-                                "/js/contentscript.js"
-                            ],
-                            "matches": [
-                                "http://*/*",
-                                "https://*/*"
-                            ],
-                            "run_at": "document_start"
-                        },
-                        {
-                            "all_frames": false,
-                            "js": [
-                                "/js/scriptlets/subscriber.js"
-                            ],
-                            "matches": [
-                                "http://*/*",
-                                "https://*/*"
-                            ],
-                            "run_at": "document_idle"
-                        }
-                    ],
-                    "content_security_policy": "script-src 'self'; object-src 'self'",
-                    "default_locale": "en",
-                    "icons": {
-                        "128": "img/icon_128.png",
-                        "16": "img/icon_16.png",
-                        "32": "img/icon_32.png",
-                        "64": "img/icon_64.png"
-                    },
-                    "incognito": "split",
-                    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmJNzUNVjS6Q1qe0NRqpmfX/oSJdgauSZNdfeb5RV1Hji21vX0TivpP5gq0fadwmvmVCtUpOaNUopgejiUFm/iKHPs0o3x7hyKk/eX0t2QT3OZGdXkPiYpTEC0f0p86SQaLoA2eHaOG4uCGi7sxLJmAXc6IsxGKVklh7cCoLUgWEMnj8ZNG2Y8UKG3gBdrpES5hk7QyFDMraO79NmSlWRNgoJHX6XRoY66oYThFQad8KL8q3pf3Oe8uBLKywohU0ZrDPViWHIszXoE9HEvPTFAbHZ1umINni4W/YVs+fhqHtzRJcaKJtsTaYy+cholu5mAYeTZqtHf6bcwJ8t9i2afwIDAQAB",
-                    "options_ui": {
-                        "open_in_tab": true,
-                        "page": "dashboard.html"
-                    },
-                    "permissions": [
-                        "contextMenus",
-                        "privacy",
-                        "storage",
-                        "tabs",
-                        "unlimitedStorage",
-                        "webNavigation",
-                        "webRequest",
-                        "webRequestBlocking",
-                        "<all_urls>"
-                    ],
-                    "short_name": "uBlock\u2080",
-                    "storage": {
-                        "managed_schema": "managed_storage.json"
-                    },
-                    "update_url": "https://clients2.google.com/service/update2/crx",
-                    "version": "#-pkg(www-plugins/chrome-ublock)-#",
-                    "web_accessible_resources": [
-                        "/web_accessible_resources/*"
-                    ]
-                },
-                "needs_sync": true,
-                "never_activated_since_loaded": true,
-                "path": "cjpalhdlnbpafiamejdnhcphjbkeiagm/#-pkg(www-plugins/chrome-ublock)-#_0",
-                "preferences": {
-                    "enable_a_ping": false,
-                    "net.network_prediction_options": 2
-                },
-                "regular_only_preferences": {},
-                "state": 1,
-                "was_installed_by_default": false,
-                "was_installed_by_oem": false,
-                "withholding_permissions": false,
-				"mv2_deprecation_did_disable": true,
-		        "mv2_deprecation_disabled_dialog_ack": true,
-        		"mv2_deprecation_user_re_enabled": true
-
-            }
-#exists#
-#?exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
-	    ,
-#exists#
-#?exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=#
-            "fnaicdffflnofjppbagibeoednhnbjhg": {
-                "active_bit": false,
-                "active_permissions": {
-                    "api": [
-                        "alarms",
-                        "bookmarks",
-                        "identity",
-                        "storage",
-                        "tabs",
-                        "unlimitedStorage"
-                    ],
-                    "explicit_host": [
-                        "http://*/*",
-                        "https://*/*"
-                    ],
-                    "manifest_permissions": [],
-                    "scriptable_host": []
-                },
-                "allowlist": 1,
-                "commands": {},
-                "content_settings": [],
-                "creation_flags": 9,
-                "events": [],
-                "first_install_time": "13339844149010023",
-                "from_webstore": true,
-                "granted_permissions": {
-                    "api": [
-                        "alarms",
-                        "bookmarks",
-                        "identity",
-                        "storage",
-                        "tabs",
-                        "unlimitedStorage"
-                    ],
-                    "explicit_host": [
-                        "http://*/*",
-                        "https://*/*"
-                    ],
-                    "manifest_permissions": [],
-                    "scriptable_host": []
-                },
-                "incognito_content_settings": [],
-                "incognito_preferences": {},
-                "last_update_time": "13339844149010023",
-                "location": 1,
-                "manifest": {
-                    "applications": {
-                        "gecko": {
-                            "id": "floccus@handmadeideas.org",
-                            "strict_min_version": "57.0"
-                        }
-                    },
-                    "background": {
-                        "page": "dist/html/background.html"
-                    },
-                    "browser_action": {
-                        "browser_style": false,
-                        "chrome_style": false,
-                        "default_icon": {
-                            "48": "icons/logo.png"
-                        },
-                        "default_popup": "dist/html/options.html",
-                        "default_title": "Open Floccus options"
-                    },
-                    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
-                    "current_locale": "ru",
-                    "default_locale": "en",
-                    "description": "Sync your bookmarks privately across browsers and devices",
-                    "icons": {
-                        "128": "icons/logo_128.png",
-                        "48": "icons/logo.png",
-                        "64": "icons/logo_64.png"
-                    },
-                    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhV577hk+UYurcLgRCzh9QNTs9bfmvUoRdHzneepg2kakWS/jY1evKhYFoL+WucmmMwGsxbms+tHz+h49TlqQfHj8SmpERkpQxkLR7j6uIX5239ry1s3t+wdkqHh0V7ZLDajd7beHkRyAFG8bapeiu8tZC0DyeEx9Quoeicipf0G97DK5CAyyK+F9RdJw6h1u/NP9/NSD79NqTRQ3pEMhTghBx/Ck2Ix1GadT9fN5K5WMkEDlFqk9BhIO135aKHK6Z17cT0wdPbp5Mb7eUKQTDHoWxYR4A26n59sFGtqz8nJWiTYOtKg4osMFPkLv0oNsVdKal6n2gXzCtaPMX+ttJQIDAQAB",
-                    "manifest_version": 2,
-                    "name": "floccus bookmarks sync",
-                    "options_ui": {
-                        "browser_style": false,
-                        "chrome_style": false,
-                        "page": "dist/html/options.html"
-                    },
-                    "permissions": [
-                        "https://*/",
-                        "http://*/",
-                        "alarms",
-                        "bookmarks",
-                        "storage",
-                        "unlimitedStorage",
-                        "tabs",
-                        "identity"
-                    ],
-                    "short_name": "floccus",
-                    "update_url": "https://clients2.google.com/service/update2/crx",
-                    "version": "5.1.0"
-                },
-                "needs_sync": true,
-                "path": "fnaicdffflnofjppbagibeoednhnbjhg/5.1.0_0",
-                "preferences": {},
-                "regular_only_preferences": {},
-                "state": 1,
-                "was_installed_by_default": false,
-                "was_installed_by_oem": false,
-                "withholding_permissions": false,
-				"mv2_deprecation_did_disable": true,
-		        "mv2_deprecation_disabled_dialog_ack": true,
-        		"mv2_deprecation_user_re_enabled": true
-            }
-#exists#
-#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
-        ,
-#exists#
 #?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
             "ddkjiahejlhfcafbddmgiahcphecmpfh": {
               "account_extension_type": 0,
@@ -1435,7 +1175,7 @@
             }
       
 #exists#
-#?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
         ,
 #exists#
 #?exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=#
@@ -1727,7 +1467,7 @@
     	    "mv2_deprecation_user_re_enabled": true
         }
 #exists#
-#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/fnaicdffflnofjppbagibeoednhnbjhg)!=||exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=&&exists(~/.config/google-chrome/Default/Extensions/nngceckbapebfimnlniiiahkandclblb)!=||exists(~/.config/google-chrome/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm)!=&&exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
+#?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
         ,
 #exists#
 #?exists(~/.config/google-chrome/Default/Extensions/ddkjiahejlhfcafbddmgiahcphecmpfh)!=#
@@ -2169,7 +1909,6 @@
 #exists#
 	},
         "toolbar": [
-            "cjpalhdlnbpafiamejdnhcphjbkeiagm",
             "nngceckbapebfimnlniiiahkandclblb"
         ]
     },
@@ -2177,8 +1916,6 @@
         "macs": {
             "extensions": {
                 "settings": {
-                    "cjpalhdlnbpafiamejdnhcphjbkeiagm": "4013706C949FD89AD1F588F32A08A9656D83C0A61DB56C141341E60CF4404C95",
-                    "fnaicdffflnofjppbagibeoednhnbjhg": "8CD963F9765D0603AD154C7D14611AC1EBAC635E5306FE23E4614A506D1BCB19",
                     "nngceckbapebfimnlniiiahkandclblb": "A819A6FDDE8FD1404F197920AC1CD1296A092DACE30C8FDE72586F066C7EBEDD"
                 }
             }
