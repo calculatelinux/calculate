@@ -16,4 +16,7 @@ Exec=/usr/bin/python3.12 /usr/libexec/calculate/cl-dbus-core.py
 #?pkg(dev-lang/python:3.13)!=&&pkg(dev-python/pygobject[python_targets_python3_13])!=&&pkg(dev-python/dbus-python[python_targets_python3_13])!=#
 Exec=/usr/bin/python3.13 /usr/libexec/calculate/cl-dbus-core.py
 #pkg#
+#?pkg(dev-lang/python:3.14)!=&&pkg(dev-python/pygobject[python_targets_python3_14])!=&&pkg(dev-python/dbus-python[python_targets_python3_14])!=#
+Exec=/usr/bin/python3.14 /usr/libexec/calculate/cl-dbus-core.py
+#pkg#
 User=root
