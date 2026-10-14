@@ -25,9 +25,11 @@ CHECK_INTERVAL=60
 SYNC_INTERVAL=$((6 * 3600))
 CMD_TIMEOUT=300
 SSSD_CONF=${SSSD_CONF:-/etc/sssd/sssd.conf}
+FULL_KINIT_AFTER=${FULL_KINIT_AFTER:-3}
 
 declare -A NEXT_SYNC
 declare -A LAST_STATE
+declare -A FAILCNT
 DOMAIN=""
 DOMAIN_RE=""
 CONF_DC=""
@@ -170,6 +172,9 @@ while true; do
     for u in "${!LAST_STATE[@]}"; do
         printf '%s\n' "${USERS[@]}" | grep -Fxq "$u" || unset "LAST_STATE[$u]"
     done
+    for u in "${!FAILCNT[@]}"; do
+        printf '%s\n' "${USERS[@]}" | grep -Fxq "$u" || unset "FAILCNT[$u]"
+    done
 
     new_domain=$(get_domain)
     if [[ $new_domain != "$DOMAIN" ]]; then
@@ -204,10 +209,20 @@ while true; do
         fi
 
         if [[ $state != ok ]]; then
-            run_sync "$login" --no-sync on --renew-ticket off
+            FAILCNT[$login]=$(( ${FAILCNT[$login]:-0} + 1 ))
+            if (( FAILCNT[$login] >= FULL_KINIT_AFTER )); then
+                log "$login: ${FAILCNT[$login]} failed attempts; trying full kinit (kernel keyring password)"
+                run_sync "$login" --no-sync on && FAILCNT[$login]=0
+            elif (( FAILCNT[$login] == 2 )); then
+                run_sync "$login" --no-sync on --renew-ticket on && FAILCNT[$login]=0
+            else
+                run_sync "$login" --no-sync on --renew-ticket off && FAILCNT[$login]=0
+            fi
         elif [[ -n $CONF_DC && $LAST_RAW == "$CONF_DC" ]] &&
             umount_stale "$login" "$CONF_DC"; then
-            run_sync "$login" --no-sync on --renew-ticket off
+            run_sync "$login" --no-sync on --renew-ticket off && FAILCNT[$login]=0
+        else
+            FAILCNT[$login]=0
         fi
 
         if (( now >= NEXT_SYNC[$login] )); then

@@ -1,0 +1,9 @@
+# Calculate exec=/bin/bash module(client)!=&&client.os_remote_auth==&&client.ac_client_configure==on||merge(sys-apps/calculate-utils)!=&&module(client)==&&ini(merge-calculate.client)!=
+
+rc-update del client-mount-watch default &>/dev/null
+/etc/init.d/client-mount-watch stop &>/dev/null
+[[ -f /etc/init.d/client-mount-watch ]] &&
+    grep -q client-mount-watch.pid /etc/init.d/client-mount-watch 2>/dev/null &&
+    rm -f /etc/init.d/client-mount-watch /usr/local/sbin/cl-mount-watch.sh
+
+true
