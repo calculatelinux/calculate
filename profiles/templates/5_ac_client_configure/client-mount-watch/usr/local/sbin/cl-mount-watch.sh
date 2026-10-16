@@ -22,10 +22,10 @@ get_domain() {
 }
 
 CHECK_INTERVAL=60
-SYNC_INTERVAL=$((6 * 3600))
+SYNC_INTERVAL=$((4 * 3600))
 CMD_TIMEOUT=300
 SSSD_CONF=${SSSD_CONF:-/etc/sssd/sssd.conf}
-FULL_KINIT_AFTER=${FULL_KINIT_AFTER:-3}
+FULL_KINIT_AFTER=3
 
 declare -A NEXT_SYNC
 declare -A LAST_STATE
@@ -226,8 +226,15 @@ while true; do
         fi
 
         if (( now >= NEXT_SYNC[$login] )); then
-            run_sync "$login" --no-sync on --renew-ticket on
-            NEXT_SYNC[$login]=$((SECONDS + SYNC_INTERVAL))
+            if ! run_sync "$login" --no-sync on --renew-ticket on; then
+                log "$login: scheduled ticket renew failed; trying full kinit (kernel keyring password)"
+                if run_sync "$login" --no-sync on; then
+                    log "$login: full kinit ok"
+                else
+                    log "$login: full kinit failed; interactive re-login required"
+                fi
+            fi
+            NEXT_SYNC[$login]=$((now + SYNC_INTERVAL))
         fi
     done
 
