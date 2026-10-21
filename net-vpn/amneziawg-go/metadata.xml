@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Userspace Go implementation of the AmneziaWG protocol (a WireGuard
+		fork resistant to DPI detection), usable as an alternative to the
+		amneziawg kernel module. Configured with awg(8)/awg-quick(8) from
+		net-vpn/amneziawg-tools via the /run/amneziawg control socket.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">amnezia-vpn/amneziawg-go</remote-id>
+	</upstream>
+</pkgmetadata>

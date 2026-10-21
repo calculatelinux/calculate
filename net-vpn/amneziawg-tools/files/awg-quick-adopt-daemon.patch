@@ -1,0 +1,18 @@
+--- a/src/wg-quick/linux.bash
++++ b/src/wg-quick/linux.bash
+@@ -325,9 +325,13 @@
+ 
+ cmd_up() {
+ 	local i
+-	[[ -z $(ip link show dev "$INTERFACE" 2>/dev/null) ]] || die "\`$INTERFACE' already exists"
++	# Allow adopting an interface already created by the amneziawg-go userspace daemon.
++	if [[ -n $(ip link show dev "$INTERFACE" 2>/dev/null) ]]; then
++		[[ -S /run/amneziawg/$INTERFACE.sock ]] || die "\`$INTERFACE' already exists"
++		DAEMON_MANAGED=1
++	fi
+ 	trap 'del_if; exit' INT TERM EXIT
+-	add_if
++	[[ -n $DAEMON_MANAGED ]] || add_if
+ 	execute_hooks "${PRE_UP[@]}"
+ 	set_config
+ 	for i in "${ADDRESSES[@]}"; do

@@ -1,0 +1,73 @@
+#!/sbin/openrc-run
+# Copyright 2026 Calculate Linux Community
+# Distributed under the terms of the GNU General Public License v2
+
+description="AmneziaWG userspace daemon (amneziawg-go)"
+
+confd="/etc/conf.d/amneziawg-go"
+
+: "${AWG_QUICK:=yes}"
+: "${AWG_CONFDIR:=/etc/amneziawg}"
+
+IFNAME="${SVCNAME#*.}"
+
+pidfile="/run/amneziawg-go.${IFNAME}.pid"
+command="/usr/bin/amneziawg-go"
+command_args="-f ${IFNAME}"
+command_background="yes"
+
+depend() {
+	need net
+	use dns
+}
+
+checkconfig() {
+	if [[ ${IFNAME} == "${SVCNAME}" ]] || ! [[ ${IFNAME} =~ ^[a-zA-Z0-9_=+.-]{1,15}$ ]]; then
+		eerror "This script cannot be called directly. Create a symlink named after the interface:"
+		eerror "    ln -s /etc/init.d/amneziawg-go /etc/init.d/amneziawg-go.wg0"
+		eerror "    /etc/init.d/amneziawg-go.wg0 start"
+		return 1
+	fi
+	if [[ ! -e ${AWG_CONFDIR}/${IFNAME}.conf ]]; then
+		eerror "Config file ${AWG_CONFDIR}/${IFNAME}.conf does not exist"
+		return 1
+	fi
+	return 0
+}
+
+start_pre() {
+	checkconfig || return 1
+	if [[ ! -e /dev/net/tun ]]; then
+		modprobe tun 2>/dev/null || true
+	fi
+	if [[ ! -e /dev/net/tun ]]; then
+		eerror "/dev/net/tun is missing and the tun module failed to load"
+		return 1
+	fi
+	if ip link show dev "${IFNAME}" >/dev/null 2>&1; then
+		ewarn "${IFNAME} already exists, deleting before start"
+		ip link delete dev "${IFNAME}" >/dev/null 2>&1 || true
+	fi
+	return 0
+}
+
+start_post() {
+	[[ ${AWG_QUICK} == yes ]] || return 0
+	local i=0
+	while (( i < 50 )); do
+		[[ -S /run/amneziawg/${IFNAME}.sock ]] && break
+		sleep 0.1
+		((i++))
+	done
+	if [[ ! -S /run/amneziawg/${IFNAME}.sock ]]; then
+		eerror "amneziawg-go control socket /run/amneziawg/${IFNAME}.sock did not appear"
+		return 1
+	fi
+	awg-quick up "${AWG_CONFDIR}/${IFNAME}.conf"
+}
+
+stop_pre() {
+	[[ ${AWG_QUICK} == yes ]] || return 0
+	awg-quick down "${AWG_CONFDIR}/${IFNAME}.conf" >/dev/null 2>&1 || true
+	return 0
+}

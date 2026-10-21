@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Userspace command line utilities for AmneziaWG: awg(8) configures the
+		protocol parameters through the control socket (kernel module or the
+		amneziawg-go daemon), awg-quick(8) brings tunnels up and down.
+		Includes a local patch allowing awg-quick to adopt interfaces
+		created by the amneziawg-go userspace daemon.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">amnezia-vpn/amneziawg-tools</remote-id>
+	</upstream>
+</pkgmetadata>
