@@ -11,7 +11,7 @@ SRC_URI="https://github.com/amnezia-vpn/amneziawg-go/archive/refs/tags/v${PV}.ta
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 RDEPEND="net-vpn/amneziawg-tools"
 
