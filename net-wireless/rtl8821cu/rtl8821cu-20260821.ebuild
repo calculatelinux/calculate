@@ -1,11 +1,11 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 inherit linux-mod-r1
 
-COMMIT="132dcf025806a436b9a95fb4af24eacfd07222f5"
+COMMIT="bda65aac150d2cde0df9603206eec23a6f3b77c4"
 
 DESCRIPTION="Realtek USB WiFi Adapters based on 8811CU/8821CU/8821CUH/8731AU Chipsets"
 HOMEPAGE="https://github.com/morrownr/8821cu-20210916"
@@ -19,9 +19,19 @@ KEYWORDS="~amd64"
 
 DEPEND="virtual/linux-sources"
 
+src_prepare() {
+		default
+
+		# Replace wrong EXTRA_CFLAGS (stopped working with kernels >= 6.15)
+		# with proper CFLAGS_MODULE (available since 2.6.36).
+		# Bug 957883
+		sed -E -i'' \
+		  -e 's/(^|[^A-Za-z0-9_])EXTRA_CFLAGS([^A-Za-z0-9_]|$)/\1CFLAGS_MODULE\2/g' \
+		  Makefile || die
+}
+
 src_compile() {
 	local modlist=( 8821cu=net/wireless )
-	local modargs=( KSRC="${KV_OUT_DIR}" )
-
+	local modargs=( KSRC=${KV_OUT_DIR} )
 	linux-mod-r1_src_compile
 }
