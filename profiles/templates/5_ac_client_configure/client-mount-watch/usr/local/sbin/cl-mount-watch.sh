@@ -212,12 +212,15 @@ while true; do
             FAILCNT[$login]=$(( ${FAILCNT[$login]:-0} + 1 ))
             if (( FAILCNT[$login] >= FULL_KINIT_AFTER )); then
                 log "$login: ${FAILCNT[$login]} failed attempts; trying full kinit (kernel keyring password)"
-                run_sync "$login" --no-sync on && FAILCNT[$login]=0
+                run_sync "$login" --no-sync on
             elif (( FAILCNT[$login] == 2 )); then
-                run_sync "$login" --no-sync on --renew-ticket on && FAILCNT[$login]=0
+                run_sync "$login" --no-sync on --renew-ticket on
             else
-                run_sync "$login" --no-sync on --renew-ticket off && FAILCNT[$login]=0
+                run_sync "$login" --no-sync on --renew-ticket off
             fi
+            # cl-client-sync-login returns 0 even if mounting failed, so reset the
+            # counter only when the mounts actually appeared
+            [[ -z $(missing_mounts "$login") ]] && FAILCNT[$login]=0
         elif [[ -n $CONF_DC && $LAST_RAW == "$CONF_DC" ]] &&
             umount_stale "$login" "$CONF_DC"; then
             run_sync "$login" --no-sync on --renew-ticket off && FAILCNT[$login]=0
