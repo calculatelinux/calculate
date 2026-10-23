@@ -21,6 +21,12 @@ get_domain() {
     [[ -n $d && ! $d =~ ^[0-9.]+$ ]] && printf '%s' "$d"
 }
 
+chosen_host() {
+    local h
+    h=$(variable_value client.cl_client_remote_mount_host)
+    [[ $h =~ ^[a-zA-Z0-9.-]+$ ]] && printf '%s' "$h"
+}
+
 CHECK_INTERVAL=60
 SYNC_INTERVAL=$((4 * 3600))
 CMD_TIMEOUT=300
@@ -97,6 +103,16 @@ is_mounted_users() {
         grep -qiE "^//$DOMAIN_RE/users/$re/?([[:space:]]|$)|^//$DOMAIN_RE/users[[:space:]].*[,[:space:]]username=$re([,[:space:]]|$)"
 }
 
+has_tgt() {
+    local login=$1 uid cc
+    uid=$(id -u "$login" 2>/dev/null)
+    [[ -n $uid ]] || return 1
+    for cc in $(ls -1dt /tmp/krb5cc_"$uid" /tmp/krb5cc_"$uid"_* 2>/dev/null); do
+        klist -s -c "FILE:$cc" 2>/dev/null && return 0
+    done
+    return 1
+}
+
 missing_mounts() {
     local login=$1 login_re miss=()
     login_re=$(escape_re "$login")
@@ -106,46 +122,64 @@ missing_mounts() {
 }
 
 failure_reason() {
-    local dc=$1 login=$2 host uid cc
+    local dc=$1 login=$2 host uid chosen
     [[ -n $dc ]] || { printf 'no confirmed DC (adcli failed or switching)'; return; }
-    host="smb$dc.$DOMAIN"
+    chosen=$(chosen_host)
+    host=${chosen:-smb$dc.$DOMAIN}
     getent hosts "$host" >/dev/null 2>&1 || { printf 'DNS: %s not resolved' "$host"; return; }
     if ! timeout 5 bash -c "exec 3<>/dev/tcp/$host/445" 2>/dev/null; then
         printf 'unreachable %s:445' "$host"
         return
     fi
     uid=$(id -u "$login" 2>/dev/null)
-    if [[ -z $uid ]]; then
-        printf 'uid for %s not resolved' "$login"
-        return
-    fi
-    local found=0
-    for cc in $(ls -1dt /tmp/krb5cc_"$uid" /tmp/krb5cc_"$uid"_* 2>/dev/null); do
-        klist -s -c "FILE:$cc" 2>/dev/null && { found=1; break; }
-    done
-    if (( ! found )); then
-        printf 'no Kerberos TGT for %s' "$login"
-        return
-    fi
+    [[ -n $uid ]] || { printf 'uid for %s not resolved' "$login"; return; }
+    has_tgt "$login" || { printf 'no Kerberos TGT for %s' "$login"; return; }
     printf '%s reachable, cause unclear' "$host"
 }
 
 umount_stale() {
-    local login=$1 dc=$2 src target n changed=1
+    local login=$1 dc=$2 src target n srchost changed=1 chosen
+    chosen=$(chosen_host)
     while read -r src target; do
         [[ -n $src ]] || continue
+        srchost=${src#//}
+        srchost=${srchost%%/*}
+        [[ -z $chosen || $srchost != "$chosen" ]] || continue
         n=$(sed -nE 's#^//[a-zA-Z]*([0-9]+)\..*#\1#p' <<< "$src")
         [[ -n $n && $n != "$dc" ]] || continue
         if umount "$target" &>/dev/null; then
-            log "$login: stale umount $target (src $src, current dc$dc)"
+            log "$login: stale umount $target (src $src, current dc$dc, chosen=${chosen:-none})"
         elif umount -l "$target" &>/dev/null; then
-            log "$login: stale lazy umount $target (src $src, current dc$dc)"
+            log "$login: stale lazy umount $target (src $src, current dc$dc, chosen=${chosen:-none})"
         else
-            log "$login: FAILED to umount $target (src $src)"
+            log "$login: FAILED to umount $target (src $src, chosen=${chosen:-none})"
         fi
         changed=0
     done < <(user_mounts "$(escape_re "$login")")
     return $changed
+}
+
+machine_trust_probe() {
+    local realm bare kvno principal target firsthost=""
+    realm=$(tr '[:lower:]' '[:upper:]' <<< "$DOMAIN")
+    bare=$(hostname -s 2>/dev/null)
+    local -A ktno=()
+    while read -r kvno principal; do
+        [[ $principal == *@$realm ]] || continue
+        ktno["${principal^^}"]=$kvno
+        [[ -z $firsthost && $principal == HOST/*@* ]] && firsthost=$principal
+    done < <(timeout 10 klist -kt /etc/krb5.keytab 2>/dev/null |
+             awk '$1 ~ /^[0-9]+$/ { print $1, $NF }')
+    local -a cands=("HOST/$bare@$realm" "${bare^^}\$@$realm")
+    [[ -n $firsthost ]] && cands+=("$firsthost")
+    for target in "${cands[@]}"; do
+        [[ -n ${ktno["${target^^}"]:-} ]] || continue
+        if KRB5CCNAME=FILE:$(mktemp -u /tmp/ad-trust.XXXXXX) timeout 10 kinit -k "$target" &>/dev/null; then
+            log "machine trust ok via $target (kvno ${ktno["${target^^}"]})"
+            return
+        fi
+    done
+    log "machine trust broken — re-join required"
 }
 
 run_sync() {
@@ -160,6 +194,8 @@ run_sync() {
     fi
     return $rc
 }
+
+trap 'log "watchdog exiting rc=$?"' EXIT
 
 log "watchdog started: check ${CHECK_INTERVAL}s, sync ${SYNC_INTERVAL}s"
 
@@ -187,12 +223,13 @@ while true; do
         fi
         DOMAIN=$new_domain
         DOMAIN_RE="[^/]*$(escape_re "$DOMAIN")"
+        [[ -n $DOMAIN ]] && machine_trust_probe
     fi
     [[ -n $DOMAIN ]] || { sleep "$CHECK_INTERVAL"; continue; }
 
     update_dc_state "$(current_dc_number)"
 
-    now=$SECONDS
+    now=$(date +%s)
     for login in "${USERS[@]}"; do
         [[ -n $login ]] || continue
         [[ -n ${NEXT_SYNC[$login]} ]] || NEXT_SYNC[$login]=$((now + SYNC_INTERVAL))
@@ -211,12 +248,18 @@ while true; do
         if [[ $state != ok ]]; then
             FAILCNT[$login]=$(( ${FAILCNT[$login]:-0} + 1 ))
             if (( FAILCNT[$login] >= FULL_KINIT_AFTER )); then
+                log "$login: repair attempt ${FAILCNT[$login]} mode=auto"
                 log "$login: ${FAILCNT[$login]} failed attempts; trying full kinit (kernel keyring password)"
-                run_sync "$login" --no-sync on && FAILCNT[$login]=0
+                sync_opts=(--renew-ticket auto)
             elif (( FAILCNT[$login] == 2 )); then
-                run_sync "$login" --no-sync on --renew-ticket on && FAILCNT[$login]=0
+                log "$login: repair attempt ${FAILCNT[$login]} mode=on"
+                sync_opts=(--renew-ticket on)
             else
-                run_sync "$login" --no-sync on --renew-ticket off && FAILCNT[$login]=0
+                log "$login: repair attempt ${FAILCNT[$login]} mode=off"
+                sync_opts=(--renew-ticket off)
+            fi
+            if run_sync "$login" --no-sync on "${sync_opts[@]}"; then
+                [[ -z $(missing_mounts "$login") ]] && FAILCNT[$login]=0
             fi
         elif [[ -n $CONF_DC && $LAST_RAW == "$CONF_DC" ]] &&
             umount_stale "$login" "$CONF_DC"; then
@@ -226,12 +269,13 @@ while true; do
         fi
 
         if (( now >= NEXT_SYNC[$login] )); then
+            machine_trust_probe
             if ! run_sync "$login" --no-sync on --renew-ticket on; then
                 log "$login: scheduled ticket renew failed; trying full kinit (kernel keyring password)"
-                if run_sync "$login" --no-sync on; then
+                if run_sync "$login" --no-sync on --renew-ticket auto && has_tgt "$login"; then
                     log "$login: full kinit ok"
                 else
-                    log "$login: full kinit failed; interactive re-login required"
+                    log "$login: still no TGT after full kinit; interactive re-login required"
                 fi
             fi
             NEXT_SYNC[$login]=$((now + SYNC_INTERVAL))
