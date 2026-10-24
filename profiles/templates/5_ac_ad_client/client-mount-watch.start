@@ -1,4 +1,4 @@
-# Calculate exec=/bin/bash module(client)!=&&client.os_remote_type==ad&&client.os_remote_auth!=&&client.ac_client_configure==on
+# Calculate exec=/bin/bash module(client)!=&&client.os_remote_type==ad&&client.os_remote_auth!=
 
 rc-update add client-mount-watch default &>/dev/null
 /etc/init.d/client-mount-watch status &>/dev/null ||
