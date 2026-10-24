@@ -1,1 +1,1 @@
-# Calculate mergepkg()!=&&env(client.os_remote_auth)!= path=/etc name=sssd
+# Calculate pkg(sys-auth/sssd)!=&&env(client.os_remote_auth)!= path=/etc name=sssd

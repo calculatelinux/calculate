@@ -6,6 +6,9 @@ command_background=true
 pidfile=/run/client-mount-watch.pid
 output_log=/var/log/client-mount-watch.log
 error_log=/var/log/client-mount-watch.log
+supervisor=supervise-daemon
+respawn_max=0
+respawn_delay=10
 
 depend() {
 	need localmount net
