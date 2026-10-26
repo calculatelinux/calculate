@@ -293,6 +293,7 @@ dev-libs/opencl-clang:19 amd64
 ~net-misc/gofish-1.2 amd64
 ~net-misc/l7-filter-userspace-0.12_beta1 amd64
 ~net-misc/l7-protocols-2009.05.28 amd64
+~net-misc/publicsuffix-db-20260907 amd64
 ~net-nds/ldapvi-1.7_p20101214 amd64
 ~net-news/snownews-1.9 amd64
 ~net-print/c2esp-27 amd64
