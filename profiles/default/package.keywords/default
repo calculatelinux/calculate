@@ -43,6 +43,7 @@ net-im/signal-desktop-bin amd64
 net-im/slack amd64
 net-im/telegram-desktop-bin amd64
 net-im/zoom amd64
+~net-irc/zoitechat-2.19.1 amd64
 ~net-libs/libbloom-1.6 amd64
 ~net-libs/libcork-0.15.0 amd64
 ~net-libs/libcorkipset-1.1.1.20150311_p8 amd64
