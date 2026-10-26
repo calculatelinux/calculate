@@ -36,5 +36,4 @@ install() {
         inst_script "$moddir/nfsroot.sh" "/sbin/nfsroot"
         inst_hook initqueue/timeout 95 "$moddir/live-fallback.sh"
     fi
-    echo rd.skipfsck=1 >> "${initdir}/etc/cmdline.d/95-skipfsck.conf"
 }
