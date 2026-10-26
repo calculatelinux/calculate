@@ -1,4 +1,4 @@
-# Calculate exec=/bin/bash module(client)!=&&client.os_remote_auth==&&client.ac_client_configure==on||merge(sys-apps/calculate-utils)!=&&module(client)==&&ini(merge-calculate.client)!=
+# Calculate exec=/bin/bash module(client)!=&&client.os_remote_auth==||merge(sys-apps/calculate-utils)!=&&module(client)==&&ini(merge-calculate.client)!=
 
 rc-update del client-mount-watch default &>/dev/null
 /etc/init.d/client-mount-watch stop &>/dev/null
