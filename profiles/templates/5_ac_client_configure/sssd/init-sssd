@@ -1,3 +1,8 @@
 # Calculate path=/etc/init.d name=#-cut(1)-# format=patch multiline mirror
 <reg>^command_user="sssd:sssd"\n</reg>
 <text></text>
+<reg>    before xdm\n\}\n</reg>
+<text>    before xdm
+    after client
+}
+</text>
