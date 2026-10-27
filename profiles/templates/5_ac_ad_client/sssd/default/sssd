@@ -1,1 +1,1 @@
-# Calculate link=/etc/init.d/sssd symbolic env=client env(client.os_remote_auth)!=
+# Calculate link=/etc/init.d/sssd symbolic env=client client.os_remote_auth!=
