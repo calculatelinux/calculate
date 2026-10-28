@@ -126,20 +126,24 @@ src_compile() {
 
 src_install() {
 	dobin amneziawg-go
-	newinitd "${FILESDIR}/amneziawg-go.initd" amneziawg-go
-	newconfd "${FILESDIR}/amneziawg-go.confd" amneziawg-go
+	newinitd "${FILESDIR}/awg-quick.initd" awg-quick
+	newconfd "${FILESDIR}/awg-quick.confd" awg-quick
 	keepdir /etc/amneziawg
 	dodoc README.md
 }
 
 pkg_postinst() {
 	elog "Run one service instance per tunnel interface:"
-	elog "    ln -s /etc/init.d/amneziawg-go /etc/init.d/amneziawg-go.wg0"
+	elog "    ln -s /etc/init.d/awg-quick /etc/init.d/awg-quick.wg0"
 	elog "Place the tunnel config in /etc/amneziawg/wg0.conf (directory is created by this package), then:"
-	elog "    rc-update add amneziawg-go.wg0 default"
-	elog "    /etc/init.d/amneziawg-go.wg0 start"
+	elog "    rc-update add awg-quick.wg0 default"
+	elog "    /etc/init.d/awg-quick.wg0 start"
 	elog
-	elog "With AWG_QUICK=\"yes\" (default) the service also brings the tunnel"
-	elog "up via awg-quick(8) once the daemon control socket appears."
-	elog "Use a separate awg-quick.<iface> service when AWG_QUICK=\"no\"."
+	if [[ -e ${ROOT}/etc/init.d/amneziawg-go ]]; then
+		ewarn "Stale files from net-vpn/amneziawg-go-3.1.20260828 are still present:"
+		ewarn "    ${ROOT}/etc/init.d/amneziawg-go* and ${ROOT}/etc/conf.d/amneziawg-go"
+		ewarn "This revision installs the service as /etc/init.d/awg-quick instead. To finish:"
+		ewarn "    rc-update del amneziawg-go.wg0 default"
+		ewarn "    rm -f ${ROOT}/etc/init.d/amneziawg-go* ${ROOT}/etc/conf.d/amneziawg-go"
+	fi
 }
