@@ -1,5 +1,6 @@
 # Bring the tunnel up/down with awg-quick(8) together with the daemon.
-# Set to "no" if you prefer a separate awg-quick.<iface> OpenRC service.
+# Set to "no" to run only the amneziawg-go daemon and set the interface up
+# yourself with ip(8) and awg(8).
 AWG_QUICK="yes"
 
 # Directory with per-interface tunnel configs. The service passes the full

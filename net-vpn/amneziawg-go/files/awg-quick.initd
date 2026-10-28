@@ -2,16 +2,16 @@
 # Copyright 2026 Calculate Linux Community
 # Distributed under the terms of the GNU General Public License v2
 
-description="AmneziaWG userspace daemon (amneziawg-go)"
+description="AmneziaWG userspace daemon and tunnel (amneziawg-go + awg-quick)"
 
-confd="/etc/conf.d/amneziawg-go"
+confd="/etc/conf.d/awg-quick"
 
 : "${AWG_QUICK:=yes}"
 : "${AWG_CONFDIR:=/etc/amneziawg}"
 
 IFNAME="${SVCNAME#*.}"
 
-pidfile="/run/amneziawg-go.${IFNAME}.pid"
+pidfile="/run/awg-quick.${IFNAME}.pid"
 command="/usr/bin/amneziawg-go"
 command_args="-f ${IFNAME}"
 command_background="yes"
@@ -24,8 +24,8 @@ depend() {
 checkconfig() {
 	if [[ ${IFNAME} == "${SVCNAME}" ]] || ! [[ ${IFNAME} =~ ^[a-zA-Z0-9_=+.-]{1,15}$ ]]; then
 		eerror "This script cannot be called directly. Create a symlink named after the interface:"
-		eerror "    ln -s /etc/init.d/amneziawg-go /etc/init.d/amneziawg-go.wg0"
-		eerror "    /etc/init.d/amneziawg-go.wg0 start"
+		eerror "    ln -s /etc/init.d/awg-quick /etc/init.d/awg-quick.wg0"
+		eerror "    /etc/init.d/awg-quick.wg0 start"
 		return 1
 	fi
 	if [[ ! -e ${AWG_CONFDIR}/${IFNAME}.conf ]]; then
