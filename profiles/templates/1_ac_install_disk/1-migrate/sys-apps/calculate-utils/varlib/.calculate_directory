@@ -1,1 +1,1 @@
-# Calculate mergepkg()!=&&env(client.os_remote_auth)!= path=/var/lib/calculate append=skip
+# Calculate mergepkg(sys-apps/calculate-utils)!=&&env(client.os_remote_auth)!= append=skip
