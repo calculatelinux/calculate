@@ -1,0 +1,12 @@
+# Calculate format=diff
+diff --git a/sources/settings.h b/sources/settings.h
+--- a/sources/settings.h
++++ b/sources/settings.h
+@@ -525,7 +525,7 @@
+         static int tileSize() { return 1024; }
+ 
+         static bool keepObsoletePixmaps() { return false; }
+-        static bool useDevicePixelRatio() { return false; }
++        static bool useDevicePixelRatio() { return true; }
+         static bool useLogicalDpi() { return true; }
+         static qreal upscaleFactor() { return 1.0; }

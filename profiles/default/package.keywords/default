@@ -11,6 +11,7 @@ app-misc/gojq amd64
 app-mobilephone/scrcpy amd64
 app-office/onlyoffice-bin amd64
 app-office/wps-office amd64
+~app-text/qpdfview-0.5_p20260701 amd64
 app-text/zotero-bin amd64
 ~app-vim/vim-nftables-0_pre20200629 amd64
 ~app-vim/vim-tmux-3.0.0 amd64
