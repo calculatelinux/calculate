@@ -1,0 +1,235 @@
+# Calculate chmod=755 path=/etc/init.d
+#!/sbin/openrc-run
+
+name="boot-config"
+description="Host-only initramfs and grub configuration"
+
+depend() {
+	want local
+	keyword -timeout -docker -lxc -systemd-nspawn -vserver
+}
+
+variable_value() {
+	/usr/libexec/calculate/cl-variable --value "$1"
+}
+
+version_sort ()
+{
+  case ${version_sort_sort_has_v:-} in
+    yes)
+      LC_ALL=C sort -V;;
+    no)
+      LC_ALL=C sort -n;;
+    *)
+      if sort -V </dev/null > /dev/null 2>&1; then
+        version_sort_sort_has_v=yes
+	LC_ALL=C sort -V
+      else
+        version_sort_sort_has_v=no
+	LC_ALL=C sort -n
+      fi;;
+   esac
+}
+
+version_test_numeric ()
+{
+  version_test_numeric_a="$1"
+  version_test_numeric_cmp="$2"
+  version_test_numeric_b="$3"
+  if [ "$version_test_numeric_a" = "$version_test_numeric_b" ] ; then
+    case "$version_test_numeric_cmp" in
+      ge|eq|le) return 0 ;;
+      gt|lt) return 1 ;;
+    esac
+  fi
+  if [ "$version_test_numeric_cmp" = "lt" ] ; then
+    version_test_numeric_c="$version_test_numeric_a"
+    version_test_numeric_a="$version_test_numeric_b"
+    version_test_numeric_b="$version_test_numeric_c"
+  fi
+  if (echo "$version_test_numeric_a" ; echo "$version_test_numeric_b") | version_sort | head -n 1 | grep -qx "$version_test_numeric_b" ; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+version_test_gt ()
+{
+  version_test_gt_a="`echo "$1" | sed -e "s/[^-]*-//"`"
+  version_test_gt_b="`echo "$2" | sed -e "s/[^-]*-//"`"
+  version_test_gt_cmp=gt
+  if [ "x$version_test_gt_b" = "x" ] ; then
+    return 0
+  fi
+  case "$version_test_gt_a:$version_test_gt_b" in
+    *.old:*.old) ;;
+    *.old:*) version_test_gt_a="`echo "$version_test_gt_a" | sed -e 's/\.old$//'`" ; version_test_gt_cmp=gt ;;
+    *:*.old) version_test_gt_b="`echo "$version_test_gt_b" | sed -e 's/\.old$//'`" ; version_test_gt_cmp=ge ;;
+  esac
+  version_test_numeric "$version_test_gt_a" "$version_test_gt_cmp" "$version_test_gt_b"
+  return "$?"
+}
+
+version_find_latest ()
+{
+  version_find_latest_a=""
+  for i in "$@" ; do
+    if version_test_gt "$i" "$version_find_latest_a" ; then
+      version_find_latest_a="$i"
+    fi
+  done
+  echo "$version_find_latest_a"
+}
+
+get_latest_kernel() {
+    version_find_latest /boot/vmlinuz-*
+}
+
+get_safemode_name() {
+    local kernel=$1
+    [[ $kernel =~ ^([^-]+-[^-]+)-(.+)$ ]] && echo "${BASH_REMATCH[1]}-SafeMode-${BASH_REMATCH[2]}" || echo ${kernel}
+}
+
+get_kernel_version() {
+    local kernel=$1
+    file -L $kernel | sed -r 's/.*version (\S+)\s+.*/\1/'
+}
+
+get_kernel_initramfs() {
+    local kernel=$1
+    echo ${kernel/vmlinuz-/initramfs-}.img
+}
+
+is_calculate_kernel() {
+    local kernel=$1
+    local kernel_version=$(get_kernel_version $kernel)
+    [[ -f /usr/src/linux-${kernel_version}/.calculate ]]
+}
+
+loaded_modules() {
+	lsmod | sed -n '2,$p' | awk '{print $1}'
+}
+
+grep_modules() {
+	lsmod | sed -n '2,$p' | awk '{print  "-e "$1}'
+}
+
+create_hostonly_initramfs() {
+    local kernel=$1
+    local kernel_safemode=$(get_safemode_name $kernel)
+    local initrd=$(get_kernel_initramfs $kernel)
+    local initrd_tmp=$(get_kernel_initramfs $kernel).tmp
+    local initrd_safemode=$(get_safemode_name $initrd)
+
+    [[ -e $kernel_safemode ]] || (rm -f $kernel_safemode;ln -s $kernel $kernel_safemode &>/dev/null) || {
+        eerror "Failed to create kernel for safemode"
+        return 1
+    }
+
+    if ! [[ -e $initrd_safemode ]]
+    then
+        cp $initrd $initrd_safemode &>/dev/null || {
+            eerror "Failed to create initramfs safemode backup"
+            return 1
+        }
+    fi
+    if [[ -e $initrd_safemode ]]
+    then
+        local kernel_version=$(get_kernel_version $kernel)
+        [[ -n $kernel_version ]] || { eerror "Failed to detect version"; return 1; }
+        local kernelconfig="/boot/config-$kernel_version"
+        local compresstype=""
+        if grep -q CONFIG_RD_ZSTD=y $kernelconfig &>/dev/null
+        then
+            compresstype="--zstd"
+        elif grep -q CONFIG_RD_GZIP=y $kernelconfig &>/dev/null
+        then
+            compresstype="--gzip"
+        elif grep -q CONFIG_RD_XZ=y $kernelconfig &>/dev/null
+        then
+            compresstype="--xz"
+        else
+            eerror "Failed to detect initramfs support compression"
+            return 1
+        fi
+        if [[ $(variable_value install.os_install_x11_video_drv) == $(variable_value os_x11_video_drv) ]]
+        then
+            einfo "Creating Host-Only initramfs ..."
+            dracut -H $compresstype -f --kver $kernel_version $initrd_tmp &>/dev/null || {
+                eerror "Failed to create Host-Only initramfs"
+                return 1
+            }
+        else
+            einfo "Creating Host-Only initramfs with generic video drivers ..."
+            dracut -H $compresstype -f --add-drivers="i915 amdgpu uvesafb radeon nouveau" --kver $kernel_version $initrd_tmp &>/dev/null || {
+                eerror "Failed to create Host-Only initramfs"
+                return 1
+            }
+        fi
+        mv $initrd_tmp $initrd &>/dev/null || { eerror "Failed to rename initramfs"; return 1; }
+        einfo "Host-Only initramfs has been created"
+    fi
+    return 0
+}
+
+update_grub() {
+	[[ -f /etc/blkid.conf ]] && mv /etc/blkid.conf /etc/blkid.conf.bak
+	echo "CACHE_FILE=/dev/null" >/etc/blkid.conf
+
+	local before_mods=( $(grep_modules) )
+
+	/usr/sbin/grub-install &>/dev/null
+	/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
+	local res=$?
+
+	for in in {0..3}
+	do
+		for i in $(loaded_modules | grep -v ${before_mods[*]})
+		do
+			rmmod $i &>/dev/null
+		done
+	done
+
+	[[ -f /etc/blkid.conf.bak ]] && mv /etc/blkid.conf.bak /etc/blkid.conf || rm -f /etc/blkid.conf
+
+	[[ -e /boot/grub/unicode.pf2 ]] && [[ -e /usr/share/grub/unicode.pf2 ]] &&
+		cp /usr/share/grub/unicode.pf2 /boot/grub/unicode.pf2 &>/dev/null
+
+	return $res
+}
+
+start() {
+	local rc=0
+	local grub_rc=0
+	local kernel=$(get_latest_kernel)
+
+	if [[ $(variable_value install.os_install_root_type) =~ ^(livecd|flash)$ ]] ||
+		[[ $(variable_value install.os_install_pxe) == on ]] ||
+		[[ $(variable_value install.os_install_scratch) == on ]]
+	then
+		return 0
+	fi
+
+	ebegin "Configuring host-only initramfs"
+	if command -v dracut >/dev/null 2>&1 && [[ -e $kernel ]] &&
+		[[ -e $(get_kernel_initramfs $kernel) ]] && is_calculate_kernel "$kernel"
+	then
+		create_hostonly_initramfs "$kernel" || rc=1
+	else
+		einfo "Creating Host-Only initramfs was skipped"
+	fi
+	eend $rc
+
+	ebegin "Configuring grub"
+	if [[ -x /usr/sbin/grub-install ]] && [[ -x /usr/sbin/grub-mkconfig ]]
+	then
+		update_grub || grub_rc=1
+	fi
+	eend $grub_rc
+
+	rc-update show default 2>/dev/null | grep -q " ${name} " && rc-update del ${name} default
+	LANG=en_US.UTF-8 /sbin/rc-update --update
+
+	return $((rc | grub_rc))
+}
