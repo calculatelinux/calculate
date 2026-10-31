@@ -1,0 +1,78 @@
+# Calculate exec=/bin/bash os_install_root_type!=livecd&&os_install_scratch==off&&pkg(sys-boot/grub)>=2.00_p5000 cl_setup!=themes||cl_grub_image_update_set==on||cl_splash_image_update_set==on
+
+echo "Configuring the grub"
+# mount some need directories from the current system to the installing system
+
+#?ac_install_disk==on#
+mount -t proc none #-cl_chroot_path-#/proc
+mount --rbind /sys #-cl_chroot_path-#/sys
+mount -o bind /dev #-cl_chroot_path-#/dev
+
+#?os_arch_machine==i686&&os_install_arch_machine!=i686#
+for mdir in /bin /sbin /lib /usr/sbin /usr/bin /usr/lib /usr/libexec;do
+	mount -o bind $mdir #-cl_chroot_path-#/$mdir
+done
+#os_arch_machine#
+
+# bind mount current system root to install system for correct work os-prober
+#?os_root_type==hdd#
+mount -o bind / #-cl_chroot_path-#/mnt
+#os_root_type#
+#
+#ac_install_disk#
+
+# temporary disable cache for blkid for correct work
+[[ -f #-cl_chroot_path-#/etc/blkid.conf ]] && mv #-cl_chroot_path-#/etc/blkid.conf #-cl_chroot_path-#/etc/blkid.conf.bak
+echo "CACHE_FILE=/dev/null" >#-cl_chroot_path-#/etc/blkid.conf
+
+loaded_modules() {
+	lsmod | sed -n '2,$p' | awk '{print $1}'
+}
+
+grep_modules() {
+	lsmod | sed -n '2,$p' | awk '{print  "-e "$1}'
+}
+
+before_mods=( $(grep_modules) )
+
+#?ac_install_disk==on#
+LANG=#-install.os_install_locale_locale-# /bin/chroot #-cl_chroot_path-# grub-install &>/dev/null
+LANG=#-install.os_install_locale_locale-# /bin/chroot #-cl_chroot_path-# grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
+#!ac_install_disk#
+/usr/sbin/grub-install &>/dev/null
+/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
+#ac_install_disk#
+res=$?
+
+for in in {0..3}
+do
+	for i in $(loaded_modules | grep -v ${before_mods[*]})
+	do
+		rmmod $i &>/dev/null
+	done 
+done
+
+
+[[ -f #-cl_chroot_path-#/etc/blkid.conf.bak ]] && mv #-cl_chroot_path-#/etc/blkid.conf.bak #-cl_chroot_path-#/etc/blkid.conf || rm -f #-cl_chroot_path-#/etc/blkid.conf
+
+#?ac_install_disk==on#
+
+#?os_arch_machine==i686&&os_install_arch_machine!=i686#
+for mdir in /bin /sbin /lib /usr/sbin /usr/bin /usr/lib /usr/libexec;do
+	umount #-cl_chroot_path-#/$mdir
+done
+#os_arch_machine#
+
+umount -R #-cl_chroot_path-#/proc #-cl_chroot_path-#/sys #-cl_chroot_path-#/dev
+
+#?os_root_type==hdd#
+umount #-cl_chroot_path-#/mnt
+#os_root_type#
+
+#ac_install_disk#
+
+#?exists(#-cl_chroot_path-#/boot/grub/unicode.pf2)!=&&exists(#-cl_chroot_path-#/usr/share/grub/unicode.pf2)!=#
+cp #-cl_chroot_path-#/usr/share/grub/unicode.pf2 #-cl_chroot_path-#/boot/grub/unicode.pf2 &>/dev/null
+#exists#
+
+exit $res
