@@ -1,3 +1,2 @@
-# Calculate format=openrc path=/etc/conf.d name=client os_linux_system==desktop client.os_remote_auth!=
-
+# Calculate format=openrc path=/etc/conf.d name=client os_linux_system==desktop env(client.os_remote_auth)!=
 rc_after="net"
