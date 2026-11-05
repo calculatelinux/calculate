@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 # Calculate format=openrc path=/etc/conf.d name=client os_linux_system==desktop client.os_remote_auth!=
-=======
-# Calculate format=openrc path=/etc/conf.d name=client client.os_remote_auth!=
->>>>>>> develop
 
 rc_after="net"
