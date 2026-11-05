@@ -1,0 +1,3 @@
+# Calculate format=openrc path=/etc/conf.d name=client client.os_remote_auth!=
+
+rc_after="net"

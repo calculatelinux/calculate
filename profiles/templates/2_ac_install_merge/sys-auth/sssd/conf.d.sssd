@@ -1,0 +1,3 @@
+# Calculate format=openrc path=/etc/conf.d name=sssd
+
+rc_after="net"
