@@ -1,0 +1,19 @@
+# Calculate format=patch path=/etc/lightdm name=Xsession pkg(x11-misc/lightdm)!=
+<reg>\A#!/bin/sh
+#
+# LightDM wrapper to run around X sessions.
+</reg>
+<text>#!/bin/sh
+
+# WAYLAND-AWARE: Wayland sessions must not run the X bits of this wrapper.
+# lightdm passes the session Exec as ONE argument, so word-split via ${var} (do NOT quote $@).
+if [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
+	for file in "/etc/profile" "${HOME}/.profile" ; do
+		[ -f "${file}" ] &amp;&amp; . "${file}"
+	done
+	wlcmd="$*"
+	exec ${wlcmd}
+fi
+#
+# LightDM wrapper to run around X sessions.
+</text>
