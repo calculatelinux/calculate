@@ -1,4 +1,4 @@
-# Calculate format=compiz protected ini(desktop.chat-removing)==on merge=net-irc/konversation,net-irc/hexchat,net-irc/kvirc,net-irc/polari
+# Calculate format=compiz protected ini(desktop.chat-removing)==on merge=net-irc/konversation,net-irc/zoitechat,net-irc/kvirc,net-irc/polari
 
 #-ini(desktop.chat-removing,)-#
 

@@ -1,40 +1,38 @@
-# Calculate format=diff merge(net-irc/hexchat)>=2.16
+# Calculate format=diff merge(net-irc/zoitechat)>=2.19
 diff --git a/src/common/servlist.c b/src/common/servlist.c
-index a203e70..d6eb0b0 100644
 --- a/src/common/servlist.c
 +++ b/src/common/servlist.c
-@@ -82,6 +82,9 @@ static const struct defaultserver def[] =
+@@ -220,6 +220,9 @@
  	{"AzzurraNet",	0},
  	{0,			"irc.azzurra.org"},
  
 +	{"CalculateIRC", 0, 0, 0, LOGIN_SASL, 0, TRUE},
-+	{0,                     "irc.calculate.social"},
++	{0,				"irc.calculate.social"},
 +
  	{"Canternet", 0, 0, 0, LOGIN_SASL, 0, TRUE},
  	{0,			"irc.canternet.org"},
  
-@@ -902,7 +905,7 @@ servlist_load_defaults (void)
+@@ -1108,7 +1111,7 @@
  {
  	int i = 0, j = 0;
  	ircnet *net = NULL;
--	guint def_hash = g_str_hash ("Libera.Chat");
+-	guint def_hash = g_str_hash ("Zoite");
 +	guint def_hash = g_str_hash ("CalculateIRC");
  
  	while (1)
  	{
 diff --git a/src/fe-gtk/joind.c b/src/fe-gtk/joind.c
-index ce3cbca..e7bcb9a 100644
 --- a/src/fe-gtk/joind.c
 +++ b/src/fe-gtk/joind.c
-@@ -247,9 +247,9 @@ joind_show_dialog (server *serv)
+@@ -251,9 +251,9 @@
  							G_CALLBACK (joind_ok_cb), serv);
  							
  	if (serv->network)
--		if (g_ascii_strcasecmp(((ircnet*)serv->network)->name, "Libera.Chat") == 0)
+-		if (g_ascii_strcasecmp(((ircnet*)serv->network)->name, "Zoite") == 0)
 +		if (g_ascii_strcasecmp(((ircnet*)serv->network)->name, "CalculateIRC") == 0)
  		{
--			gtk_entry_set_text (GTK_ENTRY (entry1), "#hexchat");
-+			gtk_entry_set_text (GTK_ENTRY (entry1), "#chat");
+-			gtk_entry_set_text (GTK_ENTRY (entry1), "#zoitechat");
++			gtk_entry_set_text (GTK_ENTRY (entry1), "#chat-ru");
  		}
  
  	gtk_widget_grab_focus (okbutton1);

@@ -2,4 +2,4 @@
 
 # Update info
 #-ini(desktop.updating, on)-#
-#-ini(desktop.chat, hexchat)-#
+#-ini(desktop.chat, zoitechat)-#

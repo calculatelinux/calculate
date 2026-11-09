@@ -1,0 +1,18 @@
+# Calculate format=kde name=net.zoite.Zoitechat.desktop link=/usr/share/applications/net.zoite.Zoitechat.desktop mirror pkg(net-irc/zoitechat)>=2.19
+
+[Desktop Entry]
+#?in(os_locale_language,es,es_UY)!=#
+Exec=zoitechat "--url=ircs://irc.calculate.social:6697/#chat-es"
+#in#
+#?in(os_locale_language,pt,pt_BR)!=#
+Exec=zoitechat "--url=ircs://irc.calculate.social:6697/#chat-pt"
+#in#
+#?os_locale_language==fr#
+Exec=zoitechat "--url=ircs://irc.calculate.social:6697/#chat-fr"
+#os_locale_language#
+#?os_locale_language==ru#
+Exec=zoitechat "--url=ircs://irc.calculate.social:6697/#chat-ru"
+#os_locale_language#
+#?in(os_locale_language,fr,ru,es,es_UY,pt,pt_BR)==#
+Exec=zoitechat "--url=ircs://irc.calculate.social:6697/#chat"
+#in#

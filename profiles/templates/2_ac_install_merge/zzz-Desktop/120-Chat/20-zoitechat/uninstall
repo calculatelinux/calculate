@@ -1,0 +1,5 @@
+# Calculate format=samba path=/var/lib/calculate name=ini.env ac_install_unmerge==on&&pkg(net-irc/zoitechat)==&&ini(desktop.chat)==zoitechat
+
+[desktop]
+!chat=
+chat-removing=on

@@ -1,0 +1,12 @@
+# Calculate format=kde link=/usr/share/applications/net.zoite.Zoitechat.desktop name=calculate-chat.desktop mirror pkg(net-irc/zoitechat)>=2.19
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=
+
+Name=Calculate Linux Community
+Name[bg]=Calculate Linux Общност
+Name[ru]=Сообщество Calculate Linux
+Name[uk]=Спільнота Calculate Linux
+Exec=zoitechat "--url=ircs://irc.calculate.social:6697/#chat"

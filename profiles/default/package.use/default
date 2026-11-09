@@ -207,7 +207,7 @@ net-misc/connman-gtk openconnect
 #sys-firmware/amdgpu-ucode legacy
 
 # enable sound event support using
-net-irc/hexchat libcanberra
+net-irc/zoitechat libcanberra
 
 # www-client/seamonkey-2.38, www-client/firefox-44.0, mail-client/thunderbird-38.5.0
 dev-db/sqlite secure-delete
