@@ -1,0 +1,31 @@
+# Calculate format=diff
+diff --git a/src/tinycthread.h b/src/tinycthread.h
+--- a/src/tinycthread.h
++++ b/src/tinycthread.h
+@@ -453,13 +453,17 @@
+ */
+ int tss_set(tss_t key, void *val);
+ 
++/* C23 (glibc 2.43 and later) declares once_flag, ONCE_FLAG_INIT and
++ * call_once in <stdlib.h>; the compat definitions below would conflict
++ * with them (Gentoo bug #969573). Nothing in libserdes uses these names,
++ * so they are only provided when the C library does not. */
+ #if defined(_TTHREAD_WIN32_)
+   typedef struct {
+     LONG volatile status;
+     CRITICAL_SECTION lock;
+   } once_flag;
+   #define ONCE_FLAG_INIT {0,}
+-#else
++#elif !defined(__STDC_VERSION__) || __STDC_VERSION__ < 202311L
+   #define once_flag pthread_once_t
+   #define ONCE_FLAG_INIT PTHREAD_ONCE_INIT
+ #endif
+@@ -471,7 +475,7 @@
+  */
+ #if defined(_TTHREAD_WIN32_)
+   void call_once(once_flag *flag, void (*func)(void));
+-#else
++#elif !defined(__STDC_VERSION__) || __STDC_VERSION__ < 202311L
+   #define call_once(flag,func) pthread_once(flag,func)
+ #endif
