@@ -2,7 +2,7 @@
 
 CHECKVT=7
 
-#?pkg(x11-misc/sddm)!=#
+#?pkg(gui-apps/sddm)!=||pkg(x11-misc/sddm)!=#
 DISPLAYMANAGER="sddm"
 START_STOP_ARGS=
 #pkg#

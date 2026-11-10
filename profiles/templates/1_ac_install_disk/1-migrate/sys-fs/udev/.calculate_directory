@@ -1,2 +1,2 @@
-# Calculate mergepkg(sys-fs/udev)>=249||mergepkg(sys-fs/eudev)!= path=/etc/udev name=rules.d 
+# Calculate mergepkg(sys-fs/eudev)!=||mergepkg(sys-apps/systemd-utils[udev])!= path=/etc/udev name=rules.d 
 

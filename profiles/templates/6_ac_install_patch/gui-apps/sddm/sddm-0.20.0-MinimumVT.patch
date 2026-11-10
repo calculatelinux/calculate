@@ -1,4 +1,4 @@
-# Calculate format=diff merge(x11-misc/sddm)>=0.20.0
+# Calculate format=diff merge(gui-apps/sddm)>=0.20.0
 diff --git src/common/VirtualTerminal.cpp src/common/VirtualTerminal.cpp
 index 2cac325..3a26d73 100644
 --- src/common/VirtualTerminal.cpp

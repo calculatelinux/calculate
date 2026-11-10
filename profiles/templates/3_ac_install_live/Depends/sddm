@@ -1,1 +1,1 @@
-# Calculate append=skip merge(x11-misc/sddm)!= merge=x11-base/xorg-server
+# Calculate append=skip merge(gui-apps/sddm)!=||merge(x11-misc/sddm)!= merge=x11-base/xorg-server

@@ -1,4 +1,4 @@
-# Calculate name=sddm format=patch mergepkg(x11-misc/sddm)=>0.15,0.18
+# Calculate name=sddm format=patch mergepkg(gui-apps/sddm)=>0.15,0.18
 <reg>session\s+optional\s+pam_keyinit.so\s+force\s+revoke\s*
 </reg>
 <text></text>
