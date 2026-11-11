@@ -20,13 +20,6 @@ RDEPEND="sys-apps/openrc
 	server? ( net-misc/rsync )"
 
 src_install() {
-	if use client
-	then
-		DESTDIR="$D" emake install_client
-	fi
-
-	if use server
-	then
-		DESTDIR="$D" emake install_server
-	fi
+	use client && emake DESTDIR="$D" install_client
+	use server && emake DESTDIR="$D" install_server
 }
