@@ -19,6 +19,12 @@
 ~app-benchmarks/bootchart2-0.14.9 amd64
 ~app-cdr/dumpet-2.1_p20140601 amd64
 ~app-cdr/kcdemu-0.9 amd64
+~app-containers/aardvark-dns-2.1.0 amd64
+~app-containers/buildah-1.46.0 amd64
+~app-containers/container-libs-0.70.0 amd64
+~app-containers/netavark-2.1.0 amd64
+~app-containers/podman-6.1.4 amd64
+~app-containers/skopeo-1.24.1 amd64
 ~app-crypt/acr38u-1.7.11 amd64
 ~app-crypt/asedriveiiie-serial-3.5 amd64
 ~app-crypt/asedriveiiie-usb-3.5 amd64
