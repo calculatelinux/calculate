@@ -401,8 +401,8 @@ dev-python/markdown pygments
 # required by x11-libs/qwtpolar-1.1.1-r2
 x11-libs/qwt designer
 
-# required by games-emulation/dolphin-5.0
-media-libs/libsdl2 haptic
+# required by games-emulation/dolphin-5.0, net-misc/moonlight-6.2.0
+media-libs/libsdl2 haptic kms
 
 # required by games-util/pyfa-1.34.0[graph]
 dev-python/matplotlib wxwidgets
