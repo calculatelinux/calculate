@@ -279,8 +279,12 @@ src_prepare() {
 	fi
 
 	# ensure system-libs, reduce QA spam (FIXME: fails w/o zstd subdir)
-	# keep src/rocksdb: RocksDBStore.cc includes rocksdb/util/stderr_logger.h, which resolves
-	# through -I${S}/src only while the vendored tree is present (linking stays against the system lib)
+	# Keep src/rocksdb: src/kv/RocksDBStore.cc:28 includes "rocksdb/util/stderr_logger.h", which
+	# resolves to the vendored src/rocksdb/util/stderr_logger.h through -I${S}/src. dev-libs/rocksdb
+	# installs nothing under rocksdb/util/ (0 entries in its CONTENTS, no /usr/include/rocksdb/util),
+	# so this include only resolves while the vendored tree is present; linking still goes against
+	# the system library (WITH_SYSTEM_ROCKSDB=ON). Measured both ways: with src/rocksdb removed the
+	# build dies at exactly that include.
 	rm -r src/{arrow,c-ares,jaegertracing/opentelemetry-cpp,utf8proc} || die
 
 	cmake_src_prepare
