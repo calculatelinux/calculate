@@ -15,7 +15,6 @@
 ~games-action/geki3-KXL-1.0.3 amd64
 ~games-action/gltron-0.70 amd64
 ~games-action/heretic2-1.06c amd64
-~games-action/heretic2-demo-1.06a amd64
 ~games-action/heroes-0.21 amd64
 ~games-action/hotline-miami-1.0.9a_p20140221 amd64
 ~games-action/intrusion2-1.024 amd64
@@ -340,7 +339,6 @@
 ~games-util/gslist-0.8.11a amd64
 ~games-util/joystick-1.8.1 amd64
 ~games-util/linux-wbfs-manager-0.1.12 amd64
-~games-util/loki_patch-20091105 amd64
 ~games-util/nml-0.7.5 amd64
 ~games-util/ucon64-2.2.2 amd64
 ~games-util/uglygs-0_rc11 amd64
