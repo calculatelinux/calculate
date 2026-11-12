@@ -1,0 +1,21 @@
+# Calculate format=diff
+--- a/src/crypto/isa-l/isa-l_crypto/make.inc
++++ b/src/crypto/isa-l/isa-l_crypto/make.inc
+@@ -111,7 +111,7 @@
+ CFLAGS   = $(CFLAGS_$(arch)) $(CFLAGS_$(CC)) $(DEBUG) -O2 $(DEFINES) $(INCLUDE)
+ ASFLAGS  = $(ASFLAGS_$(arch)) $(ASFLAGS_$(CC)) $(DEBUG_$(AS)) $(DEFINES) $(INCLUDE)
+ ARFLAGS  = $(ARFLAGS_$(arch))
+-DEFINES += $(addprefix -D , $D)
++DEFINES += $(addprefix -D , $(DIST_D))
+ CLEANFILES += $(O) *.o *.a $(all_tests) $(lib_name) $(so_lib_name)
+ 
+ ifeq ($(filter aarch64 x86_%,$(host_cpu)),)
+@@ -193,7 +193,7 @@
+ 	@echo Completed run: $<
+ 
+ # Other build rules
+-msg = $(if $(DEBUG),DEBUG) $(patsubst 32,32-bit,$(host_cpu)) $D
++msg = $(if $(DEBUG),DEBUG) $(patsubst 32,32-bit,$(host_cpu)) $(DIST_D)
+ 
+ # gcc assembly files
+ $(O)/%.o: $(host_cpu)/%.S
