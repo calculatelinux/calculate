@@ -205,6 +205,7 @@ dev-libs/opencl-clang:19 amd64
 ~dev-vcs/hg-git-1.2.0_p20260328 amd64
 ~dev-vcs/tortoisehg-7.2.2 amd64
 ~games-action/spacearyarya-kxl-1.0.3 amd64
+~games-util/game-device-udev-rules-20260625 amd64
 ~games-util/qstat-2.17 amd64
 ~gnome-extra/gnome-contacts-49.0 amd64
 ~gnustep-apps/gnumail-1.4.0 amd64
@@ -300,7 +301,9 @@ dev-libs/opencl-clang:19 amd64
 ~net-misc/gofish-1.2 amd64
 ~net-misc/l7-filter-userspace-0.12_beta1 amd64
 ~net-misc/l7-protocols-2009.05.28 amd64
+~net-misc/moonlight-6.2.0 amd64
 ~net-misc/publicsuffix-db-20260907 amd64
+~net-misc/sunshine-2026.914.233613 amd64
 ~net-nds/ldapvi-1.7_p20101214 amd64
 ~net-news/snownews-1.9 amd64
 ~net-print/c2esp-27 amd64
