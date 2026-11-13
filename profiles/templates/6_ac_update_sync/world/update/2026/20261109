@@ -1,8 +1,0 @@
-# Calculate format=world name=world ini(overlay-calculate.world)<#-cut()-# mergepkg(net-irc/hexchat)!=
-
-#-ini(overlay-calculate.world,#-cut()-#)-#
-
-#?pkg(net-irc/hexchat)!=#
-!net-irc/hexchat
-net-irc/zoitechat
-#pkg#
