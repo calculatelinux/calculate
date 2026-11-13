@@ -382,3 +382,6 @@ net-misc/rsync rrsync
 
 # enable natspec for correct decoding of Cyrillic filenames
 app-arch/unzip natspec
+
+# Includes all UPS drivers that use SERIAL and SNMP
+sys-power/nut python serial snmp
