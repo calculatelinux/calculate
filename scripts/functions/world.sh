@@ -5,7 +5,9 @@
 #
 # If a package has the python_targets_python<ver> or
 # python_single_target_python<ver> USE flags, it is included only
-# if the active python version is supported.
+# if the active python version is supported.  If a package has
+# php_targets_php<m-m> USE flags, it is included only if one of
+# the active PHP targets (PHP_TARGETS) is supported.
 #
 # Usage: world <category|category/package>
 # Output: category/package:slot (one line per slot)
@@ -38,13 +40,32 @@ main() {
 			exit 1
 		fi
 
+		# Active PHP targets are taken from PHP_TARGETS first, falling
+		# back to the expanded php_targets_* flags in USE.  With no
+		# active target, packages requiring one are excluded.
+		local -a php_tgts=()
+		mapfile -t php_tgts < <("${chroot_cmd[@]}" portageq envvar PHP_TARGETS \
+			| tr ' ' '\n' | grep -xE 'php[0-9]+-[0-9]+' | sort -u)
+		if [[ ${#php_tgts[@]} -eq 0 ]]; then
+			mapfile -t php_tgts < <("${chroot_cmd[@]}" portageq envvar USE \
+				| tr ' ' '\n' | grep -oP '^php_targets_\Kphp[0-9]+-[0-9]+' | sort -u)
+		fi
+
+		local -a php_filter=('-!' -U 'php_targets_.*')
+		if [[ ${#php_tgts[@]} -gt 0 ]]; then
+			local php_alt
+			php_alt=$(IFS='|'; echo "${php_tgts[*]}")
+			php_filter=('-(' '-!' -U 'php_targets_.*' -o -U "php_targets_(${php_alt})\$" '-)')
+		fi
+
 		"${chroot_cmd[@]}" env MY_SLOT='<category>/<name>:<slot>\n' \
 		eix -C "$category" --stable --format '<bestslotversions:MY_SLOT>' '-*' \
 			'-(' \
-				'-!' -U "python_(targets|single_target)_python" \
+				'-!' -U "python_(targets|single_target)_python.*" \
 				-o \
 				-U "python_(targets|single_target)_python${python_ver}\$" \
-			'-)' || true
+			'-)' \
+			"${php_filter[@]}" || true
 	else
 		"${chroot_cmd[@]}" env MY_SLOT='<category>/<name>:<slot>\n' \
 		eix -e "$category" --stable --format '<bestslotversions:MY_SLOT>' '-*' || true
