@@ -846,3 +846,6 @@ net-misc/networkmanager vala
 
 # required by sci-astronomy/kstars-3.8.5
 dev-qt/qtgraphs quick3d
+
+# required by gnome-extra/gnome-contacts-50.0
+media-libs/glycin vala
