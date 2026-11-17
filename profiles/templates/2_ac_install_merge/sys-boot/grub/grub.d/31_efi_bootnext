@@ -1,0 +1,3 @@
+# Calculate chmod=0755 comment=# multiline format=patch autoupdate pkg(sys-boot/grub)>=2.16
+<reg>(menuentry .*?grub_quote\)') (\$CLASS)</reg>
+<text>\1 --unrestricted \2</text>

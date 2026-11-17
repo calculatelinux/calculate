@@ -7,3 +7,7 @@
 <text>\1 --unrestricted \2</text>
 <reg>(submenu .*?...') (\\\$menuentry)</reg>
 <text>\1 --unrestricted \2</text>
+<reg>(menuentry "[^"]*Multiboot\)") (\$\{allowed_user_list\})</reg>
+<text>\1 --unrestricted \2</text>
+<reg>(menuentry "[^"]*Multiboot\)") (\{)</reg>
+<text>\1 --unrestricted \2</text>
