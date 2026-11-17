@@ -13,3 +13,5 @@ sys-libs/db:6.0
 # Bug 983194 - dev-util/oprofile-1.4.0-r1 fails to compile with binutils(-libs)-2.47
 # https://bugs.gentoo.org/983194
 =sys-libs/binutils-libs-2.47
+
+sys-boot/grub-2.15
