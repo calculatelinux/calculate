@@ -1,5 +1,0 @@
-# Calculate chmod=0755 comment=# multiline format=patch autoupdate
-<reg>(menuentry .*?\)') (\$\{CLASS\})</reg>
-<text>\1 --unrestricted \2</text>
-<reg>(submenu .*?grub_quote\))' (\\\$menu)</reg>
-<text>\1 --unrestricted \2</text>
