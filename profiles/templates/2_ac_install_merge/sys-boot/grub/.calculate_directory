@@ -1,2 +1,2 @@
-# Calculate mergepkg(sys-boot/grub:2)!= path=/boot name=grub
+# Calculate mergepkg(sys-boot/grub:2)!=||cl_setup==boot path=/boot name=grub
 
