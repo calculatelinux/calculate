@@ -14,4 +14,3 @@ sys-libs/db:6.0
 # https://bugs.gentoo.org/983194
 =sys-libs/binutils-libs-2.47
 
->sys-boot/grub-2.15
