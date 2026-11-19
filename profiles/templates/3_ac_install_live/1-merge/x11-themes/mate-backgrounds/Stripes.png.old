@@ -1,4 +1,4 @@
-# Calculate exec=/bin/bash pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= cl_ver<4.5.2.21
+# Calculate exec=/bin/bash pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= cl_ver<3.5.2.21
 #!/bin/bash
 #?exists(/usr/share/wallpapers/Calculate-dm/contents/images)!=#
 #?os_install_x11_resolution!=#

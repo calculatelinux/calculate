@@ -1,4 +1,4 @@
-# Calculate format=kde path=/usr/share/dbus-1/system-services cl_ver>=3.6.8.8
+# Calculate format=kde path=/usr/share/dbus-1/system-services
 [D-BUS Service]
 Name=org.calculate.Core
 Exec=/usr/bin/python /usr/libexec/calculate/cl-dbus-core.py

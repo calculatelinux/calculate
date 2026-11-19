@@ -1,2 +1,2 @@
-# Calculate format=backgrounds convert=png stretch path=/usr/share/backgrounds/mate/desktop name=Stripes.png link=#-ini(theme.dm-login-background)-# mirror cl_ver>=3.5.2.21 pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!=
+# Calculate format=backgrounds convert=png stretch path=/usr/share/backgrounds/mate/desktop name=Stripes.png link=#-ini(theme.dm-login-background)-# mirror pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!=
 #-os_install_x11_resolution-#

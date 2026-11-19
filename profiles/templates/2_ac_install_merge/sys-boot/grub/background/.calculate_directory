@@ -1,1 +1,1 @@
-# Calculate append=skip cl_ver>=3.5.2.6&&cl_chroot_status==on
+# Calculate append=skip cl_chroot_status==on

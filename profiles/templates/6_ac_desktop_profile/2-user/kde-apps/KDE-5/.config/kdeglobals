@@ -23,11 +23,11 @@ LookAndFeelPackage=#-ini(profile.appearance-style)-#
 LookAndFeelPackage=org.kde.calculate
 #ini#
 
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 #-sum(iconsize,,64)-#
-#!cl_ver#
+#!install.cl_install_scaling#
 #-sum(iconsize,,48)-#
-#cl_ver#
+#install.cl_install_scaling#
 
 [PanelIcons]
 Size=#-sum(iconsize,iconsize)-#

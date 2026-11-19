@@ -6,12 +6,12 @@ next-applet-id=16
 panel-launchers=['DEPRECATED']
 panels-autohide=['1:false', '2:intel']
 panels-enabled=['1:0:top','2:0:bottom']
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 panels-height=['1:40', '2:68']
 panel-zone-icon-sizes='[{"panelId": 1, "left": 0, "center": 0, "right": 32}, {"left": 64, "center": 64, "right": 64, "panelId": 2}]'
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 24, "center": 24, "right": 24}, {"left": 28, "center": 28, "right": 28, "panelId": 2}]'
-#!cl_ver#
+#!install.cl_install_scaling#
 panels-height=['1:32', '2:56']
-#cl_ver#
+#install.cl_install_scaling#
 panels-resizable=['1:true', '2:true']
 panels-hide-delay=['1:0', '2:200']

@@ -9,8 +9,8 @@
 #?ini(profile.mouse-clickpolicy)!=single#
   <property name="misc-single-click" type="bool" value="false"/>
 #ini#
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
-#!cl_ver#
+#?install.cl_install_scaling==hi#
+#!install.cl_install_scaling#
   <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_75_PERCENT"/>
-#cl_ver#
+#install.cl_install_scaling#
 </channel>

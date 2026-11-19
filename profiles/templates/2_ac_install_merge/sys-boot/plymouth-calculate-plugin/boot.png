@@ -1,6 +1,2 @@
 # Calculate format=backgrounds stretch convert=png ini(theme.splash-silent-type)==logo&&ini(theme.splash-silent-picture)!=&&exists(#-ini(theme.splash-silent-picture)-#)!= pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= link=#-ini(theme.splash-silent-picture)-# mirror
-#?cl_ver>=3.6.4#
 original
-#!cl_ver#
-556x437
-#cl_ver#

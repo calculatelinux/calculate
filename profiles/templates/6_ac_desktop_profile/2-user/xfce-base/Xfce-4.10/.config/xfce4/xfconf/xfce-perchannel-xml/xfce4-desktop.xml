@@ -13,11 +13,11 @@
       <property name="show-home" type="bool" value="false"/>
 #env#
     </property>
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
     <property name="icon-size" type="uint" value="64"/>
-#!cl_ver#
+#!install.cl_install_scaling#
     <property name="icon-size" type="uint" value="48"/>
-#cl_ver#
+#install.cl_install_scaling#
 #?ini(profile.mouse-clickpolicy)==single#
     <property name="single-click" type="bool" value="true"/>
 #ini#

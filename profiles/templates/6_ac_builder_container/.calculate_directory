@@ -1,1 +1,1 @@
-# Calculate append=skip env=builder cl_ver>=3.5.4.1&&ac_builder_container==on
+# Calculate append=skip env=builder ac_builder_container==on

@@ -1,2 +1,2 @@
-# Calculate format=backgrounds stretch convert=gfxboot path=/usr/share/themes/gfxboot-themes-calculate name=back.jpg cl_ver>=3.5.2.22 pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= link=#-ini(theme.gfxboot-background)-# mirror
+# Calculate format=backgrounds stretch convert=gfxboot path=/usr/share/themes/gfxboot-themes-calculate name=back.jpg pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= link=#-ini(theme.gfxboot-background)-# mirror
 640x480

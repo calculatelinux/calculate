@@ -27,11 +27,11 @@ y-centered=true
 orientation='right'
 y-centered=true
 #ini#
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 size=40
-#!cl_ver#
+#!install.cl_install_scaling#
 size=32
-#cl_ver#
+#install.cl_install_scaling#
 screen=0
 monitor=0
 
@@ -62,11 +62,11 @@ x-right=0
 #ini#
 enable-buttons=false
 expand=false
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 size=64
-#!cl_ver#
+#!install.cl_install_scaling#
 size=56
-#cl_ver#
+#install.cl_install_scaling#
 screen=0
 monitor=0
 

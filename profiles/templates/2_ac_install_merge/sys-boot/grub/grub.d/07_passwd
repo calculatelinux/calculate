@@ -1,4 +1,4 @@
-# Calculate comment=# chmod=0700 cl_ver>=3.5.2.26&&cl_grub_pwd!=&&cl_chroot_status==off protected
+# Calculate comment=# chmod=0700 cl_grub_pwd!=&&cl_chroot_status==off protected
 #!/bin/sh
 # grub-mkconfig helper script.
 # Copyright 2016 Calculate Ltd. http://www.calculate-linux.org

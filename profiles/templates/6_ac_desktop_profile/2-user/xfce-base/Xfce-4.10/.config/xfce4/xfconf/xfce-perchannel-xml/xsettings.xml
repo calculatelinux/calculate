@@ -18,9 +18,9 @@
   <property name="Xft" type="empty">
     <property name="Antialias" type="int" value="1"/>
     <property name="HintStyle" type="string" value="hintmedium"/>
-#?cl_ver>=3.6.8.8&&install.cl_install_dpi!=#
+#?install.cl_install_dpi!=#
     <property name="DPI" type="int" value="#-install.cl_install_dpi-#"/>
-#cl_ver#
+#install.cl_install_dpi#
   </property>
   <property name="Gtk" type="empty">
     <property name="FontName" type="string" value="Droid Sans #-ini(profile.font-size)-#"/>
@@ -32,9 +32,9 @@
     <property name="IconSizes" type="string" value="panel-applications-menu=22,22:gtk-menu=22,22:panel-directory=22,22:panel-directory-menu=22,22"/>
     <property name="ButtonImages" type="bool" value="false"/>
   </property>
-#?cl_ver>=3.6.8.8&&install.cl_install_dpi!=#
+#?install.cl_install_dpi!=#
   <property name="Xfce" type="empty">
     <property name="LastCustomDPI" type="int" value="#-install.cl_install_dpi-#"/>
   </property>
-#cl_ver#
+#install.cl_install_dpi#
 </channel>

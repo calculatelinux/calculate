@@ -252,13 +252,13 @@ DialogWidth=640
 
 [Containments][53][General]
 ToolBoxButtonState=bottomright
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 iconSize=4
 labelWidth=2
-#!cl_ver#
+#!install.cl_install_scaling#
 iconSize=3
 labelWidth=1
-#cl_ver#
+#install.cl_install_scaling#
 popups=false
 selectionMarkers=false
 showToolbox=false

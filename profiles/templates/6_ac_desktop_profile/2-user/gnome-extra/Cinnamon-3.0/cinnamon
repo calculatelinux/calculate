@@ -20,10 +20,10 @@ icon-theme='#-ini(profile.appearance-icons)-#'
 #!ini#
 icon-theme='Adwaita'
 #ini#
-#?cl_ver>=3.6.8.8&&install.cl_install_dpi!=#
+#?install.cl_install_dpi!=#
 #-sum(dpi,,#-install.cl_install_dpi-#)-#
 text-scaling-factor=#-sum(dpii,dpi/96)-#.#-sum(dpid,dpi*1000/96-dpii*1000)-#
-#cl_ver#
+#install.cl_install_dpi#
 
 [cinnamon/desktop/keybindings]
 custom-list=['custom0', 'custom1']
@@ -144,11 +144,11 @@ click-policy='#-ini(profile.mouse-clickpolicy)-#'
 
 
 [nemo/icon-view]
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 default-zoom-level='standard'
-#!cl_ver#
+#!install.cl_install_scaling#
 default-zoom-level='small'
-#cl_ver#
+#install.cl_install_scaling#
 
 [gnome/desktop/interface]
 #?ini(profile.appearance-cursor)!=#

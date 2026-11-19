@@ -1,4 +1,4 @@
-# Calculate multiline name=inittab comment=# format=patch cl_ver>=3.5.4.1&&cl_builder_container_set==on
+# Calculate multiline name=inittab comment=# format=patch cl_builder_container_set==on
 <reg>^#(s[01])</reg>
 <text>\1</text>
 <reg>^([c][0-9]:.*agetty).*(tty?\d linux)</reg>

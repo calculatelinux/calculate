@@ -5,11 +5,11 @@
   <property name="panels" type="uint" value="2">
     <property name="panel-0" type="empty">
       <property name="position" type="string" value="p=6;x=0;y=0"/>
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
       <property name="size" type="uint" value="40"/>
-#!cl_ver#
+#!install.cl_install_scaling#
       <property name="size" type="uint" value="32"/>
-#cl_ver#
+#install.cl_install_scaling#
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="plugin-ids" type="array">
@@ -47,11 +47,11 @@
     </property>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=10;x=0;y=0"/>
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
       <property name="size" type="uint" value="68"/>
-#!cl_ver#
+#!install.cl_install_scaling#
       <property name="size" type="uint" value="56"/>
-#cl_ver#
+#install.cl_install_scaling#
       <property name="position-locked" type="bool" value="true"/>
       <property name="plugin-ids" type="array">
 #?exists(~/.config/xfce4/panel/launcher-30/10000000030.desktop)!=#

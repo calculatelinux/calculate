@@ -1,1 +1,1 @@
-# Calculate append=skip cl_ver>=3.6.7 env=install ac_install_config==on
+# Calculate append=skip env=install ac_install_config==on

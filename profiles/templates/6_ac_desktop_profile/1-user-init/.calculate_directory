@@ -1,1 +1,1 @@
-# Calculate append=skip cl_ver<3.5.1.7&&ur_login!=root&&load(~/.calculate/ini.env)==||cl_ver>=3.5.1.7&&ur_login!=root&&profile()!=configured
+# Calculate append=skip cl_ver<3.5.1.7&&ur_login!=root&&load(~/.calculate/ini.env)==||ur_login!=root&&profile()!=configured
