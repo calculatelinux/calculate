@@ -3,7 +3,7 @@
 #?os_install_linux_system==server#
 modules="!plug"
 #os_install_linux_system#
-#?cl_ver>=3.5&&list(os_install_net_interfaces,0)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,0)-#/master)==#
+#?list(os_install_net_interfaces,0)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,0)-#/master)==#
 #?list(os_install_net_dhcp_set,0)!=on&&list(os_install_net_ip,0)!=#
 config_#-list(os_install_net_interfaces,0)-#="#-list(os_install_net_ip,0)-#/#-list(os_install_net_cidr,0)-#"
 #list#
@@ -13,8 +13,8 @@ config_#-list(os_install_net_interfaces,0)-#="dhcp"
 #?list(os_install_net_dhcp_set,0)!=on&&list(os_install_net_ip,0)!=&&list(os_install_net_route,0)!=#
 routes_#-list(os_install_net_interfaces,0)-#="#-list(os_install_net_route,0)-#"
 #list#
-#cl_ver#
-#?cl_ver>=3.5&&list(os_install_net_interfaces,1)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,1)-#/master)==#
+#list#
+#?list(os_install_net_interfaces,1)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,1)-#/master)==#
 #?list(os_install_net_dhcp_set,1)!=on&&list(os_install_net_ip,1)!=#
 config_#-list(os_install_net_interfaces,1)-#="#-list(os_install_net_ip,1)-#/#-list(os_install_net_cidr,1)-#"
 #list#
@@ -24,8 +24,8 @@ config_#-list(os_install_net_interfaces,1)-#="dhcp"
 #?list(os_install_net_dhcp_set,1)!=on&&list(os_install_net_ip,1)!=&&list(os_install_net_route,1)!=#
 routes_#-list(os_install_net_interfaces,1)-#="#-list(os_install_net_route,1)-#"
 #list#
-#cl_ver#
-#?cl_ver>=3.5&&list(os_install_net_interfaces,2)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,2)-#/master)==#
+#list#
+#?list(os_install_net_interfaces,2)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,2)-#/master)==#
 #?list(os_install_net_dhcp_set,2)!=on&&list(os_install_net_ip,2)!=#
 config_#-list(os_install_net_interfaces,2)-#="#-list(os_install_net_ip,2)-#/#-list(os_install_net_cidr,2)-#"
 #list#
@@ -35,8 +35,8 @@ config_#-list(os_install_net_interfaces,2)-#="dhcp"
 #?list(os_install_net_dhcp_set,2)!=on&&list(os_install_net_ip,2)!=&&list(os_install_net_route,2)!=#
 routes_#-list(os_install_net_interfaces,2)-#="#-list(os_install_net_route,2)-#"
 #list#
-#cl_ver#
-#?cl_ver>=3.5&&list(os_install_net_interfaces,3)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,3)-#/master)==#
+#list#
+#?list(os_install_net_interfaces,3)!=&&exists(/sys/class/net/#-list(os_install_net_interfaces,3)-#/master)==#
 #?list(os_install_net_dhcp_set,3)!=on&&list(os_install_net_ip,3)!=#
 config_#-list(os_install_net_interfaces,3)-#="#-list(os_install_net_ip,3)-#/#-list(os_install_net_cidr,3)-#"
 #list#
@@ -46,7 +46,7 @@ config_#-list(os_install_net_interfaces,3)-#="dhcp"
 #?list(os_install_net_dhcp_set,3)!=on&&list(os_install_net_ip,3)!=&&list(os_install_net_route,3)!=#
 routes_#-list(os_install_net_interfaces,3)-#="#-list(os_install_net_route,3)-#"
 #list#
-#cl_ver#
+#list#
 #?os_install_net_dns!=#
 dns_servers="#-os_install_net_dns-#"
 #os_install_net_dns#

@@ -1,1 +1,1 @@
-# Calculate path=/usr/src name=linux append=remove cl_ver>=3.5.4.1&&cl_builder_container_set==on
+# Calculate path=/usr/src name=linux append=remove cl_builder_container_set==on

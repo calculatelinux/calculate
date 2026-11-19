@@ -1,2 +1,2 @@
-# Calculate mergepkg(sys-boot/grub:2)!= cl_ver<3.5.4||os_subsystem== path=/boot
+# Calculate mergepkg(sys-boot/grub:2)!=||cl_setup==boot cl_ver<3.5.4||os_subsystem== path=/boot
 

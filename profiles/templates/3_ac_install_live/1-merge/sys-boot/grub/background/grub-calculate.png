@@ -1,4 +1,4 @@
-# Calculate format=backgrounds convert=png stretch path=/boot/grub name=grub-calculate.png pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= ini(theme.grub-background)!=&&exists(#-ini(theme.grub-background)-#)!=||cl_ver>=3.5.2.22 link=#-ini(theme.grub-background)-# mirror
+# Calculate format=backgrounds convert=png stretch path=/boot/grub name=grub-calculate.png pkg(media-gfx/imagemagick)!=||pkg(media-gfx/graphicsmagick)!= link=#-ini(theme.grub-background)-# mirror
 #?os_install_fb_resolution!=#
 #-cut(0,-,#-os_install_fb_resolution-#)-#
 #!os_install_fb_resolution#

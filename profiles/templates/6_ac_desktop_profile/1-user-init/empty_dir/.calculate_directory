@@ -1,1 +1,1 @@
-# Calculate path=~ name= chmod=0700 cl_ver<3.5.1.7&&exists(~/.kde4/share/config)==&&exists(~/.gconf)==&&exists(~/.config)==||cl_ver>=3.5.1.7&&profile()==empty
+# Calculate path=~ name= chmod=0700 cl_ver<3.5.1.7&&exists(~/.kde4/share/config)==&&exists(~/.gconf)==&&exists(~/.config)==||profile()==empty

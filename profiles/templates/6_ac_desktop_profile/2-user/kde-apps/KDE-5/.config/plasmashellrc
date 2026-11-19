@@ -2,21 +2,21 @@
 Height #-os_x11_height-#=466
 Width #-os_x11_width-#=747
 
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 #-sum(iconsize,,64)-#
-#!cl_ver#
+#!install.cl_install_scaling#
 #-sum(iconsize,,48)-#
-#cl_ver#
+#install.cl_install_scaling#
 
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 #-sum(mainthickness,,40)-#
 #-sum(menuthickness,,68)-#
 #-sum(iconwidth,,68)-#
-#!cl_ver#
+#!install.cl_install_scaling#
 #-sum(mainthickness,,32)-#
 #-sum(menuthickness,,56)-#
 #-sum(iconwidth,,52)-#
-#cl_ver#
+#install.cl_install_scaling#
 
 #-sum(menuwidth,,iconwidth*12+2)-#
 

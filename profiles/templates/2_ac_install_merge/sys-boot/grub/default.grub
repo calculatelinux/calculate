@@ -13,3 +13,6 @@ GRUB_COLOR_HIGHLIGHT="magenta/black"
 GRUB_GFXPAYLOAD_LINUX=keep
 #pkg#
 GRUB_FONT="/usr/share/grub/unicode.pf2"
+#?pkg(sys-boot/grub)>=2.16#
+GRUB_UNRESTRICTED_ACCESS_LEVEL=0
+#pkg#

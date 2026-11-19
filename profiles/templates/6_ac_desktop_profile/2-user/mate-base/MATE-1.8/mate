@@ -2,14 +2,14 @@
 [calc]
 show-thousands=true
 
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 [caja/icon-view]
 default-use-tighter-layout=true
 default-zoom-level='large'
 
 [caja/compact-view]
 default-zoom-level='largest'
-#cl_ver#
+#install.cl_install_scaling#
 
 [caja/desktop]
 computer-icon-visible=false
@@ -24,9 +24,9 @@ volumes-visible=false
 
 [caja/preferences]
 click-policy='#-ini(profile.mouse-clickpolicy)-#'
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 default-folder-viewer='compact-view'
-#cl_ver#
+#install.cl_install_scaling#
 
 [desktop/background]
 color-shading-type='solid'
@@ -40,10 +40,10 @@ picture-filename='#-ini(profile.appearance-wallpaper)-#'
 picture-filename='/usr/share/backgrounds/calculate/Calculate Linux'
 #ini#
 
-#?cl_ver>=3.6.8.8&&install.cl_install_dpi!=#
+#?install.cl_install_dpi!=#
 [desktop/font-rendering]
 dpi=#-install.cl_install_dpi-#.0
-#cl_ver#
+#install.cl_install_dpi#
 
 [desktop/interface]
 document-font-name='Droid Sans #-ini(profile.font-size)-#'

@@ -1,0 +1,3 @@
+# Calculate chmod=0755 comment=# multiline format=patch autoupdate
+<reg>(menuentry '\$LABEL') (\\\$menuentry_id_option)</reg>
+<text>\1 --unrestricted \2</text>

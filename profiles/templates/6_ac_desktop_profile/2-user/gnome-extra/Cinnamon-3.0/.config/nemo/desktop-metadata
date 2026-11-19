@@ -1,11 +1,11 @@
 # Calculate format=kde
 [desktop-monitor-0]
-#?cl_ver>=3.6.8.8&&install.cl_install_scaling==hi#
+#?install.cl_install_scaling==hi#
 desktop-grid-adjust=85;99;
 nemo-icon-view-zoom-level=4
-#!cl_ver#
+#!install.cl_install_scaling#
 desktop-grid-adjust=85;98;
-#cl_ver#
+#install.cl_install_scaling#
 
 [home]
 nemo-icon-position=48,31

@@ -1,1 +1,1 @@
-# Calculate name=.calculate cl_ver<3.5.1.7&&exists(~/.kde4/share/config)!=||cl_ver<3.5.1.7&&exists(~/.gconf)!=||cl_ver<3.5.1.7&&exists(~/.config)!=||cl_ver>=3.5.1.7&&profile()==custom
+# Calculate name=.calculate cl_ver<3.5.1.7&&exists(~/.kde4/share/config)!=||cl_ver<3.5.1.7&&exists(~/.gconf)!=||cl_ver<3.5.1.7&&exists(~/.config)!=||profile()==custom
