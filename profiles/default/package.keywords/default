@@ -76,6 +76,7 @@ www-client/opera amd64
 www-client/opera-beta amd64
 www-client/opera-developer amd64
 www-plugins/chrome-binary-plugins:stable amd64
+~www-servers/nginx-1.31.9 amd64
 ~x11-misc/cdm-0.7 amd64
 ~x11-misc/qlipper-6.0.0 amd64
 ~x11-misc/snixembed-0.3.0 amd64
