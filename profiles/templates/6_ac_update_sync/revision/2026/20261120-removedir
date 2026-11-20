@@ -1,0 +1,9 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+if [[ -d /gui-apps ]]; then
+	rmdir /gui-apps &>/dev/null
+fi
+
+exit 0
