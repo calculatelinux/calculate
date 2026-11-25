@@ -1,0 +1,10 @@
+# Calculate exec=/bin/bash ini(overlay-calculate.revision)<#-cut(0)-#
+
+#-ini(overlay-calculate.revision,#-cut(0)-#)-#
+
+GRUB_MKCONFIG="$(command -v grub-mkconfig || echo /usr/sbin/grub-mkconfig)"
+if [[ -x "$GRUB_MKCONFIG" && -d /boot/grub ]]; then
+	"$GRUB_MKCONFIG" -o /boot/grub/grub.cfg &>/dev/null
+fi
+
+exit 0
