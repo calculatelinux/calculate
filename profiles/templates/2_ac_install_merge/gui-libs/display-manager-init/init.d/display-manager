@@ -1,6 +1,6 @@
 # Calculate format=patch
-<reg>		rm /etc/.nogui
-		return 0</reg>
-<text>		rm /etc/.nogui
+<reg>		rm /run/.nogui
+		return 1</reg>
+<text>		rm /run/.nogui
 		chvt 1
-		return 0</text>
+		return 1</text>
