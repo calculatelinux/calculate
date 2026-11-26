@@ -1,0 +1,27 @@
+# Calculate format=diff merge(x11-misc/lightdm-gtk-greeter)<2.0.10
+
+--- a/src/greeterbackground.c
++++ b/src/greeterbackground.c
+@@ -1086,6 +1086,14 @@
+ 
+     priv = background->priv;
+     surface = create_root_surface(priv->screen);
++    /* create_root_surface() returns NULL when a new X connection cannot be
++     * opened (see the "Failed to create root pixmap" path). Passing that NULL
++     * to set_surface_as_root() below crashes in cairo_surface_get_type(). */
++    if (surface == NULL)
++    {
++        g_warning("[Background] Failed to create root surface, skipping");
++        return;
++    }
+     cr = cairo_create(surface);
+ 
+     gdk_cairo_set_source_rgba(cr, &ROOT_COLOR);
+@@ -1737,6 +1745,7 @@
+     Pixmap   pixmap_id;
+     Window   xroot;
+ 
++    g_return_if_fail(surface != NULL);
+     g_return_if_fail(cairo_surface_get_type (surface) == CAIRO_SURFACE_TYPE_XLIB);
+ 
+     /* Desktop background pixmap should be created from dummy X client since most
