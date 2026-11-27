@@ -1,2 +1,2 @@
-# Calculate format=text ac_install_disk==on cl_network_configure_set==on
+# Calculate ac_install_disk==on cl_network_configure_set==on
 #-os_install_net_hostname-#
