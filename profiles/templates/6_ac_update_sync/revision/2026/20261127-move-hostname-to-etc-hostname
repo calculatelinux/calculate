@@ -1,0 +1,21 @@
+# Calculate run=/bin/bash ini(overlay-calculate.revision)=>20191116.3,#-cut(0,-,#-cl_pass_file-#)-#
+
+#-ini(overlay-calculate.revision,#-cut(0,-,#-cl_pass_file-#)-#)-#
+
+# OpenRC reads /etc/hostname first and NetworkManager takes the static hostname
+# from that same file, so the name must live in one place only. Move the value
+# written by the image templates out of /etc/conf.d/hostname and drop the dead key.
+# The configured name is the one the installer wrote; the current runtime name is not usable as a
+# source because at this moment it may already have been renamed to the reverse-DNS name by
+# NetworkManager. A missing value or OpenRC's packaged default "localhost" carries no intent, so
+# the migration is skipped for them instead of freezing a name nobody chose.
+HN=$(sed -n 's/^[[:space:]]*hostname="\{0,1\}\([^"[:space:]]*\)"\{0,1\}[[:space:]]*$/\1/p' /etc/conf.d/hostname 2>/dev/null | head -1)
+case "$HN" in ''|localhost|localhost.localdomain) HN='' ;; esac
+if [ -n "$HN" ]; then
+	if [ ! -s /etc/hostname ]; then
+		printf '%s\n' "$HN" > /etc/hostname || exit 1
+	fi
+	sed -i '/^[[:space:]]*hostname=/d' /etc/conf.d/hostname
+fi
+
+true
